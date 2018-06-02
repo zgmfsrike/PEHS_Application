@@ -3,18 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-class HomeController extends Controller
+use App\Admin;
+use Auth;
+class AdminController extends Controller
 {
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-      
+
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:admin');
     }
 
     /**
@@ -24,6 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        // $user = User::where('id', $userid)->first();
+        $id = Auth::id();
+        $admins = Admin::where('id',$id)->get();
+        return view('admin',compact('admins'));
     }
+
+  
+
+
 }

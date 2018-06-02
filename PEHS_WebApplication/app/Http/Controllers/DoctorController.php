@@ -3,18 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-class HomeController extends Controller
+use App\Doctor;
+use Auth;
+class DoctorController extends Controller
 {
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-      
+
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:doctor');
     }
 
     /**
@@ -24,6 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        // $user = User::where('id', $userid)->first();
+        $id = Auth::id();
+        $doctors = Doctor::where('doctor_id',$id)->get();
+        return view('doctor',compact('doctors'));
     }
 }

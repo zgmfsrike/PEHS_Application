@@ -8,14 +8,27 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class admin extends Authenticatable
 {
     use Notifiable;
+    protected $guard = 'admin';
+    public $timestamps = false;
 
 
 
     protected $fillable = [
-       'name','password',
+       'username','password',
    ];
 
    protected $hidden = [
-        'password', 'remember_token',
+        'password',
     ];
+
+    public function setAttribute($key, $value)
+   {
+     $isRememberTokenAttribute = $key == $this->getRememberTokenName();
+     if (!$isRememberTokenAttribute)
+     {
+       parent::setAttribute($key, $value);
+     }
+   }
+   
+
 }

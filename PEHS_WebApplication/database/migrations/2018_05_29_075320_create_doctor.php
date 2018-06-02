@@ -16,7 +16,7 @@ class CreateDoctor extends Migration
           Schema::create('doctors', function (Blueprint $table) {
               $table->increments('doctor_id');
               $table->string('username',50)->unique();
-              $table->string('password',50);
+              $table->string('password',200);
               $table->string('name',50);
               $table->string('surname',50);
               $table->date('date_of_birth');
@@ -24,8 +24,6 @@ class CreateDoctor extends Migration
               $table->string('email',50)->unique();
               $table->string('telephone_number',20);
               $table->string('gender',50);
-              $table->rememberToken();
-              $table->timestamps();
           });
     }
 

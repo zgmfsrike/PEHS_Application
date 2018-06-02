@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'passwords' => 'doctors',
     ],
 
     /*
@@ -38,12 +38,28 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'doctors',
         ],
 
         'api' => [
             'driver' => 'token',
-            'provider' => 'users',
+            'provider' => 'doctors',
+        ],
+        'doctor' => [
+            'driver' => 'session',
+            'provider' => 'doctors',
+        ],
+        'doctor-api' => [
+            'driver' => 'token',
+            'provider' => 'doctors',
+        ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+        'admin-api' => [
+            'driver' => 'token',
+            'provider' => 'admins',
         ],
     ],
 
@@ -65,14 +81,15 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'doctors' => [
             'driver' => 'eloquent',
             'model' => App\Doctor::class,
         ],
-        'admin' => [
+        'admins' => [
             'driver' => 'eloquent',
             'model' => App\Admin::class,
         ],
+
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
@@ -95,11 +112,12 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'doctors' => [
+            'provider' => 'doctors',
             'table' => 'password_resets',
             'expire' => 60,
         ],
+
     ],
 
 ];
