@@ -25,10 +25,15 @@ Route::prefix('admin')->group(function(){
   Route::get('/login','Auth\AdminLoginController@showLoginForm')->name('admin.login');
   Route::post('/login','Auth\AdminLoginController@login')->name('admin.login.submit');
   Route::post('/logout','Auth\AdminLoginController@logout')->name('admin.logout');
+
+  // Route::resource('manage-doctor','ManageDoctorController');
+
 });
 Route::prefix('doctor')->group(function(){
   Route::get('/', 'DoctorController@index')->name('doctor.dashboard');
   Route::get('/login','Auth\DoctorLoginController@showLoginForm')->name('doctor.login');
   Route::post('/login','Auth\DoctorLoginController@login')->name('doctor.login.submit');
   Route::post('/logout','Auth\DoctorLoginController@logout')->name('doctor.logout');
+  Route::get('/list_doctor','DoctorController@listDoctor');
+
 });
