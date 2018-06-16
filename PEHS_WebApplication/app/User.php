@@ -1,13 +1,13 @@
 <?php
 
 namespace App;
-
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'username', 'password', 'user_id','role_id'
     ];
 
     /**
@@ -26,4 +26,22 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function setAttribute($key, $value)
+  {
+    $isRememberTokenAttribute = $key == $this->getRememberTokenName();
+    if (!$isRememberTokenAttribute)
+    {
+      parent::setAttribute($key, $value);
+    }
+  }
+
+  public function role()
+  {
+    return $this->hasOne('App\Role');
+  }
+  public function patient()
+  {
+    return $this->hasMany('App\Patient');
+  }
 }
