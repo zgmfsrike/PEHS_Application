@@ -9,7 +9,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 class RegisterController extends Controller
 {
   /*
@@ -50,9 +51,19 @@ class RegisterController extends Controller
   */
   protected function validator(array $data)
   {
+    $name = Input::get('name');
+    $surname = Input::get('surname');
+    $email = Input::get('email');
+    $patient_id = $this->checkPatientExist($name,$surname,$email);
+    if($patient_id =="none"){
+      $email_format ='required|string|email|max:255|unique:patients';
+    }else{
+      $email_format = 'required|string|email|max:255|';
+    }
+
     return Validator::make($data, [
       'username' => 'required|string|max:255|unique:users',
-      'email' => 'required|string|email|max:255|unique:patients',
+      'email' => $email_format,
       'password' => 'required|string|min:6|confirmed',
       'role_id' => 'required|in:2,3,4',
       'name' => 'required|string',
@@ -68,38 +79,39 @@ class RegisterController extends Controller
   */
   protected function create(array $data)
   {
-
+    $user_not_exist = false;
+    $username = Input::get('username');
     $name = Input::get('name');
     $surname = Input::get('surname');
     $email = Input::get('email');
-    $username = Input::get('username');
-    $patient_id = $this->getPatientId($name,$surname,$email);
+    $patient_id = $this->checkPatientExist($name,$surname,$email);
+    if($patient_id == "none"){
+      $patient_id = $this->getPatientId();
+      $user_not_exist = true;
+    }
     $user = User::create([
       'username' => $data['username'],
       'password' => Hash::make($data['password']),
       'role_id' => $data['role_id'],
       'user_id' =>$patient_id
     ]);
-    $get_role_name = DB::table('users')->join('roles','users.role_id','roles.role_id')->select('roles.role_name')->where('username',$username)->first();
-    $role_name = $get_role_name->role_name;
-    DB::table('patients')->insert([
-      'user_id' => $patient_id,
-      'name' => $role_name,
-      'surname'=> $surname,
-      'email'=>$email
-    ]);
+    if($user_not_exist == true){
+      $get_role_name = DB::table('users')->join('roles','users.role_id','roles.role_id')->select('roles.role_name')->where('username',$username)->first();
+      $role_name = $get_role_name->role_name;
+      DB::table('patients')->insert([
+        'user_id' => $patient_id,
+        'name' => $role_name,
+        'surname'=> $surname,
+        'email'=>$email
+      ]);
+    }
     return $user;
   }
 
-  public function getPatientId($name,$surname,$email)
+  public function getPatientId()
   {
-    $check_patient_exist = Patient::select('user_id')->where('name',$name)
-                        ->where('surname',$surname)->where('email',$email)->first();
-    if($check_patient_exist){
-      $patient_id = $check_patient_exist->patient_id;
-    }else{
-
-      $get_current_id = DB::table('patients')->orderByRaw('LENGTH(user_id)','DESC')->orderBy('user_id','DESC')->first();
+      $query_raw = 'LENGTH(user_id) desc, `user_id` desc ';
+      $get_current_id = DB::table('patients')->orderByRaw($query_raw)->first();
       if($get_current_id){
         $split_string = explode("p",$get_current_id->user_id);
         $current_id = intval($split_string[1]);
@@ -107,7 +119,32 @@ class RegisterController extends Controller
       }else{
         $patient_id = "p1";
       }
+      return $patient_id;
+    }
+
+
+  public function checkPatientExist($name,$surname,$email)
+  {
+    $check_patient_exist = DB::table('patients')->select('user_id')->where('name',$name)
+    ->where('surname',$surname)->where('email',$email)->first();
+    if($check_patient_exist){
+      $patient_id = $check_patient_exist->user_id;
+    }else{
+      $patient_id = "none";
     }
     return $patient_id;
+
+  }
+
+
+
+
+  public function register(Request $request)
+  {
+    $this->validator($request->all())->validate();
+
+    event(new Registered($user = $this->create($request->all())));
+    return $this->registered($request, $user)
+    ?: redirect($this->redirectPath());
   }
 }

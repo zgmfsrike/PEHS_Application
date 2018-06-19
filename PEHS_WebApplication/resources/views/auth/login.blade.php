@@ -8,7 +8,7 @@
           <div class="card-header">{{ __('Login') }}</div>
 
           <div class="card-body">
-            <form method="POST" action="{{ route('admin.login') }}">
+            <form method="POST" action="@if(old('role')==2){{route('doctor.login')}}@elseif(old('role')==3){{route('medical_staff.login')}}@else{{ route('admin.login')}}@endif">
               @csrf
 
               <div class="form-group row">

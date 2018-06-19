@@ -20,24 +20,44 @@
   <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 
 <body>
   <div id="app">
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
       <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
+        <a class="navbar-brand" href="{{ url('login') }}">
           {{ config('app.name', 'Laravel') }}
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+        @if(Auth::guard('admin')->check())
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Left Side Of Navbar -->
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item dropdown">
+                <a id="manageDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                  {{ __('Manage') }}<span class="caret"></span>
+                </a>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <!-- Left Side Of Navbar -->
-          <ul class="navbar-nav mr-auto">
 
-          </ul>
+                <div class="dropdown-menu" aria-labelledby="manageDropdown">
+                  <a class="nav-link" href="{{ route('admin.list_doctor') }}">{{ __('Doctor') }}</a>
+                  <a class="nav-link" href="{{ route('admin.list_medical_staff') }}">{{ __('MedicalStaff') }}</a>
+                  <a class="nav-link" href="{{ route('admin.list_patient') }}">{{ __('Patient') }}</a>
+                </div>
+              </li>
+            </ul>
+          @endif
+
+
 
           <!-- Right Side Of Navbar -->
           <ul class="navbar-nav ml-auto">
@@ -63,21 +83,24 @@
                     <form id="logout-form" action="{{ route('doctor.logout') }}" method="POST" style="display: none;">
                     @elseif(Auth::guard('medical_staff')->check())
                       <form id="logout-form" action="{{ route('medical_staff.logout') }}" method="POST" style="display: none;">
-                      @endif
-                      @csrf
-                    </form>
-                  </div>
-                </li>
-              @endguest
-            </ul>
+                      @elseif(Auth::user())
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @endif
+                        @csrf
+                      </form>
+                    </div>
+                  </li>
+                @endguest
+              </ul>
+            </div>
           </div>
+        </nav>
+        <div class="col-md-12 ">
+          {{-- @extends('layouts.sidebar') --}}
+          <main class="py-4">
+            @yield('content')
+          </main>
         </div>
-      </nav>
-
-
-      <main class="py-4">
-        @yield('content')
-      </main>
-    </div>
-  </body>
-  </html>
+      </div>
+    </body>
+    </html>

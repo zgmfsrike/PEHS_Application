@@ -15,13 +15,6 @@ class Admin extends Model
    protected $hidden = [
         'password',
     ];
-    public function setAttribute($key, $value)
-   {
-     $isRememberTokenAttribute = $key == $this->getRememberTokenName();
-     if (!$isRememberTokenAttribute)
-     {
-       parent::setAttribute($key, $value);
-     }
-   }
+  
 
 }

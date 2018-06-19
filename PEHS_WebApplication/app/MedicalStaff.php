@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class MedicalStaff extends Model
 {
+  protected $primaryKey = 'user_id';
   protected $guard = 'medical_staff';
   public $timestamps = false;
 
@@ -13,12 +14,5 @@ class MedicalStaff extends Model
     'user_id','name','surname','email',
   ];
 
-  public function setAttribute($key, $value)
- {
-   $isRememberTokenAttribute = $key == $this->getRememberTokenName();
-   if (!$isRememberTokenAttribute)
-   {
-     parent::setAttribute($key, $value);
-   }
- }
+
 }
