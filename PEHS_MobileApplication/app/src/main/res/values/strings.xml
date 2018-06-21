@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">PEHS</string>
+    <string name="success_message">Registration Successful</string>
+    <string name="Username_Already_In_Used_message">Username already been used</string>
+    <string name="error_message_username">Enter Username</string>
+    <string name="error_message_password">Enter Password</string>
+    <string name="error_message_name">Enter Name</string>
+    <string name="error_message_surname">Enter Surname</string>
+    <string name="error_message_email">Enter Email</string>
+    <string name="error_message_address">Enter Address</string>
+    <string name="error_message_telephone">Enter Telephone</string>
+    <string name="error_message_snackbar">Username or Password is incorrect</string>
+    <string name="text_accounts">Account</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_email">Email</string>
+
+    <string name="error">Error</string>
+    <string name="ok">OK</string>
+    <string name="cannot_create_account">Cannot create new account</string>
+    <string name="invalid_account">Invalid Account</string>
+    <string name="username_already_exist">Username Already Exist</string>
+    <string name="welcome">WELCOME !!</string>
+    <string name="change_profile_error">Change profile error</string>
+
 </resources>
