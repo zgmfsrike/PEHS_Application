@@ -29,6 +29,14 @@ class ManagePatientController extends Controller
 
   }
 
+  public function viewPatientProfile($id)
+  {
+    $patients = $this->getPatientById($id);
+    return view('manage.view_profile',['users'=>$patients,'user_role'=>'patient']);
+
+
+  }
+
   /**
   * Show the form for creating a new resource.
   *
@@ -48,11 +56,25 @@ class ManagePatientController extends Controller
   public function storePatient(Request $request)
   {
     $user_not_exist = false;
+    //---------------------------users table---------------------
     $username = $request->input('username');
     $password = $request->input('password');
+    //-------------------------------------------------------------
+
+    //----------------------------patients table-----------------------
     $name = $request->input('name');
     $surname = $request->input('surname');
     $email = $request->input('email');
+    $date_of_birth = $request->input('date_of_birth');
+    $address = $request->input('address');
+    $telephone_number = $request->input('telephone_number');
+    $gender = $request->input('gender');
+    $blood_type = $request->input('blood_type');
+    $personal_id = $request->input('personal_id');
+    $drug_allergy = $request->input('drug_allergy');
+    $underlying_disease = $request->input('underlying_disease');
+
+    //-------------------------------------------------------------
     $patient_id = $this->checkPatientExist($name, $surname, $email);
     if($patient_id =="none"){
       $email_format ='required|string|email|max:255|unique:patients';
@@ -63,11 +85,19 @@ class ManagePatientController extends Controller
     }
 
     $this->validate($request,  [
-      'username' => 'required|string|max:255|unique:users',
+      'username' => 'required|string|min:4|unique:users|regex:/^[a-zA-Z0-9]+$/',
       'email' => $email_format,
-      'password' => 'required|string|min:6|confirmed',
-      'name' => 'required|string',
-      'surname' => 'required|string',
+      'password' => 'required|string|min:6|confirmed|regex:/^[a-zA-Z0-9]+$/',
+      'name' => 'required|string|regex:/^[a-zA-Z]+$/',
+      'surname' => 'required|string|regex:/^[a-zA-Z]+$/',
+      'date_of_birth' => 'required|date',
+      'address' => 'required|string|regex:/([- ,\/0-9a-zA-Z]+)/',
+      'telephone_number'=> 'required|string|regex:/^[0-9]+$/',
+      'gender'=>'required|string',
+      'blood_type'=>'required|string|regex:/^[a-zA-Z+-]+$/',
+      'personal_id'=>'required|string|regex:/^[a-zA-Z0-9]+$/',
+      'drug_allergy'=>'nullable|string|regex:/^[a-zA-Z0-9]+$/',
+      'underlying_disease'=>'nullable|string|regex:/^[a-zA-Z0-9]+$/',
     ]);
     DB::table('users')->insert([
       'username' => $username,
@@ -77,12 +107,20 @@ class ManagePatientController extends Controller
     ]);
     if($user_not_exist == true){
       DB::table('patients')->insert([
-        'user_id'=>$patient_id,
+        'user_id' => $patient_id,
         'name' => $name,
-        'surname' => $surname,
-        'email'=> $email,
+        'surname'=> $surname,
+        'email'=>$email,
+        'date_of_birth' =>$date_of_birth,
+        'address'=>$address,
+        'telephone_number'=>$telephone_number,
+        'gender'=>$gender,
+        'blood_type'=>$blood_type,
+        'personal_id'=>$personal_id,
+        'drug_allergy'=>$drug_allergy,
+        'underlying_disease'=>$underlying_disease,
       ]);
-      return $this->showListPatient();
+    return redirect(route('admin.list_patient'))->with('success','Patient Created!');
     }
   }
 
@@ -111,6 +149,13 @@ class ManagePatientController extends Controller
   {
     $name = $request->input('name');
     $surname = $request->input('surname');
+    $email = $request->input('email');
+    $date_of_birth = $request->input('date_of_birth');
+    $address = $request->input('address');
+    $telephone_number = $request->input('telephone_number');
+    $gender = $request->input('gender');
+    $drug_allergy = $request->input('drug_allergy');
+    $underlying_disease = $request->input('underlying_disease');
 
     $this->validate($request,[
       'name' => 'required|string',
@@ -119,8 +164,14 @@ class ManagePatientController extends Controller
     $patient = Patient::find($id);
     $patient->name = $name;
     $patient->surname = $surname;
+    $patient->date_of_birth = $date_of_birth;
+    $patient->address = $address;
+    $patient->telephone_number = $telephone_number;
+    $patient->gender = $gender;
+    $patient->drug_allergy = $drug_allergy;
+    $patient->underlying_disease = $underlying_disease;
     $patient->save();
-    return $this->showListPatient();
+    return redirect(route('admin.list_patient'))->with('success','Update information successful!');
 
 
   }
@@ -138,12 +189,13 @@ class ManagePatientController extends Controller
 
     $user = DB::table('users')->where('user_id',$id)->delete();
 
-    return $this->showListPatient();
+    return redirect(route('admin.list_patient'))->with('success','Delete Patient successful!');
+
   }
   public function getPatientList()
   {
     $patient = DB::table('users')->join('patients','users.user_id','patients.user_id')->
-    select('patients.user_id','patients.name','patients.surname','patients.email')->where('users.role_id',4)->get();
+    select('patients.user_id','patients.name','patients.surname','patients.email')->where('users.role_id',4)->paginate(10);
     return $patient;
   }
   public function getPatientId()
@@ -162,7 +214,9 @@ class ManagePatientController extends Controller
   public function getPatientById($id)
   {
     $patient = DB::table('users')->join('patients','users.user_id','patients.user_id')->
-    select('patients.name','patients.surname','patients.email')->where('users.role_id',4)->where('users.user_id',$id)->get();
+    select('patients.name','patients.surname','patients.email','patients.address','patients.gender','patients.telephone_number',
+    'patients.drug_allergy','patients.underlying_disease','patients.date_of_birth')
+    ->where('users.role_id',4)->where('users.user_id',$id)->get();
     return $patient;
   }
   public function checkPatientExist($name,$surname,$email)

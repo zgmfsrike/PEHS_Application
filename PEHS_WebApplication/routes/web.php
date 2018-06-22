@@ -20,8 +20,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix'=>'admin'],function(){
-  Route::post('/login','Auth\AdminLoginController@login')->name('admin.login');
-  Route::post('/logout','Auth\AdminLoginController@logout')->name('admin.logout');
+  // Route::post('/login','Auth\AdminLoginController@login')->name('admin.login');
+  // Route::post('/logout','Auth\LoginController@logoutAdmin')->name('admin.logout');
   Route::get('/','AdminController@index')->name('admin.home');
   //---------------------------------------Manage Doctor---------------------------------------------------------------
   Route::get('/list_doctor','Manage\ManageDoctorController@showListDoctor')->name('admin.list_doctor');
@@ -30,6 +30,7 @@ Route::group(['prefix'=>'admin'],function(){
   Route::get('/create_doctor','Manage\ManageDoctorController@createDoctor')->name('admin.create_doctor');
   Route::post('/create_doctor','Manage\ManageDoctorController@storeDoctor')->name('admin.store_doctor');
   Route::delete('/delete_doctor/{user_id}','Manage\ManageDoctorController@deleteDoctor')->name('admin.delete_doctor');
+  Route::get('/view_profile/doctor/{user_id}','Manage\ManageDoctorController@viewDoctorProfile')->name('admin.view_doctor_profile');
   //--------------------------------------------------------------------------------------------------------------------
 
   //---------------------------------------Manage Medical Staff---------------------------------------------------------
@@ -39,6 +40,7 @@ Route::group(['prefix'=>'admin'],function(){
   Route::get('/create_medical_staff','Manage\ManageMedicalStaffController@createMedicalStaff')->name('admin.create_medical_staff');
   Route::post('/create_medical_staff','Manage\ManageMedicalStaffController@storeMedicalStaff')->name('admin.store_medical_staff');
   Route::delete('/delete_medical_staff/{user_id}','Manage\ManageMedicalStaffController@deleteMedicalStaff')->name('admin.delete_medicalStaff');
+    Route::get('/view_profile/medical_staff/{user_id}','Manage\ManageMedicalStaffController@viewMedicalStaffProfile')->name('admin.view_medical_staff_profile');
 //--------------------------------------------------------------------------------------------------------------------
 
 //---------------------------------------Manage Medical Staff---------------------------------------------------------
@@ -48,19 +50,20 @@ Route::put('/edit_patient/{user_id}','Manage\ManagePatientController@updatePatie
 Route::get('/create_patient','Manage\ManagePatientController@createPatient')->name('admin.create_patient');
 Route::post('/create_patient','Manage\ManagePatientController@storePatient')->name('admin.store_patient');
 Route::delete('/delete_patient/{user_id}','Manage\ManagePatientController@deletePatient')->name('admin.delete_patient');
+Route::get('/view_profile/patient/{user_id}','Manage\ManagePatientController@viewPatientProfile')->name('admin.view_patient_profile');
 //--------------------------------------------------------------------------------------------------------------------
 });
 // Route::prefix('admin')->group(function(){
 // });
 
 Route::prefix('doctor')->group(function(){
-  Route::post('/login','Auth\DoctorLoginController@login')->name('doctor.login');
-  Route::post('/logout','Auth\DoctorLoginController@logout')->name('doctor.logout');
+  // Route::post('/login','Auth\DoctorLoginController@login')->name('doctor.login');
+  // Route::post('/logout','Auth\LoginController@logoutDoctor')->name('doctor.logout');
   Route::get('/','DoctorController@index')->name('doctor.home');
 });
 
 Route::prefix('medical_staff')->group(function(){
-  Route::post('/login','Auth\MedicalStaffLoginController@login')->name('medical_staff.login');
-  Route::post('/logout','Auth\MedicalStaffLoginController@logout')->name('medical_staff.logout');
+  // Route::post('/login','Auth\MedicalStaffLoginController@login')->name('medical_staff.login');
+  // Route::post('/logout','Auth\LoginController@logoutMedicalStaff')->name('medical_staff.logout');
   Route::get('/','MedicalStaffController@index')->name('medical_staff.home');
 });

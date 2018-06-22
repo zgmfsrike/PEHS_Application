@@ -89,19 +89,138 @@
                 </div>
               </div>
 
-
               <div class="form-group row">
-                <label for="role_id" class="col-md-4 col-form-label text-md-right">Role</label>
+                <label for="date_of_birth" class="col-md-4 col-form-label text-md-right">{{ __('Date of Birth') }}</label>
+                @php
+                $today = date("Y-m-d");
+                $min = date('Y-m-d',strtotime($today.' -100 years'));;
+                $max = $today;
+                @endphp
 
                 <div class="col-md-6">
-                  <select name="role_id" class="form-control" >
-                    <option selected disabled>Please Select Role</option>
-                    <option value="2">Doctor</option>
-                    <option value="3">Medical Staff</option>
-                    <option value="4">Patient</option>
-                  </select>
+                  <input id="date_of_birth" type="date" class="form-control{{ $errors->has('date_of_birth') ? ' is-invalid' : '' }}" value="{{ old('date_of_birth') }}" name="date_of_birth" min="{{$min}}" max="{{$max}}" required >
+
+                  @if ($errors->has('date_of_birth'))
+                    <span class="invalid-feedback">
+                      <strong>{{ $errors->first('date_of_birth') }}</strong>
+                    </span>
+                  @endif
                 </div>
               </div>
+
+              <div class="form-group row">
+                <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
+
+                <div class="col-md-6">
+                  <textarea id="address" maxlength="200" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" value="{{ old('address') }}"  required ></textarea>
+
+                  @if ($errors->has('address'))
+                    <span class="invalid-feedback">
+                      <strong>{{ $errors->first('address') }}</strong>
+                    </span>
+                  @endif
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="telephone_number" class="col-md-4 col-form-label text-md-right">{{ __('Telephone Number') }}</label>
+
+                <div class="col-md-6">
+                  <input id="telephone_number" type="text" maxlength="15" class="form-control{{ $errors->has('telephone_number') ? ' is-invalid' : '' }}" name="telephone_number" value="{{ old('telephone_number') }}"  required >
+
+                  @if ($errors->has('telephone_number'))
+                    <span class="invalid-feedback">
+                      <strong>{{ $errors->first('telephone_number') }}</strong>
+                    </span>
+                  @endif
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
+
+                <div class="col-md-6">
+                  <input type="radio" name="gender" id="male" value="male" required>
+                  <label for="male">Male</label>&nbsp
+
+                  <input type="radio" name="gender" id="female" value="female" required>
+                  <label for="female">Female</label>&nbsp
+                  <input type="radio" name="gender" id="other" value="other" required>
+                  <label for="other">Other</label>
+                  @if ($errors->has('gender'))
+                    <span class="invalid-feedback">
+                      <strong>{{ $errors->first('gender') }}</strong>
+                    </span>
+                  @endif
+                </div>
+              </div>
+
+
+
+              <div class="form-group row">
+                <label for="blood_type" class="col-md-4 col-form-label text-md-right">{{ __('Blood Type') }}</label>
+
+                <div class="col-md-3">
+                  <select name="blood_type" id="blood_type" class="form-control{{ $errors->has('blood_type') ? ' is-invalid' : '' }}" required>
+                    <option disalbed>Please Select</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                  </select>
+                  @if ($errors->has('blood_type'))
+                    <span class="invalid-feedback">
+                      <strong>{{ $errors->first('blood_type') }}</strong>
+                    </span>
+                  @endif
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="personal_id" class="col-md-4 col-form-label text-md-right">{{ __('National ID/Passport ID') }}</label>
+
+                <div class="col-md-6">
+                  <input id="personal_id" type="text" maxlength="15" class="form-control{{ $errors->has('personal_id') ? ' is-invalid' : '' }}" name="personal_id" value="{{ old('personal_id') }}"  required >
+
+                  @if ($errors->has('personal_id'))
+                    <span class="invalid-feedback">
+                      <strong>{{ $errors->first('personal_id') }}</strong>
+                    </span>
+                  @endif
+                </div>
+              </div>
+
+
+              <div class="form-group row">
+                <label for="drug_allergy" class="col-md-4 col-form-label text-md-right">{{ __('Drug Allergy') }}</label>
+                <div class="col-md-6">
+                  <textarea id="drug_allergy" maxlength="100" class="form-control{{ $errors->has('drug_allergy') ? ' is-invalid' : '' }}" name="drug_allergy" value="{{ old('drug_allergy') }}"   ></textarea>
+                  @if ($errors->has('drug_allergy'))
+                    <span class="invalid-feedback">
+                      <strong>{{ $errors->first('drug_allergy') }}</strong>
+                    </span>
+                  @endif
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="underlying_disease" class="col-md-4 col-form-label text-md-right">{{ __('Underlying Disease') }}</label>
+                <div class="col-md-6">
+                  <textarea id="underlying_disease" maxlength="100" class="form-control{{ $errors->has('underlying_disease') ? ' is-invalid' : '' }}" name="underlying_disease" value="{{ old('underlying_disease') }}"   ></textarea>
+                  @if ($errors->has('underlying_disease'))
+                    <span class="invalid-feedback">
+                      <strong>{{ $errors->first('underlying_disease') }}</strong>
+                    </span>
+                  @endif
+                </div>
+              </div>
+
+
+
 
 
 

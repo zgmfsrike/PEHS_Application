@@ -13,11 +13,15 @@ class CreateMedicalStaffsTable extends Migration
      */
     public function up()
     {
-      Schema::create('medical_staff', function (Blueprint $table) {
-          $table->string('user_id');
-          $table->string('name');
-          $table->string('surname');
-          $table->string('email')->unique();
+      Schema::create('medical_staffs', function (Blueprint $table) {
+        $table->string('user_id');
+        $table->string('name',30);
+        $table->string('surname',30);
+        $table->date('date_of_birth');
+        $table->string('address',200);
+        $table->string('telephone_number',15);
+        $table->string('gender',10);
+        $table->string('email')->unique();
       });
     }
 
@@ -28,6 +32,6 @@ class CreateMedicalStaffsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('medical_staffs');
     }
 }

@@ -6,9 +6,13 @@
       <div class="col-md-8">
         <div class="card">
           <div class="card-header">{{ __('Login') }}</div>
-
           <div class="card-body">
-            <form method="POST" action="@if(old('role')==2){{route('doctor.login')}}@elseif(old('role')==3){{route('medical_staff.login')}}@else{{ route('admin.login')}}@endif">
+            @if(session('login_fail'))
+              <div class="alert alert-danger">
+                {{session('login_fail')}}
+              </div>
+            @endif
+            <form method="POST" action="{{route('login')}}">
               @csrf
 
               <div class="form-group row">
@@ -39,51 +43,51 @@
                 </div>
               </div>
 
-              <div class="form-group row">
-                <div class="col-md-8 ">
-                  <label for="role" class="col-md-6 col-form-label text-md-right">{{ __('Role ') }}</label>&nbsp&nbsp&nbsp
-                    <select id="role"  name="role" required >
-                      <option  disabled>Please Select Role</option>
-                      <option value="1" @if(old('role') == '1')selected @endif>Admin</option>
-                      <option value="2" @if(old('role') == '2')selected @endif>Doctor</option>
-                      <option value="3" @if(old('role') == '3')selected @endif>Medical Staff</option>
-                    </select>
-                </div>
-              </div>
+              {{-- <div class="form-group row">
+              <div class="col-md-8 ">
+              <label for="role" class="col-md-6 col-form-label text-md-right">{{ __('Role ') }}</label>&nbsp&nbsp&nbsp
+              <select id="role"  name="role" required >
+              <option  disabled>Please Select Role</option>
+              <option value="1" @if(old('role') == '1')selected @endif>Admin</option>
+              <option value="2" @if(old('role') == '2')selected @endif>Doctor</option>
+              <option value="3" @if(old('role') == '3')selected @endif>Medical Staff</option>
+            </select>
+          </div>
+        </div> --}}
 
-              <div class="form-group row mb-0">
-                <div class="col-md-8 offset-md-4">
-                  <button type="submit" class="btn btn-primary">
-                    {{ __('Login') }}
-                  </button>
+        <div class="form-group row mb-0">
+          <div class="col-md-8 offset-md-4">
+            <button type="submit" class="btn btn-primary">
+              {{ __('Login') }}
+            </button>
 
-                  <a class="btn btn-link" href="{{ route('password.request') }}">
-                    {{ __('Forgot Your Password?') }}
-                  </a>
-                </div>
-              </div>
-            </form>
+            <a class="btn btn-link" href="{{ route('password.request') }}">
+              {{ __('Forgot Your Password?') }}
+            </a>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   </div>
-  <script type="text/javascript">
-  $(document).ready(function() {
-    $('select[name="role"]').on('change', function() {
-      /* Act on the event */
-      var role = $(this).val();
-      if(role == 1){
-        $(this).closest('form')
-        .attr('action', '/admin/login');
-      }else if(role == 2){
-        $(this).closest('form')
-        .attr('action', '/doctor/login');
-      }else if(role == 3){
-        $(this).closest('form')
-        .attr('action', '/medical_staff/login');
-      }
-    });
+</div>
+</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('select[name="role"]').on('change', function() {
+    /* Act on the event */
+    var role = $(this).val();
+    if(role == 1){
+      $(this).closest('form')
+      .attr('action', '/admin/login');
+    }else if(role == 2){
+      $(this).closest('form')
+      .attr('action', '/doctor/login');
+    }else if(role == 3){
+      $(this).closest('form')
+      .attr('action', '/medical_staff/login');
+    }
   });
+});
 </script>
 @endsection

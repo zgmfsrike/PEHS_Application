@@ -14,10 +14,18 @@ class CreatePatientsTable extends Migration
     public function up()
     {
         Schema::create('patients', function (Blueprint $table) {
-          $table->string('user_id');
-          $table->string('name');
-          $table->string('surname');
+          $table->string('user_id',10);
+          $table->string('name',30);
+          $table->string('surname',30);
           $table->string('email')->unique();
+          $table->date('date_of_birth');
+          $table->string('address',200);
+          $table->string('telephone_number',15);
+          $table->string('gender',10);
+          $table->string('blood_type',5);
+          $table->string('personal_id',20);
+          $table->string('drug_allergy',100)->nullable();;
+          $table->string('underlying_disease',100)->nullable();;
         });
     }
 
