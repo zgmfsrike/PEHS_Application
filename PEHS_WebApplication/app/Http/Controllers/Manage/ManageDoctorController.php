@@ -29,6 +29,17 @@ class ManageDoctorController extends Controller
 
   }
 
+  public function searchDoctorByName(Request $request)
+  {
+    $name = $request->input('search');
+    $doctors = DB::table('users')->join('doctors','doctors.user_id','users.user_id')->
+    select('doctors.user_id','doctors.name','doctors.surname','doctors.email','users.username')->
+    where('doctors.name', 'like',$name.'%')->paginate(10);
+    return view('manage.list_user',['users'=>$doctors,'user_role'=>'doctor','search_value'=>$name]);
+      // return redirect(route('admin.list_doctor'))->with('success','Doctor Created!');
+
+  }
+
   /**
   * Show the form for creating a new resource.
   *
@@ -180,7 +191,7 @@ class ManageDoctorController extends Controller
   public function getDoctorList()
   {
     $doctor = DB::table('users')->join('doctors','users.user_id','doctors.user_id')->
-    select('doctors.user_id','doctors.name','doctors.surname','doctors.email')
+    select('doctors.user_id','doctors.name','doctors.surname','doctors.email','users.username')
     ->where('users.role_id',2)->paginate(10);
     return $doctor;
   }

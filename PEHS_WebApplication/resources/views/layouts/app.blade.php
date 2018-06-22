@@ -72,18 +72,26 @@
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  @if(Auth::guard('doctor')->check())
+                    <a class="dropdown-item" href="{{ route('doctor.profile') }}">{{ __('Profile') }}</a>
+                  @elseif(Auth::guard('medical_staff')->check())
+                    <a class="dropdown-item" href="{{ route('medical_staff.profile') }}">{{ __('Profile') }}</a>
+                  @endif
                   <a class="dropdown-item" href="{{ route('logout') }}"
                   onclick="event.preventDefault();
                   document.getElementById('logout-form').submit();">
                   {{ __('Logout') }}
                 </a>
+
                 @if(Auth::user())
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                   @endif
                   @csrf
+
                 </form>
               </div>
             </li>
+
           @endguest
         </ul>
       </div>

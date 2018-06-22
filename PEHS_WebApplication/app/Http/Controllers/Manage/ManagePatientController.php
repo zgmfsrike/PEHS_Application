@@ -29,6 +29,16 @@ class ManagePatientController extends Controller
 
   }
 
+  public function searchPatientByName(Request $request)
+  {
+    $name = $request->input('search');
+    $patients = DB::table('users')->join('patients','users.user_id','patients.user_id')->
+    select('patients.user_id','patients.name','patients.surname','patients.email','users.username')->
+    where('patients.name', 'like',$name.'%')->paginate(10);
+    return view('manage.list_user',['users'=>$patients,'user_role'=>'patient','search_value'=>$name]);
+
+  }
+
   public function viewPatientProfile($id)
   {
     $patients = $this->getPatientById($id);
@@ -120,7 +130,7 @@ class ManagePatientController extends Controller
         'drug_allergy'=>$drug_allergy,
         'underlying_disease'=>$underlying_disease,
       ]);
-    return redirect(route('admin.list_patient'))->with('success','Patient Created!');
+      return redirect(route('admin.list_patient'))->with('success','Patient Created!');
     }
   }
 
@@ -195,7 +205,7 @@ class ManagePatientController extends Controller
   public function getPatientList()
   {
     $patient = DB::table('users')->join('patients','users.user_id','patients.user_id')->
-    select('patients.user_id','patients.name','patients.surname','patients.email')->where('users.role_id',4)->paginate(10);
+    select('patients.user_id','patients.name','patients.surname','patients.email','users.username')->where('users.role_id',4)->paginate(10);
     return $patient;
   }
   public function getPatientId()

@@ -1,23 +1,5 @@
 @extends('layouts.app')
 @section('content')
-  @php
-  switch ($user_role) {
-    case 'doctor':
-    $edit_route = 'admin.edit_doctor';
-    $delete_route = 'admin.delete_doctor';
-    break;
-
-    case 'medical_staff':
-    $edit_route = 'admin.edit_medical_staff';
-    $delete_route = 'admin.delete_medicalStaff';
-    break;
-
-    case 'patient':
-    $edit_route = 'admin.edit_patient';
-    $delete_route = 'admin.delete_patient';
-    break;
-  }
-  @endphp
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-7">
@@ -89,9 +71,30 @@
                   @endif
                 @endforeach
                 <div>
-                  <div class="col-md-6 offset-md-5">
+                  <div class=" row justify-content-center">
                     {{-- <a href="{{route($edit_route,['user_id'=>$user->user_id])}}"><button class="btn btn-warning"><i class="fa fa-cog" style="font-size:24px"></i></button></a> --}}
-                    <a href="{{ URL::previous() }}"><button class="btn btn-warning">Back</button></a>
+                    @if(Auth::guard('doctor')->check())
+                      <a href="{{route('doctor.edit_profile',['user_id'=>$user_id])}}"><button class=" btn btn-warning">Edit</button></a>&nbsp
+                    @elseif(Auth::guard('medical_staff')->check())
+                      <a href="{{route('medical_staff.edit_profile',['user_id'=>$user_id])}}"><button class=" btn btn-warning">Edit</button></a>&nbsp
+                    @endif
+                    @if (Auth::guard('admin')->check())
+                      @php
+                      switch ($user_role) {
+                        case 'doctor':
+                        $back_route = 'admin.list_doctor';
+                        break;
+                        case 'medical_staff':
+                        $back_route = 'admin.list_medical_staff';
+                        break;
+                        case 'patient':
+                        $back_route = 'admin.list_patient';
+                        break;
+
+                      }
+                      @endphp
+                      <a href="{{route($back_route) }}"><button class=" btn">back</button></a>
+                    @endif
                   </div>
                 </div>
               </div>

@@ -29,6 +29,16 @@ class ManageMedicalStaffController extends Controller
 
   }
 
+  public function searchMedicalStaffByName(Request $request)
+  {
+    $name = $request->input('search');
+    $medical_staff = DB::table('users')->join('medical_staffs','users.user_id','medical_staffs.user_id')->
+    select('medical_staffs.user_id','medical_staffs.name','medical_staffs.surname','medical_staffs.email','users.username')->
+    where('medical_staffs.name', 'like',$name.'%')->paginate(10);
+    return view('manage.list_user',['users'=>$medical_staff,'user_role'=>'medical_staff','search_value'=>$name]);
+
+  }
+
   public function viewMedicalStaffProfile($id)
   {
     $medical_staff = $this->getMedicalStaffById($id);
@@ -181,7 +191,7 @@ class ManageMedicalStaffController extends Controller
   public function getMedicalStaffList()
   {
     $medical_staff = DB::table('users')->join('medical_staffs','users.user_id','medical_staffs.user_id')->
-    select('medical_staffs.user_id','medical_staffs.name','medical_staffs.surname','medical_staffs.email')
+    select('medical_staffs.user_id','medical_staffs.name','medical_staffs.surname','medical_staffs.email','users.username')
     ->where('users.role_id',3)->paginate(10);
     return $medical_staff;
   }
