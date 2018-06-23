@@ -86,18 +86,14 @@
               <td><a href="{{route($profile_route,['user_id'=>$user->user_id])}}"><button class="btn btn-info ">View</button></a></td>
               <td><a href="{{route($edit_route,['user_id'=>$user->user_id])}}"><button class="btn btn-warning glyphicon glyphicon-pencil"><i class="fa fa-cog" style="font-size:24px"></i></button></a></td>
               <td>
-                <form action="{{route($delete_route,['user_id'=>$user->user_id])}}" method="post">
-                  @csrf
-                  <input type="hidden" name="_method" value="DELETE">
-
 
                   <!-- Button trigger modal -->
-                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_modal">
+                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_modal_{{$user->user_id}}">
                     <i class="fa fa-remove" style="font-size:24px"></i>
                   </button>
 
                   <!-- Modal -->
-                  <div class="modal fade" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal fade" id="delete_modal_{{$user->user_id}}" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -112,14 +108,19 @@
                           </div>
                         </div>
                         <div class="modal-footer">
+                          <form action="{{route($delete_route,['user_id'=>$user->user_id])}}" method="post">
+                            @csrf
+                          <input type="hidden" name="_method" value="DELETE">
                           <button type="submit" class="btn btn-danger">Delete</button>
+
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            </form>
 
                         </div>
                       </div>
                     </div>
                   </div>
-                </form>
+
               </td>
             </tr>
           @endforeach
