@@ -83,6 +83,8 @@ class ManageMedicalStaffController extends Controller
       $email_format ='required|string|email|max:255|unique:medical_staffs';
       $medical_staff_id = $this->getMedicalStaffId();
       $user_not_exist = true;
+    }elseif(){
+      return redirect(route('admin.create_medical_staff'))->with('id_exist','Sorry, your account has been registerd!');
     }else{
       $email_format = 'required|string|email|max:255|';
     }
@@ -117,7 +119,7 @@ class ManageMedicalStaffController extends Controller
       ]);
 
     }
-      return redirect(route('admin.list_medical_staff'))->with('success','Medical Staff Created!');
+    return redirect(route('admin.list_medical_staff'))->with('success','Medical Staff Created!');
   }
 
 
@@ -166,7 +168,7 @@ class ManageMedicalStaffController extends Controller
     $medical_staff->telephone_number = $telephone_number;
     $medical_staff->gender = $gender;
     $medical_staff->save();
-      return redirect(route('admin.list_medical_staff'))->with('success','Update information successful!');
+    return redirect(route('admin.list_medical_staff'))->with('success','Update information successful!');
 
 
   }
@@ -221,11 +223,21 @@ class ManageMedicalStaffController extends Controller
     $check_medical_staff_exist = DB::table('medical_staffs')->select('user_id')->where('name',$name)
     ->where('surname',$surname)->where('email',$email)->first();
     if($check_medical_staff_exist){
-      $medical_staff_id = $check_medical_staff_exist->user_id;
+      $user_id = $check_medical_staff_exist->user_id;
+      $medical_staff_id = $this->checkUserIdExist($user_id)
     }else{
       $medical_staff_id = "none";
     }
     return $medical_staff_id;
 
+  }
+
+  public function checkUserIdExist($id)
+  {
+    $check_id_exist = DB::table('users')->select('user_id')->where('user_id',$id)->first();
+    if($check_id_exist){
+      $medical_staff_id = "exist";
+      return $medical_staff_id;
+    }
   }
 }

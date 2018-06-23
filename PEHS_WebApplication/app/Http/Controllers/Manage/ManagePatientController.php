@@ -90,6 +90,9 @@ class ManagePatientController extends Controller
       $email_format ='required|string|email|max:255|unique:patients';
       $patient_id = $this->getPatientId();
       $user_not_exist = true;
+    }elseif($patient_id == "exist"){
+      return redirect(route('admin.create_patient'))->with('id_exist','Sorry, your account has been registerd!');
+
     }else{
       $email_format = 'required|string|email|max:255|';
     }
@@ -204,6 +207,8 @@ class ManagePatientController extends Controller
     return redirect(route('admin.list_patient'))->with('success','Delete Patient successful!');
 
   }
+
+
   public function getPatientList()
   {
     $query_raw = "LENGTH(users.user_id) desc";
@@ -238,11 +243,23 @@ class ManagePatientController extends Controller
     $check_patient_exist = DB::table('patients')->select('user_id')->where('name',$name)
     ->where('surname',$surname)->where('email',$email)->first();
     if($check_patient_exist){
-      $patient_id = $check_patient_exist->user_id;
+      $user_id = $check_patient_exist->user_id;
+      $patient_id = $this->checkUserIdExist($user_id);
     }else{
       $patient_id = "none";
     }
     return $patient_id;
 
   }
+  public function checkUserIdExist($id)
+  {
+    $check_id_exist = DB::table('users')->select('user_id')->where('user_id',$id)->first();
+    if($check_id_exist){
+      $patient_id = "exist";
+      return $patient_id;
+    }
+  }
+
+
+
 }

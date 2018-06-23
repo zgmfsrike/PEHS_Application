@@ -10,3 +10,9 @@
     {{session('error')}}
   </div>
 @endif
+
+@if(session('id_exist'))
+  <div class="alert alert-danger">
+    {{session('id_exist')}}
+  </div>
+@endif

@@ -78,6 +78,9 @@ class ManageDoctorController extends Controller
       $email_format ='required|string|email|max:255|unique:doctors';
       $doctor_id = $this->getDoctorId();
       $user_not_exist = true;
+    }elseif($doctor_id == "exist"){
+      return redirect(route('admin.create_doctor'))->with('id_exist','Sorry, your account has been registerd!');
+
     }else{
       $email_format = 'required|string|email|max:255|';
     }
@@ -217,11 +220,20 @@ class ManageDoctorController extends Controller
     $check_doctor_exist = DB::table('doctors')->select('user_id')->where('name',$name)
     ->where('surname',$surname)->where('email',$email)->first();
     if($check_doctor_exist){
-      $doctor_id = $check_doctor_exist->user_id;
+      $user_id = $check_doctor_exist->user_id;
+      $doctor_id = $this->checkUserIdExist($user_id);
     }else{
       $doctor_id = "none";
     }
     return $doctor_id;
 
+  }
+  public function checkUserIdExist($id)
+  {
+    $check_id_exist = DB::table('users')->select('user_id')->where('user_id',$id)->first();
+    if($check_id_exist){
+      $doctor_id = "exist";
+      return $doctor_id;
+    }
   }
 }
