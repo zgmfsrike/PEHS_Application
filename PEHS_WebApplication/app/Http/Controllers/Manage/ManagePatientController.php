@@ -130,8 +130,9 @@ class ManagePatientController extends Controller
         'drug_allergy'=>$drug_allergy,
         'underlying_disease'=>$underlying_disease,
       ]);
-      return redirect(route('admin.list_patient'))->with('success','Patient Created!');
+
     }
+    return redirect(route('admin.list_patient'))->with('success','Patient Created!');
   }
 
 

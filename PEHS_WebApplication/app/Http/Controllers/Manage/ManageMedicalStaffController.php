@@ -115,10 +115,9 @@ class ManageMedicalStaffController extends Controller
         'telephone_number'=>$telephone_number,
         'gender'=>$gender,
       ]);
-        return redirect(route('admin.list_medical_staff'))->with('success','Medical Staff Created!');
-
 
     }
+      return redirect(route('admin.list_medical_staff'))->with('success','Medical Staff Created!');
   }
 
 
