@@ -180,7 +180,8 @@ class ManagePatientController extends Controller
     $patient->gender = $gender;
     $patient->drug_allergy = $drug_allergy;
     $patient->underlying_disease = $underlying_disease;
-    $patient->save();
+    $save = $patient->save();
+
     return redirect(route('admin.list_patient'))->with('success','Update information successful!');
 
 
@@ -204,8 +205,10 @@ class ManagePatientController extends Controller
   }
   public function getPatientList()
   {
+    $query_raw = "LENGTH(users.user_id) desc";
     $patient = DB::table('users')->join('patients','users.user_id','patients.user_id')->
-    select('patients.user_id','patients.name','patients.surname','patients.email','users.username')->where('users.role_id',4)->paginate(10);
+    select('patients.user_id','patients.name','patients.surname','patients.email','users.username')->orderByRaw($query_raw)->orderBy('users.user_id')
+    ->where('users.role_id',4)->paginate(10);
     return $patient;
   }
   public function getPatientId()

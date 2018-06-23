@@ -190,8 +190,9 @@ class ManageMedicalStaffController extends Controller
   }
   public function getMedicalStaffList()
   {
+    $query_raw = "LENGTH(users.user_id) desc";
     $medical_staff = DB::table('users')->join('medical_staffs','users.user_id','medical_staffs.user_id')->
-    select('medical_staffs.user_id','medical_staffs.name','medical_staffs.surname','medical_staffs.email','users.username')
+    select('medical_staffs.user_id','medical_staffs.name','medical_staffs.surname','medical_staffs.email','users.username')->orderByRaw($query_raw)->orderBy('users.user_id')
     ->where('users.role_id',3)->paginate(10);
     return $medical_staff;
   }

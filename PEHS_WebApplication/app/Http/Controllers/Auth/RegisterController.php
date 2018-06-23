@@ -71,7 +71,7 @@ class RegisterController extends Controller
       'address' => 'required|string|regex:/([- ,\/0-9a-zA-Z]+)/',
       'telephone_number'=> 'required|string|regex:/^[0-9]+$/',
       'gender'=>'required|string',
-      'blood_type'=>'required|string|regex:/^[a-zA-Z+-]+$/',
+      'blood_type'=>'required|',
       'personal_id'=>'required|string|regex:/^[a-zA-Z0-9]+$/',
       'drug_allergy'=>'nullable|string|regex:/^[a-zA-Z0-9]+$/',
       'underlying_disease'=>'nullable|string|regex:/^[a-zA-Z0-9]+$/',

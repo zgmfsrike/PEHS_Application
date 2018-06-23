@@ -159,8 +159,8 @@
                 <label for="blood_type" class="col-md-4 col-form-label text-md-right">{{ __('Blood Type') }}</label>
 
                 <div class="col-md-3">
-                  <select name="blood_type" id="blood_type" class="form-control{{ $errors->has('blood_type') ? ' is-invalid' : '' }}" required>
-                    <option disalbed>Please Select</option>
+                  <select required name="blood_type" id="blood_type" class="form-control{{ $errors->has('blood_type') ? ' is-invalid' : '' }}" >
+                    <option disalbed value="">Please Select</option>
                     <option value="A+"@if(old('blood_type')=="A+"){{'selected'}}@endif >A+</option>
                     <option value="A-" @if(old('blood_type')=="A-"){{'selected'}}@endif>A-</option>
                     <option value="B+" @if(old('blood_type')=="B+"){{'selected'}}@endif>B+</option>

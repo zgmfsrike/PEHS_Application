@@ -44,7 +44,7 @@
             <ul class="navbar-nav mr-auto">
               <li class="nav-item dropdown">
                 <a id="manageDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                  {{ __('Manage') }}<span class="caret"></span>
+                  {{ __('Management ') }}<span class="caret"></span>
                 </a>
 
 

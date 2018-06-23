@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
       <div class="col-md-7">
         <div class="card">
-          <div class="card-header">{{_('Profile')}}</div>
+          <div class="card-header"><b>{{_('Profile')}}</b></div>
           <div class="card-body">
             @foreach ($users as $i=>$user)
               <div class=" row">

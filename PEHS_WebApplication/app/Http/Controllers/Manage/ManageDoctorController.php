@@ -36,7 +36,7 @@ class ManageDoctorController extends Controller
     select('doctors.user_id','doctors.name','doctors.surname','doctors.email','users.username')->
     where('doctors.name', 'like',$name.'%')->paginate(10);
     return view('manage.list_user',['users'=>$doctors,'user_role'=>'doctor','search_value'=>$name]);
-      // return redirect(route('admin.list_doctor'))->with('success','Doctor Created!');
+    // return redirect(route('admin.list_doctor'))->with('success','Doctor Created!');
 
   }
 
@@ -110,10 +110,8 @@ class ManageDoctorController extends Controller
         'telephone_number'=>$telephone_number,
         'gender'=>$gender,
       ]);
-      return redirect(route('admin.list_doctor'))->with('success','Doctor Created!');
-
-
     }
+    return redirect(route('admin.list_doctor'))->with('success','Doctor Created!');
   }
 
   public function viewDoctorProfile($id)
@@ -183,15 +181,14 @@ class ManageDoctorController extends Controller
   {
     $doctor = Doctor::find($id);
     $doctor->delete();
-
     $user = DB::table('users')->where('user_id',$id)->delete();
-
-      return redirect(route('admin.list_doctor'))->with('success','Delete Doctor succesful!');
+    return redirect(route('admin.list_doctor'))->with('success','Delete Doctor succesful!');
   }
   public function getDoctorList()
   {
+    $query_raw = "LENGTH(users.user_id) desc";
     $doctor = DB::table('users')->join('doctors','users.user_id','doctors.user_id')->
-    select('doctors.user_id','doctors.name','doctors.surname','doctors.email','users.username')
+    select('doctors.user_id','doctors.name','doctors.surname','doctors.email','users.username')->orderByRaw($query_raw)->orderBy('users.user_id')
     ->where('users.role_id',2)->paginate(10);
     return $doctor;
   }
