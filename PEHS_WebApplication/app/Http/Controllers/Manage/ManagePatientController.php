@@ -172,8 +172,15 @@ class ManagePatientController extends Controller
     $underlying_disease = $request->input('underlying_disease');
 
     $this->validate($request,[
-      'name' => 'required|string',
-      'surname' => 'required|string',
+      'name' => 'required|string|regex:/^[a-zA-Z]+$/',
+      'surname' => 'required|string|regex:/^[a-zA-Z]+$/',
+      'date_of_birth' => 'required|date',
+      'address' => 'required|string|regex:/([- ,\/0-9a-zA-Z]+)/',
+      'telephone_number'=> 'required|string|regex:/^[0-9]+$/',
+      'gender'=>'required|string',
+      'drug_allergy'=>'nullable|string|regex:/([- ,\/0-9a-zA-Z]+)/',
+      'underlying_disease'=>'nullable|regex:/([- ,\/0-9a-zA-Z]+)/',
+
     ]);
     $patient = Patient::find($id);
     $patient->name = $name;

@@ -83,7 +83,7 @@ class ManageMedicalStaffController extends Controller
       $email_format ='required|string|email|max:255|unique:medical_staffs';
       $medical_staff_id = $this->getMedicalStaffId();
       $user_not_exist = true;
-    }elseif(){
+    }elseif($medical_staff_id =="exist"){
       return redirect(route('admin.create_medical_staff'))->with('id_exist','Sorry, your account has been registerd!');
     }else{
       $email_format = 'required|string|email|max:255|';
@@ -224,7 +224,7 @@ class ManageMedicalStaffController extends Controller
     ->where('surname',$surname)->where('email',$email)->first();
     if($check_medical_staff_exist){
       $user_id = $check_medical_staff_exist->user_id;
-      $medical_staff_id = $this->checkUserIdExist($user_id)
+      $medical_staff_id = $this->checkUserIdExist($user_id);
     }else{
       $medical_staff_id = "none";
     }
