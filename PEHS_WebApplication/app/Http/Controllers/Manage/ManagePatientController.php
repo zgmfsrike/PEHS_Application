@@ -193,7 +193,7 @@ class ManagePatientController extends Controller
     $patient->underlying_disease = $underlying_disease;
     $save = $patient->save();
 
-    return redirect(route('admin.list_patient'))->with('success','Update information successful.');
+    return redirect(route('admin.list_patient'))->with('success','Update information successfully.');
 
 
   }
@@ -211,7 +211,7 @@ class ManagePatientController extends Controller
 
     $user = DB::table('users')->where('user_id',$id)->delete();
 
-    return redirect(route('admin.list_patient'))->with('success','Delete Patient successful.');
+    return redirect(route('admin.list_patient'))->with('success','Delete Patient successfully.');
 
   }
 

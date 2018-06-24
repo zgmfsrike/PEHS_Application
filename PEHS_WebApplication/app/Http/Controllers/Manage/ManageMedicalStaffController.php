@@ -168,7 +168,7 @@ class ManageMedicalStaffController extends Controller
     $medical_staff->telephone_number = $telephone_number;
     $medical_staff->gender = $gender;
     $medical_staff->save();
-    return redirect(route('admin.list_medical_staff'))->with('success','Update information successful.');
+    return redirect(route('admin.list_medical_staff'))->with('success','Update information successfully.');
 
 
   }
@@ -186,7 +186,7 @@ class ManageMedicalStaffController extends Controller
 
     $user = DB::table('users')->where('user_id',$id)->delete();
 
-    return redirect(route('admin.list_medical_staff'))->with('success','Delete Medical Staff successful.');
+    return redirect(route('admin.list_medical_staff'))->with('success','Delete Medical Staff successfully.');
 
   }
   public function getMedicalStaffList()

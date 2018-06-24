@@ -172,7 +172,7 @@ class ManageDoctorController extends Controller
     $doctor->telephone_number = $telephone_number;
     $doctor->gender = $gender;
     $doctor->save();
-    return redirect(route('admin.list_doctor'))->with('success','Update information successful.');
+    return redirect(route('admin.list_doctor'))->with('success','Update information successfully.');
 
 
   }
@@ -188,7 +188,7 @@ class ManageDoctorController extends Controller
     $doctor = Doctor::find($id);
     $doctor->delete();
     $user = DB::table('users')->where('user_id',$id)->delete();
-    return redirect(route('admin.list_doctor'))->with('success','Delete Doctor successful.');
+    return redirect(route('admin.list_doctor'))->with('success','Delete Doctor successfully.');
   }
   public function getDoctorList()
   {
