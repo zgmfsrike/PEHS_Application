@@ -35,6 +35,9 @@ class ManageMedicalStaffController extends Controller
     $medical_staff = DB::table('users')->join('medical_staffs','users.user_id','medical_staffs.user_id')->
     select('medical_staffs.user_id','medical_staffs.name','medical_staffs.surname','medical_staffs.email','users.username')->
     where('medical_staffs.name', 'like',$name.'%')->paginate(10);
+    if(count($medical_staff) == 0){
+      return view('manage.list_user',['users'=>$medical_staff,'user_role'=>'medical_staff','search_value'=>$name])->with('not_found_user','Sorry!, not found the user name "'.$name.'"');
+    }
     return view('manage.list_user',['users'=>$medical_staff,'user_role'=>'medical_staff','search_value'=>$name]);
 
   }

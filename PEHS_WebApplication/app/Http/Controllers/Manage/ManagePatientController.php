@@ -35,6 +35,9 @@ class ManagePatientController extends Controller
     $patients = DB::table('users')->join('patients','users.user_id','patients.user_id')->
     select('patients.user_id','patients.name','patients.surname','patients.email','users.username')->
     where('patients.name', 'like',$name.'%')->paginate(10);
+    if(count($patients) == 0){
+      return view('manage.list_user',['users'=>$patients,'user_role'=>'patient','search_value'=>$name])->with('not_found_user','Sorry!, not found the user name "'.$name.'"');
+    }
     return view('manage.list_user',['users'=>$patients,'user_role'=>'patient','search_value'=>$name]);
 
   }
