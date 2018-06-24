@@ -64,18 +64,28 @@
     <div class="table-responsive table-bordered">
       <table class="table text-center">
         <thead class="thead-light">
-          <tr>
-            <th scope="col" class="text-center">ID</th>
-            <th scope="col" class="text-center">Username</th>
-            <th scope="col" class="text-center">Name</th>
-            <th scope="col" class="text-center">Surname</th>
-            <th scope="col" class="text-center">Email</th>
-            <th scope="cole" class="text-center">Profile</th>
-            <th scope="cole" class="text-center">Edit</th>
-            <th scope="cole" class="text-center">Delete</th>
-          </tr>
+          @if(!empty ($not_found_user))
+            <div class="alert alert-danger text-center">
+              {{$not_found_user}}.
+            </div>
+          @endif
+          @if(count($users))
+            <tr>
+              <th scope="col" class="text-center">ID</th>
+              <th scope="col" class="text-center">Username</th>
+              <th scope="col" class="text-center">Name</th>
+              <th scope="col" class="text-center">Surname</th>
+              <th scope="col" class="text-center">Email</th>
+              <th scope="cole" class="text-center">Profile</th>
+              <th scope="cole" class="text-center">Edit</th>
+              <th scope="cole" class="text-center">Delete</th>
+            </tr>
+          @endif
         </thead>
+
         <tbody>
+
+
           @foreach ($users as $i=>$user)
             <tr>
               <th scope="row">{{$user->user_id}}</th>
@@ -87,39 +97,39 @@
               <td><a href="{{route($edit_route,['user_id'=>$user->user_id])}}"><button class="btn btn-warning glyphicon glyphicon-pencil"><i class="fa fa-cog" style="font-size:24px"></i></button></a></td>
               <td>
 
-                  <!-- Button trigger modal -->
-                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_modal_{{$user->user_id}}">
-                    <i class="fa fa-remove" style="font-size:24px"></i>
-                  </button>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_modal_{{$user->user_id}}">
+                  <i class="fa fa-remove" style="font-size:24px"></i>
+                </button>
 
-                  <!-- Modal -->
-                  <div class="modal fade" id="delete_modal_{{$user->user_id}}" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">Delete Account</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
+                <!-- Modal -->
+                <div class="modal fade" id="delete_modal_{{$user->user_id}}" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete Account</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="alert alert-danger">
+                          <b><i class="fa fa-warning"></i>&nbsp Are you sure to delete this account ?</b>
                         </div>
-                        <div class="modal-body">
-                          <div class="alert alert-danger">
-                            <b><i class="fa fa-warning"></i>&nbsp Are you sure to delete this account ?</b>
-                          </div>
-                        </div>
-                        <div class="modal-footer">
-                          <form action="{{route($delete_route,['user_id'=>$user->user_id])}}" method="post">
-                            @csrf
+                      </div>
+                      <div class="modal-footer">
+                        <form action="{{route($delete_route,['user_id'=>$user->user_id])}}" method="post">
+                          @csrf
                           <input type="hidden" name="_method" value="DELETE">
                           <button type="submit" class="btn btn-danger">Delete</button>
 
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            </form>
+                        </form>
 
-                        </div>
                       </div>
                     </div>
                   </div>
+                </div>
 
               </td>
             </tr>

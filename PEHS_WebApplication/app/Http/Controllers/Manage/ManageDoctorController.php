@@ -35,6 +35,9 @@ class ManageDoctorController extends Controller
     $doctors = DB::table('users')->join('doctors','doctors.user_id','users.user_id')->
     select('doctors.user_id','doctors.name','doctors.surname','doctors.email','users.username')->
     where('doctors.name', 'like',$name.'%')->paginate(10);
+    if(count($doctors) == 0){
+      return view('manage.list_user',['users'=>$doctors,'user_role'=>'doctor','search_value'=>$name])->with('not_found_user','Sorry!, not found the user name "'.$name.'"');
+    }
     return view('manage.list_user',['users'=>$doctors,'user_role'=>'doctor','search_value'=>$name]);
     // return redirect(route('admin.list_doctor'))->with('success','Doctor Created!');
 
