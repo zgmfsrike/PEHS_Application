@@ -78,7 +78,7 @@ class ManageMedicalStaffController extends Controller
     $telephone_number = $request->input('telephone_number');
     $gender = $request->input('gender');
     //-------------------------------------------------------------------
-    $medical_staff_id = $this->checkMedicalStaffExist($name, $surname, $email);
+    $medical_staff_id = $this->checkMedicalStaffExist($name, $surname);
     if($medical_staff_id =="none"){
       $email_format ='required|string|email|max:255|unique:medical_staffs';
       $medical_staff_id = $this->getMedicalStaffId();
@@ -218,10 +218,10 @@ class ManageMedicalStaffController extends Controller
     ->where('users.role_id',3)->where('users.user_id',$id)->get();
     return $medical_staff;
   }
-  public function checkMedicalStaffExist($name,$surname,$email)
+  public function checkMedicalStaffExist($name,$surname)
   {
     $check_medical_staff_exist = DB::table('medical_staffs')->select('user_id')->where('name',$name)
-    ->where('surname',$surname)->where('email',$email)->first();
+    ->where('surname',$surname)->first();
     if($check_medical_staff_exist){
       $user_id = $check_medical_staff_exist->user_id;
       $medical_staff_id = $this->checkUserIdExist($user_id);

@@ -76,7 +76,7 @@ class ManageDoctorController extends Controller
     $telephone_number = $request->input('telephone_number');
     $gender = $request->input('gender');
     //-------------------------------------------------------------------
-    $doctor_id = $this->checkDoctorExist($name, $surname, $email);
+    $doctor_id = $this->checkDoctorExist($name, $surname);
     if($doctor_id =="none"){
       $email_format ='required|string|email|max:255|unique:doctors';
       $doctor_id = $this->getDoctorId();
@@ -218,10 +218,10 @@ class ManageDoctorController extends Controller
     ->where('users.role_id',2)->where('users.user_id',$id)->get();
     return $doctor;
   }
-  public function checkDoctorExist($name,$surname,$email)
+  public function checkDoctorExist($name,$surname)
   {
     $check_doctor_exist = DB::table('doctors')->select('user_id')->where('name',$name)
-    ->where('surname',$surname)->where('email',$email)->first();
+    ->where('surname',$surname)->first();
     if($check_doctor_exist){
       $user_id = $check_doctor_exist->user_id;
       $doctor_id = $this->checkUserIdExist($user_id);

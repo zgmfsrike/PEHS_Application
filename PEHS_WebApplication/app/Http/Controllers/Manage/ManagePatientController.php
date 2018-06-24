@@ -85,7 +85,7 @@ class ManagePatientController extends Controller
     $underlying_disease = $request->input('underlying_disease');
 
     //-------------------------------------------------------------
-    $patient_id = $this->checkPatientExist($name, $surname, $email);
+    $patient_id = $this->checkPatientExist($name, $surname);
     if($patient_id =="none"){
       $email_format ='required|string|email|max:255|unique:patients';
       $patient_id = $this->getPatientId();
@@ -245,10 +245,10 @@ class ManagePatientController extends Controller
     ->where('users.role_id',4)->where('users.user_id',$id)->get();
     return $patient;
   }
-  public function checkPatientExist($name,$surname,$email)
+  public function checkPatientExist($name,$surname)
   {
     $check_patient_exist = DB::table('patients')->select('user_id')->where('name',$name)
-    ->where('surname',$surname)->where('email',$email)->first();
+    ->where('surname',$surname)->first();
     if($check_patient_exist){
       $user_id = $check_patient_exist->user_id;
       $patient_id = $this->checkUserIdExist($user_id);
