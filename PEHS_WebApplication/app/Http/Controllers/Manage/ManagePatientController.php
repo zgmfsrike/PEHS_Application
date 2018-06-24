@@ -91,7 +91,7 @@ class ManagePatientController extends Controller
       $patient_id = $this->getPatientId();
       $user_not_exist = true;
     }elseif($patient_id == "exist"){
-      return redirect(route('admin.create_patient'))->with('id_exist','Sorry, your account has been registerd!');
+      return redirect(route('admin.create_patient'))->with('id_exist','Sorry, your account has been registerd.');
 
     }else{
       $email_format = 'required|string|email|max:255|';
@@ -135,7 +135,7 @@ class ManagePatientController extends Controller
       ]);
 
     }
-    return redirect(route('admin.list_patient'))->with('success','Patient Created!');
+    return redirect(route('admin.list_patient'))->with('success','Patient created successfully.');
   }
 
 
@@ -193,7 +193,7 @@ class ManagePatientController extends Controller
     $patient->underlying_disease = $underlying_disease;
     $save = $patient->save();
 
-    return redirect(route('admin.list_patient'))->with('success','Update information successful!');
+    return redirect(route('admin.list_patient'))->with('success','Update information successful.');
 
 
   }
@@ -211,7 +211,7 @@ class ManagePatientController extends Controller
 
     $user = DB::table('users')->where('user_id',$id)->delete();
 
-    return redirect(route('admin.list_patient'))->with('success','Delete Patient successful!');
+    return redirect(route('admin.list_patient'))->with('success','Delete Patient successful.');
 
   }
 
@@ -263,8 +263,10 @@ class ManagePatientController extends Controller
     $check_id_exist = DB::table('users')->select('user_id')->where('user_id',$id)->first();
     if($check_id_exist){
       $patient_id = "exist";
-      return $patient_id;
+    }else{
+      $patient_id = $id;
     }
+    return $patient_id;
   }
 
 

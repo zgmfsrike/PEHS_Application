@@ -84,7 +84,7 @@ class ManageMedicalStaffController extends Controller
       $medical_staff_id = $this->getMedicalStaffId();
       $user_not_exist = true;
     }elseif($medical_staff_id =="exist"){
-      return redirect(route('admin.create_medical_staff'))->with('id_exist','Sorry, your account has been registerd!');
+      return redirect(route('admin.create_medical_staff'))->with('id_exist','Sorry, your account has been registerd.');
     }else{
       $email_format = 'required|string|email|max:255|';
     }
@@ -119,7 +119,7 @@ class ManageMedicalStaffController extends Controller
       ]);
 
     }
-    return redirect(route('admin.list_medical_staff'))->with('success','Medical Staff Created!');
+    return redirect(route('admin.list_medical_staff'))->with('success','Medical Staff created successfully.');
   }
 
 
@@ -168,7 +168,7 @@ class ManageMedicalStaffController extends Controller
     $medical_staff->telephone_number = $telephone_number;
     $medical_staff->gender = $gender;
     $medical_staff->save();
-    return redirect(route('admin.list_medical_staff'))->with('success','Update information successful!');
+    return redirect(route('admin.list_medical_staff'))->with('success','Update information successful.');
 
 
   }
@@ -186,7 +186,7 @@ class ManageMedicalStaffController extends Controller
 
     $user = DB::table('users')->where('user_id',$id)->delete();
 
-    return redirect(route('admin.list_medical_staff'))->with('success','Delete Medical Staff successful!');
+    return redirect(route('admin.list_medical_staff'))->with('success','Delete Medical Staff successful.');
 
   }
   public function getMedicalStaffList()
@@ -237,7 +237,10 @@ class ManageMedicalStaffController extends Controller
     $check_id_exist = DB::table('users')->select('user_id')->where('user_id',$id)->first();
     if($check_id_exist){
       $medical_staff_id = "exist";
-      return $medical_staff_id;
+
+    }else{
+      $medical_staff_id = $id;
     }
+    return $medical_staff_id;
   }
 }
