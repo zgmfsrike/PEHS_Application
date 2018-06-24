@@ -99,7 +99,7 @@ class ManageDoctorController extends Controller
       'telephone_number'=> 'required|string|regex:/^[0-9]+$/',
       'gender'=>'required|string',
     ]);
-    DB::table('users')->insert([
+    User::insert([
       'username' => $username,
       'password' => Hash::make($password),
       'user_id'=>$doctor_id,

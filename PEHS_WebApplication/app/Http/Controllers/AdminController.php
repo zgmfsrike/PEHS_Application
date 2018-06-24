@@ -21,7 +21,7 @@ class AdminController extends Controller
   {
     // $user = User::where('id', $userid)->first();
     $id = Auth::id();
-    $get_user_id = DB::table('users')->select('user_id')->where('id',$id)->first();
+    $get_user_id = User::select('user_id')->where('id',$id)->first();
     $user_id = $get_user_id->user_id;
     $admin = DB::table('users')->join('admins','users.user_id','admins.user_id')
     ->select('admins.name','admins.surname')->where('users.user_id',$user_id)->get();

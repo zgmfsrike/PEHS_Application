@@ -112,7 +112,7 @@ class ManagePatientController extends Controller
       'drug_allergy'=>'nullable|string|regex:/([- ,\/0-9a-zA-Z]+)/',
       'underlying_disease'=>'nullable|string|regex:/([- ,\/0-9a-zA-Z]+)/',
     ]);
-    DB::table('users')->insert([
+    User::insert([
       'username' => $username,
       'password' => Hash::make($password),
       'user_id'=>$patient_id,

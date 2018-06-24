@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
-use App\User;
 use DB;
 use App\MedicalStaff;
 class MedicalStaffController extends Controller

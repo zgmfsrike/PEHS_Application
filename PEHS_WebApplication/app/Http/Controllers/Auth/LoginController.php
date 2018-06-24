@@ -52,8 +52,8 @@ class LoginController extends Controller
   {
     // if($request->role == 1){
     // $username = User::where('username',$request->username)->where('role_id',1)->orWhere('role_id',2)->orWhere('role_id',3)->get();
-    $username = DB::table('users')->where('username',$request->username)->where('role_id',1)->orWhere('role_id',2)->orWhere('role_id',3)->get();
-    $password = DB::table('users')->where('password',$request->password)->where('role_id',1)->orWhere('role_id',2)->orWhere('role_id',3)->get();
+    $username = User::where('username',$request->username)->where('role_id',1)->orWhere('role_id',2)->orWhere('role_id',3)->get();
+    $password = User::where('password',$request->password)->where('role_id',1)->orWhere('role_id',2)->orWhere('role_id',3)->get();
     // $password = User::where('password',$request->password)->where('role_id',1)->orWhere('role_id',2)->orWhere('role_id',3)->get();
     //validate the form data
     $this->validate($request,[
