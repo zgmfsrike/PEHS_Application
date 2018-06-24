@@ -23,7 +23,7 @@ class DoctorController extends Controller
     $doctor = DB::table('users')->join('doctors','users.user_id','doctors.user_id')
     ->select('doctors.name','doctors.surname')->where('users.user_id',$doctor_id)->get();
     // return view('admin',compact('admins'));
-    return view('doctor.doctor',["doctor"=>$doctor]);;
+    return view('doctor.home',["doctor"=>$doctor]);;
   }
 
   public function profile()

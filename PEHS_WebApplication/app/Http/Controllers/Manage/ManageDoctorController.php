@@ -25,6 +25,7 @@ class ManageDoctorController extends Controller
   {
     //List Doctor
     $doctors = $this->getDoctorList();
+    // $doctors = User::find()->doctor()->get();
     return view('manage.list_user',['users'=>$doctors,'user_role'=>'doctor']);
 
   }

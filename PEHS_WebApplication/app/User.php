@@ -18,14 +18,6 @@ class User extends Authenticatable
         'username', 'password', 'user_id','role_id'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
 
     public function setAttribute($key, $value)
   {
@@ -35,5 +27,6 @@ class User extends Authenticatable
       parent::setAttribute($key, $value);
     }
   }
+
 
 }

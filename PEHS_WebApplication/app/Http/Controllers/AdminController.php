@@ -26,7 +26,7 @@ class AdminController extends Controller
     $admin = DB::table('users')->join('admins','users.user_id','admins.user_id')
     ->select('admins.name','admins.surname')->where('users.user_id',$user_id)->get();
     // return view('admin',compact('admins'));
-    return view('admin.admin',["admin"=>$admin]);;
+    return view('admin.home',["admin"=>$admin]);;
   }
 
 

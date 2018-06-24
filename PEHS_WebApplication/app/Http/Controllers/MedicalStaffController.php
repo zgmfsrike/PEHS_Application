@@ -24,7 +24,7 @@ class MedicalStaffController extends Controller
         $medical_staff = DB::table('users')->join('medical_staffs','users.user_id','medical_staffs.user_id')
         ->select('medical_staffs.name','medical_staffs.surname')->where('users.user_id',$medical_staff_id)->get();
         // return view('admin',compact('admins'));
-        return view('medical_staff.medical_staff',["medical_staff"=>$medical_staff]);;
+        return view('medical_staff.home',["medical_staff"=>$medical_staff]);;
     }
 
     public function profile()
