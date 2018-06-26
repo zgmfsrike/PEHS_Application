@@ -8,10 +8,10 @@ use DB;
 use App\Doctor;
 class DoctorController extends Controller
 {
-  public function __construct()
-  {
-    $this->middleware('auth:doctor');
-  }
+  // public function __construct()
+  // {
+  //   $this->middleware('auth:doctor');
+  // }
   /**
   * Show the application dashboard.
   *

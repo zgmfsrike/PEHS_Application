@@ -8,10 +8,7 @@ use DB;
 use App\MedicalStaff;
 class MedicalStaffController extends Controller
 {
-    public function __construct()
-    {
-    $this->middleware('auth:medical_staff');
-    }
+    
     /**
      * Show the application dashboard.
      *

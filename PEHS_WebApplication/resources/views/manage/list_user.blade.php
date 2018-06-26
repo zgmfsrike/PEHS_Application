@@ -3,40 +3,25 @@
   <div class="">
     @php
     switch ($user_role) {
-      case 'doctor':
-      $create_route = 'admin.create_doctor';
+      case 'doctors':
       $create_user = 'Create Doctor';
-      $edit_route = 'admin.edit_doctor';
-      $delete_route = 'admin.delete_doctor';
-      $profile_route = "admin.view_doctor_profile";
       $search_text = "Search Doctor by name";
-      $search_route = "admin.search_doctor";
       break;
 
-      case 'medical_staff':
-      $create_route = 'admin.create_medical_staff';
+      case 'medical_staffs':
       $create_user = 'Create Medical Staff';
-      $edit_route = 'admin.edit_medical_staff';
-      $delete_route = 'admin.delete_medicalStaff';
-      $profile_route = 'admin.view_medical_staff_profile';
       $search_text = "Search Medical Staff by name";
-      $search_route = "admin.search_medical_staff";
       break;
 
-      case 'patient':
-      $create_route = 'admin.create_patient';
+      case 'patients':
       $create_user = 'Create Patient';
-      $edit_route = 'admin.edit_patient';
-      $delete_route = 'admin.delete_patient';
-      $profile_route = 'admin.view_patient_profile';
       $search_text = "Search Patient by name";
-      $search_route = "admin.search_patient";
       break;
     }
     @endphp
     <div>
       <div class="col-md-6">
-        <form action="{{route($search_route)}}" method="POST">
+        <form action="{{route('admin.search_user',['role'=>$user_role])}}" method="POST">
           @csrf
           <div class="input-group float-left ">
             <input class="form-control" id="search" name="search" placeholder="{{$search_text}}" value="@if(!empty($search_value)){{$search_value}}@endif"required>
@@ -48,7 +33,7 @@
         </div>
         <div class="col-md-6-offset">
           <div class="float-right">
-            <a href="{{route($create_route)}}"><button class="btn btn-primary">{{$create_user}}</button></a>
+            <a href="{{route('admin.create_user',['role'=>$user_role])}}"><button class="btn btn-primary">{{$create_user}}</button></a>
             <p></p>
           </div>
 
@@ -93,8 +78,8 @@
               <td>{{$user->name}}</td>
               <td>{{$user->surname}}</td>
               <td>{{$user->email}}</td>
-              <td><a href="{{route($profile_route,['user_id'=>$user->user_id])}}"><button class="btn btn-info ">View</button></a></td>
-              <td><a href="{{route($edit_route,['user_id'=>$user->user_id])}}"><button class="btn btn-warning glyphicon glyphicon-pencil"><i class="fa fa-cog" style="font-size:24px"></i></button></a></td>
+              <td><a href="{{route('admin.view_user_profile',['user_id'=>$user->user_id,'role'=>$user_role])}}"><button class="btn btn-info ">View</button></a></td>
+              <td><a href="{{route('admin.edit_user',['user_id'=>$user->user_id,'role'=>$user_role])}}"><button class="btn btn-warning glyphicon glyphicon-pencil"><i class="fa fa-cog" style="font-size:24px"></i></button></a></td>
               <td>
 
                 <!-- Button trigger modal -->
@@ -118,7 +103,7 @@
                         </div>
                       </div>
                       <div class="modal-footer">
-                        <form action="{{route($delete_route,['user_id'=>$user->user_id])}}" method="post">
+                        <form action="{{route('admin.delete_user',['user_id'=>$user->user_id,'role'=>$user_role])}}" method="post">
                           @csrf
                           <input type="hidden" name="_method" value="DELETE">
                           <button type="submit" class="btn btn-danger">Delete</button>

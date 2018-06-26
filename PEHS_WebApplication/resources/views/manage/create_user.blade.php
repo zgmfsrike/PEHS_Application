@@ -7,17 +7,17 @@
         <div class="card">
           @php
           switch ($user_role) {
-            case 'doctor':
+            case 'doctors':
             $create_title = 'Create Doctor';
             $store_route = 'admin.store_doctor';
 
             break;
-            case 'medical_staff':
+            case 'medical_staffs':
             $create_title = 'Create Medical Staff';
             $store_route = 'admin.store_medical_staff';
             break;
 
-            case 'patient':
+            case 'patients':
             $create_title = 'Create Patient';
             $store_route = 'admin.store_patient';
             break;
@@ -28,10 +28,10 @@
 
 
           <div class="card-body">
-            <form method="POST" action="{{ route($store_route) }}">
+            <form method="POST" action="{{ route('admin.store_user',['role'=>$user_role]) }}">
               @csrf
               {{-------------------------------------------------------------------------------  User Role Doctor&Medical Staff-------------------------------------------------------------------------}}
-              @if ($user_role == "doctor" || $user_role =="medical_staff")
+              @if ($user_role == "doctors" || $user_role =="medical_staffs")
 
                 <div class="form-group row">
                   <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>

@@ -2,17 +2,17 @@
 @section('content')
   @php
   switch ($user_role) {
-    case 'doctor':
+    case 'doctors':
     $edit_route = 'admin.update_doctor';
     $edit_title = 'Edit Doctor Information';
     break;
 
-    case 'medical_staff':
+    case 'medical_staffs':
     $edit_route = 'admin.update_medica_staff';
     $edit_title = 'Edit Medical Staff Information';
     break;
 
-    case 'patient':
+    case 'patients':
     $edit_route = 'admin.update_patient';
     $edit_title = 'Edit Patient Information';
     break;
@@ -29,7 +29,7 @@
           <div class="card-header"><b>{{$edit_title}}</b></div>
           <div class="card-body">
             @if (Auth::guard('admin')->check())
-              <form action="{{route($edit_route,['user_id'=>$user_id])}}" method="POST">
+              <form action="{{route('admin.update_user',['user_id'=>$user_id,'role'=>$user_role])}}" method="POST">
               @elseif(Auth::guard('doctor')->check())
                 <form action="{{route('doctor.update_profile',['user_id'=>$user_id])}}" method="POST">
                 @elseif(Auth::guard('medical_staff')->check())
@@ -129,7 +129,7 @@
                               @endif
                             </div>
                           </div>
-                          @if ($user_role == "patient")
+                          @if ($user_role == "patients")
                             <div class="form-group row">
                               <label for="drug_allergy" class="col-md-4 col-form-label text-md-right">{{ __('Drug Allergy') }}</label>
                               <div class="col-md-6">

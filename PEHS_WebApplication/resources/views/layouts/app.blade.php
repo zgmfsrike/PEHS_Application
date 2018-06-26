@@ -49,16 +49,13 @@
 
 
                 <div class="dropdown-menu" aria-labelledby="manageDropdown">
-                  <a class="nav-link" href="{{ route('admin.list_doctor') }}">{{ __('Doctor') }}</a>
-                  <a class="nav-link" href="{{ route('admin.list_medical_staff') }}">{{ __('MedicalStaff') }}</a>
-                  <a class="nav-link" href="{{ route('admin.list_patient') }}">{{ __('Patient') }}</a>
+                  <a class="nav-link" href="{{ route('admin.list_user',['role'=>'doctors'])}}">{{ __('Doctor') }}</a>
+                  <a class="nav-link" href="{{ route('admin.list_user',['role'=>'medical_staffs'])}}">{{ __('MedicalStaff') }}</a>
+                  <a class="nav-link" href="{{ route('admin.list_user',['role'=>'patients'])}}">{{ __('Patient') }}</a>
                 </div>
               </li>
             </ul>
           @endif
-
-
-
           <!-- Right Side Of Navbar -->
           <ul class="navbar-nav ml-auto">
             <!-- Authentication Links -->

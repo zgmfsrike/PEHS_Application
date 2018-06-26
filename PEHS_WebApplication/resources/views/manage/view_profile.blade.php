@@ -54,7 +54,7 @@
               </div>
 
 
-              @if ($user_role == "patient")
+              @if ($user_role == "patients")
                 <div class=" row">
                   <label for="drug_allergy" class="col-md-6 text-md-right"><b>{{ __('Drug Allergy : ') }}</b></label>
                   <div class="col-md-6">
@@ -79,21 +79,7 @@
                       <a href="{{route('medical_staff.edit_profile',['user_id'=>$user_id])}}"><button class=" btn btn-warning">Edit</button></a>&nbsp
                     @endif
                     @if (Auth::guard('admin')->check())
-                      @php
-                      switch ($user_role) {
-                        case 'doctor':
-                        $back_route = 'admin.list_doctor';
-                        break;
-                        case 'medical_staff':
-                        $back_route = 'admin.list_medical_staff';
-                        break;
-                        case 'patient':
-                        $back_route = 'admin.list_patient';
-                        break;
-
-                      }
-                      @endphp
-                      <a href="{{route($back_route) }}"><button class=" btn">back</button></a>
+                      <a href="{{route('admin.list_user',['role'=>$user_role]) }}"><button class=" btn">back</button></a>
                     @endif
                   </div>
                 </div>

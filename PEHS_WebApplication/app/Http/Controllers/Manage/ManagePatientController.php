@@ -12,10 +12,7 @@ use Illuminate\Support\Facades\Hash;
 
 class ManagePatientController extends Controller
 {
-  public function __construct()
-  {
-    $this->middleware('auth:admin');
-  }
+  // p
   /**
   * Display a listing of the resource.
   *

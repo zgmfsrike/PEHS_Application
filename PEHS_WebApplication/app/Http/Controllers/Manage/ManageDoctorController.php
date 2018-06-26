@@ -12,10 +12,7 @@ use Illuminate\Support\Facades\Hash;
 
 class ManageDoctorController extends Controller
 {
-  public function __construct()
-  {
-    $this->middleware('auth:admin');
-  }
+  //
   /**
   * Display a listing of the resource.
   *
@@ -33,9 +30,9 @@ class ManageDoctorController extends Controller
   public function searchDoctorByName(Request $request)
   {
     $name = $request->input('search');
-    $doctors = DB::table('users')->join('doctors','doctors.user_id','users.user_id')->
-    select('doctors.user_id','doctors.name','doctors.surname','doctors.email','users.username')->
-    where('doctors.name', 'like',$name.'%')->paginate(10);
+    $doctors = DB::table('users')->join('doctors as d','d.user_id','users.user_id')->
+    select('d.user_id','d.name','d.surname','d.email','users.username')->
+    where('d.name', 'like',$name.'%')->paginate(10);
     if(count($doctors) == 0){
       return view('manage.list_user',['users'=>$doctors,'user_role'=>'doctor','search_value'=>$name])->with('not_found_user','Sorry!, not found the user name "'.$name.'"');
     }
@@ -106,17 +103,18 @@ class ManageDoctorController extends Controller
       'user_id'=>$doctor_id,
       'role_id'=> 2,
     ]);
+    $information = array(
+      'user_id'=>$doctor_id,
+      'name' => $name,
+      'surname' => $surname,
+      'email'=> $email,
+      'date_of_birth' =>$date_of_birth,
+      'address'=>$address,
+      'telephone_number'=>$telephone_number,
+      'gender'=>$gender,
+    );
     if($user_not_exist == true){
-      DB::table('doctors')->insert([
-        'user_id'=>$doctor_id,
-        'name' => $name,
-        'surname' => $surname,
-        'email'=> $email,
-        'date_of_birth' =>$date_of_birth,
-        'address'=>$address,
-        'telephone_number'=>$telephone_number,
-        'gender'=>$gender,
-      ]);
+      DB::table('doctors')->insert($information);
     }
     return redirect(route('admin.list_doctor'))->with('success','Doctor created successfully.');
   }
