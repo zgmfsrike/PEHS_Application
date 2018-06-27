@@ -16,7 +16,7 @@
 
             You are logged in as role
             @if (Auth::guard('medical_staff')->check())
-              @foreach ($medical_staff as $object)
+              @foreach ($users as $user)
                 {{_('Medical Staff')}}
 
               @endforeach

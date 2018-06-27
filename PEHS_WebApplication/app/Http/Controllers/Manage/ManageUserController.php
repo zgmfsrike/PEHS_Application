@@ -218,7 +218,12 @@ class ManageUserController extends Controller
     if($user_not_exist == true){
       DB::table($role)->insert($information);
     }
-    return redirect(route('admin.list_user',['role'=>$role]))->with('success','User created successfully.');
+    if(Auth()->guard('admin')->check()){
+      return redirect(route('admin.list_user',['role'=>$role]))->with('success','User created successfully.');
+    }else{
+      return redirect()->route('login');
+    }
+
   }
 
   public function viewUserProfile($role,$id)
@@ -247,7 +252,7 @@ class ManageUserController extends Controller
       select('r.user_id','r.name','r.surname','r.email','r.date_of_birth','r.gender','r.address','r.telephone_number')
       ->where('users.role_id',$role_id)->where('users.user_id',$id)->get();
     }
-    return view('manage.view_profile',['users'=>$user,'user_role'=>$role]);
+    return view('manage.view_profile',['users'=>$user,'user_role'=>$role,'user_id'=>$id]);
   }
 
 
@@ -336,6 +341,18 @@ class ManageUserController extends Controller
     }
 
     if($role == 'patients'){
+      $this->validate($request,[
+        'name' => 'required|string|regex:/^[a-zA-Z]+$/',
+        'surname' => 'required|string|regex:/^[a-zA-Z]+$/',
+        'date_of_birth' => 'required|date',
+        'address' => 'required|string|regex:/([- ,\/0-9a-zA-Z]+)/',
+        'telephone_number'=> 'required|string|regex:/^[0-9]+$/',
+        'gender'=>'required|string',
+        'drug_allergy'=>'nullable|string|regex:/([- ,\/0-9a-zA-Z]+)/',
+        'underlying_disease'=>'nullable|regex:/([- ,\/0-9a-zA-Z]+)/',
+
+      ]);
+
       $user->name = $name;
       $user->surname = $surname;
       $user->date_of_birth = $date_of_birth;
@@ -346,6 +363,15 @@ class ManageUserController extends Controller
       $user->underlying_disease = $underlying_disease;
       $user->save();
     }else{
+      $this->validate($request,[
+        'name' => 'required|string|regex:/^[a-zA-Z]+$/',
+        'surname' => 'required|string|regex:/^[a-zA-Z]+$/',
+        'date_of_birth' => 'required|date',
+        'address' => 'required|string|regex:/([- ,\/0-9a-zA-Z]+)/',
+        'telephone_number'=> 'required|string|regex:/^[0-9]+$/',
+        'gender'=>'required|string',
+      ]);
+
       $user->name = $name;
       $user->surname = $surname;
       $user->date_of_birth = $date_of_birth;
@@ -353,6 +379,11 @@ class ManageUserController extends Controller
       $user->telephone_number = $telephone_number;
       $user->gender = $gender;
       $user->save();
+    }
+    if(Auth()->guard('doctor')->check()){
+      return redirect(route('doctor.view_profile',['role'=>$role,'user_id'=>$id]));
+    }else if(Auth()->guard('medical_staff')->check()){
+      return redirect(route('medical_staff.view_profile',['role'=>$role,'user_id'=>$id]));
     }
     return redirect(route('admin.list_user',['role'=>$role]))->with('success','Update information successfully.');
   }

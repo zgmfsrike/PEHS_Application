@@ -74,9 +74,9 @@
                   <div class=" row justify-content-center">
                     {{-- <a href="{{route($edit_route,['user_id'=>$user->user_id])}}"><button class="btn btn-warning"><i class="fa fa-cog" style="font-size:24px"></i></button></a> --}}
                     @if(Auth::guard('doctor')->check())
-                      <a href="{{route('doctor.edit_profile',['user_id'=>$user_id])}}"><button class=" btn btn-warning">Edit</button></a>&nbsp
+                      <a href="{{route('doctor.edit_profile',['user_id'=>$user_id,'role'=>$user_role])}}"><button class=" btn btn-warning">Edit</button></a>&nbsp
                     @elseif(Auth::guard('medical_staff')->check())
-                      <a href="{{route('medical_staff.edit_profile',['user_id'=>$user_id])}}"><button class=" btn btn-warning">Edit</button></a>&nbsp
+                      <a href="{{route('medical_staff.edit_profile',['user_id'=>$user_id,'role'=>$user_role])}}"><button class=" btn btn-warning">Edit</button></a>&nbsp
                     @endif
                     @if (Auth::guard('admin')->check())
                       <a href="{{route('admin.list_user',['role'=>$user_role]) }}"><button class=" btn">back</button></a>

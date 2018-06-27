@@ -62,7 +62,6 @@ class LoginController extends Controller
     ]);
     //Attempt to log the user in
     if (Auth::guard('admin')->attempt(['username'=>$request->username,'password'=>$request->password,'role_id'=>1],$request->remember)) {
-      //if successful, then redirect to theri intended location
       return redirect()->intended(route('admin.home'));
     }else if (Auth::guard('doctor')->attempt(['username'=>$request->username,'password'=>$request->password,'role_id'=>2],$request->remember)){
       return redirect()->intended(route('doctor.home'));

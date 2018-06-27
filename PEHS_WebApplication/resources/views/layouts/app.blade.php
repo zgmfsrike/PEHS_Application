@@ -70,9 +70,9 @@
 
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   @if(Auth::guard('doctor')->check())
-                    <a class="dropdown-item" href="{{ route('doctor.profile') }}">{{ __('Profile') }}</a>
+                    <a class="dropdown-item" href="{{route('doctor.view_profile',['user_id'=>$user_id,'role'=>$user_role])}}">{{ __('Profile') }}</a>
                   @elseif(Auth::guard('medical_staff')->check())
-                    <a class="dropdown-item" href="{{ route('medical_staff.profile') }}">{{ __('Profile') }}</a>
+                    <a class="dropdown-item" href="{{ route('medical_staff.view_profile',['user_id'=>$user_id,'role'=>$user_role]) }}">{{ __('Profile') }}</a>
                   @endif
                   <a class="dropdown-item" href="{{ route('logout') }}"
                   onclick="event.preventDefault();

@@ -31,9 +31,9 @@
             @if (Auth::guard('admin')->check())
               <form action="{{route('admin.update_user',['user_id'=>$user_id,'role'=>$user_role])}}" method="POST">
               @elseif(Auth::guard('doctor')->check())
-                <form action="{{route('doctor.update_profile',['user_id'=>$user_id])}}" method="POST">
+                <form action="{{route('doctor.update_profile',['user_id'=>$user_id,'role'=>$user_role])}}" method="POST">
                 @elseif(Auth::guard('medical_staff')->check())
-                  <form action="{{route('medical_staff.update_profile',['user_id'=>$user_id])}}" method="POST">
+                  <form action="{{route('medical_staff.update_profile',['user_id'=>$user_id,'role'=>$user_role])}}" method="POST">
                   @endif
                   @csrf
                   @foreach ($users as $i=>$user)
@@ -161,7 +161,14 @@
                             <button type="submit" class="btn btn-primary">
                               {{ __('Submit') }}
                             </button>&nbsp
-                            <a href="{{ URL::previous() }}"  class="btn btn-secondary">Back</a>
+                            @if (Auth()->guard('admin')->check())
+                                <a href="{{route('admin.list_user',['role'=>$user_role]) }}"  class="btn btn-secondary">Back</a>
+                            @elseif(Auth()->guard('doctor')->check())
+                              <a href="{{route('doctor.view_profile',['role'=>$user_role,'user_id'=>$user_id]) }}"  class="btn btn-secondary">Back</a>
+                            @elseif(Auth()->guard('medical_staff')->check())
+                              <a href="{{route('medical_staff.view_profile',['role'=>$user_role,'user_id'=>$user_id]) }}"  class="btn btn-secondary">Back</a>
+                            @endif
+
                           </div>
                         </div>
                       </form>

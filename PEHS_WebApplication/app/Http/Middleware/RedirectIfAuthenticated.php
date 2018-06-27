@@ -33,9 +33,9 @@ class RedirectIfAuthenticated
       }
       break;
 
-      case 'medical-staff':
+      case 'medical_staff':
       if(Auth::guard($guard)->check()){
-        return redirect()->route('medical-staff.home');
+        return redirect()->route('medical_staff.home');
       }
       break;
 
