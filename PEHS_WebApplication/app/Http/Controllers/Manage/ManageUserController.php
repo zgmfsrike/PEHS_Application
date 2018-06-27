@@ -126,22 +126,22 @@ class ManageUserController extends Controller
     }
 
 
-    $check_user_exist = DB::table($role)->select('user_id')->where('name',$name)
-    ->where('surname',$surname)->first();
+    // $check_user_exist = DB::table($role)->select('user_id')->where('name',$name)
+    // ->where('surname',$surname)->first();
 
-    if($check_user_exist){
-      //check that user already has information in database
-      $id = $check_user_exist->user_id;
-      $check_id_exist = DB::table('users')->select('user_id')->where('user_id',$id)->first();
-      if($check_id_exist){
-        return redirect()->back()->with('id_exist','Sorry, your account has been registerd.');
-      }else{
-        $user_id = $id;
-      }
-      $email_format = 'required|string|email|max:255|';
-    }else{
+    // if($check_user_exist){
+    //   //check that user already has information in database
+    //   $id = $check_user_exist->user_id;
+    //   $check_id_exist = DB::table('users')->select('user_id')->where('user_id',$id)->first();
+    //   if($check_id_exist){
+    //     return redirect()->back()->with('id_exist','Sorry, your account has been registerd.');
+    //   }else{
+    //     $user_id = $id;
+    //   }
+    //   $email_format = 'required|string|email|max:255|';
+    // }else{
       //user does not has information, so we will add the user information to database
-      $user_not_exist = true;
+      // $user_not_exist = true;
       $email_format ='required|string|email|max:255|unique:'.$role;
       $query_raw = 'LENGTH(user_id) desc, `user_id` desc ';
       $get_current_id = DB::table($role)->orderByRaw($query_raw)->first();
@@ -152,7 +152,7 @@ class ManageUserController extends Controller
       }else{
         $user_id = $title_id."1";
       }
-    }
+    // }
 
     if($role == "patients"){
       $this->validate($request,  [
@@ -215,9 +215,9 @@ class ManageUserController extends Controller
       'role_id'=> $role_id,
     ]);
 
-    if($user_not_exist == true){
+    // if($user_not_exist == true){
       DB::table($role)->insert($information);
-    }
+    // }
     if(Auth()->guard('admin')->check()){
       return redirect(route('admin.list_user',['role'=>$role]))->with('success','User created successfully.');
     }else{

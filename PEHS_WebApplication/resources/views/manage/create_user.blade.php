@@ -333,7 +333,7 @@
 
                   <div class="col-md-3">
                     <select name="blood_type" id="blood_type" class="form-control{{ $errors->has('blood_type') ? ' is-invalid' : '' }}" required>
-                      <option disalbed>Please Select</option>
+                      <option disalbed value="">Please Select</option>
                       <option value="A+">A+</option>
                       <option value="A-">A-</option>
                       <option value="B+">B+</option>
