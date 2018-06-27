@@ -14,7 +14,7 @@ class CreateMedicalStaffsTable extends Migration
     public function up()
     {
       Schema::create('medical_staffs', function (Blueprint $table) {
-        $table->string('user_id')->unique();
+        $table->string('user_id',9)->unique();
         $table->string('name',30);
         $table->string('surname',30);
         $table->date('date_of_birth');

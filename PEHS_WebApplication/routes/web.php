@@ -23,7 +23,7 @@ Route::post('/register/{role}','Manage\ManageUserController@storeUser')->name('p
 Route::group(['prefix'=>'admin','middleware' => 'auth:admin'],function(){
   Route::get('/','HomeController@getAdminHomepage')->name('admin.home');
   //----------------------------------------Manage User-----------------------------------
-  Route::get('/list_user/{role}','Manage\ManageUserController@getListUser')->name('admin.list_user');
+  Route::get('/list_user/{role}','Manage\ManageUserController@getListUserPage')->name('admin.list_user');
   Route::post('/search_user/{role}','Manage\ManageUserController@searchUserByName')->name('admin.search_user');
   Route::get('/create_user/{role}','Manage\ManageUserController@getCreateUserPage')->name('admin.create_user');
   Route::post('/store_user/{role}','Manage\ManageUserController@storeUser')->name('admin.store_user');

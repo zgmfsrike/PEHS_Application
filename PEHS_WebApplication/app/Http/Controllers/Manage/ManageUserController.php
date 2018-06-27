@@ -20,7 +20,7 @@ class ManageUserController extends Controller
   *
   * @return \Illuminate\Http\Response
   */
-  public function getListUser($role)
+  public function getListUserPage($role)
   {
 
     switch ($role) {
@@ -121,7 +121,7 @@ class ManageUserController extends Controller
       $telephone_number = $request->input('telephone_number');
       $gender = $request->input('gender');
       $role_id = 3;
-      $title_id = 'p';
+      $title_id = 'm';
       break;
     }
 
