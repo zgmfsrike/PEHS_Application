@@ -159,6 +159,7 @@ class ManageUserController extends Controller
         'username' => 'required|string|min:4|unique:users|regex:/^[a-zA-Z0-9]+$/',
         'email' => $email_format,
         'password' => 'required|string|min:6|confirmed|regex:/^[a-zA-Z0-9]+$/',
+        'password_confirmation' => 'required|string|min:6|confirmed|regex:/^[a-zA-Z0-9]+$/|same:password',
         'name' => 'required|string|regex:/^[a-zA-Z]+$/',
         'surname' => 'required|string|regex:/^[a-zA-Z]+$/',
         'date_of_birth' => 'required|date',
@@ -189,6 +190,7 @@ class ManageUserController extends Controller
         'username' => 'required|string|min:4|unique:users|regex:/^[a-zA-Z0-9]+$/',
         'email' => $email_format,
         'password' => 'required|string|min:6|confirmed|regex:/^[a-zA-Z0-9]+$/',
+        'password_confirmation' => 'required|string|min:6|confirmed|regex:/^[a-zA-Z0-9]+$/|same:password',
         'name' => 'required|string|regex:/^[a-zA-Z]+$/',
         'surname' => 'required|string|regex:/^[a-zA-Z]+$/',
         'date_of_birth' => 'required|date',
@@ -221,7 +223,7 @@ class ManageUserController extends Controller
     if(Auth()->guard('admin')->check()){
       return redirect(route('admin.list_user',['role'=>$role]))->with('success','User created successfully.');
     }else{
-      return redirect()->route('login');
+      return redirect()->route('login')->with('register_success','Register successfully');
     }
 
   }

@@ -18,6 +18,9 @@ class User extends Authenticatable
     protected $fillable = [
         'username', 'password', 'user_id','role_id'
     ];
+    protected $hidden = [
+       'password', 'remember_token',
+   ];
 
 
     public function setAttribute($key, $value)

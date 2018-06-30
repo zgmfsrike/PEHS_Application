@@ -62,11 +62,12 @@ class LoginController extends Controller
     ]);
     //Attempt to log the user in
     if (Auth::guard('admin')->attempt(['username'=>$request->username,'password'=>$request->password,'role_id'=>1],$request->remember)) {
-      return redirect()->intended(route('admin.home'));
+      return redirect()->intended(route('admin.home'))->with('login_success', 'Login Success!');
+        // return view('admin.home');
     }else if (Auth::guard('doctor')->attempt(['username'=>$request->username,'password'=>$request->password,'role_id'=>2],$request->remember)){
-      return redirect()->intended(route('doctor.home'));
+      return redirect()->intended(route('doctor.home'))->with('login_success', 'Login Success!');
     }else if(Auth::guard('medical_staff')->attempt(['username'=>$request->username,'password'=>$request->password,'role_id'=>3],$request->remember)){
-      return redirect()->intended(route('medical_staff.home'));
+      return redirect()->intended(route('medical_staff.home'))->with('login_success', 'Login Success!');
     }else{
         //if unsuccessful, then redirect back to the login with the form data and error message
       return redirect()->back()->withInput($request->only('username','remember'))->with('login_fail','Username or Password is invalid');
