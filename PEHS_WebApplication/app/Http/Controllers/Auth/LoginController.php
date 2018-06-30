@@ -57,8 +57,8 @@ class LoginController extends Controller
     // $password = User::where('password',$request->password)->where('role_id',1)->orWhere('role_id',2)->orWhere('role_id',3)->get();
     //validate the form data
     $this->validate($request,[
-      'username' => 'required',
-      'password' => 'required|min:6',
+      'username' => 'required|string|min:4|regex:/^[a-zA-Z0-9]+$/',
+      'password' => 'required|string|min:6|regex:/^[a-zA-Z0-9]+$/',
     ]);
     //Attempt to log the user in
     if (Auth::guard('admin')->attempt(['username'=>$request->username,'password'=>$request->password,'role_id'=>1],$request->remember)) {
