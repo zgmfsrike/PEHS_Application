@@ -61,6 +61,7 @@
                 </div>
               </div>
 
+
               <div class="form-group row">
                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
@@ -96,7 +97,6 @@
                 $min = date('Y-m-d',strtotime($today.' -100 years'));;
                 $max = $today;
                 @endphp
-
                 <div class="col-md-6">
                   <input id="date_of_birth" type="date" class="form-control{{ $errors->has('date_of_birth') ? ' is-invalid' : '' }}" value="{{ old('date_of_birth') }}" name="date_of_birth" min="{{$min}}" max="{{$max}}" required >
 
@@ -215,7 +215,7 @@
                     </span>
                   @endif
                 </div>
-              </div>
+              </div> 
 
 
 
@@ -225,7 +225,7 @@
 
               <div class="form-group row mb-0">
                 <div class="col-md-6 offset-md-4">
-                  <button type="submit" class="btn btn-primary">
+                  <button type="submit" name="submit" class="btn btn-primary">
                     {{ __('Submit') }}
                   </button>
                 </div>

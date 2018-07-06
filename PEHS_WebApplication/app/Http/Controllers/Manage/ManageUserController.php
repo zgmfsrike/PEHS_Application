@@ -39,7 +39,7 @@ class ManageUserController extends Controller
     }
     $users = DB::table('users')->join($role.' as r','r.user_id','users.user_id')->
     select('r.user_id','r.name','r.surname','r.email','users.username')->
-    where('users.role_id',$role_id)->paginate(10);
+    where('users.role_id',$role_id)->orderByRaw('LENGTH(r.user_id)','asc')->paginate(10);
 
     return view('manage.list_user',['users'=>$users,'user_role'=>$role]);
 
@@ -159,7 +159,6 @@ class ManageUserController extends Controller
         'username' => 'required|string|min:4|unique:users|regex:/^[a-zA-Z0-9]+$/',
         'email' => $email_format,
         'password' => 'required|string|min:6|confirmed|regex:/^[a-zA-Z0-9]+$/',
-        'password_confirmation' => 'required|string|min:6|confirmed|regex:/^[a-zA-Z0-9]+$/|same:password',
         'name' => 'required|string|regex:/^[a-zA-Z]+$/',
         'surname' => 'required|string|regex:/^[a-zA-Z]+$/',
         'date_of_birth' => 'required|date',
@@ -190,7 +189,6 @@ class ManageUserController extends Controller
         'username' => 'required|string|min:4|unique:users|regex:/^[a-zA-Z0-9]+$/',
         'email' => $email_format,
         'password' => 'required|string|min:6|confirmed|regex:/^[a-zA-Z0-9]+$/',
-        'password_confirmation' => 'required|string|min:6|confirmed|regex:/^[a-zA-Z0-9]+$/|same:password',
         'name' => 'required|string|regex:/^[a-zA-Z]+$/',
         'surname' => 'required|string|regex:/^[a-zA-Z]+$/',
         'date_of_birth' => 'required|date',
@@ -220,7 +218,7 @@ class ManageUserController extends Controller
     // if($user_not_exist == true){
       DB::table($role)->insert($information);
     // }
-    if(Auth()->guard('admin')->check()){
+    if(Auth()->check()){
       return redirect(route('admin.list_user',['role'=>$role]))->with('success','User created successfully.');
     }else{
       return redirect()->route('login')->with('register_success','Register successfully');
