@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreateDrugAllergyTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->increments('id',9);
-            $table->string('username',25)->unique();
-            $table->string('password');
-            $table->string('user_id',9)->unique();
-            $table->integer('role_id');
+        Schema::create('drug_allergy_types', function (Blueprint $table) {
+            $table->increments('drug_allergy_id');
+            $table->string('drug_allergy_name',40);
         });
     }
 
@@ -29,6 +26,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('drug_allergy_types');
     }
 }

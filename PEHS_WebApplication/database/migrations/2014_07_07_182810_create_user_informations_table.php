@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePatientsTable extends Migration
+class CreateUserInformationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,21 @@ class CreatePatientsTable extends Migration
      */
     public function up()
     {
-        Schema::create('patients', function (Blueprint $table) {
-          $table->string('user_id',9)->unique();
+        Schema::create('user_informations', function (Blueprint $table) {
+          $table->increments('user_id');
           $table->string('name',30);
           $table->string('surname',30);
           $table->string('email')->unique();
           $table->date('date_of_birth');
           $table->string('address',200);
           $table->string('telephone_number',15);
-          $table->string('gender',10);
-          $table->string('blood_type',5);
+          $table->integer('gender')->unsigned();
+          $table->integer('blood_type')->unsigned();
           $table->string('personal_id',20);
-          $table->string('drug_allergy',100)->nullable();;
-          $table->string('underlying_disease',100)->nullable();;
+          //
+          $table->foreign('blood_type')->references('blood_type_id')->on('blood_types');
+          $table->foreign('gender')->references('gender_id')->on('genders');
+        
         });
     }
 
@@ -36,6 +38,6 @@ class CreatePatientsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('patients');
+        Schema::dropIfExists('user_informations');
     }
 }
