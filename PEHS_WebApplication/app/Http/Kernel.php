@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use App\Http\Middleware\CheckDoctorPersonalInfo;
 
 class Kernel extends HttpKernel
 {
@@ -60,5 +61,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'admin' => Middleware\RoleAdmin::class,
+        'doctor.personal_info'=> Middleware\CheckDoctorPersonalInfo::class,
+        'm_staff.personal_info'=> Middleware\CheckMStaffPersonalInfo::class,
     ];
 }

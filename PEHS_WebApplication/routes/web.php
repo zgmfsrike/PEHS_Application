@@ -34,20 +34,20 @@ Route::group(['prefix'=>'admin','middleware' => 'auth:admin'],function(){
   //---------------------------------------------------------------------------------------
 });
 
-Route::group(['prefix'=>'doctor','middleware' => 'auth:doctor'],function(){
+Route::group(['prefix'=>'doctor','middleware' => ['auth:doctor']],function(){
   //-----------------------------------------------Doctor Route----------------------------------------------------
-  Route::get('/view_profile/{role}/{user_id}','Manage\ManageUserController@viewUserProfile')->name('doctor.view_profile');
-  Route::get('/edit_profile/{role}/{user_id}','Manage\ManageUserController@getEditUserPage')->name('doctor.edit_profile');
-  Route::put('/update_profile/{role}/{user_id}','Manage\ManageUserController@updateUser')->name('doctor.update_profile');
+  Route::get('/view_profile/{role}/{user_id}','Manage\ManageUserController@viewUserProfile')->name('doctor.view_profile')->middleware('doctor.personal_info');
+  Route::get('/edit_profile/{role}/{user_id}','Manage\ManageUserController@getEditUserPage')->name('doctor.edit_profile')->middleware('doctor.personal_info');
+  Route::put('/update_profile/{role}/{user_id}','Manage\ManageUserController@updateUser')->name('doctor.update_profile')->middleware('doctor.personal_info');
   Route::get('/','HomeController@getDoctorHomepage')->name('doctor.home');
   //---------------------------------------------------------------------------------------------------------------
 
 });
 Route::group(['prefix'=>'medical_staff','middleware' => 'auth:medical_staff'],function(){
   Route::get('/','HomeController@getMedicalStaffHomepage')->name('medical_staff.home');
-  Route::get('/view_profile/{role}/{user_id}','Manage\ManageUserController@viewUserProfile')->name('medical_staff.view_profile');
-  Route::get('/edit_profile/{role}/{user_id}','Manage\ManageUserController@getEditUserPage')->name('medical_staff.edit_profile');
-  Route::put('/update_profile/{role}/{user_id}','Manage\ManageUserController@updateUser')->name('medical_staff.update_profile');
+  Route::get('/view_profile/{role}/{user_id}','Manage\ManageUserController@viewUserProfile')->name('medical_staff.view_profile')->middleware('m_staff.personal_info');
+  Route::get('/edit_profile/{role}/{user_id}','Manage\ManageUserController@getEditUserPage')->name('medical_staff.edit_profile')->middleware('m_staff.personal_info');
+  Route::put('/update_profile/{role}/{user_id}','Manage\ManageUserController@updateUser')->name('medical_staff.update_profile')->middleware('m_staff.personal_info');
 
 
 });
