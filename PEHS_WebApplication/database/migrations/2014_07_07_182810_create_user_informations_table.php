@@ -24,10 +24,12 @@ class CreateUserInformationsTable extends Migration
           $table->integer('gender')->unsigned();
           $table->integer('blood_type')->unsigned();
           $table->string('personal_id',20);
+          $table->string('drug_allergy',200)->nullable();
+          $table->string('underlying_disease',200)->nullable();
           //
           $table->foreign('blood_type')->references('blood_type_id')->on('blood_types');
           $table->foreign('gender')->references('gender_id')->on('genders');
-        
+
         });
     }
 

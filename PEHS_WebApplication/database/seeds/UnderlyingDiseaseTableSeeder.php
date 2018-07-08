@@ -13,26 +13,26 @@ class UnderlyingDiseaseTableSeeder extends Seeder
     {
       DB::table('underlying_disease_types')->insert([
         [
-          'underlying_diseases_name'=>'Diabates',
+          'underlying_disease_name'=>'Diabates',
         ],
         [
-          'underlying_diseases_name'=>'Hypertension',
+          'underlying_disease_name'=>'Hypertension',
         ],
         [
-          'underlying_diseases_name'=>'Dyslipidemia',
+          'underlying_disease_name'=>'Dyslipidemia',
         ],
         [
-          'underlying_diseases_name'=>'Gout',
+          'underlying_disease_name'=>'Gout',
         ],
         [
-          'underlying_diseases_name'=>'Osteoarthritis',
+          'underlying_disease_name'=>'Osteoarthritis',
         ],
         [
-          'underlying_diseases_name'=>'Obesity',
+          'underlying_disease_name'=>'Obesity',
         ],
         [
-          'underlying_diseases_name'=>'Asthma'
-          
+          'underlying_disease_name'=>'Asthma'
+
         ]
 
       ]

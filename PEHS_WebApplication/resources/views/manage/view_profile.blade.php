@@ -52,9 +52,7 @@
 
                 </div>
               </div>
-
-
-              @if ($user_role == "patients")
+              {{-- @if ($user_role == "patients") --}}
                 <div class=" row">
                   <label for="drug_allergy" class="col-md-6 text-md-right"><b>{{ __('Drug Allergy : ') }}</b></label>
                   <div class="col-md-6">
@@ -68,7 +66,7 @@
                       <p id="underlying_disease" name="underlying_disease">@if($user->underlying_disease== ""){{ _('-') }}@else{{ $user->underlying_disease }}@endif</p>
                       </div>
                     </div>
-                  @endif
+                  {{-- @endif --}}
                 @endforeach
                 <div>
                   <div class=" row justify-content-center">

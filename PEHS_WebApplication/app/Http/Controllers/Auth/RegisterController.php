@@ -38,6 +38,29 @@ class RegisterController extends Controller
   *
   * @return void
   */
+
+
+  public function getRegisterPage()
+  {
+    $gender = DB::table('genders')->get();
+    // $underlying_diseases = DB::table('underlying_disease_types')->get();
+    // $drug_allergys = DB::table('drug_allergy_types')->get();
+    $blood_type = DB::table('blood_types')->get();
+
+    // $ud_array =[];
+    // foreach ($underlying_diseases as $underlying_disease) {
+    //   $ud_array[$underlying_disease->underlying_disease_id] = $underlying_disease->underlying_disease_name;
+    // }
+    // $drug_array =[];
+    //
+    // foreach ($drug_allergys as $drug_allergy) {
+    //   $drug_array[$drug_allergy->drug_allergy_id] = $drug_allergy->drug_allergy_name;
+    // }
+    return view('auth.register',["blood_type"=>$blood_type,"gender"=>$gender]);
+
+
+    // return view('auth.register',["blood_type"=>$blood_type,"gender"=>$gender,'underlying_disease'=>$ud_array,'drug_allergy'=>$drug_array]);
+  }
   public function __construct()
   {
     $this->middleware('guest');

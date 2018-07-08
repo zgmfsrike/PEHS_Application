@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">
@@ -139,61 +140,60 @@
               <div class="form-group row">
                 <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
                 <div class="col-md-6">
-                  <input type="radio" name="gender" id="male" value="male" required @if(old('gender')=="male"){{'checked'}}@endif >
-                  <label for="male">Male</label>&nbsp
-                  <input type="radio" name="gender" id="female" value="female" required @if(old('gender')=="female"){{'checked'}}@endif>
-                  <label for="female">Female</label>&nbsp
-                  <input type="radio" name="gender" id="other" value="other" required @if(old('gender')=="other"){{'checked'}}@endif>
-                  <label for="other">Other</label>
-                  @if ($errors->has('gender'))
-                    <span class="invalid-feedback">
-                      <strong>{{ $errors->first('gender') }}</strong>
-                    </span>
-                  @endif
+                  @foreach ($gender as $user_gender)
+                    <input type="radio" name="gender" id="{{$user_gender->gender}}" value="{{$user_gender->gender_id}}" required @if(old('gender')=="{{$user_gender->gender}}"){{'checked'}}@endif >
+                      <label for="{{$user_gender->gender}}">{{$user_gender->gender}}</label>&nbsp
+                    @endforeach
+                    {{-- <input type="radio" name="gender" id="male" value="male" required @if(old('gender')=="male"){{'checked'}}@endif >
+                    <label for="male">Male</label>&nbsp
+                    <input type="radio" name="gender" id="female" value="female" required @if(old('gender')=="female"){{'checked'}}@endif>
+                    <label for="female">Female</label>&nbsp
+                    <input type="radio" name="gender" id="other" value="other" required @if(old('gender')=="other"){{'checked'}}@endif>
+                    <label for="other">Other</label> --}}
+                    @if ($errors->has('gender'))
+                      <span class="invalid-feedback">
+                        <strong>{{ $errors->first('gender') }}</strong>
+                      </span>
+                    @endif
+                  </div>
                 </div>
-              </div>
 
 
 
-              <div class="form-group row">
-                <label for="blood_type" class="col-md-4 col-form-label text-md-right">{{ __('Blood Type') }}</label>
+                <div class="form-group row">
+                  <label for="blood_type" class="col-md-4 col-form-label text-md-right">{{ __('Blood Type') }}</label>
 
-                <div class="col-md-3">
-                  <select required name="blood_type" id="blood_type" class="form-control{{ $errors->has('blood_type') ? ' is-invalid' : '' }}" >
-                    <option disalbed value="">Please Select</option>
-                    <option value="A+"@if(old('blood_type')=="A+"){{'selected'}}@endif >A+</option>
-                    <option value="A-" @if(old('blood_type')=="A-"){{'selected'}}@endif>A-</option>
-                    <option value="B+" @if(old('blood_type')=="B+"){{'selected'}}@endif>B+</option>
-                    <option value="B-" @if(old('blood_type')=="B-"){{'selected'}}@endif>B-</option>
-                    <option value="O+" @if(old('blood_type')=="O+"){{'selected'}}@endif>O+</option>
-                    <option value="O-" @if(old('blood_type')=="O-"){{'selected'}}@endif>O-</option>
-                    <option value="AB+" @if(old('blood_type')=="AB+"){{'selected'}}@endif>AB+</option>
-                    <option value="AB-" @if(old('blood_type')=="AB-"){{'selected'}}@endif>AB-</option>
-                  </select>
-                  @if ($errors->has('blood_type'))
-                    <span class="invalid-feedback">
-                      <strong>{{ $errors->first('blood_type') }}</strong>
-                    </span>
-                  @endif
+                  <div class="col-md-3">
+                    <select required name="blood_type" id="blood_type" class="form-control{{ $errors->has('blood_type') ? ' is-invalid' : '' }}" >
+                      <option  value="" disabled selected>Please Select</option>
+                      @foreach ($blood_type as $user_blood_type)
+                        <option value="{{$user_blood_type->blood_type_id}}" >{{$user_blood_type->blood_type}}</option>
+                      @endforeach
+                    </select>
+                    @if ($errors->has('blood_type'))
+                      <span class="invalid-feedback">
+                        <strong>{{ $errors->first('blood_type') }}</strong>
+                      </span>
+                    @endif
+                  </div>
                 </div>
-              </div>
 
-              <div class="form-group row">
-                <label for="personal_id" class="col-md-4 col-form-label text-md-right">{{ __('National ID/Passport ID') }}</label>
+                <div class="form-group row">
+                  <label for="personal_id" class="col-md-4 col-form-label text-md-right">{{ __('National ID/Passport ID') }}</label>
 
-                <div class="col-md-6">
-                  <input id="personal_id" type="text" maxlength="15" class="form-control{{ $errors->has('personal_id') ? ' is-invalid' : '' }}" name="personal_id" value="{{ old('personal_id') }}"  required >
+                  <div class="col-md-6">
+                    <input id="personal_id" type="text" maxlength="15" class="form-control{{ $errors->has('personal_id') ? ' is-invalid' : '' }}" name="personal_id" value="{{ old('personal_id') }}"  required >
 
-                  @if ($errors->has('personal_id'))
-                    <span class="invalid-feedback">
-                      <strong>{{ $errors->first('personal_id') }}</strong>
-                    </span>
-                  @endif
+                    @if ($errors->has('personal_id'))
+                      <span class="invalid-feedback">
+                        <strong>{{ $errors->first('personal_id') }}</strong>
+                      </span>
+                    @endif
+                  </div>
                 </div>
-              </div>
 
 
-              <div class="form-group row">
+                <div class="form-group row">
                 <label for="drug_allergy" class="col-md-4 col-form-label text-md-right">{{ __('Drug Allergy') }}</label>
                 <div class="col-md-6">
                   <textarea id="drug_allergy" maxlength="100" class="form-control{{ $errors->has('drug_allergy') ? ' is-invalid' : '' }}" name="drug_allergy"   >{{ old('drug_allergy') }}</textarea>
@@ -205,35 +205,31 @@
                 </div>
               </div>
 
+
+
               <div class="form-group row">
-                <label for="underlying_disease" class="col-md-4 col-form-label text-md-right">{{ __('Underlying Disease') }}</label>
-                <div class="col-md-6">
-                  <textarea id="underlying_disease" maxlength="100" class="form-control{{ $errors->has('underlying_disease') ? ' is-invalid' : '' }}" name="underlying_disease" >{{ old('underlying_disease') }}</textarea>
-                  @if ($errors->has('underlying_disease'))
-                    <span class="invalid-feedback">
-                      <strong>{{ $errors->first('underlying_disease') }}</strong>
-                    </span>
-                  @endif
-                </div>
-              </div> 
-
-
-
-
-
-
-
-              <div class="form-group row mb-0">
-                <div class="col-md-6 offset-md-4">
-                  <button type="submit" name="submit" class="btn btn-primary">
-                    {{ __('Submit') }}
-                  </button>
-                </div>
+              <label for="underlying_disease" class="col-md-4 col-form-label text-md-right">{{ __('Underlying Disease') }}</label>
+              <div class="col-md-6">
+                <textarea id="underlying_disease" maxlength="100" class="form-control{{ $errors->has('underlying_disease') ? ' is-invalid' : '' }}" name="underlying_disease" >{{ old('underlying_disease') }}</textarea>
+                @if ($errors->has('underlying_disease'))
+                  <span class="invalid-feedback">
+                    <strong>{{ $errors->first('underlying_disease') }}</strong>
+                  </span>
+                @endif
               </div>
-            </form>
+            </div>
+                <div class="form-group row mb-0">
+                  <div class="col-md-6 offset-md-4">
+                    <button type="submit" name="submit" class="btn btn-primary">
+                      {{ __('Submit') }}
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-@endsection
+
+  @endsection

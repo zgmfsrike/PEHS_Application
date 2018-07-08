@@ -13,14 +13,14 @@ class CreateDrugAllergysTable extends Migration
      */
     public function up()
     {
-        Schema::create('drug_allergys', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned();
-            $table->integer('drug_allergy_id')->unsigned();
-
-            $table->foreign('user_id')->references('user_id')->on('user_informations');
-            $table->foreign('drug_allergy_id','drug_allergy')->references('drug_allergy_id')->on('drug_allergy_types');
-
-        });
+        // Schema::create('drug_allergys', function (Blueprint $table) {
+        //     $table->integer('user_id')->unsigned();
+        //     $table->integer('drug_allergy_id')->unsigned();
+        //
+        //     $table->foreign('user_id')->references('user_id')->on('user_informations');
+        //     $table->foreign('drug_allergy_id','drug_allergy')->references('drug_allergy_id')->on('drug_allergy_types');
+        //
+        // });
     }
 
     /**
@@ -30,6 +30,6 @@ class CreateDrugAllergysTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('drug_allergys');
+        // Schema::dropIfExists('drug_allergys');
     }
 }

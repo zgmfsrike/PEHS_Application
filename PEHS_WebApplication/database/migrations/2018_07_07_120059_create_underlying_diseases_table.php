@@ -13,14 +13,14 @@ class CreateUnderlyingDiseasesTable extends Migration
   */
   public function up()
   {
-    Schema::create('underlying_diseases', function (Blueprint $table) {
-      $table->integer('user_id')->unsigned();
-      $table->integer('underlying_diseases_id')->unsigned();
-
-      $table->foreign('user_id')->references('user_id')->on('user_informations');
-      $table->foreign('underlying_diseases_id','underlying_diseases')->references('underlying_diseases_id')->on('underlying_disease_types');
-
-    });
+    // Schema::create('underlying_diseases', function (Blueprint $table) {
+    //   $table->integer('user_id')->unsigned();
+    //   $table->integer('underlying_disease_id')->unsigned();
+    //
+    //   $table->foreign('user_id')->references('user_id')->on('user_informations');
+    //   $table->foreign('underlying_disease_id','underlying_diseases')->references('underlying_disease_id')->on('underlying_disease_types');
+    //
+    // });
   }
 
   /**
@@ -30,6 +30,6 @@ class CreateUnderlyingDiseasesTable extends Migration
   */
   public function down()
   {
-    Schema::dropIfExists('underlying_diseases');
+    // Schema::dropIfExists('underlying_diseases');
   }
 }

@@ -27,6 +27,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
 </head>
 <body>
   <div id="app">
@@ -61,7 +62,7 @@
             <!-- Authentication Links -->
             @guest
               <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-              <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+              <li><a class="nav-link" href="{{ route('register_user') }}">{{ __('Register') }}</a></li>
             @else
               <li class="nav-item dropdown">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -100,6 +101,7 @@
       <div class="container">
         @include('manage.message')
         @yield('content')
+
 
       </div>
 

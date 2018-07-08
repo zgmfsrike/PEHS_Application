@@ -56,7 +56,6 @@
           @endif
           @if(count($users))
             <tr>
-              <th scope="col" class="text-center">ID</th>
               <th scope="col" class="text-center">Username</th>
               <th scope="col" class="text-center">Name</th>
               <th scope="col" class="text-center">Surname</th>
@@ -73,7 +72,6 @@
 
           @foreach ($users as $i=>$user)
             <tr>
-              <th scope="row">{{$user->user_id}}</th>
               <td>{{$user->username}}</td>
               <td>{{$user->name}}</td>
               <td>{{$user->surname}}</td>

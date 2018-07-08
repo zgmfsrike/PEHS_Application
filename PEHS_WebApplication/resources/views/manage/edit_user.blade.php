@@ -116,12 +116,10 @@
                       <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
 
                       <div class="col-md-6">
-                        <input type="radio" name="gender" id="male" value="male" required @if($user->gender == 'male'){{__('checked')}}@endif>
-                          <label for="male">Male</label>&nbsp
-                          <input type="radio" name="gender" id="female" value="female" required @if($user->gender == 'female'){{__('checked')}}@endif>
-                            <label for="female">Female</label>&nbsp
-                            <input type="radio" name="gender" id="other" value="other" required @if($user->gender == 'other'){{__('checked')}}@endif>
-                              <label for="other">Other</label>
+                        @foreach ($gender_list as $user_gender)
+                          <input type="radio" name="gender" id="{{$user_gender->gender}}" value="{{$user_gender->gender_id}}" required @if($user->gender == $user_gender->gender){{'checked'}}@endif >
+                            <label for="{{$user_gender->gender}}">{{$user_gender->gender}}</label>&nbsp
+                          @endforeach
                               @if ($errors->has('gender'))
                                 <span class="invalid-feedback">
                                   <strong>{{ $errors->first('gender') }}</strong>
@@ -129,7 +127,7 @@
                               @endif
                             </div>
                           </div>
-                          @if ($user_role == "patients")
+                          {{-- @if ($user_role == "patients") --}}
                             <div class="form-group row">
                               <label for="drug_allergy" class="col-md-4 col-form-label text-md-right">{{ __('Drug Allergy') }}</label>
                               <div class="col-md-6">
@@ -153,7 +151,7 @@
                                 @endif
                               </div>
                             </div>
-                          @endif
+                          {{-- @endif --}}
                         @endforeach
                         <div class="form-group row mb-0">
                           <div class="col-md-6 offset-md-4">

@@ -13,10 +13,10 @@ class CreateUnderlyingDiseaseTypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('underlying_disease_types', function (Blueprint $table) {
-            $table->increments('underlying_diseases_id');
-            $table->string('underlying_diseases_name',50);
-        });
+        // Schema::create('underlying_disease_types', function (Blueprint $table) {
+        //     $table->increments('underlying_disease_id');
+        //     $table->string('underlying_disease_name',50);
+        // });
     }
 
     /**
@@ -26,6 +26,6 @@ class CreateUnderlyingDiseaseTypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('underlying_disease_types');
+        // Schema::dropIfExists('underlying_disease_types');
     }
 }

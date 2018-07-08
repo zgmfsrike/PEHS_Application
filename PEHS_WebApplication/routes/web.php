@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-
+Route::get('/register_user','Auth\RegisterController@getRegisterPage')->name('register_user');
 Route::post('/register/{role}','Manage\ManageUserController@storeUser')->name('patient.register');
 
 Route::group(['prefix'=>'admin','middleware' => 'auth:admin'],function(){
