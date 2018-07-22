@@ -23,7 +23,7 @@ public class WelcomeActivity extends AppCompatActivity {
         tvWelcome = (TextView)findViewById(R.id.tvWelcome);
         final Intent intent = getIntent();
         final Patient patient = (Patient)intent.getSerializableExtra("patient");
-        tvWelcome.setText(getString(R.string.welcome) + " " + patient.getUsername());
+        tvWelcome.setText(getString(R.string.welcome) + " " + patient.getName());
         btnChangeProfile = (Button)findViewById(R.id.btnChangeProfile);
         btnChangeProfile.setOnClickListener(new View.OnClickListener() {
             @Override
