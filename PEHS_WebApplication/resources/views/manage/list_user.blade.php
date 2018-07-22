@@ -103,7 +103,7 @@
                       <div class="modal-footer">
                         <form action="{{route('admin.delete_user',['user_id'=>$user->user_id,'role'=>$user_role])}}" method="post">
                           @csrf
-                          <input type="hidden" name="_method" value="DELETE">
+                          {{-- <input type="hidden" name="_method" value="DELETE"> --}}
                           <button type="submit" class="btn btn-danger">Delete</button>
 
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

@@ -6,7 +6,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class LoginControllerTest extends TestCase
+class UserLoginTest extends TestCase
 {
   //"./vendor/bin/phpunit"
   /**
@@ -29,7 +29,6 @@ class LoginControllerTest extends TestCase
     ];
     $response = $this->json('POST', '/login',$user);
     $response->assertSessionHas('login_success','Login Success!');
-    $response->visit('/admin');
 
   }
   //doctor login
@@ -42,7 +41,6 @@ class LoginControllerTest extends TestCase
     ];
     $response = $this->json('POST', '/login',$user);
     $response->assertSessionHas('login_success','Login Success!');
-    $response->visit('/doctor');
 
   }
   //medical staff login
@@ -50,12 +48,11 @@ class LoginControllerTest extends TestCase
   {
     Session::start();
     $user = [
-      'username' => 'medicalz',
-      'password'=>'7744536',
+      'username' => 'Konnok',
+      'password'=>'123456',
     ];
     $response = $this->json('POST', '/login',$user);
     $response->assertSessionHas('login_success','Login Success!');
-    $response->visit('/medical_staff');
 
   }
 
@@ -68,7 +65,6 @@ class LoginControllerTest extends TestCase
     ];
     $response = $this->json('POST', '/login', $user);
     $response->assertSessionHas('login_fail','Username or Password is invalid');
-    $response->visit('/login');
 
   }
   public function testAdminLoginIncorrectPassword()
@@ -80,7 +76,6 @@ class LoginControllerTest extends TestCase
     ];
     $response = $this->json('POST', '/login', $user);
     $response->assertSessionHas('login_fail','Username or Password is invalid');
-    $response->visit('/login');
 
   }
   public function testDoctorLoginIncorrectPassword()
@@ -92,19 +87,17 @@ class LoginControllerTest extends TestCase
     ];
     $response = $this->json('POST', '/login', $user);
     $response->assertSessionHas('login_fail','Username or Password is invalid');
-    $response->visit('/login');
 
   }
   public function testMedicalStaffLoginIncorrectPassword()
   {
     Session::start();
     $user = [
-      'username' => 'medicalz',
+      'username' => 'Konnok',
       'password'=>'213213',
     ];
     $response = $this->json('POST', '/login', $user);
     $response->assertSessionHas('login_fail','Username or Password is invalid');
-    $response->visit('/login');
 
   }
 

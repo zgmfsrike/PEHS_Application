@@ -30,11 +30,6 @@
           <div class="card-body">
             <form method="POST" action="{{ route('admin.store_user',['role'=>$user_role]) }}">
               @csrf
-              {{-------------------------------------------------------------------------------  User Role Doctor&Medical Staff-------------------------------------------------------------------------}}
-              {{-- @if ($user_role == "doctors" || $user_role =="medical_staffs") --}}
-
-              {{---------------------------------------------------- User Role Patient  ----------------------------------------------------------}}
-              {{-- @elseif ($user_role= "patient") --}}
 
                 <div class="form-group row">
                   <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>

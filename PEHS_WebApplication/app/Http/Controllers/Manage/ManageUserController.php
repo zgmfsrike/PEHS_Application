@@ -113,6 +113,124 @@ class ManageUserController extends Controller
     }
 
 
+
+    $email_format ='required|string|email|max:100|unique:user_informations';
+
+    $this->validate($request,  [
+      'username' => 'required|string|min:4|unique:users|regex:/^[a-zA-Z0-9]+$/',
+      'email' => $email_format,
+      'password' => 'required|string|min:6|confirmed|regex:/^[a-zA-Z0-9]+$/',
+      'name' => 'required|string|regex:/^[a-zA-Z]+$/',
+      'surname' => 'required|string|regex:/^[a-zA-Z]+$/',
+      'date_of_birth' => 'required|date',
+      'address' => 'required|string|regex:/([- ,\/0-9a-zA-Z]+)/',
+      'telephone_number'=> 'required|string|regex:/^[0-9]+$/',
+      'gender'=>'required',
+      'blood_type'=>'required',
+      'personal_id'=>'required|string|unique:user_informations|regex:/^[a-zA-Z0-9]+$/',
+      'drug_allergy'=>'nullable|string|regex:/([- ,\/0-9a-zA-Z]+)/',
+      'underlying_disease'=>'nullable|string|regex:/([- ,\/0-9a-zA-Z]+)/',
+    ]);
+    $information = array(
+      'name' => $name,
+      'surname'=> $surname,
+      'email'=>$email,
+      'date_of_birth' =>$date_of_birth,
+      'address'=>$address,
+      'telephone_number'=>$telephone_number,
+      'gender'=>$gender,
+      'blood_type'=>$blood_type,
+      'personal_id'=>$personal_id,
+      'drug_allergy'=>$drug_allergy,
+      'underlying_disease'=>$underlying_disease,
+    );
+    DB::table('user_informations')->insert($information);
+    $get_user_id = DB::table('user_informations')->select('user_id')->where('email',$email)->first();
+    $id = $get_user_id->user_id;
+    // }
+    // else{
+    //   $this->validate($request,  [
+    //     'username' => 'required|string|min:4|unique:users|regex:/^[a-zA-Z0-9]+$/',
+    //     'email' => $email_format,
+    //     'password' => 'required|string|min:6|confirmed|regex:/^[a-zA-Z0-9]+$/',
+    //     'name' => 'required|string|regex:/^[a-zA-Z]+$/',
+    //     'surname' => 'required|string|regex:/^[a-zA-Z]+$/',
+    //     'date_of_birth' => 'required|date',
+    //     'address' => 'required|string|regex:/([- ,\/0-9a-zA-Z]+)/',
+    //     'telephone_number'=> 'required|string|regex:/^[0-9]+$/',
+    //     'gender'=>'required|string',
+    //   ]);
+    //   $information = array(
+    //     'user_id'=>$user_id,
+    //     'name' => $name,
+    //     'surname' => $surname,
+    //     'email'=> $email,
+    //     'date_of_birth' =>$date_of_birth,
+    //     'address'=>$address,
+    //     'telephone_number'=>$telephone_number,
+    //     'gender'=>$gender,
+    //   );
+    // }
+
+    User::insert([
+      'username' => $username,
+      'password' => Hash::make($password),
+      'user_id'=>$id,
+    ]);
+
+    DB::table('user_roles')->insert([
+      'user_id'=>$id,
+      'role_id'=>$role_id,
+    ]);
+
+    // if($user_not_exist == true){
+
+    // }
+    // if(Auth()->check()){
+    //   return redirect()->route('login')->with('register_success','Register successfully');
+    // }
+    // else{
+    return redirect(route('admin.list_user',['role'=>$role]))->with('success','User created successfully.');
+    // }
+
+  }
+  public function registerPatient(Request $request,$role)
+  {
+    $user_not_exist = false;
+    $username = $request->input('username');
+    $password = $request->input('password');
+
+    $name = $request->input('name');
+    $surname = $request->input('surname');
+    $email = $request->input('email');
+    $date_of_birth = $request->input('date_of_birth');
+    $address = $request->input('address');
+    $telephone_number = $request->input('telephone_number');
+    $gender = $request->input('gender');
+    $blood_type = $request->input('blood_type');
+    $personal_id = $request->input('personal_id');
+    $drug_allergy = $request->input('drug_allergy');
+    $underlying_disease = $request->input('underlying_disease');
+
+    switch ($role) {
+      case 'patients':
+      //set input for patient
+
+      $role_id = 4;
+      break;
+      //set input for doctor
+      case 'doctors':
+
+      $role_id = 2;
+      break;
+      //set input for medical staff
+      case 'medical_staffs':
+
+      $role_id = 3;
+      break;
+    }
+
+
     // $check_user_exist = DB::table($role)->select('user_id')->where('name',$name)
     // ->where('surname',$surname)->first();
 
@@ -212,11 +330,12 @@ class ManageUserController extends Controller
     // if($user_not_exist == true){
 
     // }
-    if(Auth()->check()){
-      return redirect(route('admin.list_user',['role'=>$role]))->with('success','User created successfully.');
-    }else{
-      return redirect()->route('login')->with('register_success','Register successfully');
-    }
+    // if(Auth()->check()){
+    return redirect()->route('login')->with('register_success','Register successfully');
+    // }
+    // else{
+    // return redirect(route('admin.list_user',['role'=>$role]))->with('success','User created successfully.');
+    // }
 
   }
 
@@ -295,6 +414,7 @@ class ManageUserController extends Controller
   * @param  int  $id
   * @return \Illuminate\Http\Response
   */
+  //admin update user profile
   public function updateUser(Request $request,$role, $id)
   {
     $name = $request->input('name');
@@ -308,47 +428,53 @@ class ManageUserController extends Controller
     $personal_id = $request->input('personal_id');
     $drug_allergy = $request->input('drug_allergy');
     $underlying_disease = $request->input('underlying_disease');
-    // switch ($role) {
-    //   case 'patients':
-    //   //set input for patient
-    //   $name = $request->input('name');
-    //   $surname = $request->input('surname');
-    //   $email = $request->input('email');
-    //   $date_of_birth = $request->input('date_of_birth');
-    //   $address = $request->input('address');
-    //   $telephone_number = $request->input('telephone_number');
-    //   $gender = $request->input('gender');
-    //   $blood_type = $request->input('blood_type');
-    //   $personal_id = $request->input('personal_id');
-    //   $drug_allergy = $request->input('drug_allergy');
-    //   $underlying_disease = $request->input('underlying_disease');
-    //   $user = Patient::find($id);
-    //   break;
-    //   //set input for doctor
-    //   case 'doctors':
-    //   $name = $request->input('name');
-    //   $surname = $request->input('surname');
-    //   $email = $request->input('email');
-    //   $date_of_birth = $request->input('date_of_birth');
-    //   $address = $request->input('address');
-    //   $telephone_number = $request->input('telephone_number');
-    //   $gender = $request->input('gender');
-    //   $user = Doctor::find($id);
-    //   break;
-    //   //set input for medical staff
-    //   case 'medical_staffs':
-    //   $name = $request->input('name');
-    //   $surname = $request->input('surname');
-    //   $email = $request->input('email');
-    //   $date_of_birth = $request->input('date_of_birth');
-    //   $address = $request->input('address');
-    //   $telephone_number = $request->input('telephone_number');
-    //   $gender = $request->input('gender');
-    //   $user = MedicalStaff::find($id);
-    //   break;
-    // }
+    $user = UserInformation::find($id);
+    $this->validate($request,[
+      'name' => 'required|string|regex:/^[a-zA-Z]+$/',
+      'surname' => 'required|string|regex:/^[a-zA-Z]+$/',
+      'date_of_birth' => 'required|date',
+      'address' => 'required|string|regex:/([- ,\/0-9a-zA-Z]+)/',
+      'telephone_number'=> 'required|string|regex:/^[0-9]+$/',
+      'gender'=>'required',
+      'drug_allergy'=>'nullable|regex:/([- ,\/0-9a-zA-Z]+)/',
+      'underlying_disease'=>'nullable|regex:/([- ,\/0-9a-zA-Z]+)/',
 
-    // if($role == 'patients'){
+    ]);
+
+    $user->name = $name;
+    $user->surname = $surname;
+    $user->date_of_birth = $date_of_birth;
+    $user->address = $address;
+    $user->telephone_number = $telephone_number;
+    $user->gender = $gender;
+    $user->drug_allergy = $drug_allergy;
+    $user->underlying_disease = $underlying_disease;
+    $user->save();
+    return redirect(route('admin.list_user',['role'=>$role]))->with('success','Update information successfully.');
+  }
+  //user update their profile
+  public function updateProfile(Request $request,$role, $id)
+  {
+    switch ($role) {
+      case 'doctors':
+      $route = "doctor.view_profile";
+      break;
+
+      case 'medical_staffs':
+      $route = "medical_staff.view_profile";
+      break;
+    }
+    $name = $request->input('name');
+    $surname = $request->input('surname');
+    $email = $request->input('email');
+    $date_of_birth = $request->input('date_of_birth');
+    $address = $request->input('address');
+    $telephone_number = $request->input('telephone_number');
+    $gender = $request->input('gender');
+    $blood_type = $request->input('blood_type');
+    $personal_id = $request->input('personal_id');
+    $drug_allergy = $request->input('drug_allergy');
+    $underlying_disease = $request->input('underlying_disease');
     $user = UserInformation::find($id);
     $this->validate($request,[
       'name' => 'required|string|regex:/^[a-zA-Z]+$/',
@@ -371,32 +497,10 @@ class ManageUserController extends Controller
     $user->drug_allergy = $drug_allergy;
     $user->underlying_disease = $underlying_disease;
     $user->save();
-    // }
-    // else{
-    //   $this->validate($request,[
-    //     'name' => 'required|string|regex:/^[a-zA-Z]+$/',
-    //     'surname' => 'required|string|regex:/^[a-zA-Z]+$/',
-    //     'date_of_birth' => 'required|date',
-    //     'address' => 'required|string|regex:/([- ,\/0-9a-zA-Z]+)/',
-    //     'telephone_number'=> 'required|string|regex:/^[0-9]+$/',
-    //     'gender'=>'required|string',
-    //   ]);
-    //
-    //   $user->name = $name;
-    //   $user->surname = $surname;
-    //   $user->date_of_birth = $date_of_birth;
-    //   $user->address = $address;
-    //   $user->telephone_number = $telephone_number;
-    //   $user->gender = $gender;
-    //   $user->save();
-    // }
-    if(Auth()->guard('doctor')->check()){
-      return redirect(route('doctor.view_profile',['role'=>$role,'user_id'=>$id]));
-    }else if(Auth()->guard('medical_staff')->check()){
-      return redirect(route('medical_staff.view_profile',['role'=>$role,'user_id'=>$id]));
-    }
-    return redirect(route('admin.list_user',['role'=>$role]))->with('success','Update information successfully.');
+
+    return redirect(route($route,['role'=>$role,'user_id'=>$id]))->with('success','Update information successfully.');
   }
+
 
   /**
   * Remove the specified resource from storage.

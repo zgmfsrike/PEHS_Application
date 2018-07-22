@@ -18,7 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/register_user','Auth\RegisterController@getRegisterPage')->name('register_user');
-Route::post('/register/{role}','Manage\ManageUserController@storeUser')->name('patient.register');
+Route::post('/register/{role}','Manage\ManageUserController@registerPatient')->name('patient.register');
 
 Route::group(['prefix'=>'admin','middleware' => 'auth:admin'],function(){
   Route::get('/','HomeController@getAdminHomepage')->name('admin.home');
@@ -29,17 +29,18 @@ Route::group(['prefix'=>'admin','middleware' => 'auth:admin'],function(){
   Route::post('/store_user/{role}','Manage\ManageUserController@storeUser')->name('admin.store_user');
   Route::get('/view_profile/{role}/{user_id}','Manage\ManageUserController@viewUserProfile')->name('admin.view_user_profile');
   Route::get('/edit_user/{role}/{user_id}','Manage\ManageUserController@getEditUserPage')->name('admin.edit_user');
-  Route::put('/update_user/{role}/{user_id}','Manage\ManageUserController@updateUser')->name('admin.update_user');
-  Route::delete('/delete_user/{role}/{user_id}','Manage\ManageUserController@deleteUser')->name('admin.delete_user');
+  Route::post('/update_user/{role}/{user_id}','Manage\ManageUserController@updateUser')->name('admin.update_user');
+  Route::post('/delete_user/{role}/{user_id}','Manage\ManageUserController@deleteUser')->name('admin.delete_user');
   //---------------------------------------------------------------------------------------
 });
 
 Route::group(['prefix'=>'doctor','middleware' => ['auth:doctor']],function(){
   //-----------------------------------------------Doctor Route----------------------------------------------------
+  Route::get('/','HomeController@getDoctorHomepage')->name('doctor.home');
   Route::get('/view_profile/{role}/{user_id}','Manage\ManageUserController@viewUserProfile')->name('doctor.view_profile')->middleware('doctor.personal_info');
   Route::get('/edit_profile/{role}/{user_id}','Manage\ManageUserController@getEditUserPage')->name('doctor.edit_profile')->middleware('doctor.personal_info');
-  Route::put('/update_profile/{role}/{user_id}','Manage\ManageUserController@updateUser')->name('doctor.update_profile')->middleware('doctor.personal_info');
-  Route::get('/','HomeController@getDoctorHomepage')->name('doctor.home');
+  Route::post('/update_profile/{role}/{user_id}','Manage\ManageUserController@updateProfile')->name('doctor.update_profile')->middleware('doctor.personal_info');
+
   //---------------------------------------------------------------------------------------------------------------
 
 });
@@ -47,7 +48,7 @@ Route::group(['prefix'=>'medical_staff','middleware' => 'auth:medical_staff'],fu
   Route::get('/','HomeController@getMedicalStaffHomepage')->name('medical_staff.home');
   Route::get('/view_profile/{role}/{user_id}','Manage\ManageUserController@viewUserProfile')->name('medical_staff.view_profile')->middleware('m_staff.personal_info');
   Route::get('/edit_profile/{role}/{user_id}','Manage\ManageUserController@getEditUserPage')->name('medical_staff.edit_profile')->middleware('m_staff.personal_info');
-  Route::put('/update_profile/{role}/{user_id}','Manage\ManageUserController@updateUser')->name('medical_staff.update_profile')->middleware('m_staff.personal_info');
+  Route::post('/update_profile/{role}/{user_id}','Manage\ManageUserController@updateProfile')->name('medical_staff.update_profile')->middleware('m_staff.personal_info');
 
 
 });
