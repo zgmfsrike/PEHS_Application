@@ -25,8 +25,8 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">
-        <div class="card">
-          <div class="card-header"><b>{{$edit_title}}</b></div>
+        <div class="card  border-secondary">
+          <div class="card-header  bg-transparent  border-secondary"><b>{{$edit_title}}</b></div>
           <div class="card-body">
             @if (Auth::guard('admin')->check())
               <form action="{{route('admin.update_user',['user_id'=>$user_id,'role'=>$user_role])}}" method="POST">

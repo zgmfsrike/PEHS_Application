@@ -5,8 +5,8 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">
-        <div class="card">
-          <div class="card-header">Admin Homepage</div>
+        <div class="card border-secondary">
+          <div class="card-header bg-transparent border-secondary">Admin Homepage</div>
 
           <div class="card-body">
             @if (session('status'))

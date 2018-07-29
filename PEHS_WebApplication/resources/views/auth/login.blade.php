@@ -4,8 +4,8 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">
-        <div class="card">
-          <div class="card-header">{{ __('Login') }}</div>
+        <div class="card  border-secondary">
+          <div class="card-header bg-transparent  border-secondary"><h5>{{ __('Login') }}</h5></div>
           <div class="card-body">
             @if(session('login_fail'))
               <div class="alert alert-danger">
@@ -57,7 +57,7 @@
 
         <div class="form-group row mb-0">
           <div class="col-md-8 offset-md-4">
-            <button type="submit" class="btn btn-primary" name="login">
+            <button type="submit" class="btn btn-primary  " name="login">
               {{ __('Login') }}
             </button>
           </div>

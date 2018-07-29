@@ -5,18 +5,19 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">
-        <div class="card">
-          <div class="card-header">{{ __('Register') }}</div>
+        <div class="card  border-secondary">
+          <div class="card-header bg-transparent border-secondary"><h5>{{ __('Register for Patient') }}</h5></div>
 
           <div class="card-body">
             <form method="POST" action="{{route('patient.register',['role'=>'patients'])}}">
               @csrf
 
               <div class="form-group row">
-                <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
+                <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}<b  style="color:red"> *</b></label>
 
                 <div class="col-md-6">
                   <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
+                  <small style="color:#8c8c8c">Must be at least 4 characters, letter and number only.</small>
 
                   @if ($errors->has('username'))
                     <span class="invalid-feedback">
@@ -27,11 +28,11 @@
               </div>
 
               <div class="form-group row">
-                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}<b  style="color:red"> *</b></label>
 
                 <div class="col-md-6">
                   <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
+                  <small style="color:#8c8c8c">Must be at least 6 characters, letter and number only.</small>
                   @if ($errors->has('password'))
                     <span class="invalid-feedback">
                       <strong>{{ $errors->first('password') }}</strong>
@@ -41,7 +42,7 @@
               </div>
 
               <div class="form-group row">
-                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}<b  style="color:red"> *</b></label>
 
                 <div class="col-md-6">
                   <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
@@ -49,7 +50,7 @@
               </div>
 
               <div class="form-group row">
-                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}<b  style="color:red"> *</b></label>
 
                 <div class="col-md-6">
                   <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
@@ -64,11 +65,10 @@
 
 
               <div class="form-group row">
-                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}<b  style="color:red"> *</b></label>
 
                 <div class="col-md-6">
                   <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
-
                   @if ($errors->has('name'))
                     <span class="invalid-feedback">
                       <strong>{{ $errors->first('name') }}</strong>
@@ -78,7 +78,7 @@
               </div>
 
               <div class="form-group row">
-                <label for="surname" class="col-md-4 col-form-label text-md-right">{{ __('Surname') }}</label>
+                <label for="surname" class="col-md-4 col-form-label text-md-right">{{ __('Surname') }}<b  style="color:red"> *</b></label>
 
                 <div class="col-md-6">
                   <input id="surname" type="text" class="form-control{{ $errors->has('surname') ? ' is-invalid' : '' }}" name="surname" value="{{ old('surname') }}" required autofocus>
@@ -92,7 +92,7 @@
               </div>
 
               <div class="form-group row">
-                <label for="date_of_birth" class="col-md-4 col-form-label text-md-right">{{ __('Date of Birth') }}</label>
+                <label for="date_of_birth" class="col-md-4 col-form-label text-md-right">{{ __('Date of Birth') }}<b  style="color:red"> *</b></label>
                 @php
                 $today = date("Y-m-d");
                 $min = date('Y-m-d',strtotime($today.' -100 years'));;
@@ -110,7 +110,7 @@
               </div>
 
               <div class="form-group row">
-                <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
+                <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}<b  style="color:red"> *</b></label>
 
                 <div class="col-md-6">
                   <textarea id="address" maxlength="200" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address"  required >{{ old('address') }}</textarea>
@@ -124,11 +124,11 @@
               </div>
 
               <div class="form-group row">
-                <label for="telephone_number" class="col-md-4 col-form-label text-md-right">{{ __('Telephone Number') }}</label>
+                <label for="telephone_number" class="col-md-4 col-form-label text-md-right">{{ __('Telephone Number') }}<b  style="color:red"> *</b></label>
 
                 <div class="col-md-6">
                   <input id="telephone_number" type="text" maxlength="15" class="form-control{{ $errors->has('telephone_number') ? ' is-invalid' : '' }}" name="telephone_number" value="{{ old('telephone_number') }}"  required >
-
+                    <small style="color:#8c8c8c">Must be at least 10 characters and number only.</small>
                   @if ($errors->has('telephone_number'))
                     <span class="invalid-feedback">
                       <strong>{{ $errors->first('telephone_number') }}</strong>
@@ -138,7 +138,7 @@
               </div>
 
               <div class="form-group row">
-                <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
+                <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}<b  style="color:red"> *</b></label>
                 <div class="col-md-6">
                   @foreach ($gender as $user_gender)
                     <input type="radio" name="gender" id="{{$user_gender->gender}}" value="{{$user_gender->gender_id}}" required @if(old('gender')=="{{$user_gender->gender}}"){{'checked'}}@endif >
@@ -161,7 +161,7 @@
 
 
                 <div class="form-group row">
-                  <label for="blood_type" class="col-md-4 col-form-label text-md-right">{{ __('Blood Type') }}</label>
+                  <label for="blood_type" class="col-md-4 col-form-label text-md-right">{{ __('Blood Type') }}<b  style="color:red"> *</b></label>
 
                   <div class="col-md-3">
                     <select required name="blood_type" id="blood_type" class="form-control{{ $errors->has('blood_type') ? ' is-invalid' : '' }}" >
@@ -179,7 +179,7 @@
                 </div>
 
                 <div class="form-group row">
-                  <label for="personal_id" class="col-md-4 col-form-label text-md-right">{{ __('National ID/Passport ID') }}</label>
+                  <label for="personal_id" class="col-md-4 col-form-label text-md-right">{{ __('National ID/Passport ID') }}<b  style="color:red"> *</b></label>
 
                   <div class="col-md-6">
                     <input id="personal_id" type="text" maxlength="15" class="form-control{{ $errors->has('personal_id') ? ' is-invalid' : '' }}" name="personal_id" value="{{ old('personal_id') }}"  required >

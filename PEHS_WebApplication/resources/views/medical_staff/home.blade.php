@@ -4,8 +4,8 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">
-        <div class="card">
-          <div class="card-header">Medical Staff Homepage</div>
+        <div class="card border-secondary">
+          <div class="card-header border-secondary bg-transparent">Medical Staff Homepage</div>
 
           <div class="card-body">
             @if (session('status'))

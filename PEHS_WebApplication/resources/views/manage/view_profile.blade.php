@@ -3,8 +3,8 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-7">
-        <div class="card">
-          <div class="card-header"><b>{{_('Profile')}}</b></div>
+        <div class="card border-secondary">
+          <div class="card-header border-secondary bg-transparent"><b>{{_('Profile')}}</b></div>
           <div class="card-body">
             @foreach ($users as $i=>$user)
               <div class=" row">
@@ -77,7 +77,7 @@
                       <a href="{{route('medical_staff.edit_profile',['user_id'=>$user_id,'role'=>$user_role])}}"><button class=" btn btn-warning">Edit</button></a>&nbsp
                     @endif
                     @if (Auth::guard('admin')->check())
-                      <a href="{{route('admin.list_user',['role'=>$user_role]) }}"><button class=" btn">back</button></a>
+                      <a href="{{route('admin.list_user',['role'=>$user_role]) }}"><button class=" btn btn-secondary">back</button></a>
                     @endif
                   </div>
                 </div>

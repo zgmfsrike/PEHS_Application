@@ -51,7 +51,7 @@ class ManageUserController extends Controller
     select('ui.user_id','ui.name','ui.surname','ui.email','u.username')->
     where('ui.name','like',$name.'%')->paginate(10);
     if(count($users) == 0){
-      return view('manage.list_user',['users'=>$users,'user_role'=>$role,'search_value'=>$name])->with('not_found_user','Sorry!, not found the user name "'.$name.'"');
+      return view('manage.list_user',['users'=>$users,'user_role'=>$role,'search_value'=>$name])->with('not_found_user','Sorry, not found the user name "'.$name.'"');
     }
     return view('manage.list_user',['users'=>$users,'user_role'=>$role,'search_value'=>$name]);
 
@@ -124,7 +124,7 @@ class ManageUserController extends Controller
       'surname' => 'required|string|regex:/^[a-zA-Z]+$/',
       'date_of_birth' => 'required|date',
       'address' => 'required|string|regex:/([- ,\/0-9a-zA-Z]+)/',
-      'telephone_number'=> 'required|string|regex:/^[0-9]+$/',
+      'telephone_number'=> 'required|min:10|string|regex:/^[0-9]+$/',
       'gender'=>'required',
       'blood_type'=>'required',
       'personal_id'=>'required|string|unique:user_informations|regex:/^[a-zA-Z0-9]+$/',
@@ -268,7 +268,7 @@ class ManageUserController extends Controller
       'surname' => 'required|string|regex:/^[a-zA-Z]+$/',
       'date_of_birth' => 'required|date',
       'address' => 'required|string|regex:/([- ,\/0-9a-zA-Z]+)/',
-      'telephone_number'=> 'required|string|regex:/^[0-9]+$/',
+      'telephone_number'=> 'required|min:10|string|regex:/^[0-9]+$/',
       'gender'=>'required',
       'blood_type'=>'required',
       'personal_id'=>'required|string|unique:user_informations|regex:/^[a-zA-Z0-9]+$/',

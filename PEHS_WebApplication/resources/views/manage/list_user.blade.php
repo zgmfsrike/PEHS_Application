@@ -26,7 +26,7 @@
           <div class="input-group float-left ">
             <input class="form-control" id="search" name="search" placeholder="{{$search_text}}" value="@if(!empty($search_value)){{$search_value}}@endif"required>
               <span class="input-group-btn">
-                <button type="submit" class="btn btn-default"><i class="fa fa-search" style="font-size:24px"></i></button>
+                <button type="submit" class="btn btn-secondary"><i class="fa fa-search" style="font-size:24px"></i></button>
               </span>
             </div>
           </form>
@@ -48,7 +48,7 @@
     </div>
     <div class="table-responsive table-bordered">
       <table class="table text-center">
-        <thead class="thead-light">
+        <thead class="">
           @if(!empty ($not_found_user))
             <div class="alert alert-danger text-center">
               {{$not_found_user}}.
