@@ -17,8 +17,8 @@ import com.yangzxcc.macintoshhd.pehs.sql.sql.DatabaseHelper;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    TextInputLayout textInputLayoutUsername, textInputLayoutPassword, textInputLayoutName;
-    TextInputEditText textInputEditTextUsername, textInputEditTextPassword, textInputEditTextName;
+    TextInputLayout textInputLayoutName;
+    TextInputEditText textInputEditTextName;
     AppCompatButton btnSave, btnCancel;
     Patient patient;
 
@@ -27,12 +27,8 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        textInputLayoutUsername = (TextInputLayout) findViewById(R.id.textInputLayoutUsername);
-        textInputLayoutPassword = (TextInputLayout) findViewById(R.id.textInputLayoutPassword);
         textInputLayoutName = (TextInputLayout) findViewById(R.id.textInputLayoutName);
 
-        textInputEditTextUsername = (TextInputEditText) findViewById(R.id.textInputEditUsername);
-        textInputEditTextPassword = (TextInputEditText) findViewById(R.id.textInputEditPassword);
         textInputEditTextName = (TextInputEditText) findViewById(R.id.textInputEditName);
 
         loadData();
@@ -57,28 +53,28 @@ public class ProfileActivity extends AppCompatActivity {
         try {
             DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
             Patient currentPatient = databaseHelper.find(patient.getId());
-            String newUsername = textInputEditTextUsername.getText().toString();
-            Patient temp = databaseHelper.checkUsername(newUsername);
-            if (!newUsername.equalsIgnoreCase(currentPatient.getUsername()) && temp != null) {
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-                builder.setTitle(R.string.error);
-                builder.setMessage(R.string.username_already_exist);
-                builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int i) {
-                        dialog.cancel();
-                    }
-                });
-                builder.show();
-                return;
-            }
-            currentPatient.setUsername(textInputEditTextUsername.getText().toString());
+//            String newUsername = textInputEditTextUsername.getText().toString();
+//            Patient temp = databaseHelper.checkUsername(newUsername);
+//            if (!newUsername.equalsIgnoreCase(currentPatient.getUsername()) && temp != null) {
+//
+//                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+//                builder.setTitle(R.string.error);
+//                builder.setMessage(R.string.username_already_exist);
+//                builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int i) {
+//                        dialog.cancel();
+//                    }
+//                });
+//                builder.show();
+//                return;
+//            }
+//            currentPatient.setUsername(textInputEditTextUsername.getText().toString());
             currentPatient.setName(textInputEditTextName.getText().toString());
-            String password = textInputEditTextPassword.getText().toString();
-            if (!password.isEmpty()) {
-                currentPatient.setPassword(textInputEditTextPassword.getText().toString());
-            }
+//            String password = textInputEditTextPassword.getText().toString();
+//            if (!password.isEmpty()) {
+//                currentPatient.setPassword(textInputEditTextPassword.getText().toString());
+//            }
             if (databaseHelper.update(currentPatient)) {
                 Intent intent = new Intent(ProfileActivity.this, WelcomeActivity.class);
                 intent.putExtra("patient", currentPatient);
@@ -111,8 +107,6 @@ public class ProfileActivity extends AppCompatActivity {
     private void loadData() {
         Intent intent = getIntent();
         patient = (Patient) intent.getSerializableExtra("patient");
-        textInputEditTextUsername.setText(patient.getUsername());
-        textInputEditTextPassword.setText(patient.getPassword());
         textInputEditTextName.setText(patient.getName());
     }
 }
