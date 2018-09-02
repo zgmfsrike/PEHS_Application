@@ -52,13 +52,13 @@ class LoginController extends Controller
   {
     $username = $request->username;
     $password =$request->password;
-    $role = DB::table('users as u')->join('user_roles as ur','u.user_id','ur.user_id')->select('ur.role_id')
-    ->where('u.username',$username)->first();
-    if($role){
-      $role_id = $role->role_id;
-    }else{
-      $role_id = 4;
-    }
+    // $role = DB::table('users as u')->join('user_roles as ur','u.user_id','ur.user_id')->select('ur.role_id')
+    // ->where('u.username',$username)->first();
+    // if($role){
+    //   $role_id = $role->role_id;
+    // }else{
+    //   $role_id = 4;
+    // }
 
 
     // if($request->role == 1){
@@ -72,16 +72,20 @@ class LoginController extends Controller
       'password' => 'required|string|min:6|regex:/^[a-zA-Z0-9]+$/',
     ]);
     //Attempt to log the user in
-    if ($role_id ==1 && Auth::guard('admin')->attempt(['username'=>$username,'password'=>$password],$request->remember) ) {
-
+    // if ($role_id ==1 && Auth::guard('admin')->attempt(['username'=>$username,'password'=>$password],$request->remember) ) {
+    if (Auth::guard('admin')->attempt(['username'=>$username,'password'=>$password,'role_id'=>1],$request->remember)) {
       return redirect()->intended(route('admin.home'))->with('login_success', 'Login Success!');
       // return view('admin.home');
     }
-    else if ($role_id ==2 && Auth::guard('doctor')->attempt(['username'=>$username,'password'=>$password],$request->remember)) {
+    else
+    // if ($role_id ==2 && Auth::guard('doctor')->attempt(['username'=>$username,'password'=>$password],$request->remember)) {
+      if (Auth::guard('doctor')->attempt(['username'=>$username,'password'=>$password,'role_id'=>2],$request->remember) ) {
+
 
       return redirect()->intended(route('doctor.home'))->with('login_success', 'Login Success!');
 
-    }else if($role_id ==3 && Auth::guard('medical_staff')->attempt(['username'=>$username,'password'=>$password],$request->remember)){
+    }else if (Auth::guard('medical_staff')->attempt(['username'=>$username,'password'=>$password,'role_id'=>3],$request->remember) ) {
+    // if($role_id ==3 && Auth::guard('medical_staff')->attempt(['username'=>$username,'password'=>$password],$request->remember)){
 
       return redirect()->intended(route('medical_staff.home'))->with('login_success', 'Login Success!');
     }

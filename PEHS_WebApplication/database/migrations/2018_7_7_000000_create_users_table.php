@@ -18,12 +18,13 @@ class CreateUsersTable extends Migration
       $table->string('username',25)->unique();
       $table->string('password');
       $table->integer('user_id')->unsigned();
-      // $table->integer('role_id')->unsigned();
+      $table->integer('role_id')->unsigned();
 
 
       //add fk
       //->unsigned()
       // $table->foreign('role_id','role')->references('role_id')->on('roles');
+      $table->foreign('role_id','role')->references('role_id')->on('roles');
       $table->foreign('user_id')->references('user_id')->on('user_informations');
       // $table->foreign('user_id','doctor')->references('doctor_id')->on('doctors');
       // $table->foreign('user_id','mstaff')->references('medical_staff_id')->on('medical_staffs');

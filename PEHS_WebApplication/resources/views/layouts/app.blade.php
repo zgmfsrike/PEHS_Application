@@ -56,6 +56,19 @@
                 </div>
               </li>
             </ul>
+          @elseif(Auth::guard('doctor')->check() || Auth::guard('medical_staff')->check())
+            @php
+            switch (Auth::user()->role_id) {
+              case 2:
+              $list_route = 'doctor.list_patient';
+              break;
+              case 3:
+              $list_route = 'medical_staff.list_patient';
+              break;
+
+            }
+            @endphp
+            <a class="nav-link" href="{{ route($list_route,['role'=>'patients'])}}">{{ __('List of Patient') }}</a>
           @endif
           <!-- Right Side Of Navbar -->
           <ul class="navbar-nav ml-auto">
@@ -70,10 +83,23 @@
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  @php
+                  $id = Auth::user()->user_id;
+                  switch (Auth::user()->role_id) {
+                    case 2:
+                    $role = 'doctors';
+                    break;
+
+                    case 3:
+                    $role = 'medical_staffs';
+                    break;
+                  }
+                  @endphp
+
                   @if(Auth::guard('doctor')->check())
-                    <a class="dropdown-item" href="{{route('doctor.view_profile',['user_id'=>$user_id,'role'=>$user_role])}}">{{ __('Profile') }}</a>
+                    <a class="dropdown-item" href="{{route('doctor.view_profile',['user_id'=>$id,'role'=>$role])}}">{{ __('Profile') }}</a>
                   @elseif(Auth::guard('medical_staff')->check())
-                    <a class="dropdown-item" href="{{ route('medical_staff.view_profile',['user_id'=>$user_id,'role'=>$user_role]) }}">{{ __('Profile') }}</a>
+                    <a class="dropdown-item" href="{{ route('medical_staff.view_profile',['user_id'=>$id,'role'=>$role]) }}">{{ __('Profile') }}</a>
                   @endif
                   <a class="dropdown-item" href="{{ route('logout') }}"
                   onclick="event.preventDefault();

@@ -35,9 +35,9 @@ class ManageUserController extends Controller
       break;
 
     }
-    $users = DB::table('user_informations as ui')->join('user_roles as ur','ui.user_id','ur.user_id')->join('users as u','ui.user_id','u.user_id')->
-    select('ui.name','ui.surname','ui.email','u.username','ui.user_id')->
-    where('ur.role_id',$role_id)->paginate(10);
+    $users = DB::table('user_informations as ui')->join('users as u','ui.user_id','u.user_id')->join('blood_types as b','ui.blood_type','b.blood_type_id')->
+    select('ui.name','ui.surname','ui.email','u.username','ui.user_id','b.blood_type','ui.underlying_disease','ui.drug_allergy')->
+    where('u.role_id',$role_id)->paginate(10);
 
     return view('manage.list_user',['users'=>$users,'user_role'=>$role]);
 
@@ -176,12 +176,13 @@ class ManageUserController extends Controller
       'username' => $username,
       'password' => Hash::make($password),
       'user_id'=>$id,
-    ]);
-
-    DB::table('user_roles')->insert([
-      'user_id'=>$id,
       'role_id'=>$role_id,
     ]);
+
+    // DB::table('user_roles')->insert([
+    //   'user_id'=>$id,
+    //   'role_id'=>$role_id,
+    // ]);
 
     // if($user_not_exist == true){
 
@@ -320,12 +321,13 @@ class ManageUserController extends Controller
       'username' => $username,
       'password' => Hash::make($password),
       'user_id'=>$id,
-    ]);
-
-    DB::table('user_roles')->insert([
-      'user_id'=>$id,
       'role_id'=>$role_id,
     ]);
+
+    // DB::table('user_roles')->insert([
+    //   'user_id'=>$id,
+    //   'role_id'=>$role_id,
+    // ]);
 
     // if($user_not_exist == true){
 
@@ -356,10 +358,10 @@ class ManageUserController extends Controller
     }
 
     // if($role == 'patients'){
-    $user = DB::table('user_informations as ui')->join('user_roles as ur','ui.user_id','ur.user_id')->join('genders as g','ui.gender','g.gender_id')->
+    $user = DB::table('user_informations as ui')->join('genders as g','ui.gender','g.gender_id')->join('users as u','u.user_id','ui.user_id')->
     select('ui.name','ui.surname','ui.email','ui.address','g.gender','ui.telephone_number',
     'ui.drug_allergy','ui.underlying_disease','ui.date_of_birth')
-    ->where('ur.role_id',$role_id)->where('ui.user_id',$id)->get();
+    ->where('u.role_id',$role_id)->where('ui.user_id',$id)->get();
     // }
     // else{
     //   $user = DB::table('users')->join($role.' as r','users.user_id','r.user_id')->
@@ -394,10 +396,10 @@ class ManageUserController extends Controller
     }
     $gender_list = DB::table('genders')->get();
     // if($role == 'patients'){
-    $user = DB::table('user_informations as ui')->join('user_roles as ur','ui.user_id','ur.user_id')->join('genders as g','ui.gender','g.gender_id')->
+    $user = DB::table('user_informations as ui')->join('genders as g','ui.gender','g.gender_id')->join('users as u','u.user_id','ui.user_id')->
     select('ui.name','ui.surname','ui.email','ui.address','g.gender','ui.telephone_number',
     'ui.drug_allergy','ui.underlying_disease','ui.date_of_birth')
-    ->where('ur.role_id',$role_id)->where('ui.user_id',$id)->get();
+    ->where('u.role_id',$role_id)->where('ui.user_id',$id)->get();
     // }
     // else{
     //   $user = DB::table('users')->join($role.' as r','users.user_id','r.user_id')->
@@ -510,7 +512,7 @@ class ManageUserController extends Controller
   */
   public function deleteUser($role,$id)
   {
-    $delete_user_role = DB::table('user_roles')->where('user_id',$id)->delete();
+    // $delete_user_role = DB::table('user_roles')->where('user_id',$id)->delete();
     $delete_from_user_table = DB::table('users')->where('user_id',$id)->delete();
     $user = UserInformation::find($id);
     $user->delete();

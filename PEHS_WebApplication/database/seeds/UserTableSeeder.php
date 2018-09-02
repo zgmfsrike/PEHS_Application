@@ -99,62 +99,68 @@ class UserTableSeeder extends Seeder
       'username'=>'adminz',
       'password'=>Hash::make('7744536'),
       'user_id'=>1,
+      'role_id'=>1
     ],
     [
       'username'=>'sommai1',
       'password'=>Hash::make('123456'),
       'user_id'=>2,
+      'role_id'=>2
     ],
     [
       'username'=>'Somsak',
       'password'=>Hash::make('123456'),
       'user_id'=>3,
+      'role_id'=>2
     ],
     [
       'username'=>'Konnok',
       'password'=>Hash::make('123456'),
       'user_id'=>4,
+      'role_id'=>3
     ],
     [
       'username'=>'Nimmit',
       'password'=>Hash::make('123456'),
       'user_id'=>5,
+      'role_id'=>4
     ],
     [
       'username'=>'nipon',
       'password'=>Hash::make('123456'),
       'user_id'=>6,
+      'role_id'=>4
     ]
   ]
 );
 
-DB::table('user_roles')->insert([
-  [
-    'user_id'=>1,
-    'role_id'=>1,
-  ],
-  [
-    'user_id'=>2,
-    'role_id'=>2,
-  ],
-  [
-    'user_id'=>3,
-    'role_id'=>2,
-  ],
-  [
-    'user_id'=>4,
-    'role_id'=>3,
-  ],
-  [
-    'user_id'=>5,
-    'role_id'=>4,
-  ],
-  [
-    'user_id'=>6,
-    'role_id'=>4,
-  ]
-]
-);
+// DB::table('user_roles')->insert([
+//   [
+//     'user_id'=>1,
+//     'role_id'=>1,
+//   ],
+//   [
+//     'user_id'=>2,
+//     'role_id'=>2,
+//   ],
+//   [
+//     'user_id'=>3,
+//     'role_id'=>2,
+//   ],
+//   [
+//     'user_id'=>4,
+//     'role_id'=>3,
+//   ],
+//   [
+//     'user_id'=>5,
+//     'role_id'=>4,
+//   ],
+//   [
+//     'user_id'=>6,
+//     'role_id'=>4,
+//   ]
+// ]
+// );
 
 
 

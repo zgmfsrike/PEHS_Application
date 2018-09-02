@@ -2,6 +2,7 @@
 @section('content')
   <div class="">
     @php
+    $route = 'admin.search_user';
     switch ($user_role) {
       case 'doctors':
       $create_user = 'Create Doctor';
@@ -19,9 +20,15 @@
       break;
     }
     @endphp
+
+    @if(Auth::guard('doctor')->check() || Auth::guard('medical_staff')->check())
+      @php
+      // $route = 'search.patient';
+      @endphp
+    @endif
     <div>
       <div class="col-md-6">
-        <form action="{{route('admin.search_user',['role'=>$user_role])}}" method="POST">
+        <form action="{{route($route,['role'=>$user_role])}}" method="POST">
           @csrf
           <div class="input-group float-left ">
             <input class="form-control" id="search" name="search" placeholder="{{$search_text}}" value="@if(!empty($search_value)){{$search_value}}@endif"required>
@@ -31,98 +38,152 @@
             </div>
           </form>
         </div>
-        <div class="col-md-6-offset">
-          <div class="float-right">
-            <a href="{{route('admin.create_user',['role'=>$user_role])}}"><button class="btn btn-primary">{{$create_user}}</button></a>
-            <p></p>
+        @if(Auth::guard('admin')->check())
+          <div class="col-md-6-offset">
+            <div class="float-right">
+              <a href="{{route('admin.create_user',['role'=>$user_role])}}"><button class="btn btn-primary">{{$create_user}}</button></a>
+              <p></p>
+            </div>
+
           </div>
-
-        </div>
-
-
+        @endif
       </div>
 
 
 
 
     </div>
-    <div class="table-responsive table-bordered">
-      <table class="table text-center">
-        <thead class="">
-          @if(!empty ($not_found_user))
-            <div class="alert alert-danger text-center">
-              {{$not_found_user}}.
-            </div>
-          @endif
-          @if(count($users))
-            <tr>
-              <th scope="col" class="text-center">Username</th>
-              <th scope="col" class="text-center">Name</th>
-              <th scope="col" class="text-center">Surname</th>
-              <th scope="col" class="text-center">Email</th>
-              <th scope="cole" class="text-center">Profile</th>
-              <th scope="cole" class="text-center">Edit</th>
-              <th scope="cole" class="text-center">Delete</th>
-            </tr>
-          @endif
-        </thead>
+    @if(Auth::guard('admin')->check())
+      <div class="table-responsive table-bordered">
+        <table class="table text-center">
+          <thead class="">
+            @if(!empty ($not_found_user))
+              <div class="alert alert-danger text-center">
+                {{$not_found_user}}.
+              </div>
+            @endif
+            @if(count($users))
+              <tr>
+                <th scope="col" class="text-center">Username</th>
+                <th scope="col" class="text-center">Name</th>
+                <th scope="col" class="text-center">Surname</th>
+                <th scope="col" class="text-center">Email</th>
+                <th scope="cole" class="text-center">Profile</th>
+                <th scope="cole" class="text-center">Edit</th>
+                <th scope="cole" class="text-center">Delete</th>
+              </tr>
+            @endif
+          </thead>
 
-        <tbody>
+          <tbody>
 
 
-          @foreach ($users as $i=>$user)
-            <tr>
-              <td>{{$user->username}}</td>
-              <td>{{$user->name}}</td>
-              <td>{{$user->surname}}</td>
-              <td>{{$user->email}}</td>
-              <td><a href="{{route('admin.view_user_profile',['user_id'=>$user->user_id,'role'=>$user_role])}}"><button class="btn btn-info ">View</button></a></td>
-              <td><a href="{{route('admin.edit_user',['user_id'=>$user->user_id,'role'=>$user_role])}}"><button class="btn btn-warning glyphicon glyphicon-pencil"><i class="fa fa-cog" style="font-size:24px"></i></button></a></td>
-              <td>
+            @foreach ($users as $i=>$user)
+              <tr>
+                <td>{{$user->username}}</td>
+                <td>{{$user->name}}</td>
+                <td>{{$user->surname}}</td>
+                <td>{{$user->email}}</td>
+                <td><a href="{{route('admin.view_user_profile',['user_id'=>$user->user_id,'role'=>$user_role])}}"><button class="btn btn-info ">View</button></a></td>
+                <td><a href="{{route('admin.edit_user',['user_id'=>$user->user_id,'role'=>$user_role])}}"><button class="btn btn-warning glyphicon glyphicon-pencil"><i class="fa fa-cog" style="font-size:24px"></i></button></a></td>
+                <td>
 
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_modal_{{$user->user_id}}">
-                  <i class="fa fa-remove" style="font-size:24px"></i>
-                </button>
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_modal_{{$user->user_id}}">
+                    <i class="fa fa-remove" style="font-size:24px"></i>
+                  </button>
 
-                <!-- Modal -->
-                <div class="modal fade" id="delete_modal_{{$user->user_id}}" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Delete Account</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        <div class="alert alert-danger">
-                          <b><i class="fa fa-warning"></i>&nbsp Are you sure to delete this account ?</b>
+                  <!-- Modal -->
+                  <div class="modal fade" id="delete_modal_{{$user->user_id}}" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Delete Account</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
                         </div>
-                      </div>
-                      <div class="modal-footer">
-                        <form action="{{route('admin.delete_user',['user_id'=>$user->user_id,'role'=>$user_role])}}" method="post">
-                          @csrf
-                          {{-- <input type="hidden" name="_method" value="DELETE"> --}}
-                          <button type="submit" class="btn btn-danger">Delete</button>
+                        <div class="modal-body">
+                          <div class="alert alert-danger">
+                            <b><i class="fa fa-warning"></i>&nbsp Are you sure to delete this account ?</b>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <form action="{{route('admin.delete_user',['user_id'=>$user->user_id,'role'=>$user_role])}}" method="post">
+                            @csrf
+                            {{-- <input type="hidden" name="_method" value="DELETE"> --}}
+                            <button type="submit" class="btn btn-danger">Delete</button>
 
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        </form>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                          </form>
 
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-              </td>
-            </tr>
-          @endforeach
-        </tbody>
-      </table>
-    </div>
-    <div class="row">
-      {{ $users->links() }}
-    </div>
+                </td>
+              </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+      <div class="row">
+        {{ $users->links() }}
+      </div>
+    @elseif(Auth::guard('doctor')->check() || Auth::guard('medical_staff')->check())
+      <div class="table-responsive table-bordered">
+        <table class="table text-center">
+          <thead class="">
+            @if(!empty ($not_found_user))
+              <div class="alert alert-danger text-center">
+                {{$not_found_user}}.
+              </div>
+            @endif
+            @if(count($users))
+              <tr>
+                <br />
+                <th scope="col" class="text-center">Name</th>
+                <th scope="col" class="text-center">Surname</th>
+                <th scope="col" class="text-center">Blood Type</th>
+                <th scope="cole" class="text-center">Drug Allergy</th>
+                <th scope="cole" class="text-center">Underlying Disease</th>
+                <th scope="cole" class="text-center">Profile</th>
+                <th scope="cole" class="text-center"></th>
+                @if(Auth::guard('medical_staff')->check())
+                  <th scope="cole" class="text-center"></th>
+                @endif
+
+              </tr>
+            @endif
+          </thead>
+
+          <tbody>
+
+
+            @foreach ($users as $i=>$user)
+              <tr>
+                <td>{{$user->name}}</td>
+                <td>{{$user->surname}}</td>
+                <td>{{$user->blood_type}}</td>
+                <td>{{$user->drug_allergy}}</td>
+                <td>{{$user->underlying_disease}}</td>
+                <td><a href="{{route('admin.view_user_profile',['user_id'=>$user->user_id,'role'=>$user_role])}}"><button class="btn btn-info ">View</button></a></td>
+                <td><a href="{{route('admin.view_user_profile',['user_id'=>$user->user_id,'role'=>$user_role])}}"><button class="btn btn-info ">Record History</button></a></td>
+                @if(Auth::guard('medical_staff')->check())
+                  <td><a href="{{route('admin.view_user_profile',['user_id'=>$user->user_id,'role'=>$user_role])}}"><button class="btn btn-info ">Create Health Record</button></a></td>
+                @endif
+              </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+      <div class="row">
+        {{ $users->links() }}
+      </div>
+
+    @endif
+
 
 
   @endsection

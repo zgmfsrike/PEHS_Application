@@ -20,7 +20,8 @@ Auth::routes();
 Route::get('/register_user','Auth\RegisterController@getRegisterPage')->name('register_user');
 Route::post('/register/{role}','Manage\ManageUserController@registerPatient')->name('patient.register');
 
-Route::group(['prefix'=>'admin','middleware' => 'auth:admin'],function(){
+
+Route::group(['prefix'=>'admin','middleware' => ['auth:admin']],function(){
   Route::get('/','HomeController@getAdminHomepage')->name('admin.home');
   //----------------------------------------Manage User-----------------------------------
   Route::get('/list_user/{role}','Manage\ManageUserController@getListUserPage')->name('admin.list_user');
@@ -41,6 +42,9 @@ Route::group(['prefix'=>'doctor','middleware' => ['auth:doctor']],function(){
   Route::get('/edit_profile/{role}/{user_id}','Manage\ManageUserController@getEditUserPage')->name('doctor.edit_profile')->middleware('doctor.personal_info');
   Route::post('/update_profile/{role}/{user_id}','Manage\ManageUserController@updateProfile')->name('doctor.update_profile')->middleware('doctor.personal_info');
 
+  Route::get('/list/{role}','Manage\ManageUserController@getListUserPage')->name('doctor.list_patient');
+
+
   //---------------------------------------------------------------------------------------------------------------
 
 });
@@ -49,6 +53,8 @@ Route::group(['prefix'=>'medical_staff','middleware' => 'auth:medical_staff'],fu
   Route::get('/view_profile/{role}/{user_id}','Manage\ManageUserController@viewUserProfile')->name('medical_staff.view_profile')->middleware('m_staff.personal_info');
   Route::get('/edit_profile/{role}/{user_id}','Manage\ManageUserController@getEditUserPage')->name('medical_staff.edit_profile')->middleware('m_staff.personal_info');
   Route::post('/update_profile/{role}/{user_id}','Manage\ManageUserController@updateProfile')->name('medical_staff.update_profile')->middleware('m_staff.personal_info');
+
+  Route::get('/list/{role}','Manage\ManageUserController@getListUserPage')->name('medical_staff.list_patient');
 
 
 });

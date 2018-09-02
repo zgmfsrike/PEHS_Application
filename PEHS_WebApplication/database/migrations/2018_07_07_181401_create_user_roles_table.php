@@ -13,14 +13,14 @@ class CreateUserRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_roles', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned();
-            $table->integer('role_id')->unsigned();
-
-            $table->foreign('role_id','role')->references('role_id')->on('roles');
-            $table->foreign('user_id')->references('user_id')->on('user_informations');
-            
-        });
+        // Schema::create('user_roles', function (Blueprint $table) {
+        //     $table->integer('user_id')->unsigned();
+        //     $table->integer('role_id')->unsigned();
+        //
+        //     $table->foreign('role_id','role')->references('role_id')->on('roles');
+        //     $table->foreign('user_id')->references('user_id')->on('user_informations');
+        //
+        // });
     }
 
     /**

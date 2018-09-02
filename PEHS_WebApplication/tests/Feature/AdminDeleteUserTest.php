@@ -16,7 +16,8 @@ class AdminDeleteUser extends TestCase
   */
   public function testAdminDeleteDoctor()
   {
-    $user = DB::table('user_roles')->select('user_id')->where('role_id',2)->orderBy('user_id','desc')->first();
+    // $user = DB::table('user_roles')->select('user_id')->where('role_id',2)->orderBy('user_id','desc')->first();
+    $user = DB::table('users')->select('user_id')->where('role_id',2)->orderBy('user_id','desc')->first();
     $user_id = $user->user_id;
     $response = $this->json('POST','/admin/delete_user/doctors/'.$user_id);
     $response->assertSessionHas('success','Delete user successfully.');
@@ -24,7 +25,8 @@ class AdminDeleteUser extends TestCase
 
   public function testAdminDeleteMedicalStaff()
   {
-    $user = DB::table('user_roles')->select('user_id')->where('role_id',3)->orderBy('user_id','desc')->first();
+    // $user = DB::table('user_roles')->select('user_id')->where('role_id',3)->orderBy('user_id','desc')->first();
+    $user = DB::table('users')->select('user_id')->where('role_id',3)->orderBy('user_id','desc')->first();
     $user_id = $user->user_id;
     $response = $this->json('POST','/admin/delete_user/medical_staffs/'.$user_id);
     $response->assertSessionHas('success','Delete user successfully.');
@@ -32,7 +34,8 @@ class AdminDeleteUser extends TestCase
 
   public function testAdminDeletePatient()
   {
-    $user = DB::table('user_roles')->select('user_id')->where('role_id',4)->orderBy('user_id','desc')->first();
+    // $user = DB::table('user_roles')->select('user_id')->where('role_id',4)->orderBy('user_id','desc')->first();
+    $user = DB::table('users')->select('user_id')->where('role_id',4)->orderBy('user_id','desc')->first();
     $user_id = $user->user_id;
     $response = $this->json('POST','/admin/delete_user/patients/'.$user_id);
     $response->assertSessionHas('success','Delete user successfully.');
