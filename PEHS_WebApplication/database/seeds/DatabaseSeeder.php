@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
     $this->call(BloodSeeder::class);
     $this->call(UrineSeeder::class);
     $this->call(PhysicalSeeder::class);
+    $this->call(HealthInfoSeeder::class);
 
 
   }
