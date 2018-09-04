@@ -5,7 +5,8 @@
         <div class="card-header bg-transparent border-secondary"><h5>{{ __('Register for Patient') }}</h5></div>
 
         <div class="card-body">
-          <form method="POST" action="{{route('health_record.store')}}">
+          {{-- <form method="POST" action="{{route('health_record.update',['health_record_id'=>1])}}"> --}}
+            <form method="POST" action="{{route('health_record.store')}}">
             @csrf
 
             <div class="form-group row">

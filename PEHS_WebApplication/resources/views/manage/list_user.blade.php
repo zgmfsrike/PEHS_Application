@@ -81,6 +81,7 @@
             @foreach ($users as $i=>$user)
               <tr>
                 <td>{{$user->username}}</td>
+                <td>{{$user->username}}</td>
                 <td>{{$user->name}}</td>
                 <td>{{$user->surname}}</td>
                 <td>{{$user->email}}</td>

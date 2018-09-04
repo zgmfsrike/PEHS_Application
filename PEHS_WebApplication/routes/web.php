@@ -58,6 +58,7 @@ Route::group(['prefix'=>'medical_staff','middleware' => 'auth:medical_staff'],fu
 
   Route::get('create/health_record','HealthRecord\HealthRecordController@getCreateHealthRecord')->name('health_record.create');
   Route::post('store/health_record','HealthRecord\HealthRecordController@postCreateHealthRecord')->name('health_record.store');
+  Route::post('update/health_record/{health_record_id}','HealthRecord\HealthRecordController@postUpdateHealthRecord')->name('health_record.update');
 
 
 });
