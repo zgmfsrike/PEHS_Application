@@ -35,6 +35,12 @@ class Physical implements IManageHealthInformation {
 
   }
   public function deleteHealthInformation($health_record_id){
+      $result = DB::table('physical_examination')->where('health_record_id',$health_record_id)->delete();
+      if($result){
+        return true;
+      }else{
+        return false;
+      }
 
   }
 

@@ -34,6 +34,13 @@ class Blood implements IManageHealthInformation {
 
   }
   public function deleteHealthInformation($health_record_id){
+    $result = DB::table('blood_examination')->where('health_record_id',$health_record_id)->delete();
+
+    if($result){
+      return true;
+    }else{
+      return false;
+    }
 
   }
 
