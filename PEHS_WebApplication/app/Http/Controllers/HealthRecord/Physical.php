@@ -27,11 +27,10 @@ class Physical implements IManageHealthInformation {
       $result = DB::table('physical_examination')->where('health_record_id',$health_record_id)->where('physical_ex_id',$counter)
       ->update(['physical_ex_value'=>$health_info]);
       $counter++;
-      if(!$result){
-        return false;
-      }
     }
-    return true;
+
+    return $result;
+
 
   }
   public function deleteHealthInformation($health_record_id){

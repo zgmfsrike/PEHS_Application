@@ -1,6 +1,6 @@
 <?php
 namespace App\Http\Controllers\HealthRecord;
-
+use DB;
 use App\Http\Controllers\HealthRecord\IManageHealthInformation;
 
 class Blood implements IManageHealthInformation {
@@ -25,11 +25,9 @@ class Blood implements IManageHealthInformation {
       $result = DB::table('blood_examination')->where('health_record_id',$health_record_id)->where('blood_ex_id',$counter)
       ->update(['blood_ex_value'=>$health_info]);
       $counter++;
-      if(!$result){
-        return false;
-      }
+
     }
-    return true;
+    return $result;
 
 
   }

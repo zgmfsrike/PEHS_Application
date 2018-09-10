@@ -21,9 +21,15 @@
     }
     @endphp
 
-    @if(Auth::guard('doctor')->check() || Auth::guard('medical_staff')->check())
+    @if(Auth::guard('doctor')->check())
       @php
-      // $route = 'search.patient';
+      $route_profile = 'doctor.view_user_profile';
+      $route_history = 'doctor.health_record_history';
+      @endphp
+    @elseif(Auth::guard('medical_staff')->check())
+      @php
+      $route_profile = 'm_staff.view_user_profile';
+      $route_history = 'health_record.history';
       @endphp
     @endif
     <div>
@@ -71,6 +77,7 @@
                 <th scope="cole" class="text-center">Profile</th>
                 <th scope="cole" class="text-center">Edit</th>
                 <th scope="cole" class="text-center">Delete</th>
+
               </tr>
             @endif
           </thead>
@@ -80,7 +87,6 @@
 
             @foreach ($users as $i=>$user)
               <tr>
-                <td>{{$user->username}}</td>
                 <td>{{$user->username}}</td>
                 <td>{{$user->name}}</td>
                 <td>{{$user->surname}}</td>
@@ -150,7 +156,7 @@
                 <th scope="cole" class="text-center">Drug Allergy</th>
                 <th scope="cole" class="text-center">Underlying Disease</th>
                 <th scope="cole" class="text-center">Profile</th>
-                <th scope="cole" class="text-center"></th>
+                <th scope="cole" class="text-center">History</th>
                 @if(Auth::guard('medical_staff')->check())
                   <th scope="cole" class="text-center"></th>
                 @endif
@@ -163,16 +169,40 @@
 
 
             @foreach ($users as $i=>$user)
+              @php
+              if($user->drug_allergy == ""){
+                $drug_allergy = "-";
+              }else{
+                $drug_allergy = $user->drug_allergy ;
+              }
+
+              if($user->underlying_disease == ""){
+                $underlying_disease = "-";
+              }else{
+                $underlying_disease = $user->underlying_disease ;
+              }
+              @endphp
               <tr>
                 <td>{{$user->name}}</td>
                 <td>{{$user->surname}}</td>
                 <td>{{$user->blood_type}}</td>
-                <td>{{$user->drug_allergy}}</td>
-                <td>{{$user->underlying_disease}}</td>
-                <td><a href="{{route('admin.view_user_profile',['user_id'=>$user->user_id,'role'=>$user_role])}}"><button class="btn btn-info ">View</button></a></td>
-                <td><a href="{{route('admin.view_user_profile',['user_id'=>$user->user_id,'role'=>$user_role])}}"><button class="btn btn-info ">Record History</button></a></td>
+                <td>{{$drug_allergy}}</td>
+                <td>{{$underlying_disease}}</td>
+                <td><a href="{{route($route_profile,['user_id'=>$user->user_id,'role'=>$user_role])}}"><button class="btn btn-info ">View</button></a></td>
+                <td>
+                  {!! Form::open(['route' => [$route_history]]) !!}
+                  {!! Form::hidden('user_id', $user->user_id) !!}
+                  {!! Form::submit('Record History', array('class' => 'btn btn-info')) !!}
+                  {!! Form::close() !!}
+                </td>
                 @if(Auth::guard('medical_staff')->check())
-                  <td><a href="{{route('admin.view_user_profile',['user_id'=>$user->user_id,'role'=>$user_role])}}"><button class="btn btn-info ">Create Health Record</button></a></td>
+
+                  <td>
+                    {!! Form::open(['route' => ['health_record.create']]) !!}
+                    {!! Form::hidden('user_id', $user->user_id) !!}
+                    {!! Form::submit('Create Health Record', array('class' => 'btn btn-info')) !!}
+                    {!! Form::close() !!}
+                  </td>
                 @endif
               </tr>
             @endforeach

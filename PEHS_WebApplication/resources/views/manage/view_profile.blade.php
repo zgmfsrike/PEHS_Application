@@ -53,28 +53,30 @@
                 </div>
               </div>
               {{-- @if ($user_role == "patients") --}}
-                <div class=" row">
-                  <label for="drug_allergy" class="col-md-6 text-md-right"><b>{{ __('Drug Allergy : ') }}</b></label>
+              <div class=" row">
+                <label for="drug_allergy" class="col-md-6 text-md-right"><b>{{ __('Drug Allergy : ') }}</b></label>
+                <div class="col-md-6">
+                  <p id="drug_allergy" name="drug_allergy">@if($user->drug_allergy == ""){{ _('-') }}@else{{$user->drug_allergy}}@endif</p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <label for="underlying_disease" class="col-md-6 text-md-right"><b>{{ __('Underlying Disease :') }}</b></label>
                   <div class="col-md-6">
-                    <p id="drug_allergy" name="drug_allergy">@if($user->drug_allergy == ""){{ _('-') }}@else{{$user->drug_allergy}}@endif</p>
+                    <p id="underlying_disease" name="underlying_disease">@if($user->underlying_disease== ""){{ _('-') }}@else{{ $user->underlying_disease }}@endif</p>
                     </div>
                   </div>
-
-                  <div class="row">
-                    <label for="underlying_disease" class="col-md-6 text-md-right"><b>{{ __('Underlying Disease :') }}</b></label>
-                    <div class="col-md-6">
-                      <p id="underlying_disease" name="underlying_disease">@if($user->underlying_disease== ""){{ _('-') }}@else{{ $user->underlying_disease }}@endif</p>
-                      </div>
-                    </div>
                   {{-- @endif --}}
                 @endforeach
                 <div>
                   <div class=" row justify-content-center">
                     {{-- <a href="{{route($edit_route,['user_id'=>$user->user_id])}}"><button class="btn btn-warning"><i class="fa fa-cog" style="font-size:24px"></i></button></a> --}}
-                    @if(Auth::guard('doctor')->check())
+                    @if(Auth::guard('doctor')->check() && Auth::user()->user_id == $user_id)
                       <a href="{{route('doctor.edit_profile',['user_id'=>$user_id,'role'=>$user_role])}}"><button class=" btn btn-warning">Edit</button></a>&nbsp
-                    @elseif(Auth::guard('medical_staff')->check())
+                    @elseif(Auth::guard('medical_staff')->check() && Auth::user()->user_id == $user_id)
                       <a href="{{route('medical_staff.edit_profile',['user_id'=>$user_id,'role'=>$user_role])}}"><button class=" btn btn-warning">Edit</button></a>&nbsp
+                    @else
+                      <a href="{{URL::previous()}}"><button class=" btn btn-secondary">back</button></a>
                     @endif
                     @if (Auth::guard('admin')->check())
                       <a href="{{route('admin.list_user',['role'=>$user_role]) }}"><button class=" btn btn-secondary">back</button></a>

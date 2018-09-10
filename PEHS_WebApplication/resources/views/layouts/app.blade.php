@@ -61,14 +61,19 @@
             switch (Auth::user()->role_id) {
               case 2:
               $list_route = 'doctor.list_patient';
+              $health_record_route = 'doctor.view_hr_list';
+                $role = 'doctors';
               break;
               case 3:
               $list_route = 'medical_staff.list_patient';
+              $health_record_route = 'm_staff.view_hr_list';
+              $role = 'medical_staffs';
               break;
 
             }
             @endphp
             <a class="nav-link" href="{{ route($list_route,['role'=>'patients'])}}">{{ __('List of Patient') }}</a>
+            <a class="nav-link" href="{{ route($health_record_route)}}">{{ __('Health Record List') }}</a>
           @endif
           <!-- Right Side Of Navbar -->
           <ul class="navbar-nav ml-auto">
@@ -85,15 +90,6 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   @php
                   $id = Auth::user()->user_id;
-                  switch (Auth::user()->role_id) {
-                    case 2:
-                    $role = 'doctors';
-                    break;
-
-                    case 3:
-                    $role = 'medical_staffs';
-                    break;
-                  }
                   @endphp
 
                   @if(Auth::guard('doctor')->check())

@@ -2,7 +2,7 @@
 namespace App\Http\Controllers\HealthRecord;
 
 use App\Http\Controllers\HealthRecord\IManageHealthInformation;
-
+use DB;
 class Chemistry implements IManageHealthInformation {
   public function createHealthInformation($health_record_id, $health_information){
 
@@ -26,11 +26,10 @@ class Chemistry implements IManageHealthInformation {
       $result = DB::table('clinical_chemistry')->where('health_record_id',$health_record_id)->where('clinical_chemistry_id',$counter)
       ->update(['clinical_chemistry_value'=>$health_info]);
       $counter++;
-      if(!$result){
-        return false;
-      }
+
     }
-    return true;
+    return $result;
+
 
 
   }

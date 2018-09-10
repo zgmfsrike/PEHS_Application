@@ -1,6 +1,6 @@
 <?php
 namespace App\Http\Controllers\HealthRecord;
-
+use DB;
 use App\Http\Controllers\HealthRecord\IManageHealthInformation;
 
 class Urine implements IManageHealthInformation {
@@ -28,11 +28,10 @@ class Urine implements IManageHealthInformation {
       $result = DB::table('urine_examination')->where('health_record_id',$health_record_id)->where('urine_ex_id',$counter)
       ->update(['urine_ex_value'=>$health_info]);
       $counter++;
-      if(!$result){
-        return false;
-      }
+
     }
-    return true;
+    return $result;
+
 
   }
   public function deleteHealthInformation($health_record_id){

@@ -43,6 +43,10 @@ Route::group(['prefix'=>'doctor','middleware' => ['auth:doctor']],function(){
   Route::post('/update_profile/{role}/{user_id}','Manage\ManageUserController@updateProfile')->name('doctor.update_profile')->middleware('doctor.personal_info');
 
   Route::get('/list/{role}','Manage\ManageUserController@getListUserPage')->name('doctor.list_patient');
+  Route::get('/view/{role}/{user_id}','Manage\ManageUserController@viewUserProfile')->name('doctor.view_user_profile');
+  Route::get('/view/health_record_list','HealthRecord\HealthRecordController@getHealthRecordList')->name('doctor.view_hr_list');
+  Route::post('detail/health_record/','HealthRecord\HealthRecordController@getHealthRecordDetail')->name('doctor.health_record_detail');
+  Route::post('history/health_record/','HealthRecord\HealthRecordController@getPatientHealthRecordHistory')->name('doctor.health_record_history');
 
 
   //---------------------------------------------------------------------------------------------------------------
@@ -56,9 +60,14 @@ Route::group(['prefix'=>'medical_staff','middleware' => 'auth:medical_staff'],fu
 
   Route::get('/list/{role}','Manage\ManageUserController@getListUserPage')->name('medical_staff.list_patient');
 
-  Route::get('create/health_record','HealthRecord\HealthRecordController@getCreateHealthRecord')->name('health_record.create');
+  Route::post('create/health_record','HealthRecord\HealthRecordController@getCreateHealthRecord')->name('health_record.create');
   Route::post('store/health_record','HealthRecord\HealthRecordController@postCreateHealthRecord')->name('health_record.store');
-  Route::post('update/health_record/{health_record_id}','HealthRecord\HealthRecordController@postUpdateHealthRecord')->name('health_record.update');
-
+  Route::post('edit/health_record','HealthRecord\HealthRecordController@getEditHealthRecord')->name('health_record.edit');
+  Route::post('update/health_record','HealthRecord\HealthRecordController@postUpdateHealthRecord')->name('health_record.update');
+  Route::get('/view/{role}/{user_id}','Manage\ManageUserController@viewUserProfile')->name('m_staff.view_user_profile');
+  Route::get('/view/health_record_list','HealthRecord\HealthRecordController@getHealthRecordList')->name('m_staff.view_hr_list');
+  Route::post('delete/health_record/{health_record_id}','HealthRecord\HealthRecordController@postDeleteHealthRecord')->name('health_record.delete');
+  Route::post('detail/health_record/','HealthRecord\HealthRecordController@getHealthRecordDetail')->name('health_record.detail');
+  Route::post('history/health_record/','HealthRecord\HealthRecordController@getPatientHealthRecordHistory')->name('health_record.history');
 
 });

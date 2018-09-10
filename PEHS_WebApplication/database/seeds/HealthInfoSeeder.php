@@ -129,12 +129,12 @@ class HealthInfoSeeder extends Seeder
       [
         'health_record_id'=>1,
         'urine_ex_id'=>1,
-        'urine_ex_value'=>'Yellow'
+        'urine_ex_value'=>'yellow'
       ],
       [
         'health_record_id'=>1,
         'urine_ex_id'=>2,
-        'urine_ex_value'=>'Clear'
+        'urine_ex_value'=>'clear'
       ],
       [
         'health_record_id'=>1,
@@ -149,12 +149,12 @@ class HealthInfoSeeder extends Seeder
       [
         'health_record_id'=>1,
         'urine_ex_id'=>5,
-        'urine_ex_value'=>'Negative'
+        'urine_ex_value'=>'negative'
       ],
       [
         'health_record_id'=>1,
         'urine_ex_id'=>6,
-        'urine_ex_value'=>'Negative'
+        'urine_ex_value'=>'negative'
       ],
       [
         'health_record_id'=>1,
