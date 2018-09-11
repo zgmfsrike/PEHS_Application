@@ -76,9 +76,9 @@ class HealthRecordController extends Controller
     return view('health_record.history',['health_records'=>$health_record_history]);
   }
 
-  public function getEditHealthRecord(Request $request)
+  public function getEditHealthRecord($health_record_id)
   {
-    $health_record_id = $request->input('health_record_id');
+    // $health_record_id = $request->input('health_record_id');
     $physical_information = DB::table('health_records as hr')->join('physical_examination as p','hr.health_record_id','p.health_record_id')->
     join('physical_examination_types as p_type','p.physical_ex_id','p_type.physical_ex_id')->where('hr.health_record_id',$health_record_id)->
     select('p.physical_ex_value')->get();
@@ -95,11 +95,9 @@ class HealthRecordController extends Controller
     join('clinical_chemistry_types as c_type','c.clinical_chemistry_id','c_type.clinical_chemistry_id')->where('hr.health_record_id',$health_record_id)->
     select('c.clinical_chemistry_value')->get();
 
-
-
-    return view('health_record.edit',['health_record_id'=>$health_record_id,'physical'=>$physical_information,'urine'=>$urine_information,'blood'=>$blood_information,'chemistry'=>$chemistry_information]);
-
-
+    if($physical_information && $urine_information && $blood_information && $chemistry_information){
+      return view('health_record.edit',['health_record_id'=>$health_record_id,'physical'=>$physical_information,'urine'=>$urine_information,'blood'=>$blood_information,'chemistry'=>$chemistry_information]);
+    }
   }
 
   public function getCreateHealthRecord(Request $request)
@@ -138,7 +136,7 @@ class HealthRecordController extends Controller
       //----------------------------
       //--------------urine---------
       'urine_color' => 'required|string',
-      'appearance' => 'required|string',
+      'appearance' => 'required|string|regex:/^[a-zA-Z]+$/',
       'specific_gravity' => 'required|numeric|min:0',
       'ph' => 'required|numeric|min:0',
       'albumin' => 'required|string',
@@ -235,7 +233,7 @@ class HealthRecordController extends Controller
 
 
       if($result_physical && $result_blood && $result_urine && $result_chemistry ){
-        return redirect(route('m_staff.view_hr_list'))->with('success','Create health record successfully');
+        return redirect(route('m_staff.view_hr_list'))->with('success_hr','Create health record successfully');
       }
 
     }
@@ -276,7 +274,7 @@ class HealthRecordController extends Controller
       //----------------------------
       //--------------urine---------
       'urine_color' => 'required|string',
-      'appearance' => 'required|string',
+      'appearance' => 'required|regex:/^[a-zA-Z]+$/',
       'specific_gravity' => 'required|numeric|min:0',
       'ph' => 'required|numeric|min:0',
       'albumin' => 'required|string',
@@ -362,7 +360,7 @@ class HealthRecordController extends Controller
     );
     $result_chemistry =   $this->chemistry->updateHealthInformation($health_record_id,$chemistry_information);
 
-    return redirect(route('m_staff.view_hr_list'))->with('success','Update health record successfully');
+    return redirect(route('m_staff.view_hr_list'))->with('success_hr','Update health record successfully');
 
 
 
@@ -378,22 +376,22 @@ class HealthRecordController extends Controller
     $result = DB::table('health_records')->where('health_record_id',$health_record_id)->delete();
 
     if($result && $result_physical && $result_blood && $result_urine && $result_chemistry ){
-      return redirect(route('m_staff.view_hr_list'))->with('success','Delete health record successfully');
+      return redirect(route('m_staff.view_hr_list'))->with('success_hr','Delete health record successfully');
     }
   }
 
   public function searchPatientHealthRecord(Request $request)
   {
-    $patient_name = $request->input('patient_name');
+    $patient_name = $request->input('search');
     $patient_health_record = DB::table('health_records as hr')->join('user_informations as ui','hr.user_id','ui.user_id')->
     join('blood_types as bt','ui.blood_type','bt.blood_type_id')->
     select('hr.health_record_date','hr.health_record_id','ui.name','ui.surname','ui.drug_allergy','ui.underlying_disease','bt.blood_type')->
     where('ui.name','like',$patient_name.'%')->paginate(10);
 
     if(count($patient_health_record) != 0){
-      return view('health_record.list',['health_record'=>$patient_health_record,'result'=>'found']);
+      return view('health_record.list',['health_records'=>$patient_health_record,'result'=>'found']);
     }else {
-      return view('health_record.list',['health_record'=>$patient_health_record,'result'=>'not_found']);
+      return view('health_record.list',['health_records'=>$patient_health_record,'result'=>'not_found','search_value'=>$patient_name]);
 
     }
 

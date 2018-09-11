@@ -46,10 +46,22 @@ class ManageUserController extends Controller
 
   public function searchUserByName(Request $request,$role)
   {
+    switch ($role) {
+      case 'doctors':
+      $role_id = 2;
+      break;
+      case 'medical_staffs':
+      $role_id = 3;
+      break;
+      case 'patients':
+      $role_id = 4;
+      break;
+    }
     $name = $request->input('search');
-    $users = DB::table('user_informations as ui')->join("user_roles as ur",'ui.user_id','ur.user_id')->join('users as u','ui.user_id','u.user_id')->
+    $users = DB::table('user_informations as ui')->join('users as u','ui.user_id','u.user_id')->
     select('ui.user_id','ui.name','ui.surname','ui.email','u.username')->
-    where('ui.name','like',$name.'%')->paginate(10);
+    where('ui.name','like',$name.'%')->where('u.role_id',$role_id)
+    ->paginate(10);
     if(count($users) == 0){
       return view('manage.list_user',['users'=>$users,'user_role'=>$role,'search_value'=>$name])->with('not_found_user','Sorry, not found the user name "'.$name.'"');
     }

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
   <div class="">
+      <h3>Health Record History</h3><br />
 
 
 
@@ -12,32 +13,11 @@
       @endphp
     @endif
     <div>
-      <div class="col-md-6">
-        <form action="{{route($route)}}" method="POST">
-          @csrf
-          <div class="input-group float-left ">
-            <input class="form-control" id="search" name="search" placeholder="{{$search_text}}" value="@if(!empty($search_value)){{$search_value}}@endif"required>
-              <span class="input-group-btn">
-                <button type="submit" class="btn btn-secondary"><i class="fa fa-search" style="font-size:24px"></i></button>
-              </span>
-            </div>
-          </form>
-        </div>
-      </div>
-
-
-
-
     </div>
     @if(Auth::guard('doctor')->check() || Auth::guard('medical_staff')->check())
       <div class="table-responsive table-bordered">
         <table class="table text-center">
           <thead class="">
-            @if(!empty ($not_found_user))
-              <div class="alert alert-danger text-center">
-                {{$not_found_user}}.
-              </div>
-            @endif
             @if(count($health_records))
               <tr>
                 <br />
@@ -50,6 +30,11 @@
                 @endif
 
               </tr>
+            @else
+              <br />
+              <div class="alert alert-danger text-center">
+                {{"Not found the health record information"}}.
+              </div>
             @endif
           </thead>
 

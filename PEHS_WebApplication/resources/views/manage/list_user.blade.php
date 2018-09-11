@@ -200,7 +200,7 @@
                   <td>
                     {!! Form::open(['route' => ['health_record.create']]) !!}
                     {!! Form::hidden('user_id', $user->user_id) !!}
-                    {!! Form::submit('Create Health Record', array('class' => 'btn btn-info')) !!}
+                    {!! Form::submit('Create Health Record', array('class' => 'btn btn-primary')) !!}
                     {!! Form::close() !!}
                   </td>
                 @endif
