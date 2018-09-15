@@ -335,7 +335,14 @@
                 <label for="appearance" class="col-md-4 col-form-label text-md-right">{{ __('Appearance') }}<b  style="color:red"> *</b></label>
 
                 <div class="col-md-6">
-                  <input id="appearance" type="text" class="form-control{{ $errors->has('appearance') ? ' is-invalid' : '' }}" name="appearance" value="{{ old('appearance') }}" required>
+                  {{-- <input id="appearance" type="text" class="form-control{{ $errors->has('appearance') ? ' is-invalid' : '' }}" name="appearance" value="{{ old('appearance') }}" required> --}}
+                  <select name="appearance" id="appearance" class="form-control{{ $errors->has('appearance') ? ' is-invalid' : '' }}" required>
+                    <option  value="" disabled selected>Please Select</option>
+                    <option  value="clear"  >Clear</option>
+                    <option  value="slightly cloudy"  >Slightly Cloudy</option>
+                    <option  value="cloudy"  >Cloudy</option>
+                    <option  value="turbid"  >Turbid</option>
+                  </select>
                   @if ($errors->has('appearance'))
                     <span class="invalid-feedback">
                       <strong>{{ $errors->first('appearance') }}</strong>

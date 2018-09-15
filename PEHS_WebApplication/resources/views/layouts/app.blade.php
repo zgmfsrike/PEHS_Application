@@ -30,6 +30,13 @@
 
 </head>
 <body>
+  <style>
+
+  .table th,td{
+    border: gray solid 1px !important;
+  }
+  </style>
+
   <div id="app">
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel ">
       <div class="container">
@@ -62,7 +69,7 @@
               case 2:
               $list_route = 'doctor.list_patient';
               $health_record_route = 'doctor.view_hr_list';
-                $role = 'doctors';
+              $role = 'doctors';
               break;
               case 3:
               $list_route = 'medical_staff.list_patient';
@@ -121,6 +128,7 @@
     {{-- @extends('layouts.sidebar') --}}
     <main class="py-4">
       <div class="container">
+
         @include('manage.message')
         @yield('content')
 

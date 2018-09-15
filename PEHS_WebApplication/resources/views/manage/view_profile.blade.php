@@ -73,13 +73,17 @@
                     {{-- <a href="{{route($edit_route,['user_id'=>$user->user_id])}}"><button class="btn btn-warning"><i class="fa fa-cog" style="font-size:24px"></i></button></a> --}}
                     @if(Auth::guard('doctor')->check() && Auth::user()->user_id == $user_id)
                       <a href="{{route('doctor.edit_profile',['user_id'=>$user_id,'role'=>$user_role])}}"><button class=" btn btn-warning">Edit</button></a>&nbsp
+
                     @elseif(Auth::guard('medical_staff')->check() && Auth::user()->user_id == $user_id)
                       <a href="{{route('medical_staff.edit_profile',['user_id'=>$user_id,'role'=>$user_role])}}"><button class=" btn btn-warning">Edit</button></a>&nbsp
-                    @else
-                      <a href="{{URL::previous()}}"><button class=" btn btn-secondary">back</button></a>
                     @endif
                     @if (Auth::guard('admin')->check())
-                      <a href="{{route('admin.list_user',['role'=>$user_role]) }}"><button class=" btn btn-secondary">back</button></a>
+                      <a href="{{route('admin.list_user',['role'=>$user_role]) }}"><button class=" btn btn-secondary">Back</button></a>
+                    @elseif(Auth::guard('doctor')->check())
+                      <a href="{{route('doctor.list_patient',['role'=>$user_role]) }}"><button class=" btn btn-secondary">Back</button></a>
+                    @elseif(Auth::guard('medical_staff')->check())
+                      <a href="{{route('medical_staff.list_patient',['role'=>$user_role]) }}"><button class=" btn btn-secondary">Back</button></a>
+
                     @endif
                   </div>
                 </div>

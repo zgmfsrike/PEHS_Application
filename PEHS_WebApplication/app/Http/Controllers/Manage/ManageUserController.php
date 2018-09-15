@@ -58,8 +58,8 @@ class ManageUserController extends Controller
       break;
     }
     $name = $request->input('search');
-    $users = DB::table('user_informations as ui')->join('users as u','ui.user_id','u.user_id')->
-    select('ui.user_id','ui.name','ui.surname','ui.email','u.username')->
+    $users = DB::table('user_informations as ui')->join('users as u','ui.user_id','u.user_id')->join('blood_types as b','ui.blood_type','b.blood_type_id')->
+    select('ui.name','ui.surname','ui.email','u.username','ui.user_id','b.blood_type','ui.underlying_disease','ui.drug_allergy')->
     where('ui.name','like',$name.'%')->where('u.role_id',$role_id)
     ->paginate(10);
     if(count($users) == 0){

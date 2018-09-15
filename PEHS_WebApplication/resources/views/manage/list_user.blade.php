@@ -1,5 +1,7 @@
+
 @extends('layouts.app')
 @section('content')
+
   <div class="">
     @php
     $route = 'admin.search_user';
@@ -25,11 +27,13 @@
       @php
       $route_profile = 'doctor.view_user_profile';
       $route_history = 'doctor.health_record_history';
+      $route = 'doctor.search_user';
       @endphp
     @elseif(Auth::guard('medical_staff')->check())
       @php
       $route_profile = 'm_staff.view_user_profile';
       $route_history = 'health_record.history';
+      $route = 'medical_staff.search_user';
       @endphp
     @endif
     <div>
@@ -41,12 +45,15 @@
               <span class="input-group-btn">
                 <button type="submit" class="btn btn-secondary"><i class="fa fa-search" style="font-size:24px"></i></button>
               </span>
+
             </div>
           </form>
         </div>
+
         @if(Auth::guard('admin')->check())
           <div class="col-md-6-offset">
             <div class="float-right">
+
               <a href="{{route('admin.create_user',['role'=>$user_role])}}"><button class="btn btn-primary">{{$create_user}}</button></a>
               <p></p>
             </div>
@@ -60,8 +67,8 @@
 
     </div>
     @if(Auth::guard('admin')->check())
-      <div class="table-responsive table-bordered">
-        <table class="table text-center">
+      <div class="table table-responsive table-bordered">
+        <table class="table text-center ">
           <thead class="">
             @if(!empty ($not_found_user))
               <div class="alert alert-danger text-center">
@@ -139,26 +146,26 @@
         {{ $users->links() }}
       </div>
     @elseif(Auth::guard('doctor')->check() || Auth::guard('medical_staff')->check())
-      <div class="table-responsive table-bordered">
-        <table class="table text-center">
-          <thead class="">
-            @if(!empty ($not_found_user))
-              <div class="alert alert-danger text-center">
-                {{$not_found_user}}.
-              </div>
-            @endif
-            @if(count($users))
-              <tr>
-                <br />
-                <th scope="col" class="text-center">Name</th>
-                <th scope="col" class="text-center">Surname</th>
-                <th scope="col" class="text-center">Blood Type</th>
-                <th scope="cole" class="text-center">Drug Allergy</th>
-                <th scope="cole" class="text-center">Underlying Disease</th>
+      @if(!empty ($not_found_user))  <br />
+        <div class="alert alert-danger text-center" style=" margin-top:30px;">
+          {{$not_found_user}}.
+        </div>
+      @endif
+      @if(count($users))
+        <div class="table table-responsive table-bordered " style="margin-top:50px;">
+          <table class="table text-center " >
+            <thead class="">
+
+              <tr >
+                <th scope="col" class="text-center" >Name</th>
+                <th scope="col" class="text-center" >Surname</th>
+                <th scope="col" class="text-center" >Blood Type</th>
+                <th scope="cole" class="text-center" >Drug Allergy</th>
+                <th scope="cole" class="text-center" >Underlying Disease</th>
                 <th scope="cole" class="text-center">Profile</th>
-                <th scope="cole" class="text-center">History</th>
+                <th scope="cole" class="text-center" >History</th>
                 @if(Auth::guard('medical_staff')->check())
-                  <th scope="cole" class="text-center"></th>
+                  <th scope="cole" class="text-center" >Health Record</th>
                 @endif
 
               </tr>
@@ -183,13 +190,13 @@
               }
               @endphp
               <tr>
-                <td>{{$user->name}}</td>
-                <td>{{$user->surname}}</td>
+                <td >{{$user->name}}</td>
+                <td >{{$user->surname}}</td>
                 <td>{{$user->blood_type}}</td>
-                <td>{{$drug_allergy}}</td>
-                <td>{{$underlying_disease}}</td>
-                <td><a href="{{route($route_profile,['user_id'=>$user->user_id,'role'=>$user_role])}}"><button class="btn btn-info ">View</button></a></td>
-                <td>
+                <td >{{$drug_allergy}}</td>
+                <td >{{$underlying_disease}}</td>
+                <td ><a href="{{route($route_profile,['user_id'=>$user->user_id,'role'=>$user_role])}}"><button class="btn btn-info ">View</button></a></td>
+                <td >
                   {!! Form::open(['route' => [$route_history]]) !!}
                   {!! Form::hidden('user_id', $user->user_id) !!}
                   {!! Form::submit('Record History', array('class' => 'btn btn-info')) !!}
@@ -212,7 +219,6 @@
       <div class="row">
         {{ $users->links() }}
       </div>
-
     @endif
 
 

@@ -107,7 +107,6 @@ class HealthRecordController extends Controller
   }
 
   public function postCreateHealthRecord(Request $request)
-  // public function postCreateHealthRecord(Request $request,$user_id)
   {
     $this->validate($request,  [
       //-----------physical--------

@@ -66,13 +66,7 @@
                     {!! Form::submit('Detail', array('class' => 'btn btn-info')) !!}
                     {!! Form::close() !!}
                   </td>
-                  <td>
-                    {!! Form::open(['route' => ['health_record.edit']]) !!}
-                    {!! Form::hidden('health_record_id', $health_record->health_record_id) !!}
-                    {!! Form::submit('Edit', array('class' => 'btn btn-info')) !!}
-                    {!! Form::close() !!}
-
-                  </td>
+                <td><a href="{{route('health_record.edit',['health_record_id'=>$health_record->health_record_id])}}"><button class="btn btn-warning glyphicon glyphicon-pencil"><i class="fa fa-cog" style="font-size:24px"></i></button></a></td>
                   <td>
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_modal_{{$health_record->health_record_id}}">
                       <i class="fa fa-remove" style="font-size:24px"></i>

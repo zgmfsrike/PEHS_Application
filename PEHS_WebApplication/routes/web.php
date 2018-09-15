@@ -48,6 +48,7 @@ Route::group(['prefix'=>'doctor','middleware' => ['auth:doctor']],function(){
   Route::post('detail/health_record/','HealthRecord\HealthRecordController@getHealthRecordDetail')->name('doctor.health_record_detail');
   Route::post('history/health_record/','HealthRecord\HealthRecordController@getPatientHealthRecordHistory')->name('doctor.health_record_history');
   Route::post('/search/health_record','HealthRecord\HealthRecordController@searchPatientHealthRecord')->name('doctor.health_record_search');
+  Route::post('/search_user/{role}','Manage\ManageUserController@searchUserByName')->name('doctor.search_user');
 
 
   //---------------------------------------------------------------------------------------------------------------
@@ -62,7 +63,9 @@ Route::group(['prefix'=>'medical_staff','middleware' => 'auth:medical_staff'],fu
   Route::get('/list/{role}','Manage\ManageUserController@getListUserPage')->name('medical_staff.list_patient');
 
   Route::post('create/health_record','HealthRecord\HealthRecordController@getCreateHealthRecord')->name('health_record.create');
+  
   Route::post('store/health_record','HealthRecord\HealthRecordController@postCreateHealthRecord')->name('health_record.store');
+
   Route::get('edit/health_record/{health_record_id}','HealthRecord\HealthRecordController@getEditHealthRecord')->name('health_record.edit');
   Route::post('update/health_record','HealthRecord\HealthRecordController@postUpdateHealthRecord')->name('health_record.update');
   Route::get('/view/{role}/{user_id}','Manage\ManageUserController@viewUserProfile')->name('m_staff.view_user_profile');
@@ -71,5 +74,5 @@ Route::group(['prefix'=>'medical_staff','middleware' => 'auth:medical_staff'],fu
   Route::post('detail/health_record/','HealthRecord\HealthRecordController@getHealthRecordDetail')->name('health_record.detail');
   Route::post('history/health_record/','HealthRecord\HealthRecordController@getPatientHealthRecordHistory')->name('health_record.history');
   Route::post('/search/health_record','HealthRecord\HealthRecordController@searchPatientHealthRecord')->name('health_record.search');
-
+  Route::post('/search_user/{role}','Manage\ManageUserController@searchUserByName')->name('medical_staff.search_user');
 });
