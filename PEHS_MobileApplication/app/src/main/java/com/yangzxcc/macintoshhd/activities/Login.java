@@ -6,6 +6,7 @@ import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatEditText;
 import android.view.View;
 
 import com.yangzxcc.macintoshhd.pehs.R;
@@ -14,9 +15,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     TextInputLayout textInputLayoutUsername, textInputLayoutPassword;
     TextInputEditText textInputEditUsername, textInputEditPassword;
-    AppCompatButton btnLogin, btnReg;
-    public String username,password;
-
+    AppCompatButton btnLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,11 +26,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         textInputEditUsername = (TextInputEditText) findViewById(R.id.textInputEditUsername);
         textInputEditPassword = (TextInputEditText) findViewById(R.id.textInputEditPassword);
         btnLogin = (AppCompatButton) findViewById(R.id.btnLogin);
-        btnReg = (AppCompatButton) findViewById(R.id.btnReg);
         btnLogin.setOnClickListener(this);
 
     }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()){

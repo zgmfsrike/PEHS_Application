@@ -3,6 +3,7 @@ package com.yangzxcc.macintoshhd.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
@@ -12,7 +13,7 @@ import com.yangzxcc.macintoshhd.pehs.R;
 public class Profile extends AppCompatActivity {
 
 
-
+    Toolbar toolbar;
     Button btnEdit;
 
 
@@ -21,7 +22,9 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-
+        toolbar=(Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         btnEdit = (Button) findViewById(R.id.btnEdit);
         loadData();
         btnEdit.setOnClickListener(new View.OnClickListener() {
@@ -31,10 +34,7 @@ public class Profile extends AppCompatActivity {
                 finish();
             }
         });
-
     }
-
     private void loadData() {
     }
-
 }
