@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.yangzxcc.macintoshhd.HealthAdapter;
 import com.yangzxcc.macintoshhd.fragments.BloodFragment;
 import com.yangzxcc.macintoshhd.fragments.ClinicalFragment;
 import com.yangzxcc.macintoshhd.fragments.PhysicalFragment;
@@ -27,7 +28,7 @@ public class Record extends AppCompatActivity {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
-
+    private HealthAdapter healthAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +36,7 @@ public class Record extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Record Date");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -49,7 +51,7 @@ public class Record extends AppCompatActivity {
 
         TextView tabPhysical = (TextView) LayoutInflater.from(this).inflate(R.layout.record_tab, null);
         tabPhysical.setText("Physical");
-        tabPhysical.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.heart_pulse, 0, 0);
+        tabPhysical.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.muscle, 0, 0);
         tabLayout.getTabAt(0).setCustomView(tabPhysical);
 
         TextView tabClinical = (TextView) LayoutInflater.from(this).inflate(R.layout.record_tab, null);

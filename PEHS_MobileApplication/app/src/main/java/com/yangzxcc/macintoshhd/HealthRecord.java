@@ -8,6 +8,11 @@ public class HealthRecord {
     private int id;
     private String title;
 
+    public HealthRecord(int id, String title) {
+        this.id = id;
+        this.title = title;
+    }
+
     public int getId() {
         return id;
     }
@@ -24,14 +29,5 @@ public class HealthRecord {
         this.title = title;
     }
 
-    public static List<HealthRecord> getHealthList() {
-
-        List<HealthRecord> RecordList = new ArrayList<>();
-        HealthRecord healthRecord = new HealthRecord();
-        healthRecord.setTitle("Title");
-        RecordList.add(healthRecord);
-
-        return RecordList;
-    }
 }
 
