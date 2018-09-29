@@ -1,25 +1,42 @@
 package com.yangzxcc.macintoshhd.activities;
 
+import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.yangzxcc.macintoshhd.HealthAdapter;
 import com.yangzxcc.macintoshhd.HealthRecord;
+import com.yangzxcc.macintoshhd.JsonPlaceHolderApi;
 import com.yangzxcc.macintoshhd.pehs.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RecordHistory extends AppCompatActivity {
-
+    private TextView tvId,tvUserId,tvText,tvTitle;
     private Toolbar toolbar;
     private RecyclerView recyclerView;
     private HealthAdapter adapter;
     private List<HealthRecord> healthRecordList;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,60 +49,36 @@ public class RecordHistory extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-
-        healthRecordList = new ArrayList<>();
-
-        recyclerView = (RecyclerView)findViewById(R.id.recycleview);
+//        healthRecordList = new ArrayList<>();
+//
+        recyclerView = (RecyclerView) findViewById(R.id.recycleview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new HealthAdapter(healthRecordList,this);
+        recyclerView.setAdapter(adapter);
 
-        healthRecordList.add(new HealthRecord(
-                1,"Date 10/06/18"
-        ));
-        healthRecordList.add(new HealthRecord(
-                2,"Date 23/06/18"
-        ));
-        healthRecordList.add(new HealthRecord(
-                3,"Date 27/06/18"
-        ));
-        healthRecordList.add(new HealthRecord(
-                4,"Date 12/07/18"
-        ));
-        healthRecordList.add(new HealthRecord(
-                5,"Date 16/07/18"
-        ));
-        healthRecordList.add(new HealthRecord(
-                6,"Date 20/07/18"
-        ));
-        healthRecordList.add(new HealthRecord(
-                7,"Date 23/07/18"
-        ));
-        healthRecordList.add(new HealthRecord(
-                8,"Date 28/07/18"
-        ));
-        healthRecordList.add(new HealthRecord(
-                2,"Date 30/07/18"
-        ));
-        healthRecordList.add(new HealthRecord(
-                9,"Date 03/08/18"
-        ));
-        healthRecordList.add(new HealthRecord(
-                10,"Date 08/08/18"
-        ));
-        healthRecordList.add(new HealthRecord(
-                11,"Date 14/08/18"
-        ));
-        healthRecordList.add(new HealthRecord(
-                12,"Date 19/08/18"
-        ));
-        healthRecordList.add(new HealthRecord(
-                13,"Date 25/08/18"
-        ));
-        healthRecordList.add(new HealthRecord(
-                14,"Date 29/08/18"
-        ));
+        tvTitle = findViewById(R.id.tvTitle);
 
-       adapter = new HealthAdapter(healthRecordList,this);
-       recyclerView.setAdapter(adapter);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://jsonplaceholder.typicode.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+
+        Call<HealthRecord> call = jsonPlaceHolderApi.getPosts();
+
+        call.enqueue(new Callback<HealthRecord>() {
+            @Override
+            public void onResponse(Call<HealthRecord> call, Response<HealthRecord> response) {
+                HealthRecord healthRecord = response.body();
+                recyclerView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(Call<HealthRecord> call, Throwable t) {
+
+            }
+        });
     }
 }

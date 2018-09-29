@@ -1,33 +1,41 @@
 package com.yangzxcc.macintoshhd;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 public class HealthRecord {
-    private int id;
-    private String title;
 
-    public HealthRecord(int id, String title) {
+    private int id;
+    private int userId;
+    private String title;
+    @SerializedName("body")
+    private String text;
+
+
+    public HealthRecord(int id, int userId, String title, String text) {
         this.id = id;
+        this.userId = userId;
         this.title = title;
+        this.text = text;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getUserId() {
+        return userId;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public String getText() {
+        return text;
     }
-
 }
 

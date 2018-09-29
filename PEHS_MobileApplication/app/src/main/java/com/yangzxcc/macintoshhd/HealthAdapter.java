@@ -29,7 +29,7 @@ public class HealthAdapter extends RecyclerView.Adapter<HealthAdapter.HealthView
     @Override
     public HealthViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mCtx);
-        View view = inflater.inflate(R.layout.list_item,null);
+        View view = inflater.inflate(R.layout.list_item,parent,false);
         HealthViewHolder holder = new HealthViewHolder(view);
         return holder;
     }
@@ -37,7 +37,10 @@ public class HealthAdapter extends RecyclerView.Adapter<HealthAdapter.HealthView
     @Override
     public void onBindViewHolder(@NonNull HealthViewHolder holder, int position) {
         HealthRecord healthRecord = healthRecordList.get(position);
+        holder.id.setText(healthRecord.getId());
+        holder.userId.setText(healthRecord.getUserId());
         holder.title.setText(healthRecord.getTitle());
+        holder.text.setText(healthRecord.getText());
 
     }
 
@@ -48,7 +51,7 @@ public class HealthAdapter extends RecyclerView.Adapter<HealthAdapter.HealthView
 
     class HealthViewHolder extends RecyclerView.ViewHolder{
 
-        TextView id,title;
+        TextView id,userId,title,text;
 
         public HealthViewHolder(View itemView) {
             super(itemView);
@@ -58,8 +61,10 @@ public class HealthAdapter extends RecyclerView.Adapter<HealthAdapter.HealthView
                     v.getContext().startActivity(new Intent(v.getContext(), Record.class));
                 }
             });
+            id = itemView.findViewById(R.id.tvId);
+            userId = itemView.findViewById(R.id.tvUserId);
             title = itemView.findViewById(R.id.tvTitle);
-//            id = itemView.findViewById(R.id.user_id);
+            text = itemView.findViewById(R.id.tvText);
         }
     }
 }
