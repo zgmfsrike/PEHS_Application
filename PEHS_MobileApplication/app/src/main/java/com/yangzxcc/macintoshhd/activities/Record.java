@@ -72,9 +72,10 @@ public class Record extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new PhysicalFragment(), "Physical");
-        adapter.addFrag(new ClinicalFragment(), "Clinical");
-        adapter.addFrag(new UrineFragment(), "Urine");
         adapter.addFrag(new BloodFragment(), "Blood");
+        adapter.addFrag(new UrineFragment(), "Urine");
+        adapter.addFrag(new ClinicalFragment(), "Clinical");
+
         viewPager.setAdapter(adapter);
     }
     class ViewPagerAdapter extends FragmentPagerAdapter {

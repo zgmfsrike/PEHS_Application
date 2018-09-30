@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.yangzxcc.macintoshhd.pehs.R;
 
@@ -13,6 +14,7 @@ import com.yangzxcc.macintoshhd.pehs.R;
  * A simple {@link Fragment} subclass.
  */
 public class PhysicalFragment extends Fragment {
+
 
 
     public PhysicalFragment() {
@@ -24,6 +26,7 @@ public class PhysicalFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+//        String strtext = getArguments().getString("edttext");
         return inflater.inflate(R.layout.fragment_physical, container, false);
     }
 
