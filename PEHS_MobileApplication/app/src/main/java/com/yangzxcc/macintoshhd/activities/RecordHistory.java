@@ -1,27 +1,20 @@
 package com.yangzxcc.macintoshhd.activities;
 
-import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.widget.TextView;
-import android.widget.Toast;
 
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.yangzxcc.macintoshhd.HealthAdapter;
-import com.yangzxcc.macintoshhd.HealthRecord;
-import com.yangzxcc.macintoshhd.JsonPlaceHolderApi;
+import com.yangzxcc.macintoshhd.models.HealthRecord;
+import com.yangzxcc.macintoshhd.ApiInterface;
 import com.yangzxcc.macintoshhd.pehs.R;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -63,22 +56,29 @@ public class RecordHistory extends AppCompatActivity {
 //        recyclerView.setAdapter(adapter);
 
 //        tvTitle = findViewById(R.id.tvTitle);
+        Gson gson = new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
+                .create();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://jsonplaceholder.typicode.com/")
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+        ApiInterface apiInterface = retrofit.create(ApiInterface.class);
 
-        Call<List<HealthRecord>> call = jsonPlaceHolderApi.getPosts();
+        Call<List<HealthRecord>> call = apiInterface.getPosts();
 
         call.enqueue(new Callback<List<HealthRecord>>() {
             @Override
             public void onResponse(Call<List<HealthRecord>> call, Response<List<HealthRecord>> response) {
-                healthRecordList = response.body();
-                adapter = new HealthAdapter(healthRecordList);
-                recyclerView.setAdapter(adapter);
+                if (response.isSuccessful()){
+                    healthRecordList = response.body();
+                    adapter = new HealthAdapter(healthRecordList);
+                    recyclerView.setAdapter(adapter);
+                }else {
+
+                }
             }
 
             @Override

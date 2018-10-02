@@ -1,6 +1,5 @@
 package com.yangzxcc.macintoshhd.activities;
 
-import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -28,7 +28,7 @@ public class Record extends AppCompatActivity {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    private HealthAdapter healthAdapter;
+    public HealthAdapter healthAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +45,6 @@ public class Record extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
-
     }
     private void setupTabIcons() {
 
@@ -54,20 +53,22 @@ public class Record extends AppCompatActivity {
         tabPhysical.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.muscle, 0, 0);
         tabLayout.getTabAt(0).setCustomView(tabPhysical);
 
-        TextView tabClinical = (TextView) LayoutInflater.from(this).inflate(R.layout.record_tab, null);
-        tabClinical.setText("Clinical");
-        tabClinical.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.dna, 0, 0);
-        tabLayout.getTabAt(1).setCustomView(tabClinical);
+        TextView tabBlood = (TextView) LayoutInflater.from(this).inflate(R.layout.record_tab, null);
+        tabBlood.setText("Blood");
+        tabBlood.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.water, 0, 0);
+        tabLayout.getTabAt(1).setCustomView(tabBlood);
 
         TextView tabUrine = (TextView) LayoutInflater.from(this).inflate(R.layout.record_tab, null);
         tabUrine.setText("Urine");
         tabUrine.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.test_tube, 0, 0);
         tabLayout.getTabAt(2).setCustomView(tabUrine);
 
-        TextView tabBlood = (TextView) LayoutInflater.from(this).inflate(R.layout.record_tab, null);
-        tabBlood.setText("Blood");
-        tabBlood.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.water, 0, 0);
-        tabLayout.getTabAt(3).setCustomView(tabBlood);
+        TextView tabClinical = (TextView) LayoutInflater.from(this).inflate(R.layout.record_tab, null);
+        tabClinical.setText("Clinical");
+        tabClinical.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.dna, 0, 0);
+        tabLayout.getTabAt(3).setCustomView(tabClinical);
+
+
     }
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());

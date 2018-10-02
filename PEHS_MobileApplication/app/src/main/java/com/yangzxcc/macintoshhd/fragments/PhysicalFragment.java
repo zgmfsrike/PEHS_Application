@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.yangzxcc.macintoshhd.HealthAdapter;
 import com.yangzxcc.macintoshhd.pehs.R;
 
 /**
@@ -15,11 +16,13 @@ import com.yangzxcc.macintoshhd.pehs.R;
  */
 public class PhysicalFragment extends Fragment {
 
-
+    HealthAdapter healthAdapter;
+    TextView tvResult;
 
     public PhysicalFragment() {
         // Required empty public constructor
     }
+    
 
 
     @Override
@@ -27,7 +30,16 @@ public class PhysicalFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 //        String strtext = getArguments().getString("edttext");
-        return inflater.inflate(R.layout.fragment_physical, container, false);
+
+//        int mPostId = getIntent().getIntExtra("pos",0);
+//        Call<List<HealthRecord>> call = ApiInterface
+        View view = inflater.inflate(R.layout.fragment_physical, container, false);
+        initInstances(view);
+        return view;
+    }
+
+    private void initInstances(View view) {
+        tvResult = (TextView) view.findViewById(R.id.tvResult);
     }
 
 }

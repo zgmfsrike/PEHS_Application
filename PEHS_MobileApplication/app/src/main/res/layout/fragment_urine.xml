@@ -1,9 +1,12 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.yangzxcc.macintoshhd.fragments.UrineFragment">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -20,7 +23,7 @@
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:textSize="20sp"
-                android:text="TextView" />
+                android:text="Lab Test" />
 
             <TextView
                 android:id="@+id/result"
@@ -30,7 +33,7 @@
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:textSize="20sp"
-                android:text="TextView" />
+                android:text="Result" />
 
             <TextView
                 android:id="@+id/standard"
@@ -40,7 +43,7 @@
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:textSize="20sp"
-                android:text="TextView" />
+                android:text="Standard Range" />
 
             <TextView
                 android:id="@+id/unit"
@@ -50,9 +53,8 @@
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:textSize="20sp"
-                android:text="TextView" />
+                android:text="Unit" />
         </TableRow>
-
 
         <TableRow
             android:layout_width="match_parent"
@@ -64,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="Color" />
 
             <TextView
                 android:layout_width="0dp"
@@ -78,14 +80,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="-" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="-" />
         </TableRow>
 
         <TableRow
@@ -98,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="Appearance" />
 
             <TextView
                 android:layout_width="0dp"
@@ -112,14 +114,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="Clear" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="-" />
         </TableRow>
 
         <TableRow
@@ -132,28 +134,31 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="Specific Gravity" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="TextView"
+                android:layout_gravity="center"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="1.005-1.030"
+                android:layout_gravity="center"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="-"
+                android:layout_gravity="center"/>
         </TableRow>
 
         <TableRow
@@ -166,7 +171,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="pH" />
 
             <TextView
                 android:layout_width="0dp"
@@ -180,14 +185,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="4-8" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="-" />
         </TableRow>
 
 
@@ -201,7 +206,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="Albumin" />
 
             <TextView
                 android:layout_width="0dp"
@@ -215,14 +220,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="Negative" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="-" />
         </TableRow>
 
         <TableRow
@@ -235,7 +240,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="Sugar" />
 
             <TextView
                 android:layout_width="0dp"
@@ -249,14 +254,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="Negative" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="-" />
         </TableRow>
 
         <TableRow
@@ -269,7 +274,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="Urine RBC" />
 
             <TextView
                 android:layout_width="0dp"
@@ -283,14 +288,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="0-5" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="Cell/HPF" />
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -302,7 +307,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="Urine WBC" />
 
             <TextView
                 android:layout_width="0dp"
@@ -316,14 +321,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="0-5" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="Cell/HPF" />
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -335,7 +340,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="Epithelial Cell" />
 
             <TextView
                 android:layout_width="0dp"
@@ -349,14 +354,15 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="0-5" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="Cell/HPF" />
         </TableRow>
     </TableLayout>
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

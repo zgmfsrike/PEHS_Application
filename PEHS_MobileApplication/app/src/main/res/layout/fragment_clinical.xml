@@ -1,9 +1,11 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.yangzxcc.macintoshhd.fragments.ClinicalFragment">
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -20,7 +22,7 @@
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:textSize="20sp"
-                android:text="TextView" />
+                android:text="Lab Test" />
 
             <TextView
                 android:id="@+id/result"
@@ -30,7 +32,7 @@
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:textSize="20sp"
-                android:text="TextView" />
+                android:text="Result" />
 
             <TextView
                 android:id="@+id/standard"
@@ -40,7 +42,7 @@
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:textSize="20sp"
-                android:text="TextView" />
+                android:text="Standard Range" />
 
             <TextView
                 android:id="@+id/unit"
@@ -50,9 +52,8 @@
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:textSize="20sp"
-                android:text="TextView" />
+                android:text="Unit" />
         </TableRow>
-
 
         <TableRow
             android:layout_width="match_parent"
@@ -64,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="Glucose" />
 
             <TextView
                 android:layout_width="0dp"
@@ -78,14 +79,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="70-99" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="@string/mg_dl" />
         </TableRow>
 
         <TableRow
@@ -98,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="BUN" />
 
             <TextView
                 android:layout_width="0dp"
@@ -112,14 +113,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="8.09-20.06" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="@string/mg_dl" />
         </TableRow>
 
         <TableRow
@@ -132,7 +133,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="Creatine" />
 
             <TextView
                 android:layout_width="0dp"
@@ -146,14 +147,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="0.72-1.25" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="@string/mg_dl" />
         </TableRow>
 
         <TableRow
@@ -166,7 +167,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="Uric acid" />
 
             <TextView
                 android:layout_width="0dp"
@@ -180,49 +181,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="3.5-7.2" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
-        </TableRow>
-
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:text="TextView" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:text="TextView" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:text="TextView" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:text="TextView" />
+                android:text="@string/mg_dl" />
         </TableRow>
 
         <TableRow
@@ -230,19 +196,11 @@
             android:layout_height="match_parent">
 
             <TextView
-
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:text="TextView" />
+                android:text="Cholesterol" />
 
             <TextView
                 android:layout_width="0dp"
@@ -256,7 +214,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="&lt;200" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:text="@string/mg_dl" />
         </TableRow>
 
         <TableRow
@@ -269,7 +234,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="Triglyceride" />
 
             <TextView
                 android:layout_width="0dp"
@@ -283,7 +248,27 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="&lt;150" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:text="@string/mg_dl" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:text="HDL-C" />
 
             <TextView
                 android:layout_width="0dp"
@@ -291,6 +276,20 @@
                 android:layout_weight="1"
                 android:textAlignment="center"
                 android:text="TextView" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:text="&lt;40" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:text="@string/mg_dl" />
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -302,28 +301,31 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="Calculated LDL" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="TextView"
+                android:layout_gravity="center"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="&lt;150"
+                android:layout_gravity="center"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="@string/mg_dl"
+                android:layout_gravity="center"/>
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -335,7 +337,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="AST/SGOT" />
 
             <TextView
                 android:layout_width="0dp"
@@ -349,14 +351,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="5-34" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="@string/u_l" />
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -368,7 +370,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="ALT/SGPT" />
 
             <TextView
                 android:layout_width="0dp"
@@ -382,14 +384,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="0-55" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="@string/u_l" />
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -401,7 +403,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="ALP" />
 
             <TextView
                 android:layout_width="0dp"
@@ -415,14 +417,15 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="40-150" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="TextView" />
+                android:text="@string/u_l" />
         </TableRow>
     </TableLayout>
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

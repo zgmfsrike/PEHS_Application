@@ -10,5 +10,7 @@
     <string name="Welcome">Welcome To Personal eHealth System for Long-Term NCD Cares</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="mg_dl">mg\/dl</string>
+    <string name="u_l">U\/L</string>
 
 </resources>

@@ -1,4 +1,4 @@
-package com.yangzxcc.macintoshhd;
+package com.yangzxcc.macintoshhd.models;
 
 import com.google.gson.annotations.SerializedName;
 
