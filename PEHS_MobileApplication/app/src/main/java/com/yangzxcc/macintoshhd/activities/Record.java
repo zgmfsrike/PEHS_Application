@@ -1,5 +1,8 @@
 package com.yangzxcc.macintoshhd.activities;
 
+import android.content.Context;
+import android.content.Intent;
+import android.nfc.Tag;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,12 +15,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yangzxcc.macintoshhd.HealthAdapter;
 import com.yangzxcc.macintoshhd.fragments.BloodFragment;
 import com.yangzxcc.macintoshhd.fragments.ClinicalFragment;
 import com.yangzxcc.macintoshhd.fragments.PhysicalFragment;
 import com.yangzxcc.macintoshhd.fragments.UrineFragment;
+import com.yangzxcc.macintoshhd.models.HealthRecord;
 import com.yangzxcc.macintoshhd.pehs.R;
 
 import java.util.ArrayList;
@@ -45,6 +50,13 @@ public class Record extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
+
+
+
+        Bundle bundle = new Bundle();
+        bundle.putString("title","kk");
+        PhysicalFragment physicalFragment = new PhysicalFragment();
+        physicalFragment.setArguments(bundle);
     }
     private void setupTabIcons() {
 
@@ -79,6 +91,8 @@ public class Record extends AppCompatActivity {
 
         viewPager.setAdapter(adapter);
     }
+
+
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
@@ -106,4 +120,5 @@ public class Record extends AppCompatActivity {
             return mFragmentTitleList.get(position);
         }
     }
+
 }

@@ -34,15 +34,15 @@ public class Home extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-//    @Override
-//    public void onBackPressed() {
-//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        if (drawer.isDrawerOpen(GravityCompat.START)) {
-//            drawer.closeDrawer(GravityCompat.START);
-//        } else {
-//            super.onBackPressed();
-//        }
-//    }
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -73,7 +73,7 @@ public class Home extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            startActivity(new Intent(Home.this,Home.class));
+
 
         } else if (id == R.id.nav_profile) {
             Intent intent = new Intent(Home.this,Profile.class);
@@ -81,7 +81,6 @@ public class Home extends AppCompatActivity
 
         } else if (id == R.id.nav_record_history) {
             startActivity(new Intent(Home.this,RecordHistory.class));
-            finish();
 
         } else if (id == R.id.nav_logout) {
             startActivity(new Intent(Home.this,Record.class));

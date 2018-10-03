@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.widget.LinearLayout;
 
 
 import com.google.gson.Gson;
@@ -26,7 +27,6 @@ public class RecordHistory extends AppCompatActivity {
 
     private Toolbar toolbar;
     private RecyclerView recyclerView;
-    private RecyclerView.LayoutManager layoutManager;
     private HealthAdapter adapter;
     private List<HealthRecord> healthRecordList;
 
@@ -42,20 +42,11 @@ public class RecordHistory extends AppCompatActivity {
         getSupportActionBar().setTitle("Health Record History");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-//        healthRecordList = new ArrayList<>();
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView = (RecyclerView) findViewById(R.id.recycleview);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(manager);
         recyclerView.setHasFixedSize(true);
 
-
-
-//        adapter = new HealthAdapter(healthRecordList,this);
-//        recyclerView.setAdapter(adapter);
-
-//        tvTitle = findViewById(R.id.tvTitle);
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
                 .create();
@@ -83,11 +74,8 @@ public class RecordHistory extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<HealthRecord>> call, Throwable t) {
-//                healthRecordList.add(new HealthRecord(1,1,"eiei","ddd"));
-//                adapter = new HealthAdapter(healthRecordList);
-//                recyclerView.setAdapter(adapter);
+
             }
         });
-
     }
 }
