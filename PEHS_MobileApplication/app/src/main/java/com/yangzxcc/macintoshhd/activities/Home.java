@@ -83,8 +83,7 @@ public class Home extends AppCompatActivity
             startActivity(new Intent(Home.this,RecordHistory.class));
 
         } else if (id == R.id.nav_logout) {
-            startActivity(new Intent(Home.this,Record.class));
-            finish();
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -2,11 +2,12 @@ package com.yangzxcc.macintoshhd.models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HealthRecord {
+public class HealthRecord{
 
     private int id;
     private int userId;

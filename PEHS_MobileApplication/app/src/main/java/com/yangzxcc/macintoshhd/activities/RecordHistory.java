@@ -1,15 +1,21 @@
 package com.yangzxcc.macintoshhd.activities;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.yangzxcc.macintoshhd.ApiClient;
 import com.yangzxcc.macintoshhd.HealthAdapter;
 import com.yangzxcc.macintoshhd.models.HealthRecord;
 import com.yangzxcc.macintoshhd.ApiInterface;
@@ -23,14 +29,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class RecordHistory extends AppCompatActivity {
+public class RecordHistory extends AppCompatActivity{
 
     private Toolbar toolbar;
     private RecyclerView recyclerView;
     private HealthAdapter adapter;
     private List<HealthRecord> healthRecordList;
-
-
+    HealthRecord healthRecord;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,12 +68,10 @@ public class RecordHistory extends AppCompatActivity {
         call.enqueue(new Callback<List<HealthRecord>>() {
             @Override
             public void onResponse(Call<List<HealthRecord>> call, Response<List<HealthRecord>> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     healthRecordList = response.body();
                     adapter = new HealthAdapter(healthRecordList);
                     recyclerView.setAdapter(adapter);
-                }else {
-
                 }
             }
 
