@@ -22,10 +22,10 @@ import java.util.List;
 
 public class HealthAdapter extends RecyclerView.Adapter<HealthAdapter.HealthViewHolder> {
 
-    private HealthRecord healthRecordList;
+    private List<HealthRecord> healthRecordList;
     HealthRecord model;
 
-    public HealthAdapter(HealthRecord healthRecordList) {
+    public HealthAdapter(List<HealthRecord> healthRecordList) {
         this.healthRecordList = healthRecordList;
     }
 

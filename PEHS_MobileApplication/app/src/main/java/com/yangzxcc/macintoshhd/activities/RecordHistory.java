@@ -36,7 +36,7 @@ public class RecordHistory extends AppCompatActivity{
     private Toolbar toolbar;
     private RecyclerView recyclerView;
     private HealthAdapter adapter;
-    private HealthRecord healthRecordList;
+    private List<HealthRecord> healthRecordList;
     private Profile profile;
     HealthRecord healthRecord;
     TextView textView;
@@ -69,23 +69,22 @@ public class RecordHistory extends AppCompatActivity{
 
         ApiInterface apiInterface = retrofit.create(ApiInterface.class);
 
-        Call<HealthRecord> call = apiInterface.getPosts();
+        Call<List<HealthRecord>> call = apiInterface.getPosts();
 
-        call.enqueue(new Callback<HealthRecord>() {
-            @Override
-            public void onResponse(Call<HealthRecord> call, Response<HealthRecord> response) {
-                if (response.isSuccessful()) {
-                    healthRecordList = response.body();
-                    adapter = new HealthAdapter(healthRecordList);
-                    recyclerView.setAdapter(adapter);
-                    name = response.body().getTitle();
-                }
-            }
-            @Override
-            public void onFailure(Call<HealthRecord> call, Throwable t) {
+       call.enqueue(new Callback<List<HealthRecord>>() {
+           @Override
+           public void onResponse(Call<List<HealthRecord>> call, Response<List<HealthRecord>> response) {
+               healthRecordList = response.body();
+               adapter = new HealthAdapter(healthRecordList);
+               recyclerView.setAdapter(adapter);
+//               name = response.body().getTitle();
+           }
 
-            }
-        });
+           @Override
+           public void onFailure(Call<List<HealthRecord>> call, Throwable t) {
+
+           }
+       });
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,4 +95,6 @@ public class RecordHistory extends AppCompatActivity{
         });
 
     }
+
+
 }

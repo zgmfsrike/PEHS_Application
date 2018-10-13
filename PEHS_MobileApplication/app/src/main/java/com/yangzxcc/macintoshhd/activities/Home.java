@@ -51,7 +51,7 @@ public class Home extends AppCompatActivity
 
         ApiInterface apiInterface = retrofit.create(ApiInterface.class);
 
-        Call<HealthRecord> call = apiInterface.getPosts();
+//        Call<HealthRecord> call = apiInterface.getPosts();
 
 //        call.enqueue(new Callback<HealthRecord>() {
 //            @Override
