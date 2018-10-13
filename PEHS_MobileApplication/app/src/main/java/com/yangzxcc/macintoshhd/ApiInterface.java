@@ -15,13 +15,19 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface ApiInterface {
 
+    @Headers({
+            "Content-Type: application/json",
+            "X-Requested-With:XMLHttpRequest"
+    })
     @POST("login")
     Call<User> login(@Body SignIn signIn);
+
 
     @GET("info")
     Call<ResponseBody> getInfo(@Header("Authorization") String authHeader);

@@ -78,22 +78,22 @@ public class TestLogin extends AppCompatActivity {
     }
 
     private void login() {
-        SignIn signIn = new SignIn("","");
+        SignIn signIn = new SignIn("nimmit","123456");
         Call<User> call = apiInterface.login(signIn);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()){
-                    Toast.makeText(TestLogin.this,response.body().getToken(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(TestLogin.this,"pass ???????",Toast.LENGTH_LONG).show();
                     text = response.body().getToken();
                 }else {
-                    Toast.makeText(TestLogin.this,"Login not correct",Toast.LENGTH_LONG).show();
+                    Toast.makeText(TestLogin.this,response.message(),Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                Toast.makeText(TestLogin.this,"Error",Toast.LENGTH_LONG).show();
+                Toast.makeText(TestLogin.this,t.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
     }
