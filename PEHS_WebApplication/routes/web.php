@@ -10,10 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//
+// Route::get('/', function () {
+//   return view('auth.login');
+// })->middleware('auth');
 
 Route::get('/', function () {
-  return view('auth.login');
-})->middleware('auth');
+  return view('about');
+})->middleware('check_auth')->name('about');
 
 Auth::routes();
 
@@ -63,7 +67,7 @@ Route::group(['prefix'=>'medical_staff','middleware' => 'auth:medical_staff'],fu
   Route::get('/list/{role}','Manage\ManageUserController@getListUserPage')->name('medical_staff.list_patient');
 
   Route::post('create/health_record','HealthRecord\HealthRecordController@getCreateHealthRecord')->name('health_record.create');
-  
+
   Route::post('store/health_record','HealthRecord\HealthRecordController@postCreateHealthRecord')->name('health_record.store');
 
   Route::get('edit/health_record/{health_record_id}','HealthRecord\HealthRecordController@getEditHealthRecord')->name('health_record.edit');

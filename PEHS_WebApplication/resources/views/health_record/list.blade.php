@@ -63,9 +63,6 @@
                 <th scope="col" class="text-center">Date</th>
                 <th scope="col" class="text-center">Name</th>
                 <th scope="col" class="text-center">Surname</th>
-                <th scope="col" class="text-center">Drug Allergy</th>
-                <th scope="col" class="text-center">Underlying Disease</th>
-                <th scope="col" class="text-center">Blood Type</th>
                 <th scope="col" class="text-center">Detail</th>
                 @if(Auth::guard('medical_staff')->check())
                   <th scope="col" class="text-center">Edit</th>
@@ -98,9 +95,6 @@
                 <td>{{$health_record->health_record_date}}</td>
                 <td>{{$health_record->name}}</td>
                 <td>{{$health_record->surname}}</td>
-                <td>{{$drug_allergy}}</td>
-                <td>{{$underlying_disease}}</td>
-                <td>{{$health_record->blood_type}}</td>
 
 
                 @if(Auth::guard('medical_staff')->check())
