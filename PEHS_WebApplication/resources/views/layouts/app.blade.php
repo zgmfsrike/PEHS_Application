@@ -31,23 +31,28 @@
 </head>
 <body>
   <style>
+  body{
+    background-color: #e6f7ff;
+  }
 
   .table th,td{
+    background-color: white;
     border: gray solid 1px !important;
   }
+
   </style>
 
   <div id="app">
-    <nav class="navbar navbar-expand-md navbar-light navbar-laravel ">
-      <div class="container">
-        <a class="navbar-brand" href="{{ url('login') }}">
+    <nav class="navbar navbar-expand-md navbar-light navbar-laravel " style="background-color:#b3e6ff;">
+      <div class="container" >
+        <a class="navbar-brand" href="/">
           {{ config('app.name', 'Laravel') }}
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         @if(Auth::guard('admin')->check())
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent" >
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
               <li class="nav-item dropdown">
@@ -127,7 +132,7 @@
   <div class="col-md-12 ">
     {{-- @extends('layouts.sidebar') --}}
     <main class="py-4">
-      <div class="container">
+      <div class="container" >
 
         @include('manage.message')
         @yield('content')

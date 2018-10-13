@@ -67,8 +67,8 @@
 
     </div>
     @if(Auth::guard('admin')->check())
-      <div class="table table-responsive table-bordered">
-        <table class="table text-center ">
+      <div class="table table-responsive table-bordered" >
+        <table class="table text-center " style="background-color:white;">
           <thead class="">
             @if(!empty ($not_found_user))
               <div class="alert alert-danger text-center">

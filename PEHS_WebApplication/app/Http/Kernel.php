@@ -4,6 +4,7 @@ namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use App\Http\Middleware\Staff;
+use App\Http\Middleware\CheckAuthUser;
 use App\Http\Middleware\CheckDoctorPersonalInfo;
 
 class Kernel extends HttpKernel
@@ -64,5 +65,6 @@ class Kernel extends HttpKernel
     'admin' => Middleware\RoleAdmin::class,
     'doctor.personal_info'=> Middleware\CheckDoctorPersonalInfo::class,
     'm_staff.personal_info'=> Middleware\CheckMStaffPersonalInfo::class,
+    'check_auth'=> Middleware\CheckAuthUser::class,
   ];
 }
