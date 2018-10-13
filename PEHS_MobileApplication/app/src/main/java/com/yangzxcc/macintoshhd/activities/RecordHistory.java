@@ -9,7 +9,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -34,8 +36,12 @@ public class RecordHistory extends AppCompatActivity{
     private Toolbar toolbar;
     private RecyclerView recyclerView;
     private HealthAdapter adapter;
-    private List<HealthRecord> healthRecordList;
+    private HealthRecord healthRecordList;
+    private Profile profile;
     HealthRecord healthRecord;
+    TextView textView;
+    String name;
+    Button btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,22 +69,31 @@ public class RecordHistory extends AppCompatActivity{
 
         ApiInterface apiInterface = retrofit.create(ApiInterface.class);
 
-        Call<List<HealthRecord>> call = apiInterface.getPosts();
+        Call<HealthRecord> call = apiInterface.getPosts();
 
-        call.enqueue(new Callback<List<HealthRecord>>() {
+        call.enqueue(new Callback<HealthRecord>() {
             @Override
-            public void onResponse(Call<List<HealthRecord>> call, Response<List<HealthRecord>> response) {
+            public void onResponse(Call<HealthRecord> call, Response<HealthRecord> response) {
                 if (response.isSuccessful()) {
                     healthRecordList = response.body();
                     adapter = new HealthAdapter(healthRecordList);
                     recyclerView.setAdapter(adapter);
+                    name = response.body().getTitle();
                 }
             }
-
             @Override
-            public void onFailure(Call<List<HealthRecord>> call, Throwable t) {
+            public void onFailure(Call<HealthRecord> call, Throwable t) {
 
             }
         });
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(),Home.class);
+                intent.putExtra("title",name);
+                v.getContext().startActivity(intent);
+            }
+        });
+
     }
 }

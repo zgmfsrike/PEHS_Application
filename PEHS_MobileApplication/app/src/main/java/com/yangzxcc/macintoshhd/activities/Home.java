@@ -11,12 +11,26 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.yangzxcc.macintoshhd.ApiClient;
+import com.yangzxcc.macintoshhd.ApiInterface;
+import com.yangzxcc.macintoshhd.HealthAdapter;
+import com.yangzxcc.macintoshhd.models.HealthRecord;
 import com.yangzxcc.macintoshhd.pehs.R;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private Toolbar toolbar;
+    private HealthAdapter adapter;
+    private List<HealthRecord> healthRecordList;
+    String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +46,29 @@ public class Home extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        Retrofit retrofit = ApiClient.getRetrofit();
+
+        ApiInterface apiInterface = retrofit.create(ApiInterface.class);
+
+        Call<HealthRecord> call = apiInterface.getPosts();
+
+//        call.enqueue(new Callback<HealthRecord>() {
+//            @Override
+//            public void onResponse(Call<HealthRecord> call, Response<HealthRecord> response) {
+//                healthRecordList =
+//                adapter = new HealthAdapter(healthRecordList)
+//                name = response.body().getTitle();
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<HealthRecord> call, Throwable t) {
+//
+//            }
+//        });
+
+
     }
 
     @Override
@@ -65,6 +102,7 @@ public class Home extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }
+
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

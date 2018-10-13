@@ -1,33 +1,25 @@
 package com.yangzxcc.macintoshhd.activities;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
-import com.yangzxcc.macintoshhd.HealthAdapter;
 import com.yangzxcc.macintoshhd.models.HealthRecord;
 import com.yangzxcc.macintoshhd.pehs.R;
 
-import org.w3c.dom.Text;
-
-public class RecordData extends AppCompatActivity {
+public class Physical extends AppCompatActivity {
 
     private Toolbar toolbar;
     private TextView weightResult,heightResult,waistResult,bmiResult,systolicResult,diastolicResult,pulseResult
             ,glucoseResult,cholesterolResult,triglycerideResult,hdlResult,ldlResult;
     private HealthRecord healthRecord;
     int conditionColor;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_record_data);
+        setContentView(R.layout.activity_physical);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -52,6 +44,5 @@ public class RecordData extends AppCompatActivity {
         String text = intent.getStringExtra("text");
         heightResult.setText(text);
         weightResult.setText(title);
-
     }
 }

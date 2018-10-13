@@ -24,6 +24,14 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/TestTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textSize="30dp"/>
+
+        <TextView
+            android:id="@+id/TestText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Name"
