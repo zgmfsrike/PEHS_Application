@@ -20,11 +20,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group([
     'prefix' => 'auth'
 ], function () {
-    Route::post('login', 'AuthController@login');
+    Route::post('login', 'Api\APIController@login');
     Route::group([
       'middleware' => 'auth:api'
     ], function() {
-        Route::get('logout', 'AuthController@logout');
-        Route::get('info', 'AuthController@getInformation');
+        Route::get('logout', 'Api\APIController@logout');
+        Route::get('info', 'Api\APIController@getInformation');
     });
 });
