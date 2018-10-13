@@ -1,18 +1,16 @@
 package com.yangzxcc.macintoshhd.activities;
 
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.yangzxcc.macintoshhd.ApiInterface;
+import com.yangzxcc.macintoshhd.api.ApiInterface;
 import com.yangzxcc.macintoshhd.models.Patient;
 import com.yangzxcc.macintoshhd.pehs.R;
 

@@ -1,4 +1,4 @@
-package com.yangzxcc.macintoshhd.models;
+package com.yangzxcc.macintoshhd.infos;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -79,7 +79,6 @@ public class PersonalInformation {
     public void setTelephoneNumber(String telephoneNumber) {
         this.telephoneNumber = telephoneNumber;
     }
-
     public Object getDrugAllergy() {
         return drugAllergy;
     }

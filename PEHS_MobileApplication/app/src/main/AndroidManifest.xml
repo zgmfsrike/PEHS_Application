@@ -20,7 +20,6 @@
         <activity
             android:name="com.yangzxcc.macintoshhd.activities.Profile"
             android:parentActivityName="com.yangzxcc.macintoshhd.activities.Home" />
-        <activity android:name="com.yangzxcc.macintoshhd.activities.EditProfile" />
         <activity
             android:name="com.yangzxcc.macintoshhd.activities.RecordHistory"
             android:parentActivityName="com.yangzxcc.macintoshhd.activities.Home" />
@@ -31,7 +30,6 @@
         <activity
             android:name="com.yangzxcc.macintoshhd.activities.RecordData"
             android:parentActivityName="com.yangzxcc.macintoshhd.activities.RecordHistory" />
-        <activity android:name="com.yangzxcc.macintoshhd.activities.RecordList" />
         <activity android:name="com.yangzxcc.macintoshhd.activities.Physical" />
         <activity android:name="com.yangzxcc.macintoshhd.activities.Record" />
         <activity

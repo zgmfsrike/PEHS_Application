@@ -1,4 +1,4 @@
-package com.yangzxcc.macintoshhd.models;
+package com.yangzxcc.macintoshhd.infos;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

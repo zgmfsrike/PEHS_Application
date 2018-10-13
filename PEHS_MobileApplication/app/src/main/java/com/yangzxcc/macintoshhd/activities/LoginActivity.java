@@ -19,7 +19,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
-import android.util.Base64;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,12 +30,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.yangzxcc.macintoshhd.ApiClient;
-import com.yangzxcc.macintoshhd.ApiInterface;
+import com.yangzxcc.macintoshhd.api.ApiClient;
+import com.yangzxcc.macintoshhd.api.ApiInterface;
 import com.yangzxcc.macintoshhd.models.SignIn;
 import com.yangzxcc.macintoshhd.models.User;
 import com.yangzxcc.macintoshhd.pehs.R;
@@ -45,7 +43,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.Manifest.permission.READ_CONTACTS;
 

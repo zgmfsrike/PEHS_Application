@@ -6,8 +6,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.yangzxcc.macintoshhd.ApiClient;
-import com.yangzxcc.macintoshhd.ApiInterface;
+import com.yangzxcc.macintoshhd.api.ApiClient;
+import com.yangzxcc.macintoshhd.api.ApiInterface;
 import com.yangzxcc.macintoshhd.models.SignIn;
 import com.yangzxcc.macintoshhd.models.User;
 import com.yangzxcc.macintoshhd.pehs.R;

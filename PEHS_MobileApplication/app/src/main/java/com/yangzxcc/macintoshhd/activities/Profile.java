@@ -42,8 +42,6 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 getData();
-                startActivity(new Intent(Profile.this,EditProfile.class));
-                finish();
             }
         });
 

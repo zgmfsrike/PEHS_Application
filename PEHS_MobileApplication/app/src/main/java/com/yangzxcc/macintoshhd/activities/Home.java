@@ -11,17 +11,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.yangzxcc.macintoshhd.ApiClient;
-import com.yangzxcc.macintoshhd.ApiInterface;
+import com.yangzxcc.macintoshhd.api.ApiClient;
+import com.yangzxcc.macintoshhd.api.ApiInterface;
 import com.yangzxcc.macintoshhd.HealthAdapter;
 import com.yangzxcc.macintoshhd.models.HealthRecord;
 import com.yangzxcc.macintoshhd.pehs.R;
 
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class Home extends AppCompatActivity
