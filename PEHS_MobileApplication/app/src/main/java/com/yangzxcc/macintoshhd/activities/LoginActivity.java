@@ -42,6 +42,7 @@ import com.yangzxcc.macintoshhd.models.User;
 import com.yangzxcc.macintoshhd.pehs.R;
 
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -113,7 +114,29 @@ Retrofit retrofit = ApiClient.getRetrofit();
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+        ApiInterface apiInterface = retrofit.create(ApiInterface.class);
+
+        SignIn signIn = new SignIn("nimmit","123456");
+        Call<User> call = apiInterface.login(signIn);
+
+
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.isSuccessful()){
+                    Toast.makeText(LoginActivity.this,response.body().getToken(),Toast.LENGTH_LONG).show();
+                    String text = response.body().getToken();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+
+            }
+        });
     }
+
 
     private void populateAutoComplete() {
         if (!mayRequestContacts()) {
@@ -349,22 +372,6 @@ Retrofit retrofit = ApiClient.getRetrofit();
 //            }
 //            return false;
 //        }
-            ApiInterface apiInterface = retrofit.create(ApiInterface.class);
-
-            SignIn signIn = new SignIn(mEmail,mPassword);
-            Call<User> call = apiInterface.login(signIn);
-
-            try {
-                Response<User> response = call.execute();
-                if (response.isSuccessful()){
-                    Toast.makeText(LoginActivity.this,response.body().toString(),Toast.LENGTH_LONG).show();
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-
             return false;
 
         }

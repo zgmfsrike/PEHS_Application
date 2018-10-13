@@ -16,9 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.yangzxcc.macintoshhd.activities.Login">
-
-        </activity>
+        <activity android:name="com.yangzxcc.macintoshhd.activities.Login"></activity>
         <activity
             android:name="com.yangzxcc.macintoshhd.activities.Profile"
             android:parentActivityName="com.yangzxcc.macintoshhd.activities.Home" />
@@ -39,6 +37,9 @@
         <activity
             android:name="com.yangzxcc.macintoshhd.activities.LoginActivity"
             android:label="@string/title_activity_login">
+
+        </activity>
+        <activity android:name="com.yangzxcc.macintoshhd.activities.TestLogin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
