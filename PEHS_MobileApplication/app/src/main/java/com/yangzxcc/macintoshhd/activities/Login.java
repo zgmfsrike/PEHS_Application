@@ -6,6 +6,7 @@ import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -89,8 +90,12 @@ public class Login extends AppCompatActivity{
             @Override
             public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
                 if (response.isSuccessful()){
-                    bearer = response.body().getTokenType();
-                    token = response.body().getAccessToken();
+                    if (response.body().getAccessToken() == null) {
+                        Toast.makeText(Login.this,"No tokennnnn!!!!!!",Toast.LENGTH_LONG).show();
+                    } else {
+                        String token = response.body().getAccessToken();
+                    }
+
                     Call<InformationManager> call1 = apiInterface.getInfo(bearer + " " + token);
                     call1.enqueue(new Callback<InformationManager>() {
                         @Override
