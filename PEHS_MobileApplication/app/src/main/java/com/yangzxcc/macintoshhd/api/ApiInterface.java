@@ -4,12 +4,12 @@ import com.yangzxcc.macintoshhd.infos.InformationManager;
 import com.yangzxcc.macintoshhd.models.AccessToken;
 import com.yangzxcc.macintoshhd.models.HealthRecord;
 import com.yangzxcc.macintoshhd.models.Patient;
+import com.yangzxcc.macintoshhd.models.SignIn;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -24,8 +24,7 @@ public interface ApiInterface {
             "X-Requested-With:XMLHttpRequest"
     })
     @POST("login")
-    @FormUrlEncoded
-    Call<AccessToken> login(@Field("username") String username, @Field("password") String password);
+    Call<AccessToken> signIn(@Body SignIn signIn);
 
     @Headers({
             "Content-Type: application/json",

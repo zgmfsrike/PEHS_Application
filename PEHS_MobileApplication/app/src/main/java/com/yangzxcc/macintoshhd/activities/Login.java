@@ -84,9 +84,10 @@ public class Login extends AppCompatActivity{
 //        } catch (JSONException e) {
 //            e.printStackTrace();
 //        }
-//        SignIn testLogin = new SignIn(username,password);
-        Call<AccessToken> call = apiInterface.login(username,password);
+        SignIn testLogin = new SignIn(username,password);
+        Call<AccessToken> call = apiInterface.signIn(testLogin);
         call.enqueue(new Callback<AccessToken>() {
+            
             @Override
             public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
                 if (response.isSuccessful()){
@@ -99,7 +100,6 @@ public class Login extends AppCompatActivity{
                         @Override
                         public void onResponse(Call<InformationManager> call, Response<InformationManager> response) {
                             if (response.isSuccessful()){
-
 
                                 Toast.makeText(Login.this,"Success Get token",Toast.LENGTH_LONG).show();
 
@@ -120,7 +120,11 @@ public class Login extends AppCompatActivity{
                     });
 
                 }else {
-                    Toast.makeText(Login.this,"Login not correct",Toast.LENGTH_LONG).show();
+                    try {
+                        Toast.makeText(Login.this,response.errorBody().string(),Toast.LENGTH_LONG).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
             @Override
