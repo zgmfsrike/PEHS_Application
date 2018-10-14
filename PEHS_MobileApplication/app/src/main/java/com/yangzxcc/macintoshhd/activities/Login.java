@@ -59,6 +59,8 @@ public class Login extends AppCompatActivity{
         }
 
     }
+    private static String token;
+    private static String bearer;
     private void patientLogin() {
 
 
@@ -79,24 +81,17 @@ public class Login extends AppCompatActivity{
 
         final ApiInterface apiInterface = retrofit.create(ApiInterface.class);
 
-//        try {
-//            JSONObject jsonObject = new JSONObject();
-//            jsonObject.put("username",username);
-//            jsonObject.put("password",password);
-//            Call<AccessToken> call = apiInterface.signIn(jsonObject.toString());
-//            call.enqueue((Callback<AccessToken>) this);
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
         SignIn testLogin = new SignIn(username,password);
-        Call<AccessToken> call = apiInterface.signIn(testLogin);
-        call.enqueue(new Callback<AccessToken>() {
 
+        Call<AccessToken> call = apiInterface.signIn(testLogin);
+
+        call.enqueue(new Callback<AccessToken>() {
             @Override
             public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
                 if (response.isSuccessful()){
-                    String token = response.body().getAccessToken();
-                    Call<InformationManager> call1 = apiInterface.getInfo("Bearer " + token);
+                    bearer = response.body().getTokenType();
+                    token = response.body().getAccessToken();
+                    Call<InformationManager> call1 = apiInterface.getInfo(bearer + " " + token);
                     call1.enqueue(new Callback<InformationManager>() {
                         @Override
                         public void onResponse(Call<InformationManager> call, Response<InformationManager> response) {
