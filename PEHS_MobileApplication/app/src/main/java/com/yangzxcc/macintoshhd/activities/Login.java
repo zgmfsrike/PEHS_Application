@@ -75,9 +75,9 @@ public class Login extends AppCompatActivity{
 
         final ApiInterface apiInterface = retrofit.create(ApiInterface.class);
 
-        SignIn testlogin = new SignIn(username,password);
+        SignIn testLogin = new SignIn(username,password);
 
-        Call<User> call = apiInterface.signIn(testlogin);
+        Call<User> call = apiInterface.signIn(testLogin);
 
         call.enqueue(new Callback<User>() {
             @Override
@@ -95,7 +95,12 @@ public class Login extends AppCompatActivity{
                                 Toast.makeText(Login.this,"Success Get token",Toast.LENGTH_LONG).show();
 
                             }else {
-                                Toast.makeText(Login.this,"Failed to get Token",Toast.LENGTH_LONG).show();
+                                try {
+                                    Toast.makeText(Login.this,response.errorBody().string(),Toast.LENGTH_LONG).show();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+//                                Toast.makeText(Login.this,"Failed to get Token",Toast.LENGTH_LONG).show();
                             }
                         }
 
