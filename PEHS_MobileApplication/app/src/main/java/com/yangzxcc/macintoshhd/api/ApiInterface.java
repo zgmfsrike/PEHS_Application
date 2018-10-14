@@ -27,7 +27,7 @@ public interface ApiInterface {
             "X-Requested-With:XMLHttpRequest"
     })
     @POST("login")
-    Call<User> signIn(@Body SignIn signIn);
+    Call<User> signIn(@Body String signIn);
 
     @Headers({
             "Content-Type: application/json",

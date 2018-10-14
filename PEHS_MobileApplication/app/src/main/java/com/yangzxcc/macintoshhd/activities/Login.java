@@ -21,6 +21,9 @@ import com.yangzxcc.macintoshhd.models.SignIn;
 import com.yangzxcc.macintoshhd.models.User;
 import com.yangzxcc.macintoshhd.pehs.R;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 import okhttp3.ResponseBody;
@@ -35,7 +38,7 @@ public class Login extends AppCompatActivity{
     TextInputLayout textInputLayoutUsername, textInputLayoutPassword;
     TextInputEditText textInputEditUsername, textInputEditPassword;
     AppCompatButton btnLogin;
-    String token;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,8 +59,11 @@ public class Login extends AppCompatActivity{
 
     }
     private void patientLogin() {
+
+
         String username = textInputEditUsername.getText().toString().trim();
         String password = textInputEditPassword.getText().toString().trim();
+
 
 
         if (username.isEmpty()){
@@ -75,16 +81,23 @@ public class Login extends AppCompatActivity{
 
         final ApiInterface apiInterface = retrofit.create(ApiInterface.class);
 
-        SignIn testLogin = new SignIn(username,password);
+        try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("username",username);
+            jsonObject.put("password",password);
+            Call<User> call = apiInterface.signIn(jsonObject.toString());
+            call.enqueue((Callback<User>) this);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+//        SignIn testLogin = new SignIn(username,password);
 
-        Call<User> call = apiInterface.signIn(testLogin);
-
-        call.enqueue(new Callback<User>() {
+        new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()){
-                    token = response.body().getAccessToken();
-                    String authHeader = "Bearer " + token;
+                    String token = response.body().getAccessToken();
+                    String authHeader = "Bearer "+token;
                     Call<InformationManager> call1 = apiInterface.getInfo(authHeader);
                     call1.enqueue(new Callback<InformationManager>() {
                         @Override
@@ -100,7 +113,7 @@ public class Login extends AppCompatActivity{
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
-//                                Toast.makeText(Login.this,"Failed to get Token",Toast.LENGTH_LONG).show();
+
                             }
                         }
 
@@ -109,6 +122,7 @@ public class Login extends AppCompatActivity{
                             Toast.makeText(Login.this,t.getMessage(),Toast.LENGTH_LONG).show();
                         }
                     });
+
                 }else {
                     Toast.makeText(Login.this,"Login not correct",Toast.LENGTH_LONG).show();
                 }
@@ -118,7 +132,7 @@ public class Login extends AppCompatActivity{
                 Toast.makeText(Login.this,t.getMessage(),Toast.LENGTH_LONG).show();
 
             }
-        });
+        };
 
     }
 }
