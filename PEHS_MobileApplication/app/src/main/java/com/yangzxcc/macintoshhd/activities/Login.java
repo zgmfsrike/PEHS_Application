@@ -83,7 +83,7 @@ public class Login extends AppCompatActivity{
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()){
-                    token = response.body().getToken();
+                    token = response.body().getAccessToken();
                     String authHeader = "Bearer " + token;
                     Call<InformationManager> call1 = apiInterface.getInfo(authHeader);
                     call1.enqueue(new Callback<InformationManager>() {
