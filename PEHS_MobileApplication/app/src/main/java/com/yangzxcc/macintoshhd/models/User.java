@@ -1,20 +1,24 @@
 package com.yangzxcc.macintoshhd.models;
 
-import com.google.gson.annotations.SerializedName;
+
+import com.squareup.moshi.Json;
 
 import java.util.Date;
 
 public class User {
-    private String token;
+    @Json(name = "access_token")
+    private String accessToken;
+    @Json(name = "token_type")
     private String tokenType;
-    private Date expiredDate;
+    @Json(name = "expires_at")
+    private Date expiresAt;
 
-    public String getToken() {
-        return token;
+    public String getAccessToken() {
+        return accessToken;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
     }
 
     public String getTokenType() {
@@ -25,11 +29,11 @@ public class User {
         this.tokenType = tokenType;
     }
 
-    public Date getExpiredDate() {
-        return expiredDate;
+    public Date getExpiresAt() {
+        return expiresAt;
     }
 
-    public void setExpiredDate(Date expiredDate) {
-        this.expiredDate = expiredDate;
+    public void setExpiresAt(Date expiresAt) {
+        this.expiresAt = expiresAt;
     }
 }
