@@ -2,7 +2,15 @@ package com.yangzxcc.macintoshhd.api;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.yangzxcc.macintoshhd.TokenManager;
+import com.yangzxcc.macintoshhd.models.AccessToken;
 
+import java.io.IOException;
+
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -17,6 +25,7 @@ public class ApiClient {
 
 
     public static Retrofit getRetrofit(){
+
         gson = new GsonBuilder()
                 .setLenient()
                 .create();
@@ -29,4 +38,5 @@ public class ApiClient {
         }
         return retrofit;
     }
+
 }

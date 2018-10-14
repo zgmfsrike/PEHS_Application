@@ -1,5 +1,6 @@
 package com.yangzxcc.macintoshhd.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
@@ -38,6 +39,7 @@ public class Login extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        tokenManager = TokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
         textInputLayoutUsername = (TextInputLayout) findViewById(R.id.textInputLayoutUsername);
 //        textInputLayoutUsername.setError("Please fill out this fields");
         textInputLayoutPassword = (TextInputLayout) findViewById(R.id.textInputLayoutPassword);
@@ -51,14 +53,17 @@ public class Login extends AppCompatActivity{
             }
         });
 
+        if(tokenManager.getToken().getAccessToken() != null){
+            startActivity(new Intent(Login.this, Home.class));
+            finish();
+        }
+
     }
     private void patientLogin() {
 
 
         String username = textInputEditUsername.getText().toString().trim();
         String password = textInputEditPassword.getText().toString().trim();
-
-
 
         if (username.isEmpty()){
 //            textInputEditUsername.setError("Please fill out this fields");
@@ -69,7 +74,6 @@ public class Login extends AppCompatActivity{
             textInputEditPassword.requestFocus();
             return;
         }
-//        startActivity(new Intent(Login.this,Home.class));
 
         Retrofit retrofit = ApiClient.getRetrofit();
 
@@ -87,15 +91,13 @@ public class Login extends AppCompatActivity{
         SignIn testLogin = new SignIn(username,password);
         Call<AccessToken> call = apiInterface.signIn(testLogin);
         call.enqueue(new Callback<AccessToken>() {
-            
+
             @Override
             public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
                 if (response.isSuccessful()){
                     tokenManager.saveToken(response.body());
-//                    String token = response.body().getAccessToken();
-                    AccessToken token = tokenManager.getToken();
-                    String authHeader = "Bearer " + token;
-                    Call<InformationManager> call1 = apiInterface.getInfo(authHeader);
+                    String token = String.valueOf(tokenManager.getToken());
+                    Call<InformationManager> call1 = apiInterface.getInfo("Bearer " + token);
                     call1.enqueue(new Callback<InformationManager>() {
                         @Override
                         public void onResponse(Call<InformationManager> call, Response<InformationManager> response) {
@@ -118,7 +120,6 @@ public class Login extends AppCompatActivity{
                             Toast.makeText(Login.this,t.getMessage(),Toast.LENGTH_LONG).show();
                         }
                     });
-
                 }else {
                     try {
                         Toast.makeText(Login.this,response.errorBody().string(),Toast.LENGTH_LONG).show();
