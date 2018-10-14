@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.yangzxcc.macintoshhd.TokenManager;
 import com.yangzxcc.macintoshhd.api.ApiClient;
 import com.yangzxcc.macintoshhd.api.ApiInterface;
@@ -90,7 +91,7 @@ public class Login extends AppCompatActivity{
             @Override
             public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
                 if (response.isSuccessful()){
-                    Toast.makeText(Login.this,response.message(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(Login.this,"Test :"+new Gson().toJson(response.body()),Toast.LENGTH_LONG).show();
 //                    if (response.body().getAccessToken() == null) {
 //                        Toast.makeText(Login.this,"No tokennnnn!!!!!!",Toast.LENGTH_LONG).show();
 //                    } else {}
