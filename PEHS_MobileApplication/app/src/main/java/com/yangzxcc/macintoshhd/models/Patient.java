@@ -3,17 +3,24 @@ package com.yangzxcc.macintoshhd.models;
 import com.google.gson.annotations.SerializedName;
 
 public class Patient {
-    @SerializedName("response")
-    private String Response;
+    @SerializedName("username")
+    private String username;
+    @SerializedName("password")
+    private String password;
 
-    @SerializedName("name")
-    private String Name;
-
-    public String getResponse() {
-        return Response;
+    public String getUsername() {
+        return username;
     }
 
-    public String getName() {
-        return Name;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

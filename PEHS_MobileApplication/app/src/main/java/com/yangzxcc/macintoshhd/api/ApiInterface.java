@@ -8,6 +8,7 @@ import com.yangzxcc.macintoshhd.models.SignIn;
 
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.FormUrlEncoded;
@@ -25,7 +26,18 @@ public interface ApiInterface {
             "Accept: application/json"
     })
     @POST("login")
-    Call<AccessToken> signIn(@Body SignIn signIn);
+    Call<Patient> signIn(@Body SignIn signIn);
+
+    @Headers({
+            "Content-Type: application/json",
+            "X-Requested-With:XMLHttpRequest",
+            "Accept: application/json"
+    })
+    @GET("info")
+    Call<AccessToken> getToken(@Query("username") String username,
+                                @Query("password") String password);
+
+
 
     @Headers({
             "Content-Type: application/json",

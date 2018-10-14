@@ -16,6 +16,7 @@ import com.yangzxcc.macintoshhd.api.ApiClient;
 import com.yangzxcc.macintoshhd.api.ApiInterface;
 import com.yangzxcc.macintoshhd.infos.InformationManager;
 import com.yangzxcc.macintoshhd.models.AccessToken;
+import com.yangzxcc.macintoshhd.models.Patient;
 import com.yangzxcc.macintoshhd.models.SignIn;
 import com.yangzxcc.macintoshhd.pehs.R;
 
@@ -24,6 +25,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,6 +37,7 @@ public class Login extends AppCompatActivity{
     TextInputEditText textInputEditUsername, textInputEditPassword;
     AppCompatButton btnLogin;
     TokenManager tokenManager;
+    ApiInterface apiInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,39 +84,43 @@ public class Login extends AppCompatActivity{
 
         Retrofit retrofit = ApiClient.getRetrofit();
 
-        final ApiInterface apiInterface = retrofit.create(ApiInterface.class);
+        apiInterface = retrofit.create(ApiInterface.class);
 
         SignIn testLogin = new SignIn(username,password);
 
-        Call<AccessToken> call = apiInterface.signIn(testLogin);
+        Call<Patient> call = apiInterface.signIn(testLogin);
 
+        call.enqueue(new Callback<Patient>() {
+            @Override
+            public void onResponse(Call<Patient> call, Response<Patient> response) {
+                if (response.isSuccessful()){
+                    String username = response.body().getUsername();
+                    String password = response.body().getPassword();
+                    accessToken(username,password);
+                }else {
+                    Toast.makeText(Login.this,"Fail Login",Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Patient> call, Throwable t) {
+                Toast.makeText(Login.this,t.getMessage(),Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void accessToken(String username, String password) {
+        Call<AccessToken> call = apiInterface.getToken(username,password);
         call.enqueue(new Callback<AccessToken>() {
             @Override
             public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
                 if (response.isSuccessful()){
-                    Toast.makeText(Login.this,"Test :"+new Gson().toJson(response.body()),Toast.LENGTH_LONG).show();
-//                    if (response.body().getAccessToken() == null) {
-//                        Toast.makeText(Login.this,"No tokennnnn!!!!!!",Toast.LENGTH_LONG).show();
-//                    } else {}
-//                        String token = response.body().getAccessToken();
-
-
-                    Call<InformationManager> call1 = apiInterface.getInfo(bearer + " " + token);
+                    String token = response.body().getAccessToken();
+                    Call<InformationManager> call1 = apiInterface.getInfo("Bearer " + token);
                     call1.enqueue(new Callback<InformationManager>() {
                         @Override
                         public void onResponse(Call<InformationManager> call, Response<InformationManager> response) {
-                            if (response.isSuccessful()){
 
-                                Toast.makeText(Login.this,"Success Get token",Toast.LENGTH_LONG).show();
-
-                            }else {
-                                try {
-                                    Toast.makeText(Login.this,response.errorBody().string(),Toast.LENGTH_LONG).show();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-
-                            }
                         }
 
                         @Override
@@ -122,19 +129,56 @@ public class Login extends AppCompatActivity{
                         }
                     });
                 }else {
-                    try {
-                        Toast.makeText(Login.this,response.errorBody().string(),Toast.LENGTH_LONG).show();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    Toast.makeText(Login.this,"Cannot Get Token",Toast.LENGTH_LONG).show();
                 }
             }
+
             @Override
             public void onFailure(Call<AccessToken> call, Throwable t) {
                 Toast.makeText(Login.this,t.getMessage(),Toast.LENGTH_LONG).show();
-
             }
         });
+//        call.enqueue(new Callback<AccessToken>() {
+//            @Override
+//            public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
+//                if (response.isSuccessful()){
+//                    Toast.makeText(Login.this,"Test :"+new Gson().toJson(response.body()),Toast.LENGTH_LONG).show();
+////                    if (response.body().getAccessToken() == null) {
+////                        Toast.makeText(Login.this,"No tokennnnn!!!!!!",Toast.LENGTH_LONG).show();
+////                    } else {}
+////                        String token = response.body().getAccessToken();
+//
+//
+//                    Call<Patient> call1 = apiInterface.getInfo(bearer + " " + token);
+//                    call1.enqueue(new Callback<Patient>() {
+//                        @Override
+//                        public void onResponse(Call<Patient> call, Response<Patient> response) {
+//
+//                        }
+//
+//                        @Override
+//                        public void onFailure(Call<Patient> call, Throwable t) {
+//
+//                        }
+//                    });
+//
+//                }else {
+//                    try {
+//                        Toast.makeText(Login.this,response.errorBody().string(),Toast.LENGTH_LONG).show();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//            @Override
+//            public void onFailure(Call<AccessToken> call, Throwable t) {
+//                Toast.makeText(Login.this,t.getMessage(),Toast.LENGTH_LONG).show();
+//
+//            }
+//        });
+
+
+
 
     }
 }
