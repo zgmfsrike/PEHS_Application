@@ -72,11 +72,11 @@ public class Login extends AppCompatActivity{
         String username = textInputEditUsername.getText().toString().trim();
         String password = textInputEditPassword.getText().toString().trim();
 
-        if (username.isEmpty()){
+        if (username.isEmpty()) {
 //            textInputEditUsername.setError("Please fill out this fields");
 //            textInputEditUsername.requestFocus();
             return;
-        }else if (password.isEmpty()){
+        } else if (password.isEmpty()) {
             textInputEditPassword.setError("Please fill out this fields");
             textInputEditPassword.requestFocus();
             return;
@@ -86,93 +86,63 @@ public class Login extends AppCompatActivity{
 
         apiInterface = retrofit.create(ApiInterface.class);
 
-        SignIn testLogin = new SignIn(username,password);
+        SignIn testLogin = new SignIn(username, password);
 
-        Call<Patient> call = apiInterface.signIn(testLogin);
+        Call<AccessToken> call = apiInterface.signIn(testLogin);
 
-        call.enqueue(new Callback<Patient>() {
+        call.enqueue(new Callback<AccessToken>() {
             @Override
-            public void onResponse(Call<Patient> call, Response<Patient> response) {
-                if (response.isSuccessful()){
-                    String username = response.body().getUsername();
-                    String password = response.body().getPassword();
+            public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
+                if (response.isSuccessful()) {
+                    String token = response.body().getAccessToken();
 
-                    Call<AccessToken> call1 = apiInterface.getToken(username,password);
-                    call1.enqueue(new Callback<AccessToken>() {
+                    Call<Patient> call1 = apiInterface.getUser("Bearer "+token);
+                    call1.enqueue(new Callback<Patient>() {
                         @Override
-                        public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
-                            if (response.isSuccessful()){
-                                if (response.body().getAccessToken() == null){
-                                    Toast.makeText(Login.this,"NULLLLLLLLLLLL TOKEN",Toast.LENGTH_LONG).show();
+                        public void onResponse(Call<Patient> call, Response<Patient> response) {
+                            String username = response.body().getUsername();
+                            String password = response.body().getPassword();
+                            Call<InformationManager> call2 = apiInterface.getToken(username,password);
+                            call2.enqueue(new Callback<InformationManager>() {
+                                @Override
+                                public void onResponse(Call<InformationManager> call, Response<InformationManager> response) {
+                                    if (response.isSuccessful()) {
+                                        Toast.makeText(Login.this,"Success",Toast.LENGTH_LONG).show();
+                                    }else {
+                                        try {
+                                            Log.d("MyTag",response.errorBody().string());
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
                                 }
-                            }else {
-                                try {
-                                    Log.w("myApp", response.errorBody().string());
-                                } catch (IOException e) {
-                                    e.printStackTrace();
+
+                                @Override
+                                public void onFailure(Call<InformationManager> call, Throwable t) {
+                                        Toast.makeText(Login.this,t.getMessage(),Toast.LENGTH_LONG).show();
                                 }
-                            }
+                            });
                         }
 
                         @Override
-                        public void onFailure(Call<AccessToken> call, Throwable t) {
+                        public void onFailure(Call<Patient> call, Throwable t) {
                             Toast.makeText(Login.this,t.getMessage(),Toast.LENGTH_LONG).show();
                         }
                     });
-                }else {
-                    Toast.makeText(Login.this,"Fail Login",Toast.LENGTH_LONG).show();
+
+
+                } else {
+                    Toast.makeText(Login.this,"Cannot Login",Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<Patient> call, Throwable t) {
+            public void onFailure(Call<AccessToken> call, Throwable t) {
+                Toast.makeText(Login.this, t.getMessage(), Toast.LENGTH_LONG).show();
                 Toast.makeText(Login.this,t.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
     }
-
-//    private void accessToken() {
-
-
-
-//        call.enqueue(new Callback<AccessToken>() {
-//            @Override
-//            public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
-//                if (response.isSuccessful()){
-//                    Toast.makeText(Login.this,"Test :"+new Gson().toJson(response.body()),Toast.LENGTH_LONG).show();
-////                    if (response.body().getAccessToken() == null) {
-////                        Toast.makeText(Login.this,"No tokennnnn!!!!!!",Toast.LENGTH_LONG).show();
-////                    } else {}
-////                        String token = response.body().getAccessToken();
-//
-//
-//                    Call<Patient> call1 = apiInterface.getInfo(bearer + " " + token);
-//                    call1.enqueue(new Callback<Patient>() {
-//                        @Override
-//                        public void onResponse(Call<Patient> call, Response<Patient> response) {
-//
-//                        }
-//
-//                        @Override
-//                        public void onFailure(Call<Patient> call, Throwable t) {
-//
-//                        }
-//                    });
-//
-//                }else {
-//                    try {
-//                        Toast.makeText(Login.this,response.errorBody().string(),Toast.LENGTH_LONG).show();
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//            @Override
-//            public void onFailure(Call<AccessToken> call, Throwable t) {
-//                Toast.makeText(Login.this,t.getMessage(),Toast.LENGTH_LONG).show();
-//
-//            }
-//        });
 }
 
 

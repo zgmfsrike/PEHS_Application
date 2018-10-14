@@ -26,7 +26,7 @@ public interface ApiInterface {
             "Accept: application/json"
     })
     @POST("login")
-    Call<Patient> signIn(@Body SignIn signIn);
+    Call<AccessToken> signIn(@Body SignIn signIn);
 
     @Headers({
             "Content-Type: application/json",
@@ -34,7 +34,7 @@ public interface ApiInterface {
             "Accept: application/json"
     })
     @GET("info")
-    Call<AccessToken> getToken(@Query("username") String username,
+    Call<InformationManager> getToken(@Query("username") String username,
                                 @Query("password") String password);
 
     //Second Method
@@ -44,7 +44,7 @@ public interface ApiInterface {
             "Accept: application/json"
     })
     @GET("info")
-    Call<AccessToken> getUser(@Header("Authorization") String authHeader);
+    Call<Patient> getUser(@Header("Authorization") String authHeader);
 
 
     @Headers({
