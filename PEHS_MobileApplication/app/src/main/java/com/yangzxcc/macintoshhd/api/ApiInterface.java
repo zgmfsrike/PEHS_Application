@@ -21,14 +21,16 @@ public interface ApiInterface {
 
     @Headers({
             "Content-Type: application/json",
-            "X-Requested-With:XMLHttpRequest"
+            "X-Requested-With:XMLHttpRequest",
+            "Accept: application/json"
     })
     @POST("login")
     Call<AccessToken> signIn(@Body SignIn signIn);
 
     @Headers({
             "Content-Type: application/json",
-            "X-Requested-With:XMLHttpRequest"
+            "X-Requested-With:XMLHttpRequest",
+            "Accept: application/json"
     })
     @GET("info")
     Call<InformationManager> getInfo(@Header("Authorization") String authHeader);

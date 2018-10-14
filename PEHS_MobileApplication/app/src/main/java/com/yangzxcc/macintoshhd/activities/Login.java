@@ -95,8 +95,7 @@ public class Login extends AppCompatActivity{
             @Override
             public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
                 if (response.isSuccessful()){
-                    tokenManager.saveToken(response.body());
-                    String token = String.valueOf(tokenManager.getToken());
+                    String token = response.body().getAccessToken();
                     Call<InformationManager> call1 = apiInterface.getInfo("Bearer " + token);
                     call1.enqueue(new Callback<InformationManager>() {
                         @Override
