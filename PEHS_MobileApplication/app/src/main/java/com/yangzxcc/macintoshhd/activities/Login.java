@@ -64,8 +64,8 @@ public class Login extends AppCompatActivity{
         }
 
     }
-    private static String token;
-    private static String bearer;
+
+
     private void patientLogin() {
 
 
@@ -96,7 +96,41 @@ public class Login extends AppCompatActivity{
                 if (response.isSuccessful()){
                     String username = response.body().getUsername();
                     String password = response.body().getPassword();
-                    accessToken(username,password);
+                    Call<AccessToken> call1 = apiInterface.getToken(username,password);
+                    call1.enqueue(new Callback<AccessToken>() {
+                        @Override
+                        public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
+                            if (response.isSuccessful()){
+                                if (response.body().getAccessToken() == null){
+                                    Toast.makeText(Login.this,"NULLLLLLLLLLLL TOKEN",Toast.LENGTH_LONG).show();
+                                }
+                                String token = response.body().getAccessToken();
+                                Call<InformationManager> call1 = apiInterface.getInfo("Bearer " + token);
+                                call1.enqueue(new Callback<InformationManager>() {
+                                    @Override
+                                    public void onResponse(Call<InformationManager> call, Response<InformationManager> response) {
+
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<InformationManager> call, Throwable t) {
+                                        Toast.makeText(Login.this,t.getMessage(),Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                            }else {
+                                try {
+                                    Toast.makeText(Login.this,response.errorBody().string(),Toast.LENGTH_LONG).show();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<AccessToken> call, Throwable t) {
+                            Toast.makeText(Login.this,t.getMessage(),Toast.LENGTH_LONG).show();
+                        }
+                    });
                 }else {
                     Toast.makeText(Login.this,"Fail Login",Toast.LENGTH_LONG).show();
                 }
@@ -109,42 +143,10 @@ public class Login extends AppCompatActivity{
         });
     }
 
-    private void accessToken(String username, String password) {
-        Call<AccessToken> call = apiInterface.getToken(username,password);
-        call.enqueue(new Callback<AccessToken>() {
-            @Override
-            public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
-                if (response.isSuccessful()){
-                    if (response.body().getAccessToken() == null){
-                        Toast.makeText(Login.this,"NULLLLLLLLLLLL TOKEN",Toast.LENGTH_LONG).show();
-                    }
-                    String token = response.body().getAccessToken();
-                    Call<InformationManager> call1 = apiInterface.getInfo("Bearer " + token);
-                    call1.enqueue(new Callback<InformationManager>() {
-                        @Override
-                        public void onResponse(Call<InformationManager> call, Response<InformationManager> response) {
+    private void accessToken() {
 
-                        }
 
-                        @Override
-                        public void onFailure(Call<InformationManager> call, Throwable t) {
-                            Toast.makeText(Login.this,t.getMessage(),Toast.LENGTH_LONG).show();
-                        }
-                    });
-                }else {
-                    try {
-                        Toast.makeText(Login.this,response.errorBody().string(),Toast.LENGTH_LONG).show();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
 
-            @Override
-            public void onFailure(Call<AccessToken> call, Throwable t) {
-                Toast.makeText(Login.this,t.getMessage(),Toast.LENGTH_LONG).show();
-            }
-        });
 //        call.enqueue(new Callback<AccessToken>() {
 //            @Override
 //            public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {

@@ -33,10 +33,18 @@ public interface ApiInterface {
             "X-Requested-With:XMLHttpRequest",
             "Accept: application/json"
     })
-    @GET("info")
+    @GET("login")
     Call<AccessToken> getToken(@Query("username") String username,
                                 @Query("password") String password);
 
+    //Second Method
+    @Headers({
+            "Content-Type: application/json",
+            "X-Requested-With:XMLHttpRequest",
+            "Accept: application/json"
+    })
+    @GET("info")
+    Call<AccessToken> getUser(@Header("Authorization") String authHeader);
 
 
     @Headers({
@@ -54,10 +62,6 @@ public interface ApiInterface {
 //    Call<ResponseBody> getInfo(@Header("Authorization") String authHeader);
 
 
-
-
-    @GET("login")
-    Call<AccessToken> getUser(@Header("Authorization") String authHeader);
 
     @GET("posts")
     Call<List<HealthRecord>> getPosts();
