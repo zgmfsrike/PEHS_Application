@@ -115,6 +115,9 @@ public class Login extends AppCompatActivity{
             @Override
             public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
                 if (response.isSuccessful()){
+                    if (response.body().getAccessToken() == null){
+                        Toast.makeText(Login.this,"NULLLLLLLLLLLL TOKEN",Toast.LENGTH_LONG).show();
+                    }
                     String token = response.body().getAccessToken();
                     Call<InformationManager> call1 = apiInterface.getInfo("Bearer " + token);
                     call1.enqueue(new Callback<InformationManager>() {
