@@ -119,7 +119,7 @@ public class Login extends AppCompatActivity{
                                 });
                             }else {
                                 try {
-                                    Toast.makeText(Login.this,response.errorBody().string(),Toast.LENGTH_LONG).show();
+                                    Log.w("myApp", response.errorBody().string());
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
