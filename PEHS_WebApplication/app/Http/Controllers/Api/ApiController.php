@@ -58,6 +58,8 @@ class ApiController extends Controller
       ]);
     }
 
+
+
     /**
     * Logout user (Revoke the token)
     *
