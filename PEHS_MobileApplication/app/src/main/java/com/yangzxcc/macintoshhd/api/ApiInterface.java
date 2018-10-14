@@ -29,7 +29,10 @@ public interface ApiInterface {
     @POST("login")
     Call<User> signIn(@Body SignIn signIn);
 
-
+    @Headers({
+            "Content-Type: application/json",
+            "X-Requested-With:XMLHttpRequest"
+    })
     @GET("info")
     Call<InformationManager> getInfo(@Header("Authorization") String authHeader);
 
