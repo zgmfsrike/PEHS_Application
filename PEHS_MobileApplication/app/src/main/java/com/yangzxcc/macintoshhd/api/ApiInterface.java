@@ -33,7 +33,7 @@ public interface ApiInterface {
             "X-Requested-With:XMLHttpRequest",
             "Accept: application/json"
     })
-    @GET("login")
+    @GET("info")
     Call<AccessToken> getToken(@Query("username") String username,
                                 @Query("password") String password);
 

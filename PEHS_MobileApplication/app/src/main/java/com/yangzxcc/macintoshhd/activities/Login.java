@@ -96,7 +96,7 @@ public class Login extends AppCompatActivity{
                 if (response.isSuccessful()){
                     String username = response.body().getUsername();
                     String password = response.body().getPassword();
-                    
+
                     Call<AccessToken> call1 = apiInterface.getToken(username,password);
                     call1.enqueue(new Callback<AccessToken>() {
                         @Override
