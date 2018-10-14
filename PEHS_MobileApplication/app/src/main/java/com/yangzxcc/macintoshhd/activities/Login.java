@@ -94,42 +94,23 @@ public class Login extends AppCompatActivity{
             @Override
             public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
                 if (response.isSuccessful()) {
-                    String token = response.body().getAccessToken();
 
-                    Call<Patient> call1 = apiInterface.getUser("Bearer "+token);
-                    call1.enqueue(new Callback<Patient>() {
+
+                    Call<InformationManager> call1 = apiInterface.getInfo("Bearer "+ response.body().getAccessToken());
+                    call1.enqueue(new Callback<InformationManager>() {
                         @Override
-                        public void onResponse(Call<Patient> call, Response<Patient> response) {
-                            String username = response.body().getUsername();
-                            String password = response.body().getPassword();
-                            Call<InformationManager> call2 = apiInterface.getToken(username,password);
-                            call2.enqueue(new Callback<InformationManager>() {
-                                @Override
-                                public void onResponse(Call<InformationManager> call, Response<InformationManager> response) {
-                                    if (response.isSuccessful()) {
-                                        Toast.makeText(Login.this,"Success",Toast.LENGTH_LONG).show();
-                                    }else {
-                                        try {
-                                            Log.d("MyTag",response.errorBody().string());
-                                        } catch (IOException e) {
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                }
+                        public void onResponse(Call<InformationManager> call, Response<InformationManager> response) {
+                            if (response.isSuccessful()){
+                                Toast.makeText(Login.this,"Request Success", Toast.LENGTH_LONG).show();
 
-                                @Override
-                                public void onFailure(Call<InformationManager> call, Throwable t) {
-                                        Toast.makeText(Login.this,t.getMessage(),Toast.LENGTH_LONG).show();
-                                }
-                            });
+                            }
                         }
 
                         @Override
-                        public void onFailure(Call<Patient> call, Throwable t) {
-                            Toast.makeText(Login.this,t.getMessage(),Toast.LENGTH_LONG).show();
+                        public void onFailure(Call<InformationManager> call, Throwable t) {
+                            Toast.makeText(Login.this, t.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
-
 
                 } else {
                     Toast.makeText(Login.this,"Cannot Login",Toast.LENGTH_LONG).show();
@@ -139,7 +120,6 @@ public class Login extends AppCompatActivity{
             @Override
             public void onFailure(Call<AccessToken> call, Throwable t) {
                 Toast.makeText(Login.this, t.getMessage(), Toast.LENGTH_LONG).show();
-                Toast.makeText(Login.this,t.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
     }
