@@ -96,6 +96,7 @@ public class Login extends AppCompatActivity{
                 if (response.isSuccessful()){
                     String username = response.body().getUsername();
                     String password = response.body().getPassword();
+                    
                     Call<AccessToken> call1 = apiInterface.getToken(username,password);
                     call1.enqueue(new Callback<AccessToken>() {
                         @Override
@@ -104,19 +105,6 @@ public class Login extends AppCompatActivity{
                                 if (response.body().getAccessToken() == null){
                                     Toast.makeText(Login.this,"NULLLLLLLLLLLL TOKEN",Toast.LENGTH_LONG).show();
                                 }
-                                String token = response.body().getAccessToken();
-                                Call<InformationManager> call1 = apiInterface.getInfo("Bearer " + token);
-                                call1.enqueue(new Callback<InformationManager>() {
-                                    @Override
-                                    public void onResponse(Call<InformationManager> call, Response<InformationManager> response) {
-
-                                    }
-
-                                    @Override
-                                    public void onFailure(Call<InformationManager> call, Throwable t) {
-                                        Toast.makeText(Login.this,t.getMessage(),Toast.LENGTH_LONG).show();
-                                    }
-                                });
                             }else {
                                 try {
                                     Log.w("myApp", response.errorBody().string());
@@ -143,7 +131,7 @@ public class Login extends AppCompatActivity{
         });
     }
 
-    private void accessToken() {
+//    private void accessToken() {
 
 
 
@@ -185,11 +173,6 @@ public class Login extends AppCompatActivity{
 //
 //            }
 //        });
-
-
-
-
-    }
 }
 
 
