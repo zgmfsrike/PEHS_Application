@@ -3,34 +3,44 @@ package com.yangzxcc.macintoshhd.infos;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
 public class PersonalInformation {
     @SerializedName("name")
     @Expose
     private String name;
+
     @SerializedName("surname")
     @Expose
     private String surname;
+
     @SerializedName("email")
     @Expose
     private String email;
+
     @SerializedName("address")
     @Expose
     private String address;
+
     @SerializedName("gender")
     @Expose
     private String gender;
+
     @SerializedName("telephone_number")
     @Expose
     private String telephoneNumber;
+
     @SerializedName("drug_allergy")
     @Expose
-    private Object drugAllergy;
+    private String drugAllergy = null;
+
     @SerializedName("underlying_disease")
     @Expose
-    private Object underlyingDisease;
+    private String underlyingDisease = null;
+
     @SerializedName("date_of_birth")
     @Expose
-    private String dateOfBirth;
+    private Date dateOfBirth;
 
     public String getName() {
         return name;
@@ -79,27 +89,28 @@ public class PersonalInformation {
     public void setTelephoneNumber(String telephoneNumber) {
         this.telephoneNumber = telephoneNumber;
     }
-    public Object getDrugAllergy() {
+
+    public String getDrugAllergy() {
         return drugAllergy;
     }
 
-    public void setDrugAllergy(Object drugAllergy) {
+    public void setDrugAllergy(String drugAllergy) {
         this.drugAllergy = drugAllergy;
     }
 
-    public Object getUnderlyingDisease() {
+    public String getUnderlyingDisease() {
         return underlyingDisease;
     }
 
-    public void setUnderlyingDisease(Object underlyingDisease) {
+    public void setUnderlyingDisease(String underlyingDisease) {
         this.underlyingDisease = underlyingDisease;
     }
 
-    public String getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 }

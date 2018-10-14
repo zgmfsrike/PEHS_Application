@@ -1,6 +1,7 @@
 package com.yangzxcc.macintoshhd.api;
 
 import com.yangzxcc.macintoshhd.activities.Login;
+import com.yangzxcc.macintoshhd.infos.InformationManager;
 import com.yangzxcc.macintoshhd.models.HealthRecord;
 import com.yangzxcc.macintoshhd.models.Patient;
 import com.yangzxcc.macintoshhd.models.SignIn;
@@ -26,14 +27,23 @@ public interface ApiInterface {
             "X-Requested-With:XMLHttpRequest"
     })
     @POST("login")
-    Call<User> login(@Body SignIn signIn);
+    Call<User> signIn(@Body SignIn signIn);
 
 
     @GET("info")
-    Call<ResponseBody> getInfo(@Header("Authorization") String authHeader);
+    Call<InformationManager> getInfo(@Header("Authorization") String authHeader);
 
-//    @GET("login")
-//    Call<User> getUser(@Header("Authorization") String authHeader);
+
+
+
+//    @GET("info")
+//    Call<ResponseBody> getInfo(@Header("Authorization") String authHeader);
+
+
+
+
+    @GET("login")
+    Call<User> getUser(@Header("Authorization") String authHeader);
 
     @GET("posts")
     Call<List<HealthRecord>> getPosts();

@@ -38,63 +38,63 @@ public class TestLogin extends AppCompatActivity {
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                login();
+//                login();
             }
         });
 
         btngetData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                token();
+
             }
         });
 
     }
 
     private static String text;
-    private void token() {
-        Call<ResponseBody> call = apiInterface.getInfo(text);
 
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.isSuccessful()){
-                    try {
-                        Toast.makeText(TestLogin.this,response.body().string(),Toast.LENGTH_LONG).show();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
 
-                }else {
-                    Toast.makeText(TestLogin.this,"Login not correct",Toast.LENGTH_LONG).show();
-                }
-            }
 
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//    private void login() {
+//        SignIn signIn = new SignIn("nimmit","123456");
+//        Call<User> call = apiInterface.signIn(signIn);
+//        call.enqueue(new Callback<User>() {
+//            @Override
+//            public void onResponse(Call<User> call, Response<User> response) {
+//                if (response.isSuccessful()){
+//                    Toast.makeText(TestLogin.this,"pass ???????",Toast.LENGTH_LONG).show();
+//                    text = response.body().getToken();
+//                    Call<ResponseBody> call2 = apiInterface.getInfo(text);
+//                    call2.enqueue(new Callback<ResponseBody>() {
+//                        @Override
+//                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//                            if (response.isSuccessful()){
+//                                try {
+//                                    Toast.makeText(TestLogin.this,response.body().string(),Toast.LENGTH_LONG).show();
+//                                } catch (IOException e) {
+//                                    e.printStackTrace();
+//                                }
+////                                Toast.makeText(TestLogin.this,"Login  correct",Toast.LENGTH_LONG).show();
+//
+//                            }else {
+//                                Toast.makeText(TestLogin.this,"Login not correct",Toast.LENGTH_LONG).show();
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                                    Toast.makeText(TestLogin.this,t.getMessage(),Toast.LENGTH_LONG).show();
+//                        }
+//                    });
+//                }else {
+//                    Toast.makeText(TestLogin.this,response.message(),Toast.LENGTH_LONG).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<User> call, Throwable t) {
+//                Toast.makeText(TestLogin.this,t.getMessage(),Toast.LENGTH_LONG).show();
+//            }
+//        });
 
-            }
-        });
-    }
-
-    private void login() {
-        SignIn signIn = new SignIn("nimmit","123456");
-        Call<User> call = apiInterface.login(signIn);
-        call.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                if (response.isSuccessful()){
-                    Toast.makeText(TestLogin.this,"pass ???????",Toast.LENGTH_LONG).show();
-                    text = response.body().getToken();
-                }else {
-                    Toast.makeText(TestLogin.this,response.message(),Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                Toast.makeText(TestLogin.this,t.getMessage(),Toast.LENGTH_LONG).show();
-            }
-        });
-    }
 }

@@ -8,9 +8,9 @@ import java.util.List;
 
 public class InformationManager {
     @SerializedName("personal_information")
-    private List<PersonalInformation> personalInformation = null;
+    private List<PersonalInformation> personalInformation;
     @SerializedName("health_information")
-    private List<HealthInformation> healthInformation = null;
+    private List<HealthInformation> healthInformation;
 
     public List<PersonalInformation> getPersonalInformation() {
         return personalInformation;
