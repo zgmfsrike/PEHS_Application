@@ -132,7 +132,11 @@ public class Login extends AppCompatActivity{
                         }
                     });
                 }else {
-                    Toast.makeText(Login.this,"Cannot Get Token",Toast.LENGTH_LONG).show();
+                    try {
+                        Toast.makeText(Login.this,response.errorBody().string(),Toast.LENGTH_LONG).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
