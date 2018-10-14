@@ -5,7 +5,7 @@ import com.squareup.moshi.Json;
 
 import java.util.Date;
 
-public class User {
+public class AccessToken {
     @Json(name = "access_token")
     private String accessToken;
     @Json(name = "token_type")

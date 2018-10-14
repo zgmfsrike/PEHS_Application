@@ -1,24 +1,19 @@
 package com.yangzxcc.macintoshhd.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
-import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.yangzxcc.macintoshhd.TokenManager;
 import com.yangzxcc.macintoshhd.api.ApiClient;
 import com.yangzxcc.macintoshhd.api.ApiInterface;
 import com.yangzxcc.macintoshhd.infos.InformationManager;
-import com.yangzxcc.macintoshhd.models.Patient;
+import com.yangzxcc.macintoshhd.models.AccessToken;
 import com.yangzxcc.macintoshhd.models.SignIn;
-import com.yangzxcc.macintoshhd.models.User;
 import com.yangzxcc.macintoshhd.pehs.R;
 
 import org.json.JSONException;
@@ -26,18 +21,17 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Login extends AppCompatActivity{
 
     TextInputLayout textInputLayoutUsername, textInputLayoutPassword;
     TextInputEditText textInputEditUsername, textInputEditPassword;
     AppCompatButton btnLogin;
+    TokenManager tokenManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,23 +75,25 @@ public class Login extends AppCompatActivity{
 
         final ApiInterface apiInterface = retrofit.create(ApiInterface.class);
 
-        try {
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("username",username);
-            jsonObject.put("password",password);
-            Call<User> call = apiInterface.signIn(jsonObject.toString());
-            call.enqueue((Callback<User>) this);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            JSONObject jsonObject = new JSONObject();
+//            jsonObject.put("username",username);
+//            jsonObject.put("password",password);
+//            Call<AccessToken> call = apiInterface.signIn(jsonObject.toString());
+//            call.enqueue((Callback<AccessToken>) this);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
 //        SignIn testLogin = new SignIn(username,password);
-
-        new Callback<User>() {
+        Call<AccessToken> call = apiInterface.login(username,password);
+        call.enqueue(new Callback<AccessToken>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
+            public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
                 if (response.isSuccessful()){
-                    String token = response.body().getAccessToken();
-                    String authHeader = "Bearer "+token;
+                    tokenManager.saveToken(response.body());
+//                    String token = response.body().getAccessToken();
+                    AccessToken token = tokenManager.getToken();
+                    String authHeader = "Bearer " + token;
                     Call<InformationManager> call1 = apiInterface.getInfo(authHeader);
                     call1.enqueue(new Callback<InformationManager>() {
                         @Override
@@ -128,11 +124,11 @@ public class Login extends AppCompatActivity{
                 }
             }
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(Call<AccessToken> call, Throwable t) {
                 Toast.makeText(Login.this,t.getMessage(),Toast.LENGTH_LONG).show();
 
             }
-        };
+        });
 
     }
 }

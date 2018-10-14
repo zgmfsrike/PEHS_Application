@@ -1,15 +1,12 @@
 package com.yangzxcc.macintoshhd.api;
 
-import com.yangzxcc.macintoshhd.activities.Login;
 import com.yangzxcc.macintoshhd.infos.InformationManager;
+import com.yangzxcc.macintoshhd.models.AccessToken;
 import com.yangzxcc.macintoshhd.models.HealthRecord;
 import com.yangzxcc.macintoshhd.models.Patient;
-import com.yangzxcc.macintoshhd.models.SignIn;
-import com.yangzxcc.macintoshhd.models.User;
 
 import java.util.List;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -27,7 +24,8 @@ public interface ApiInterface {
             "X-Requested-With:XMLHttpRequest"
     })
     @POST("login")
-    Call<User> signIn(@Body String signIn);
+    @FormUrlEncoded
+    Call<AccessToken> login(@Field("username") String username, @Field("password") String password);
 
     @Headers({
             "Content-Type: application/json",
@@ -46,7 +44,7 @@ public interface ApiInterface {
 
 
     @GET("login")
-    Call<User> getUser(@Header("Authorization") String authHeader);
+    Call<AccessToken> getUser(@Header("Authorization") String authHeader);
 
     @GET("posts")
     Call<List<HealthRecord>> getPosts();

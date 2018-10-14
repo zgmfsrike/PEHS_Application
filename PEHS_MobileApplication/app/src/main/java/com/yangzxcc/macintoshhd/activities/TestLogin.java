@@ -4,20 +4,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.yangzxcc.macintoshhd.api.ApiClient;
 import com.yangzxcc.macintoshhd.api.ApiInterface;
-import com.yangzxcc.macintoshhd.models.SignIn;
-import com.yangzxcc.macintoshhd.models.User;
 import com.yangzxcc.macintoshhd.pehs.R;
 
-import java.io.IOException;
-
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class TestLogin extends AppCompatActivity {
@@ -57,10 +48,10 @@ public class TestLogin extends AppCompatActivity {
 
 //    private void login() {
 //        SignIn signIn = new SignIn("nimmit","123456");
-//        Call<User> call = apiInterface.signIn(signIn);
-//        call.enqueue(new Callback<User>() {
+//        Call<AccessToken> call = apiInterface.signIn(signIn);
+//        call.enqueue(new Callback<AccessToken>() {
 //            @Override
-//            public void onResponse(Call<User> call, Response<User> response) {
+//            public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
 //                if (response.isSuccessful()){
 //                    Toast.makeText(TestLogin.this,"pass ???????",Toast.LENGTH_LONG).show();
 //                    text = response.body().getToken();
@@ -92,7 +83,7 @@ public class TestLogin extends AppCompatActivity {
 //            }
 //
 //            @Override
-//            public void onFailure(Call<User> call, Throwable t) {
+//            public void onFailure(Call<AccessToken> call, Throwable t) {
 //                Toast.makeText(TestLogin.this,t.getMessage(),Toast.LENGTH_LONG).show();
 //            }
 //        });
