@@ -95,8 +95,9 @@ public class Login extends AppCompatActivity{
             public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
-                        String value = response.body().getAccessToken();
-                        Toast.makeText(Login.this,"Get Json",Toast.LENGTH_LONG).show();
+//                        String value = response.body().getAccessToken();
+                        Log.w("Get Json","Get JSon :" + new Gson().toJson(response.body().getAccessToken()));
+                        Toast.makeText(Login.this,"Get Json :"+ new Gson().toJson(response.body().getAccessToken()),Toast.LENGTH_LONG).show();
                     }else {
                         try {
                             Toast.makeText(Login.this,response.errorBody().string(),Toast.LENGTH_LONG).show();
