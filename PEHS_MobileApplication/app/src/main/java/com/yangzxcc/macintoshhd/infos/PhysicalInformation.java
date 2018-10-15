@@ -3,7 +3,9 @@ package com.yangzxcc.macintoshhd.infos;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class PhysicalInformation {
+import java.io.Serializable;
+
+public class PhysicalInformation implements Serializable {
     @SerializedName("physical_ex_name")
     @Expose
     private String physicalExName;
@@ -11,7 +13,7 @@ public class PhysicalInformation {
     @Expose
     private String physicalExValue;
 
-    public String getPhysicalExName() {
+    public String getPhysicalExName(int i) {
         return physicalExName;
     }
 
@@ -19,7 +21,7 @@ public class PhysicalInformation {
         this.physicalExName = physicalExName;
     }
 
-    public String getPhysicalExValue() {
+    public String getPhysicalExValue(int i) {
         return physicalExValue;
     }
 

@@ -14,11 +14,24 @@ import android.view.MenuItem;
 import com.yangzxcc.macintoshhd.api.ApiClient;
 import com.yangzxcc.macintoshhd.api.ApiInterface;
 import com.yangzxcc.macintoshhd.HealthAdapter;
+import com.yangzxcc.macintoshhd.infos.BloodInformation;
+import com.yangzxcc.macintoshhd.infos.ChemistryInformation;
+import com.yangzxcc.macintoshhd.infos.HealthInformation;
+import com.yangzxcc.macintoshhd.infos.HealthRecordInformation;
+import com.yangzxcc.macintoshhd.infos.InformationManager;
+import com.yangzxcc.macintoshhd.infos.PersonalInformation;
+import com.yangzxcc.macintoshhd.infos.PhysicalInformation;
+import com.yangzxcc.macintoshhd.infos.UrineInformation;
 import com.yangzxcc.macintoshhd.models.HealthRecord;
 import com.yangzxcc.macintoshhd.pehs.R;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class Home extends AppCompatActivity
@@ -27,7 +40,15 @@ public class Home extends AppCompatActivity
     private Toolbar toolbar;
     private HealthAdapter adapter;
     private List<HealthRecord> healthRecordList;
-    String name;
+    String token;
+    List<PersonalInformation> personalInformations;
+    List<HealthInformation> healthInformations;
+    List<HealthRecordInformation> healthRecordInformations;
+    List<PhysicalInformation> physicalInformations;
+    List<ChemistryInformation> chemistryInformations;
+    List<BloodInformation> bloodInformations;
+    List<UrineInformation> urineInformations;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,11 +69,42 @@ public class Home extends AppCompatActivity
 
         ApiInterface apiInterface = retrofit.create(ApiInterface.class);
 
+        final Intent intent = getIntent();
+        token = intent.getStringExtra("token");
+
+        Call<InformationManager> call1 = apiInterface.getInfo("Bearer " + token);
+        call1.enqueue(new Callback<InformationManager>() {
+            @Override
+            public void onResponse(Call<InformationManager> call, Response<InformationManager> response) {
+                if (response.isSuccessful()) {
+                    personalInformations = response.body().getPersonalInformation();
+                    healthInformations = response.body().getHealthInformation();
 
 
+                    HealthInformation health = healthInformations.get(0);
+                    healthRecordInformations = health.getHealthRecordInformations();
+
+                    for (int i = 0; i < healthRecordInformations.size(); i++) {
+                        HealthRecordInformation record = healthRecordInformations.get(i);
+                        physicalInformations = record.getPhysicalInformation();
+                        chemistryInformations = record.getChemistryInformation();
+                        bloodInformations = record.getBloodInformation();
+                        urineInformations = record.getUrineInformation();
+                    }
+
+
+//                    PhysicalInformation phy = physicalInformations.get(0);
+//                    phy.getPhysicalExName();
+//                    phy.getPhysicalExValue();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<InformationManager> call, Throwable t) {
+
+            }
+        });
     }
-
-
 
 
     @Override
@@ -94,22 +146,68 @@ public class Home extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
 
+        if (id == R.id.nav_profile) {
 
-        } else if (id == R.id.nav_profile) {
-            Intent intent = new Intent(Home.this,Profile.class);
-            startActivity(intent);
+            PersonalInformation value = personalInformations.get(0);
+            value.getName();
+            value.getSurname();
+            value.getEmail();
+            value.getAddress();
+            value.getGender();
+            value.getDateOfBirth();
+            value.getTelephoneNumber();
+            value.getDrugAllergy();
+            value.getUnderlyingDisease();
+            Intent intent1 = new Intent(Home.this, Profile.class);
+            intent1.putExtra("name", value.getName());
+            intent1.putExtra("surname", value.getSurname());
+            intent1.putExtra("email", value.getEmail());
+            intent1.putExtra("address", value.getAddress());
+            intent1.putExtra("gender", value.getGender());
+            intent1.putExtra("date", value.getDateOfBirth());
+            intent1.putExtra("phone", value.getTelephoneNumber());
+            intent1.putExtra("drug", value.getDrugAllergy());
+            intent1.putExtra("disease", value.getUnderlyingDisease());
+            startActivity(intent1);
 
         } else if (id == R.id.nav_record_history) {
-            startActivity(new Intent(Home.this,RecordHistory.class));
+            healthRecordInformations = new ArrayList<HealthRecordInformation>();
+            Intent intent = new Intent(Home.this, RecordHistory.class);
+            intent.putExtra("record", (Serializable) healthRecordInformations);
+            startActivity(intent);
+
+        } else if (id == R.id.nav_car) {
+            PersonalInformation value = personalInformations.get(0);
+            Intent intent = new Intent(Home.this, Cardiovascular.class);
+            physicalInformations = new ArrayList<PhysicalInformation>();
+            chemistryInformations = new ArrayList<ChemistryInformation>();
+            value.getDateOfBirth();
+            intent.putExtra("date", value.getDateOfBirth());
+            intent.putExtra("physical", (Serializable) physicalInformations);
+            intent.putExtra("chem", (Serializable) chemistryInformations);
+            startActivity(intent);
+
+        } else if (id == R.id.nav_health) {
+            Intent intent = new Intent(Home.this, HealthDataList.class);
+            physicalInformations = new ArrayList<PhysicalInformation>();
+            chemistryInformations = new ArrayList<ChemistryInformation>();
+            bloodInformations = new ArrayList<BloodInformation>();
+            urineInformations = new ArrayList<UrineInformation>();
+            intent.putExtra("physical", (Serializable) physicalInformations);
+            intent.putExtra("chemical", (Serializable) chemistryInformations);
+            intent.putExtra("blood", (Serializable) bloodInformations);
+            intent.putExtra("urine", (Serializable) urineInformations);
+            startActivity(intent);
 
         } else if (id == R.id.nav_logout) {
 
+
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
+        return false;
     }
 }

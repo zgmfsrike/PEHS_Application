@@ -3,7 +3,9 @@ package com.yangzxcc.macintoshhd.infos;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ChemistryInformation {
+import java.io.Serializable;
+
+public class ChemistryInformation implements Serializable {
     @SerializedName("clinical_chemistry_name")
     @Expose
     private String clinicalChemistryName;
@@ -19,7 +21,7 @@ public class ChemistryInformation {
         this.clinicalChemistryName = clinicalChemistryName;
     }
 
-    public String getClinicalChemistryValue() {
+    public String getClinicalChemistryValue(int i) {
         return clinicalChemistryValue;
     }
 

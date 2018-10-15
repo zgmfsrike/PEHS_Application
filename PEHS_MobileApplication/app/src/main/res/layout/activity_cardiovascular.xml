@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.yangzxcc.macintoshhd.activities.Cardiovascular">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize" />
+
+    </android.support.design.widget.AppBarLayout>
+
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+           <TableLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:layout_alignParentStart="true"
+               android:layout_alignParentTop="true">
+
+               <TableRow
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent">
+
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:layout_marginLeft="20dp"
+                       android:layout_marginTop="20dp"
+                       android:text="Age"
+                       android:textAlignment="center"
+                       android:textColor="@color/text"
+                       android:textSize="25sp"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:id="@+id/age"
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:layout_marginLeft="40dp"
+                       android:layout_marginTop="20dp"
+                       android:layout_marginRight="100dp"
+                       android:text="Input Age"
+                       android:textColor="@color/text"
+                       android:textSize="25sp"
+                       android:textStyle="bold" />
+
+
+               </TableRow>
+
+               <TableRow
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent">
+
+                   <TextView
+
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:layout_marginLeft="20dp"
+                       android:text="Sex"
+                       android:textAlignment="center"
+                       android:textColor="@color/text"
+                       android:textSize="25sp"
+                       android:textStyle="bold" />
+
+                   <RadioGroup
+                       android:orientation="horizontal">
+
+                       <RadioButton
+                           android:id="@+id/sexMale"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="Male"
+                           android:textColor="@color/text"
+                           android:textSize="25sp" />
+
+                       <RadioButton
+                           android:id="@+id/sexFemale"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginLeft="5dp"
+                           android:text="Female"
+                           android:textColor="@color/text"
+                           android:textSize="25sp" />
+
+                   </RadioGroup>
+
+               </TableRow>
+
+               <TableRow
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent">
+
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:layout_marginLeft="20dp"
+                       android:text="Systolic"
+                       android:textAlignment="center"
+                       android:gravity="center"
+                       android:textColor="@color/text"
+                       android:textSize="25sp"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:id="@+id/systo"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:layout_marginLeft="40dp"
+                       android:layout_marginRight="100dp"
+                       android:text="systolic"
+                       android:textColor="@color/text"
+                       android:textSize="25sp"
+                       android:textStyle="bold" />
+
+
+               </TableRow>
+               <TableRow
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent">
+
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:layout_marginLeft="40dp"
+                       android:text="Diabetes"
+                       android:textColor="@color/text"
+                       android:textSize="25sp"
+                       android:textStyle="bold" />
+
+                   <RadioGroup android:orientation="horizontal">
+
+                       <RadioButton
+                           android:id="@+id/diabetesYes"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="Yes"
+                           android:textColor="@color/text"
+                           android:textSize="25sp" />
+
+                       <RadioButton
+                           android:id="@+id/diabetesNo"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginLeft="20dp"
+                           android:text="No"
+                           android:textColor="@color/text"
+                           android:textSize="25sp" />
+                   </RadioGroup>
+               </TableRow>
+               <TableRow>
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:layout_marginLeft="20dp"
+                       android:text="Cholesterol"
+                       android:textAlignment="center"
+                       android:textColor="@color/text"
+                       android:textSize="25sp"
+                       android:textStyle="bold" />
+
+                   <TextView
+                       android:id="@+id/choles"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:layout_marginLeft="40dp"
+                       android:layout_marginRight="100dp"
+                       android:text="Input Age"
+                       android:textColor="@color/text"
+                       android:textSize="25sp"
+                       android:textStyle="bold" />
+               </TableRow>
+               <TableRow
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent">
+
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:layout_marginLeft="40dp"
+                       android:text="Smoke"
+                       android:textColor="@color/text"
+                       android:textSize="25sp"
+                       android:textStyle="bold" />
+
+                   <RadioGroup android:orientation="horizontal">
+
+                       <RadioButton
+                           android:id="@+id/smokeYes"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="Yes"
+                           android:textColor="@color/text"
+                           android:textSize="25sp" />
+
+                       <RadioButton
+                           android:id="@+id/smokeNo"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginLeft="20dp"
+                           android:text="No"
+                           android:textColor="@color/text"
+                           android:textSize="25sp" />
+                   </RadioGroup>
+               </TableRow>
+               <Button
+                   android:id="@+id/btnCal"
+                   android:layout_marginTop="40dp"
+                   android:text="Calculate"
+                   android:textStyle="bold"
+                   android:textSize="25sp"/>
+           </TableLayout>
+       </RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

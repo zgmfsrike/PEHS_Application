@@ -4,10 +4,10 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/home"
-            android:title="Home" />
+        <!--<item-->
+            <!--android:id="@+id/nav_home"-->
+            <!--android:icon="@drawable/home"-->
+            <!--android:title="Home" />-->
         <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/face_profile"
@@ -16,6 +16,14 @@
             android:id="@+id/nav_record_history"
             android:icon="@drawable/notebook"
             android:title="Record History" />
+        <item
+            android:id="@+id/nav_car"
+            android:icon="@drawable/heart_pulse"
+            android:title="Cardiovascular" />
+        <item
+            android:id="@+id/nav_health"
+            android:icon="@drawable/chart"
+            android:title="Health Visualization" />
 
     </group>
 

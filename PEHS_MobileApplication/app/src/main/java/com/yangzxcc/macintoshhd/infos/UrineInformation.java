@@ -3,7 +3,9 @@ package com.yangzxcc.macintoshhd.infos;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class UrineInformation {
+import java.io.Serializable;
+
+public class UrineInformation implements Serializable {
     @SerializedName("urine_ex_name")
     @Expose
     private String urineExName;
@@ -19,7 +21,7 @@ public class UrineInformation {
         this.urineExName = urineExName;
     }
 
-    public String getUrineExValue() {
+    public String getUrineExValue(int i) {
         return urineExValue;
     }
 

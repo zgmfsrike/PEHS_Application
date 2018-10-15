@@ -13,10 +13,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yangzxcc.macintoshhd.activities.Record;
+import com.yangzxcc.macintoshhd.infos.PhysicalInformation;
 import com.yangzxcc.macintoshhd.models.HealthRecord;
 import com.yangzxcc.macintoshhd.pehs.R;
 
 import java.nio.file.WatchEvent;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,7 +26,8 @@ import java.nio.file.WatchEvent;
 public class PhysicalFragment extends Fragment {
 
     private TextView weightResult,heightResult,waistResult,bmiResult,systolicResult,diastolicResult,pulseResult;
-
+    private List<PhysicalInformation> physical;
+    private PhysicalInformation phy;
     public PhysicalFragment() {
         // Required empty public constructor
     }
@@ -43,18 +46,32 @@ public class PhysicalFragment extends Fragment {
         diastolicResult = (TextView)view.findViewById(R.id.diastolicRe);
         pulseResult = (TextView)view.findViewById(R.id.pulseRe);
 
+//        Record activity = (Record)getActivity();
+//        Bundle bundle = activity.getData();
+//        String title = bundle.getString("title");
+//        String text = bundle.getString("text");
+
         Record activity = (Record)getActivity();
         Bundle bundle = activity.getData();
-        String title = bundle.getString("title");
-        String text = bundle.getString("text");
+        physical = (List<PhysicalInformation>) bundle.getSerializable("physical");
+        phy = physical.get(0);
+        String weight = phy.getPhysicalExValue(0);
+        String height = phy.getPhysicalExValue(1);
+        String waist = phy.getPhysicalExValue(2);
+        String bmi = phy.getPhysicalExValue(3);
+        String systolic = phy.getPhysicalExValue(4);
+        String diastolic = phy.getPhysicalExValue(5);
+        String pulse = phy.getPhysicalExValue(6);
 
-        weightResult.setText(title);
-        heightResult.setText(text);
-        waistResult.setText(text);
-        bmiResult.setText(text);
-        systolicResult.setText(text);
-        diastolicResult.setText(text);
-        pulseResult.setText(text);
+
+        weightResult.setText(weight);
+        heightResult.setText(height);
+        waistResult.setText(waist);
+        bmiResult.setText(bmi);
+        systolicResult.setText(systolic);
+        diastolicResult.setText(diastolic);
+        pulseResult.setText(pulse);
+
         return view;
 
     }

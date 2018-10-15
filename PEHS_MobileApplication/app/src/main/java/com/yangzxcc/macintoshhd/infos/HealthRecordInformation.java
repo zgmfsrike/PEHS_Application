@@ -3,9 +3,10 @@ package com.yangzxcc.macintoshhd.infos;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class HealthRecordInformation {
+public class HealthRecordInformation implements Serializable {
     @SerializedName("physical_information")
     @Expose
     private List<PhysicalInformation> physicalInformation;

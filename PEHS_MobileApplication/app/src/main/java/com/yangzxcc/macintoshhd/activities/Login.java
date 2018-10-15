@@ -84,6 +84,7 @@ public class Login extends AppCompatActivity{
 
         SignIn testLogin = new SignIn(username,password);
 
+
         Call<AccessToken> call = apiInterface.signIn(testLogin);
 
         call.enqueue(new Callback<AccessToken>() {
@@ -91,22 +92,11 @@ public class Login extends AppCompatActivity{
             public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
-                        String value = response.body().getAccessToken();
-                        Call<InformationManager> call1 = apiInterface.getInfo("Bearer "+ value);
-                        call1.enqueue(new Callback<InformationManager>() {
-                            @Override
-                            public void onResponse(Call<InformationManager> call, Response<InformationManager> response) {
-                                if (response.isSuccessful()) {
-                                    Log.e("Get Json","Get JSon :" + new Gson().toJson(response.body().getPersonalInformation()));
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<InformationManager> call, Throwable t) {
-
-                            }
-                        });
-
+                        String token = response.body().getAccessToken();
+                        Intent intent = new Intent(Login.this,Home.class);
+                        intent.putExtra("token",token);
+                        startActivity(intent);
+                        finish();
 
                     }else {
                         try {
@@ -115,7 +105,6 @@ public class Login extends AppCompatActivity{
                             e.printStackTrace();
                         }
                     }
-
                 } else {
                     Toast.makeText(Login.this,"Cannot Login",Toast.LENGTH_LONG).show();
                 }

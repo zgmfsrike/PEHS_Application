@@ -11,6 +11,7 @@
         import android.support.v4.view.ViewPager;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
+        import android.support.v7.widget.CardView;
         import android.support.v7.widget.Toolbar;
         import android.util.Log;
         import android.view.LayoutInflater;
@@ -23,9 +24,14 @@
         import com.yangzxcc.macintoshhd.fragments.BloodFragment;
         import com.yangzxcc.macintoshhd.fragments.ClinicalFragment;
         import com.yangzxcc.macintoshhd.fragments.UrineFragment;
+        import com.yangzxcc.macintoshhd.infos.BloodInformation;
+        import com.yangzxcc.macintoshhd.infos.ChemistryInformation;
+        import com.yangzxcc.macintoshhd.infos.PhysicalInformation;
+        import com.yangzxcc.macintoshhd.infos.UrineInformation;
         import com.yangzxcc.macintoshhd.models.HealthRecord;
         import com.yangzxcc.macintoshhd.pehs.R;
 
+        import java.io.Serializable;
         import java.util.ArrayList;
         import java.util.List;
 
@@ -37,6 +43,14 @@ public class Record extends AppCompatActivity {
     public HealthAdapter healthAdapter;
     private HealthRecord model;
     private String title,text;
+    List<PhysicalInformation> physical;
+    List<ChemistryInformation> chemistry;
+    List<BloodInformation> blood;
+    List<UrineInformation> urine;
+    PhysicalInformation phy;
+    ChemistryInformation chem;
+    BloodInformation bloo;
+    UrineInformation uri;
 
 
     @Override
@@ -56,18 +70,39 @@ public class Record extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
 
+//        Intent intent = getIntent();
+//        title = intent.getStringExtra("title");
+//        text = intent.getStringExtra("text");
+
         Intent intent = getIntent();
-        title = intent.getStringExtra("title");
-        text = intent.getStringExtra("text");
+
+        physical = (List<PhysicalInformation>)intent.getSerializableExtra("physical");
+
+        chemistry = (List<ChemistryInformation>) intent.getSerializableExtra("chem");
+
+        blood = (List<BloodInformation>) intent.getSerializableExtra("blood");
+
+        urine = (List<UrineInformation>) intent.getSerializableExtra("urine");
+
     }
     public Bundle getData(){
 
         Bundle bundle = new Bundle();
-        bundle.putString("title",title);
-        bundle.putString("text",text);
+        bundle.putSerializable("physical", (Serializable) physical);
+        bundle.putSerializable("chem", (Serializable) chemistry);
+        bundle.putSerializable("blood", (Serializable) blood);
+        bundle.putSerializable("urine", (Serializable) urine);
 
         return bundle;
     }
+//    public Bundle getData(){
+//
+//        Bundle bundle = new Bundle();
+//        bundle.putString("title",title);
+//        bundle.putString("text",text);
+//
+//        return bundle;
+//    }
     private void setupTabIcons() {
 
         TextView tabPhysical = (TextView) LayoutInflater.from(this).inflate(R.layout.record_tab, null);
@@ -97,7 +132,7 @@ public class Record extends AppCompatActivity {
         adapter.addFrag(new PhysicalFragment(), "Physical");
         adapter.addFrag(new BloodFragment(), "Blood");
         adapter.addFrag(new UrineFragment(), "Urine");
-        adapter.addFrag(new ClinicalFragment(), "Clinical");
+        adapter.addFrag(new ClinicalFragment(), "Chemistry");
 
         viewPager.setAdapter(adapter);
     }
