@@ -96,7 +96,7 @@ public class Login extends AppCompatActivity{
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
                         String value = response.body().getAccessToken();
-                        Toast.makeText(Login.this,value,Toast.LENGTH_LONG).show();
+                        Toast.makeText(Login.this,"Get Json",Toast.LENGTH_LONG).show();
                     }else {
                         try {
                             Toast.makeText(Login.this,response.errorBody().string(),Toast.LENGTH_LONG).show();
