@@ -38,6 +38,7 @@ public class Login extends AppCompatActivity{
     AppCompatButton btnLogin;
     TokenManager tokenManager;
     ApiInterface apiInterface;
+    AccessToken accessToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +58,6 @@ public class Login extends AppCompatActivity{
                 patientLogin();
             }
         });
-
-        if(tokenManager.getToken().getAccessToken() != null){
-            startActivity(new Intent(Login.this, Home.class));
-            finish();
-        }
 
     }
 
@@ -95,9 +91,23 @@ public class Login extends AppCompatActivity{
             public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
-//                        String value = response.body().getAccessToken();
-                        Log.w("Get Json","Get JSon :" + new Gson().toJson(response.body().getAccessToken()));
-                        Toast.makeText(Login.this,"Get Json :"+ new Gson().toJson(response.body().getAccessToken()),Toast.LENGTH_LONG).show();
+                        String value = response.body().getAccessToken();
+                        Call<InformationManager> call1 = apiInterface.getInfo("Bearer "+ value);
+                        call1.enqueue(new Callback<InformationManager>() {
+                            @Override
+                            public void onResponse(Call<InformationManager> call, Response<InformationManager> response) {
+                                if (response.isSuccessful()) {
+                                    Log.e("Get Json","Get JSon :" + new Gson().toJson(response.body().getPersonalInformation()));
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<InformationManager> call, Throwable t) {
+
+                            }
+                        });
+
+
                     }else {
                         try {
                             Toast.makeText(Login.this,response.errorBody().string(),Toast.LENGTH_LONG).show();
@@ -118,5 +128,6 @@ public class Login extends AppCompatActivity{
     }
 }
 
-
+// Log.e("Get Json","Get JSon :" + new Gson().toJson(response.body().getAccessToken()));
+//         Toast.makeText(Login.this,"Get Json :"+ new Gson().toJson(response.body().getAccessToken()),Toast.LENGTH_LONG).show();
 
