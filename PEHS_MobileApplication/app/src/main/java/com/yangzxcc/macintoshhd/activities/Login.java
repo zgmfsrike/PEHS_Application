@@ -86,7 +86,7 @@ public class Login extends AppCompatActivity{
 
         apiInterface = retrofit.create(ApiInterface.class);
 
-        SignIn testLogin = new SignIn(username, password);
+        SignIn testLogin = new SignIn(username,password);
 
         Call<AccessToken> call = apiInterface.signIn(testLogin);
 
@@ -94,14 +94,21 @@ public class Login extends AppCompatActivity{
             @Override
             public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
                 if (response.isSuccessful()) {
-                    String value = response.body().toString();
-                    Log.w("MyTag :",new Gson().toJson(value));
+                    if (response.body() != null) {
+                        String value = response.body().getAccessToken();
+                        Log.w("MyTag",value);
+                    }else {
+                        try {
+                            Toast.makeText(Login.this,response.errorBody().string(),Toast.LENGTH_LONG).show();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
 
                 } else {
                     Toast.makeText(Login.this,"Cannot Login",Toast.LENGTH_LONG).show();
                 }
             }
-
             @Override
             public void onFailure(Call<AccessToken> call, Throwable t) {
                 Toast.makeText(Login.this, t.getMessage(), Toast.LENGTH_LONG).show();

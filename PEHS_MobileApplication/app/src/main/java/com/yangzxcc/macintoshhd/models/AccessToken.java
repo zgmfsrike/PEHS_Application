@@ -1,12 +1,13 @@
 package com.yangzxcc.macintoshhd.models;
 
 
+import com.google.gson.annotations.SerializedName;
 import com.squareup.moshi.Json;
 
 import java.util.Date;
 
 public class AccessToken {
-    @Json(name = "access_token")
+    @SerializedName("access_Token")
     private String accessToken;
     @Json(name = "token_type")
     private String tokenType;
