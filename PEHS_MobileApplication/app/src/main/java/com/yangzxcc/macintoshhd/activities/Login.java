@@ -94,23 +94,8 @@ public class Login extends AppCompatActivity{
             @Override
             public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
                 if (response.isSuccessful()) {
-
-
-                    Call<InformationManager> call1 = apiInterface.getInfo("Bearer "+ response.body().getAccessToken());
-                    call1.enqueue(new Callback<InformationManager>() {
-                        @Override
-                        public void onResponse(Call<InformationManager> call, Response<InformationManager> response) {
-                            if (response.isSuccessful()){
-                                Toast.makeText(Login.this,"Request Success", Toast.LENGTH_LONG).show();
-
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<InformationManager> call, Throwable t) {
-                            Toast.makeText(Login.this, t.getMessage(), Toast.LENGTH_LONG).show();
-                        }
-                    });
+                    String value = response.body().toString();
+                    Log.w("MyTag :",new Gson().toJson(value));
 
                 } else {
                     Toast.makeText(Login.this,"Cannot Login",Toast.LENGTH_LONG).show();
