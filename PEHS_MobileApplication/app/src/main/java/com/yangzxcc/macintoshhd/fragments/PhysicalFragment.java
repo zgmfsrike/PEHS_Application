@@ -4,6 +4,7 @@ package com.yangzxcc.macintoshhd.fragments;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,28 +86,37 @@ public class PhysicalFragment extends Fragment {
     }
 
     private void setColor( ) {
+         double bmi = new Double(bmi1.getPhysicalExValue());
 
-        int colorCondition;
+        int colorCondition, colorConditiondi;
 
         if (parseInt(waist1.getPhysicalExValue()) < 90){
             colorCondition = Color.parseColor("#689f38"); //green
-        }else if(parseInt(bmi1.getPhysicalExValue()) < 23.0 && parseInt(bmi1.getPhysicalExValue()) > 18.5) {
+        }else if(bmi < 23.0 && bmi > 18.5) {
             colorCondition = Color.parseColor("#689f38"); //green
         }else if (parseInt(systo1.getPhysicalExValue())  < 139 && parseInt(bmi1.getPhysicalExValue()) > 90) {
             colorCondition = Color.parseColor("#689f38"); //green
-        }else if (parseInt(dias1.getPhysicalExValue()) < 90 && parseInt(systo1.getPhysicalExValue()) > 90) {
-            colorCondition = Color.parseColor("#689f38"); //green
-        }else if (parseInt(pul1.getPhysicalExValue()) < 100 && parseInt(dias1.getPhysicalExValue()) > 60) {
+        }
+//        else if (parseInt(dias1.getPhysicalExValue()) < 90 && parseInt(systo1.getPhysicalExValue()) > 90) {
+//            colorCondition = Color.parseColor("#689f38"); //green
+//        }
+        else if (parseInt(pul1.getPhysicalExValue()) < 100 && parseInt(dias1.getPhysicalExValue()) > 60) {
             colorCondition = Color.parseColor("#689f38"); //green
         }else {
             colorCondition = Color.parseColor("#ff5722"); //red
+        }
+
+        if (parseInt(dias1.getPhysicalExValue()) < 90 && parseInt(systo1.getPhysicalExValue()) > 90) {
+            colorConditiondi = Color.parseColor("#689f38"); //green
+        }else{
+            colorConditiondi = Color.parseColor("#ff5722"); //red;
         }
         weightResult.setTextColor(colorCondition);
         heightResult.setTextColor(colorCondition);
         waistResult.setTextColor(colorCondition);
         bmiResult.setTextColor(colorCondition);
         systolicResult.setTextColor(colorCondition);
-        diastolicResult.setTextColor(colorCondition);
+        diastolicResult.setTextColor(colorConditiondi);
         pulseResult.setTextColor(colorCondition);
     }
 
