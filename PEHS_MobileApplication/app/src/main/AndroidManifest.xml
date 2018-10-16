@@ -34,7 +34,8 @@
         <activity
             android:name="com.yangzxcc.macintoshhd.activities.Home"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleTop"/>
         <activity android:name="com.yangzxcc.macintoshhd.activities.Record" />
         <activity android:name="com.yangzxcc.macintoshhd.activities.TestLogin" />
         <activity android:name="com.yangzxcc.macintoshhd.activities.HealthDataList" />

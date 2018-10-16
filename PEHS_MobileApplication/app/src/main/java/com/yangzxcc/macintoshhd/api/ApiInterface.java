@@ -2,11 +2,9 @@ package com.yangzxcc.macintoshhd.api;
 
 import com.yangzxcc.macintoshhd.infos.InformationManager;
 import com.yangzxcc.macintoshhd.models.AccessToken;
-import com.yangzxcc.macintoshhd.models.HealthRecord;
+import com.yangzxcc.macintoshhd.models.HealthRecordTest;
 import com.yangzxcc.macintoshhd.models.Patient;
 import com.yangzxcc.macintoshhd.models.SignIn;
-
-import org.json.JSONObject;
 
 import java.util.List;
 
@@ -65,7 +63,7 @@ public interface ApiInterface {
 
 
     @GET("posts")
-    Call<List<HealthRecord>> getPosts();
+    Call<List<HealthRecordTest>> getPosts();
 
     @FormUrlEncoded
     @POST("user.php")

@@ -21,7 +21,7 @@ public class BloodInformation implements Serializable {
         this.bloodExName = bloodExName;
     }
 
-    public String getBloodExValue(int i) {
+    public String getBloodExValue() {
         return bloodExValue;
     }
 

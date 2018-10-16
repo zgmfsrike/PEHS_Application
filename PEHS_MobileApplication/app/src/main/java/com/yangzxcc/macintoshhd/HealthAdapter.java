@@ -9,24 +9,21 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yangzxcc.macintoshhd.activities.Record;
-import com.yangzxcc.macintoshhd.infos.HealthInformation;
-import com.yangzxcc.macintoshhd.infos.HealthRecordInformation;
-import com.yangzxcc.macintoshhd.models.HealthRecord;
+import com.yangzxcc.macintoshhd.infos.HealthRecord;
 import com.yangzxcc.macintoshhd.pehs.R;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 public class HealthAdapter extends RecyclerView.Adapter<HealthAdapter.HealthViewHolder> {
 
-//    private List<HealthRecord> healthRecordList;
-    private List<HealthRecordInformation> healthRecordInformations;
+//    private List<HealthRecordTest> healthRecordList;
+    private List<HealthRecord> healthRecords;
 
-    public HealthAdapter(List<HealthRecordInformation> healthRecordInformations) {
-        this.healthRecordInformations = healthRecordInformations;
+    public HealthAdapter(List<HealthRecord> healthRecords) {
+        this.healthRecords = healthRecords;
     }
-    //    public HealthAdapter(List<HealthRecord> healthRecordList) {
+    //    public HealthAdapter(List<HealthRecordTest> healthRecordList) {
 //        this.healthRecordList = healthRecordList;
 //    }
 
@@ -40,8 +37,18 @@ public class HealthAdapter extends RecyclerView.Adapter<HealthAdapter.HealthView
     @Override
     public void onBindViewHolder(@NonNull HealthViewHolder holder, final int position) {
 
-        final HealthRecordInformation current = healthRecordInformations.get(position);
-        holder.title.setText((CharSequence) healthRecordInformations); // Not sure
+//        HealthInformation health = healthInformations.get(0);
+//        healthRecords = health.getHealthRecords();
+//                HealthRecord record = healthRecords.get(0);
+//                physicalInformations = record.getPhysicalInformation();
+//                chemistryInformations = record.getChemistryInformation();
+//                bloodInformations = record.getBloodInformation();
+//                urineInformations = record.getUrineInformation();
+        final HealthRecord current = healthRecords.get(position);
+        holder.title.setText(current.getDate());
+//        current.getPhysicalInformation();
+
+//        holder.title.setText(current);// Not sure
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,7 +61,7 @@ public class HealthAdapter extends RecyclerView.Adapter<HealthAdapter.HealthView
             }
         });
 
-//        final HealthRecord current = healthRecordList.get(position);
+//        final HealthRecordTest current = healthRecordList.get(position);
 //        holder.title.setText(current.getTitle());
 //        holder.text.setText(current.getText());
 //        holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -69,10 +76,10 @@ public class HealthAdapter extends RecyclerView.Adapter<HealthAdapter.HealthView
     }
     @Override
     public int getItemCount() {
-        return healthRecordInformations.size();
+        return healthRecords.size();
     }
 
-    public static class HealthViewHolder extends RecyclerView.ViewHolder {
+    public static class HealthViewHolder extends RecyclerView.ViewHolder{
 
         private TextView title, text;
 

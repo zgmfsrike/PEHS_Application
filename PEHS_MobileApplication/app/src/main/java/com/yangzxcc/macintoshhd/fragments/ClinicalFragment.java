@@ -51,17 +51,17 @@ public class ClinicalFragment extends Fragment {
         Bundle bundle = activity.getData();
         chemistry = (List<ChemistryInformation>) bundle.getSerializable("chem");
         chem = chemistry.get(0);
-        String glucose = chem.getClinicalChemistryValue(0);
-        String bun = chem.getClinicalChemistryValue(1);
-        String creatine = chem.getClinicalChemistryValue(2);
-        String uric = chem.getClinicalChemistryValue(3);
-        String cholesterol = chem.getClinicalChemistryValue(4);
-        String triglyceride = chem.getClinicalChemistryValue(5);
-        String hdl = chem.getClinicalChemistryValue(6);
-        String ldl = chem.getClinicalChemistryValue(7);
-        String ast = chem.getClinicalChemistryValue(8);
-        String alt = chem.getClinicalChemistryValue(9);
-        String alp = chem.getClinicalChemistryValue(10);
+        String glucose = chem.getClinicalChemistryValue();
+        String bun = chem.getClinicalChemistryValue();
+        String creatine = chem.getClinicalChemistryValue();
+        String uric = chem.getClinicalChemistryValue();
+        String cholesterol = chem.getClinicalChemistryValue();
+        String triglyceride = chem.getClinicalChemistryValue();
+        String hdl = chem.getClinicalChemistryValue();
+        String ldl = chem.getClinicalChemistryValue();
+        String ast = chem.getClinicalChemistryValue();
+        String alt = chem.getClinicalChemistryValue();
+        String alp = chem.getClinicalChemistryValue();
 
         glucoseResult.setText(glucose);
         bunResult.setText(bun);

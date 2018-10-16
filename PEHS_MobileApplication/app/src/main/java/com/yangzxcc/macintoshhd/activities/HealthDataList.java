@@ -41,18 +41,18 @@ public class HealthDataList extends AppCompatActivity implements View.OnClickLis
         Intent intent = getIntent();
         physical = (List<PhysicalInformation>)intent.getSerializableExtra("physical");
         phy = physical.get(0);
-        phy.getPhysicalExName(0); //Weight at 0 position
-        phy.getPhysicalExValue(0);
+        phy.getPhysicalExName(); //Weight at 0 position
+        phy.getPhysicalExValue();
 
         chemistry = (List<ChemistryInformation>) intent.getSerializableExtra("chemical");
         chem = chemistry.get(0);
         chem.getClinicalChemistryName();
-        chem.getClinicalChemistryValue(0);
+        chem.getClinicalChemistryValue();
 
         blood = (List<BloodInformation>) intent.getSerializableExtra("blood");
         bloo = blood.get(0);
         bloo.getBloodExName();
-        bloo.getBloodExValue(0);
+        bloo.getBloodExValue();
 
         phyCard = (CardView)findViewById(R.id.phyCard);
         chemCard = (CardView)findViewById(R.id.chemCard);
@@ -69,18 +69,18 @@ public class HealthDataList extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()){
             case R.id.phyCard:
                 Intent intent = new Intent(HealthDataList.this,HealthDataVisualization.class);
-                intent.putExtra("physicalName",phy.getPhysicalExName(0));
-                intent.putExtra("physicalValue",phy.getPhysicalExValue(0));
+                intent.putExtra("physicalName",phy.getPhysicalExName());
+                intent.putExtra("physicalValue",phy.getPhysicalExValue());
                 break;
             case R.id.chemCard:
                 Intent intent2 = new Intent(HealthDataList.this,HealthDataVisualization.class);
                 intent2.putExtra("chemName",chem.getClinicalChemistryName());
-                intent2.putExtra("chemValue",chem.getClinicalChemistryValue(0));
+                intent2.putExtra("chemValue",chem.getClinicalChemistryValue());
                 break;
             case R.id.bloodCard:
                 Intent intent3 = new Intent(HealthDataList.this,HealthDataVisualization.class);
                 intent3.putExtra("bloodName",bloo.getBloodExName());
-                intent3.putExtra("bloodValue",bloo.getBloodExValue(0));
+                intent3.putExtra("bloodValue",bloo.getBloodExValue());
                 break;
         }
     }

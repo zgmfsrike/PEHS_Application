@@ -13,7 +13,7 @@ public class PhysicalInformation implements Serializable {
     @Expose
     private String physicalExValue;
 
-    public String getPhysicalExName(int i) {
+    public String getPhysicalExName() {
         return physicalExName;
     }
 
@@ -21,7 +21,7 @@ public class PhysicalInformation implements Serializable {
         this.physicalExName = physicalExName;
     }
 
-    public String getPhysicalExValue(int i) {
+    public String getPhysicalExValue() {
         return physicalExValue;
     }
 

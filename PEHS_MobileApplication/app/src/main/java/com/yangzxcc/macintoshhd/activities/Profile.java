@@ -4,18 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.yangzxcc.macintoshhd.infos.PersonalInformation;
-import com.yangzxcc.macintoshhd.models.HealthRecord;
 import com.yangzxcc.macintoshhd.pehs.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class Profile extends AppCompatActivity {
@@ -23,7 +14,8 @@ public class Profile extends AppCompatActivity {
 
     Toolbar toolbar;
     TextView name,surname,email,address,gender,dob,tel,drug,underlying;
-    String name1,surname1,email1,address1,gender1,dob1,tel1,drug1,underlying1;
+    String name1,surname1,email1,address1,gender1,tel1,drug1,underlying1;
+    String dob1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +36,7 @@ public class Profile extends AppCompatActivity {
         tel = (TextView)findViewById(R.id.tele);
         drug = (TextView)findViewById(R.id.drug);
         underlying = (TextView)findViewById(R.id.under);
+
 
         Intent intent = getIntent();
         name1 = intent.getStringExtra("name");

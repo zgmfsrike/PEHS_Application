@@ -52,19 +52,19 @@ public class BloodFragment extends Fragment {
         blood = (List<BloodInformation>) bundle.getSerializable("blood");
         bloo = blood.get(0);
 
-        String bloodWBC = bloo.getBloodExValue(0);
-        String bloodRBC = bloo.getBloodExValue(1);
-        String hgb = bloo.getBloodExValue(2);
-        String hct = bloo.getBloodExValue(3);
-        String mcv = bloo.getBloodExValue(4);
-        String mch = bloo.getBloodExValue(5);
-        String mchc = bloo.getBloodExValue(6);
-        String plt = bloo.getBloodExValue(7);
-        String neutrophil = bloo.getBloodExValue(8);
-        String lymphocyte = bloo.getBloodExValue(9);
-        String monocyte = bloo.getBloodExValue(10);
-        String eosinophil = bloo.getBloodExValue(11);
-        String basophil = bloo.getBloodExValue(12);
+        String bloodWBC = bloo.getBloodExValue();
+        String bloodRBC = bloo.getBloodExValue();
+        String hgb = bloo.getBloodExValue();
+        String hct = bloo.getBloodExValue();
+        String mcv = bloo.getBloodExValue();
+        String mch = bloo.getBloodExValue();
+        String mchc = bloo.getBloodExValue();
+        String plt = bloo.getBloodExValue();
+        String neutrophil = bloo.getBloodExValue();
+        String lymphocyte = bloo.getBloodExValue();
+        String monocyte = bloo.getBloodExValue();
+        String eosinophil = bloo.getBloodExValue();
+        String basophil = bloo.getBloodExValue();
 
         bloodWBCResult.setText(bloodWBC);
         bloodRBCResult.setText(bloodRBC);

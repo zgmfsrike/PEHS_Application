@@ -48,15 +48,15 @@ public class UrineFragment extends Fragment {
         Bundle bundle = activity.getData();
         urine = (List<UrineInformation>) bundle.getSerializable("urine");
         urin = urine.get(0);
-        String color = urin.getUrineExValue(0);
-        String appear = urin.getUrineExValue(1);
-        String spec = urin.getUrineExValue(2);
-        String ph = urin.getUrineExValue(3);
-        String albu = urin.getUrineExValue(4);
-        String sugar = urin.getUrineExValue(5);
-        String urineRed = urin.getUrineExValue(6);
-        String urineWhite = urin.getUrineExValue(7);
-        String epi = urin.getUrineExValue(8);
+        String color = urin.getUrineExValue();
+        String appear = urin.getUrineExValue();
+        String spec = urin.getUrineExValue();
+        String ph = urin.getUrineExValue();
+        String albu = urin.getUrineExValue();
+        String sugar = urin.getUrineExValue();
+        String urineRed = urin.getUrineExValue();
+        String urineWhite = urin.getUrineExValue();
+        String epi = urin.getUrineExValue();
 
         colorResult.setText(color);
         appearanceResult.setText(appear);

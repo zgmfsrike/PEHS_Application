@@ -21,7 +21,7 @@ public class ChemistryInformation implements Serializable {
         this.clinicalChemistryName = clinicalChemistryName;
     }
 
-    public String getClinicalChemistryValue(int i) {
+    public String getClinicalChemistryValue() {
         return clinicalChemistryValue;
     }
 

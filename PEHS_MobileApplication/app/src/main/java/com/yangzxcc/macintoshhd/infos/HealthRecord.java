@@ -4,9 +4,11 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
-public class HealthRecordInformation implements Serializable {
+public class HealthRecord implements Serializable {
+
     @SerializedName("physical_information")
     @Expose
     private List<PhysicalInformation> physicalInformation;
@@ -22,6 +24,28 @@ public class HealthRecordInformation implements Serializable {
     @SerializedName("chemistry_information")
     @Expose
     private List<ChemistryInformation> chemistryInformation;
+
+    @SerializedName("date")
+    private String date;
+
+    @SerializedName("id")
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public List<PhysicalInformation> getPhysicalInformation() {
         return physicalInformation;

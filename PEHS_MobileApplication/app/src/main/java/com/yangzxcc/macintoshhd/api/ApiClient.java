@@ -27,6 +27,7 @@ public class ApiClient {
     public static Retrofit getRetrofit(){
 
         gson = new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
                 .setLenient()
                 .create();
 

@@ -21,7 +21,7 @@ public class UrineInformation implements Serializable {
         this.urineExName = urineExName;
     }
 
-    public String getUrineExValue(int i) {
+    public String getUrineExValue() {
         return urineExValue;
     }
 

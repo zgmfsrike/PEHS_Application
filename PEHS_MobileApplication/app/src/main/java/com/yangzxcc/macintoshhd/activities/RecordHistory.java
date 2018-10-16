@@ -6,38 +6,29 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.widget.Button;
 import android.widget.TextView;
 
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.yangzxcc.macintoshhd.HealthAdapter;
 import com.yangzxcc.macintoshhd.infos.HealthInformation;
-import com.yangzxcc.macintoshhd.infos.HealthRecordInformation;
-import com.yangzxcc.macintoshhd.models.HealthRecord;
-import com.yangzxcc.macintoshhd.api.ApiInterface;
+import com.yangzxcc.macintoshhd.infos.HealthRecord;
+import com.yangzxcc.macintoshhd.models.HealthRecordTest;
 import com.yangzxcc.macintoshhd.pehs.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RecordHistory extends AppCompatActivity{
 
     private Toolbar toolbar;
     private RecyclerView recyclerView;
     private HealthAdapter adapter;
-    private List<HealthRecord> healthRecordList;
+    private List<HealthRecordTest> healthRecordTestList;
     private Profile profile;
-    HealthRecord healthRecord;
+    HealthRecordTest healthRecordTest;
     TextView textView;
-    private List<HealthRecordInformation> healthRecordInformations;
+    private List<HealthRecord> healthRecords;
+    private List<HealthInformation> healthInformations;
     ArrayList<String> arrayList;
 
 
@@ -59,8 +50,10 @@ public class RecordHistory extends AppCompatActivity{
         recyclerView.setHasFixedSize(true);
 
         Intent intent = getIntent();
-        healthRecordInformations = (List<HealthRecordInformation>) intent.getSerializableExtra("record");
-        adapter = new HealthAdapter(healthRecordInformations);
+        healthRecords = (List<HealthRecord>) intent.getSerializableExtra("record");
+
+        adapter = new HealthAdapter(healthRecords);
+        recyclerView.setAdapter(adapter);
 
 //        String data = intent.getStringExtra("record");
 
@@ -77,18 +70,18 @@ public class RecordHistory extends AppCompatActivity{
 //
 //        ApiInterface apiInterface = retrofit.create(ApiInterface.class);
 //
-//        Call<List<HealthRecord>> call = apiInterface.getPosts();
+//        Call<List<HealthRecordTest>> call = apiInterface.getPosts();
 //
-//       call.enqueue(new Callback<List<HealthRecord>>() {
+//       call.enqueue(new Callback<List<HealthRecordTest>>() {
 //           @Override
-//           public void onResponse(Call<List<HealthRecord>> call, Response<List<HealthRecord>> response) {
-//               healthRecordList = response.body();
-//               adapter = new HealthAdapter(healthRecordList);
+//           public void onResponse(Call<List<HealthRecordTest>> call, Response<List<HealthRecordTest>> response) {
+//               healthRecordTestList = response.body();
+//               adapter = new HealthAdapter(healthRecordTestList);
 //               recyclerView.setAdapter(adapter);
 //           }
 //
 //           @Override
-//           public void onFailure(Call<List<HealthRecord>> call, Throwable t) {
+//           public void onFailure(Call<List<HealthRecordTest>> call, Throwable t) {
 //
 //           }
 //       });

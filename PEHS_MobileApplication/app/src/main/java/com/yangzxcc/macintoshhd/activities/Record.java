@@ -1,9 +1,7 @@
 
         package com.yangzxcc.macintoshhd.activities;
 
-        import android.content.Context;
         import android.content.Intent;
-        import android.nfc.Tag;
         import android.support.design.widget.TabLayout;
         import android.support.v4.app.Fragment;
         import android.support.v4.app.FragmentManager;
@@ -11,13 +9,9 @@
         import android.support.v4.view.ViewPager;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
-        import android.support.v7.widget.CardView;
         import android.support.v7.widget.Toolbar;
-        import android.util.Log;
         import android.view.LayoutInflater;
-        import android.view.View;
         import android.widget.TextView;
-        import android.widget.Toast;
 
         import com.yangzxcc.macintoshhd.HealthAdapter;
         import com.yangzxcc.macintoshhd.fragments.PhysicalFragment;
@@ -28,7 +22,7 @@
         import com.yangzxcc.macintoshhd.infos.ChemistryInformation;
         import com.yangzxcc.macintoshhd.infos.PhysicalInformation;
         import com.yangzxcc.macintoshhd.infos.UrineInformation;
-        import com.yangzxcc.macintoshhd.models.HealthRecord;
+        import com.yangzxcc.macintoshhd.models.HealthRecordTest;
         import com.yangzxcc.macintoshhd.pehs.R;
 
         import java.io.Serializable;
@@ -41,7 +35,7 @@ public class Record extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     public HealthAdapter healthAdapter;
-    private HealthRecord model;
+    private HealthRecordTest model;
     private String title,text;
     List<PhysicalInformation> physical;
     List<ChemistryInformation> chemistry;

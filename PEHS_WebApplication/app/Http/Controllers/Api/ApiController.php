@@ -93,11 +93,12 @@ class ApiController extends Controller
 
       $health_record_id = DB::table('health_records as hr')->
       join('user_informations as ui','hr.user_id','ui.user_id')->
-      select('hr.health_record_id')->
+      select('hr.health_record_id','hr.health_record_date')->
       where('hr.user_id',$user_id)->get();
 
       foreach ($health_record_id as $value) {
         $hr_id = $value->health_record_id;
+        $hr_date = $value->health_record_date;
         $hr_info = array();
         //physical information
         $physical_detail = DB::table('health_records as hr')->
@@ -129,9 +130,10 @@ class ApiController extends Controller
 
 
 
-        $hr_info[] = ['physical_information'=>$physical_detail,'blood_information'=>$blood_detail,
+        $hr_info[] = ['id'=>$hr_id,'date'=>$hr_date,'physical_information'=>$physical_detail,'blood_information'=>$blood_detail,
         'urine_information'=>$urine_detail,'chemistry_information'=>$chemistry_detail];
-        $health_information[] =['health_record_id_'.$hr_id => $hr_info];
+
+        $health_information[] =['health_record' => $hr_info];
       }
 
       $user_information = json_encode(array(

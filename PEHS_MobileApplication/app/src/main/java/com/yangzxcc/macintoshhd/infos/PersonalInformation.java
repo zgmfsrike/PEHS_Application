@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.Date;
 
-public class PersonalInformation {
+public class PersonalInformation implements Serializable {
     @SerializedName("name")
     @Expose
     private String name;
@@ -41,7 +41,7 @@ public class PersonalInformation {
 
     @SerializedName("date_of_birth")
     @Expose
-    private Date dateOfBirth;
+    private String dateOfBirth;
 
     public String getName() {
         return name;
@@ -107,11 +107,11 @@ public class PersonalInformation {
         this.underlyingDisease = underlyingDisease;
     }
 
-    public Date getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 }

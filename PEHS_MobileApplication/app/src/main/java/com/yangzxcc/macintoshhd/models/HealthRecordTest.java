@@ -10,7 +10,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HealthRecord{
+public class HealthRecordTest {
 
     private int id;
     private int userId;
@@ -19,7 +19,7 @@ public class HealthRecord{
     private String text;
 
 
-    public HealthRecord(int id, int userId, String title, String text) {
+    public HealthRecordTest(int id, int userId, String title, String text) {
         this.id = id;
         this.userId = userId;
         this.title = title;

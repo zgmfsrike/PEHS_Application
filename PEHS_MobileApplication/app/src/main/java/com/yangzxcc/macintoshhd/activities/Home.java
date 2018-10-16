@@ -17,12 +17,12 @@ import com.yangzxcc.macintoshhd.HealthAdapter;
 import com.yangzxcc.macintoshhd.infos.BloodInformation;
 import com.yangzxcc.macintoshhd.infos.ChemistryInformation;
 import com.yangzxcc.macintoshhd.infos.HealthInformation;
-import com.yangzxcc.macintoshhd.infos.HealthRecordInformation;
+import com.yangzxcc.macintoshhd.infos.HealthRecord;
 import com.yangzxcc.macintoshhd.infos.InformationManager;
 import com.yangzxcc.macintoshhd.infos.PersonalInformation;
 import com.yangzxcc.macintoshhd.infos.PhysicalInformation;
 import com.yangzxcc.macintoshhd.infos.UrineInformation;
-import com.yangzxcc.macintoshhd.models.HealthRecord;
+import com.yangzxcc.macintoshhd.models.HealthRecordTest;
 import com.yangzxcc.macintoshhd.pehs.R;
 
 import java.io.Serializable;
@@ -39,11 +39,11 @@ public class Home extends AppCompatActivity
 
     private Toolbar toolbar;
     private HealthAdapter adapter;
-    private List<HealthRecord> healthRecordList;
+    private List<HealthRecordTest> healthRecordTestList;
     String token;
     List<PersonalInformation> personalInformations;
     List<HealthInformation> healthInformations;
-    List<HealthRecordInformation> healthRecordInformations;
+    List<HealthRecord> healthRecords;
     List<PhysicalInformation> physicalInformations;
     List<ChemistryInformation> chemistryInformations;
     List<BloodInformation> bloodInformations;
@@ -81,17 +81,17 @@ public class Home extends AppCompatActivity
                     healthInformations = response.body().getHealthInformation();
 
 
-                    HealthInformation health = healthInformations.get(0);
-                    healthRecordInformations = health.getHealthRecordInformations();
+//                    HealthInformation health = healthInformations.get(0);
+//                    healthRecords = health.getHealthRecords();
 
-                    for (int i = 0; i < healthRecordInformations.size(); i++) {
-                        HealthRecordInformation record = healthRecordInformations.get(i);
-                        physicalInformations = record.getPhysicalInformation();
-                        chemistryInformations = record.getChemistryInformation();
-                        bloodInformations = record.getBloodInformation();
-                        urineInformations = record.getUrineInformation();
-                    }
-
+//                    for (int i = 0; i < healthRecords.size(); i++) {
+//
+//                    }
+//                    HealthRecord record = healthRecords.get(0);
+//                    physicalInformations = record.getPhysicalInformation();
+//                    chemistryInformations = record.getChemistryInformation();
+//                    bloodInformations = record.getBloodInformation();
+//                    urineInformations = record.getUrineInformation();
 
 //                    PhysicalInformation phy = physicalInformations.get(0);
 //                    phy.getPhysicalExName();
@@ -149,33 +149,52 @@ public class Home extends AppCompatActivity
 
         if (id == R.id.nav_profile) {
 
-            PersonalInformation value = personalInformations.get(0);
-            value.getName();
-            value.getSurname();
-            value.getEmail();
-            value.getAddress();
-            value.getGender();
-            value.getDateOfBirth();
-            value.getTelephoneNumber();
-            value.getDrugAllergy();
-            value.getUnderlyingDisease();
-            Intent intent1 = new Intent(Home.this, Profile.class);
-            intent1.putExtra("name", value.getName());
-            intent1.putExtra("surname", value.getSurname());
-            intent1.putExtra("email", value.getEmail());
-            intent1.putExtra("address", value.getAddress());
-            intent1.putExtra("gender", value.getGender());
-            intent1.putExtra("date", value.getDateOfBirth());
-            intent1.putExtra("phone", value.getTelephoneNumber());
-            intent1.putExtra("drug", value.getDrugAllergy());
-            intent1.putExtra("disease", value.getUnderlyingDisease());
-            startActivity(intent1);
+            for (int i = 0; i < personalInformations.size(); i++) {
+                PersonalInformation value = personalInformations.get(i);
+
+                value.getName();
+                value.getSurname();
+                value.getEmail();
+                value.getAddress();
+                value.getGender();
+                value.getDateOfBirth();
+                value.getTelephoneNumber();
+                value.getDrugAllergy();
+                value.getUnderlyingDisease();
+                Intent intent1 = new Intent(Home.this, Profile.class);
+                intent1.putExtra("name", value.getName());
+                intent1.putExtra("surname", value.getSurname());
+                intent1.putExtra("email", value.getEmail());
+                intent1.putExtra("address", value.getAddress());
+                intent1.putExtra("gender", value.getGender());
+                intent1.putExtra("date", value.getDateOfBirth());
+                intent1.putExtra("phone", value.getTelephoneNumber());
+                intent1.putExtra("drug", value.getDrugAllergy());
+                intent1.putExtra("disease", value.getUnderlyingDisease());
+                startActivity(intent1);
+            }
 
         } else if (id == R.id.nav_record_history) {
-            healthRecordInformations = new ArrayList<HealthRecordInformation>();
-            Intent intent = new Intent(Home.this, RecordHistory.class);
-            intent.putExtra("record", (Serializable) healthRecordInformations);
-            startActivity(intent);
+
+
+            for (int i = 0; i < healthInformations.size() ; i++) {
+
+            }
+                HealthInformation health = healthInformations.get(0);
+                health.getHealthRecords();
+
+//                healthRecords = health.getHealthRecords();
+//                HealthRecord record = healthRecords.get(0);
+//                physicalInformations = record.getPhysicalInformation();
+//                chemistryInformations = record.getChemistryInformation();
+//                bloodInformations = record.getBloodInformation();
+//                urineInformations = record.getUrineInformation();
+                Intent intent = new Intent(Home.this, RecordHistory.class);
+                intent.putExtra("record", (Serializable) health.getHealthRecords());
+//                healthRecords = new ArrayList<HealthRecord>();
+//                intent.putExtra("record", (Serializable) healthRecords);
+                startActivity(intent);
+
 
         } else if (id == R.id.nav_car) {
             PersonalInformation value = personalInformations.get(0);

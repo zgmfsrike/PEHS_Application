@@ -1,12 +1,8 @@
 package com.yangzxcc.macintoshhd.fragments;
 
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +10,8 @@ import android.widget.TextView;
 
 import com.yangzxcc.macintoshhd.activities.Record;
 import com.yangzxcc.macintoshhd.infos.PhysicalInformation;
-import com.yangzxcc.macintoshhd.models.HealthRecord;
 import com.yangzxcc.macintoshhd.pehs.R;
 
-import java.nio.file.WatchEvent;
 import java.util.List;
 
 /**
@@ -27,7 +21,7 @@ public class PhysicalFragment extends Fragment {
 
     private TextView weightResult,heightResult,waistResult,bmiResult,systolicResult,diastolicResult,pulseResult;
     private List<PhysicalInformation> physical;
-    private PhysicalInformation phy;
+    private PhysicalInformation phy,phy1;
     public PhysicalFragment() {
         // Required empty public constructor
     }
@@ -55,13 +49,15 @@ public class PhysicalFragment extends Fragment {
         Bundle bundle = activity.getData();
         physical = (List<PhysicalInformation>) bundle.getSerializable("physical");
         phy = physical.get(0);
-        String weight = phy.getPhysicalExValue(0);
-        String height = phy.getPhysicalExValue(1);
-        String waist = phy.getPhysicalExValue(2);
-        String bmi = phy.getPhysicalExValue(3);
-        String systolic = phy.getPhysicalExValue(4);
-        String diastolic = phy.getPhysicalExValue(5);
-        String pulse = phy.getPhysicalExValue(6);
+        phy1 = physical.get(1);
+
+        String weight = phy.getPhysicalExValue();
+        String height = phy1.getPhysicalExValue();
+        String waist = phy.getPhysicalExValue();
+        String bmi = phy.getPhysicalExValue();
+        String systolic = phy.getPhysicalExValue();
+        String diastolic = phy.getPhysicalExValue();
+        String pulse = phy.getPhysicalExValue();
 
 
         weightResult.setText(weight);

@@ -55,13 +55,13 @@ public class Cardiovascular extends AppCompatActivity {
         Intent intent = getIntent();
         info = (List<PersonalInformation>) intent.getSerializableExtra("date");
         person = info.get(0);
-        Date age = person.getDateOfBirth();
+//        Date age = person.getDateOfBirth();
         physical = (List<PhysicalInformation>) intent.getSerializableExtra("physical");
         phy = physical.get(0);
-        String  systolic = phy.getPhysicalExValue(4);
+        String  systolic = phy.getPhysicalExValue();
         chemical = (List<ChemistryInformation>) intent.getSerializableExtra("chem");
         chem = chemical.get(0);
-        String totalCholesterol = chem.getClinicalChemistryValue(4);
+        String totalCholesterol = chem.getClinicalChemistryValue();
 
 
     }
