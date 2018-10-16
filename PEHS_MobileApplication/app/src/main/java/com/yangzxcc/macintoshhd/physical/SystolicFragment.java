@@ -1,4 +1,4 @@
-package com.yangzxcc.macintoshhd.fragments;
+package com.yangzxcc.macintoshhd.physical;
 
 
 import android.os.Bundle;
@@ -12,10 +12,10 @@ import com.yangzxcc.macintoshhd.pehs.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DiastolicFragment extends Fragment {
+public class SystolicFragment extends Fragment {
 
 
-    public DiastolicFragment() {
+    public SystolicFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class DiastolicFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_diastolic, container, false);
+        return inflater.inflate(R.layout.fragment_systolic, container, false);
     }
 
 }

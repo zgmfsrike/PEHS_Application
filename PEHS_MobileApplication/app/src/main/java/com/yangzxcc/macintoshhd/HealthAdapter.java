@@ -8,17 +8,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.yangzxcc.macintoshhd.activities.Record;
+import com.yangzxcc.macintoshhd.infos.HealthInformation;
 import com.yangzxcc.macintoshhd.infos.HealthRecord;
+import com.yangzxcc.macintoshhd.infos.InformationManager;
 import com.yangzxcc.macintoshhd.pehs.R;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class HealthAdapter extends RecyclerView.Adapter<HealthAdapter.HealthViewHolder> {
 
 //    private List<HealthRecordTest> healthRecordList;
     private List<HealthRecord> healthRecords;
+//    private List<HealthInformation> healthInformations;
 
     public HealthAdapter(List<HealthRecord> healthRecords) {
         this.healthRecords = healthRecords;
@@ -46,9 +51,18 @@ public class HealthAdapter extends RecyclerView.Adapter<HealthAdapter.HealthView
 //                urineInformations = record.getUrineInformation();
         final HealthRecord current = healthRecords.get(position);
         holder.title.setText(current.getDate());
+// holder.title.setText(new Gson().toJson(current.getHealthRecords()));
 //        current.getPhysicalInformation();
 
 //        holder.title.setText(current);// Not sure
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(view.getContext(),Record.class);
+//                intent.putExtra("record", (Serializable) current.getHealthRecords());
+//                view.getContext().startActivity(intent);
+//            }
+//        });
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

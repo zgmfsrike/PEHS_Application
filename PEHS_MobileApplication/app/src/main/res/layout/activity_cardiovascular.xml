@@ -75,9 +75,10 @@
                        android:textStyle="bold" />
 
                    <RadioGroup
+                       android:id="@+id/genderRadio"
                        android:orientation="horizontal">
 
-                       <RadioButton
+                       <android.support.v7.widget.AppCompatRadioButton
                            android:id="@+id/sexMale"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
@@ -85,7 +86,7 @@
                            android:textColor="@color/text"
                            android:textSize="25sp" />
 
-                       <RadioButton
+                       <android.support.v7.widget.AppCompatRadioButton
                            android:id="@+id/sexFemale"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
@@ -139,9 +140,11 @@
                        android:textSize="25sp"
                        android:textStyle="bold" />
 
-                   <RadioGroup android:orientation="horizontal">
+                   <RadioGroup
+                       android:id="@+id/diabRadio"
+                       android:orientation="horizontal">
 
-                       <RadioButton
+                       <android.support.v7.widget.AppCompatRadioButton
                            android:id="@+id/diabetesYes"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
@@ -149,7 +152,7 @@
                            android:textColor="@color/text"
                            android:textSize="25sp" />
 
-                       <RadioButton
+                       <android.support.v7.widget.AppCompatRadioButton
                            android:id="@+id/diabetesNo"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
@@ -194,9 +197,11 @@
                        android:textSize="25sp"
                        android:textStyle="bold" />
 
-                   <RadioGroup android:orientation="horizontal">
+                   <RadioGroup
+                       android:id="@+id/smokeRadio"
+                       android:orientation="horizontal">
 
-                       <RadioButton
+                       <android.support.v7.widget.AppCompatRadioButton
                            android:id="@+id/smokeYes"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
@@ -204,7 +209,7 @@
                            android:textColor="@color/text"
                            android:textSize="25sp" />
 
-                       <RadioButton
+                       <android.support.v7.widget.AppCompatRadioButton
                            android:id="@+id/smokeNo"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"

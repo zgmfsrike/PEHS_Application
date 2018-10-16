@@ -10,11 +10,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
-import com.yangzxcc.macintoshhd.fragments.BmiFragment;
-import com.yangzxcc.macintoshhd.fragments.DiastolicFragment;
-import com.yangzxcc.macintoshhd.fragments.PulseFragment;
-import com.yangzxcc.macintoshhd.fragments.SystolicFragment;
-import com.yangzxcc.macintoshhd.fragments.WeightFragment;
+import com.yangzxcc.macintoshhd.physical.BmiFragment;
+import com.yangzxcc.macintoshhd.physical.DiastolicFragment;
+import com.yangzxcc.macintoshhd.physical.PulseFragment;
+import com.yangzxcc.macintoshhd.physical.SystolicFragment;
+import com.yangzxcc.macintoshhd.physical.WeightFragment;
 import com.yangzxcc.macintoshhd.pehs.R;
 
 import java.util.ArrayList;

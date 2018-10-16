@@ -70,7 +70,12 @@ public class Record extends AppCompatActivity {
 
         Intent intent = getIntent();
 
+
         physical = (List<PhysicalInformation>)intent.getSerializableExtra("physical");
+        PhysicalInformation phy = physical.get(4);
+        phy.getPhysicalExValue();
+
+
 
         chemistry = (List<ChemistryInformation>) intent.getSerializableExtra("chem");
 

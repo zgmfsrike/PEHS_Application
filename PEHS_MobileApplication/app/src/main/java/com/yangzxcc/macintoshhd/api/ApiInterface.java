@@ -1,6 +1,8 @@
 package com.yangzxcc.macintoshhd.api;
 
+import com.yangzxcc.macintoshhd.infos.HealthRecord;
 import com.yangzxcc.macintoshhd.infos.InformationManager;
+import com.yangzxcc.macintoshhd.infos.PhysicalInformation;
 import com.yangzxcc.macintoshhd.models.AccessToken;
 import com.yangzxcc.macintoshhd.models.HealthRecordTest;
 import com.yangzxcc.macintoshhd.models.Patient;
@@ -53,6 +55,12 @@ public interface ApiInterface {
     })
     @GET("info")
     Call<InformationManager> getInfo(@Header("Authorization") String authHeader);
+
+    @GET("info")
+    Call<HealthRecord> getHealthRecord(@Header("Authorization") String authHeader);
+
+    @GET("info")
+    Call<PhysicalInformation> getPhysical(@Header("Authorization") String authHeader);
 
 
 

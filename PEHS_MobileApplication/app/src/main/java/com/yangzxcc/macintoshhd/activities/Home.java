@@ -8,6 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -177,11 +178,52 @@ public class Home extends AppCompatActivity
 
         } else if (id == R.id.nav_record_history) {
 
-                HealthInformation health = healthInformations.get(0);
-                healthRecords = health.getHealthRecords();
-            for (int i = 0; i < healthRecords.size(); i++) {
-                healthRecord = healthRecords.get(i);
-            }
+
+
+//       Oat Did -------------------------------------------------------------
+//            Intent intent = new Intent(Home.this, RecordHistory.class);
+//                Log.e("Size : ",""+healthInformations.size());
+//                List<HealthInformation> health = healthInformations;
+//                HealthRecord[] arr = new HealthRecord[healthInformations.size()];
+//                for (int i = 0; i < healthInformations.size(); i++){
+//                    arr[i] = health.get(i).getHealthRecords();
+//                }
+//
+//                healthRecords = new ArrayList<HealthRecord>();
+//                intent.putExtra("record", (Serializable) healthRecords);
+//
+//            intent.putExtra("record", (Serializable) healthRecords);
+//            startActivity(intent);
+//            Oat Did -------------------------------------------------------------
+
+
+
+
+//      Working Code  Get only 1---------------------------------------------------------------
+//            Intent intent = new Intent(Home.this, RecordHistory.class);
+//                for (int j = 0; j < healthInformations.size() ; j++) {
+//
+//                Log.e("Size : ",""+healthInformations.size());
+//                HealthInformation health = healthInformations.get(j);
+//                healthRecords = health.getHealthRecords();
+//
+//                intent.putExtra("record", (Serializable) healthRecords);
+//            }
+//            startActivity(intent);
+//       Working Code  Get only 1---------------------------------------------------------------
+
+
+
+
+
+
+
+//                for (int i = 0; i < healthRecords.size(); i++) {
+//                    Log.e("Size",""+healthRecords.size());
+//                healthRecords.get(i);
+//
+//
+//            }
 
 //                healthRecords = health.getHealthRecords();
 //                HealthRecord record = healthRecords.get(0);
@@ -189,35 +231,42 @@ public class Home extends AppCompatActivity
 //                chemistryInformations = record.getChemistryInformation();
 //                bloodInformations = record.getBloodInformation();
 //                urineInformations = record.getUrineInformation();
-                Intent intent = new Intent(Home.this, RecordHistory.class);
-                intent.putExtra("record", (Serializable) healthRecord);
-//                healthRecords = new ArrayList<HealthRecord>();
-//                intent.putExtra("record", (Serializable) healthRecords);
-                startActivity(intent);
 
 
         } else if (id == R.id.nav_car) {
+
             PersonalInformation value = personalInformations.get(0);
             Intent intent = new Intent(Home.this, Cardiovascular.class);
-            physicalInformations = new ArrayList<PhysicalInformation>();
-            chemistryInformations = new ArrayList<ChemistryInformation>();
-            value.getDateOfBirth();
-            intent.putExtra("date", value.getDateOfBirth());
-            intent.putExtra("physical", (Serializable) physicalInformations);
-            intent.putExtra("chem", (Serializable) chemistryInformations);
+            Bundle data = new Bundle();
+            data.putSerializable("date",value.getDateOfBirth());
+//            intent.putExtra("date", value.getDateOfBirth());
+//            intent.putExtra("physical", (Serializable) physicalInformations);
+//            intent.putExtra("chem", (Serializable) chemistryInformations);
             startActivity(intent);
 
         } else if (id == R.id.nav_health) {
             Intent intent = new Intent(Home.this, HealthDataList.class);
-            physicalInformations = new ArrayList<PhysicalInformation>();
-            chemistryInformations = new ArrayList<ChemistryInformation>();
-            bloodInformations = new ArrayList<BloodInformation>();
-            urineInformations = new ArrayList<UrineInformation>();
+            physicalInformations.get(0);
+            chemistryInformations.get(0);
+            bloodInformations.get(0);
+            urineInformations.get(0);
             intent.putExtra("physical", (Serializable) physicalInformations);
             intent.putExtra("chemical", (Serializable) chemistryInformations);
             intent.putExtra("blood", (Serializable) bloodInformations);
             intent.putExtra("urine", (Serializable) urineInformations);
             startActivity(intent);
+
+
+//            Intent intent = new Intent(Home.this, HealthDataList.class);
+//            physicalInformations = new ArrayList<PhysicalInformation>();
+//            chemistryInformations = new ArrayList<ChemistryInformation>();
+//            bloodInformations = new ArrayList<BloodInformation>();
+//            urineInformations = new ArrayList<UrineInformation>();
+//            intent.putExtra("physical", (Serializable) physicalInformations);
+//            intent.putExtra("chemical", (Serializable) chemistryInformations);
+//            intent.putExtra("blood", (Serializable) bloodInformations);
+//            intent.putExtra("urine", (Serializable) urineInformations);
+//            startActivity(intent);
 
         } else if (id == R.id.nav_logout) {
 
