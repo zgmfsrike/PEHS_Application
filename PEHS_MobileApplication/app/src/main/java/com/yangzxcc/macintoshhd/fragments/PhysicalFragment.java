@@ -1,6 +1,7 @@
 package com.yangzxcc.macintoshhd.fragments;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,6 +15,8 @@ import com.yangzxcc.macintoshhd.pehs.R;
 
 import java.util.List;
 
+import static java.lang.Integer.parseInt;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -21,7 +24,8 @@ public class PhysicalFragment extends Fragment {
 
     private TextView weightResult,heightResult,waistResult,bmiResult,systolicResult,diastolicResult,pulseResult;
     private List<PhysicalInformation> physical;
-    private PhysicalInformation phy,phy1;
+    private PhysicalInformation weight1,height1,waist1,bmi1,systo1,dias1,pul1;
+
     public PhysicalFragment() {
         // Required empty public constructor
     }
@@ -48,17 +52,25 @@ public class PhysicalFragment extends Fragment {
         Record activity = (Record)getActivity();
         Bundle bundle = activity.getData();
         physical = (List<PhysicalInformation>) bundle.getSerializable("physical");
-        phy = physical.get(0);
-        phy1 = physical.get(1);
 
-        String weight = phy.getPhysicalExValue();
-        String height = phy1.getPhysicalExValue();
-        String waist = phy.getPhysicalExValue();
-        String bmi = phy.getPhysicalExValue();
-        String systolic = phy.getPhysicalExValue();
-        String diastolic = phy.getPhysicalExValue();
-        String pulse = phy.getPhysicalExValue();
+        weight1 = physical.get(0);
+        height1 = physical.get(1);
+        waist1 = physical.get(2);
+        bmi1 = physical.get(3);
+        systo1 = physical.get(4);
+        dias1 = physical.get(5);
+        pul1 = physical.get(6);
 
+
+        String weight = weight1.getPhysicalExValue();
+        String height = height1.getPhysicalExValue();
+        String waist = waist1.getPhysicalExValue();
+        String bmi = bmi1.getPhysicalExValue();
+        String systolic = systo1.getPhysicalExValue();
+        String diastolic = dias1.getPhysicalExValue();
+        String pulse = pul1.getPhysicalExValue();
+
+        setColor();
 
         weightResult.setText(weight);
         heightResult.setText(height);
@@ -71,4 +83,31 @@ public class PhysicalFragment extends Fragment {
         return view;
 
     }
+
+    private void setColor( ) {
+
+        int colorCondition;
+
+        if (parseInt(waist1.getPhysicalExValue()) < 90){
+            colorCondition = Color.parseColor("#689f38"); //green
+        }else if(parseInt(bmi1.getPhysicalExValue()) < 23.0 && parseInt(bmi1.getPhysicalExValue()) > 18.5) {
+            colorCondition = Color.parseColor("#689f38"); //green
+        }else if (parseInt(systo1.getPhysicalExValue())  < 139 && parseInt(bmi1.getPhysicalExValue()) > 90) {
+            colorCondition = Color.parseColor("#689f38"); //green
+        }else if (parseInt(dias1.getPhysicalExValue()) < 90 && parseInt(systo1.getPhysicalExValue()) > 90) {
+            colorCondition = Color.parseColor("#689f38"); //green
+        }else if (parseInt(pul1.getPhysicalExValue()) < 100 && parseInt(dias1.getPhysicalExValue()) > 60) {
+            colorCondition = Color.parseColor("#689f38"); //green
+        }else {
+            colorCondition = Color.parseColor("#ff5722"); //red
+        }
+        weightResult.setTextColor(colorCondition);
+        heightResult.setTextColor(colorCondition);
+        waistResult.setTextColor(colorCondition);
+        bmiResult.setTextColor(colorCondition);
+        systolicResult.setTextColor(colorCondition);
+        diastolicResult.setTextColor(colorCondition);
+        pulseResult.setTextColor(colorCondition);
+    }
+
 }

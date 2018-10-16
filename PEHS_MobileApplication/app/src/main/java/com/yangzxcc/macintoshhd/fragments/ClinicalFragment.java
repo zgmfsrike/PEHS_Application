@@ -23,7 +23,7 @@ public class ClinicalFragment extends Fragment {
     private TextView glucoseResult,bunResult,creatineResult,uricResult,cholesterolResult,triglycerideResult,hdlResult,
                 ldlResult,astResut,altResult,alpResult;
     private List<ChemistryInformation> chemistry;
-    private ChemistryInformation chem;
+    private ChemistryInformation glu1,bun1,cre1,uric1,cho1,tri1,hdl1,ldl1,ast1,alt1,alp1;
     public ClinicalFragment() {
         // Required empty public constructor
     }
@@ -50,18 +50,29 @@ public class ClinicalFragment extends Fragment {
         Record activity = (Record)getActivity();
         Bundle bundle = activity.getData();
         chemistry = (List<ChemistryInformation>) bundle.getSerializable("chem");
-        chem = chemistry.get(0);
-        String glucose = chem.getClinicalChemistryValue();
-        String bun = chem.getClinicalChemistryValue();
-        String creatine = chem.getClinicalChemistryValue();
-        String uric = chem.getClinicalChemistryValue();
-        String cholesterol = chem.getClinicalChemistryValue();
-        String triglyceride = chem.getClinicalChemistryValue();
-        String hdl = chem.getClinicalChemistryValue();
-        String ldl = chem.getClinicalChemistryValue();
-        String ast = chem.getClinicalChemistryValue();
-        String alt = chem.getClinicalChemistryValue();
-        String alp = chem.getClinicalChemistryValue();
+        glu1 = chemistry.get(0);
+        bun1 = chemistry.get(0);
+        cre1 = chemistry.get(0);
+        uric1 = chemistry.get(0);
+        cho1 = chemistry.get(0);
+        tri1 = chemistry.get(0);
+        hdl1 = chemistry.get(0);
+        ldl1 = chemistry.get(0);
+        ast1 = chemistry.get(0);
+        alt1 = chemistry.get(0);
+        alp1 = chemistry.get(0);
+
+        String glucose = glu1.getClinicalChemistryValue();
+        String bun = bun1.getClinicalChemistryValue();
+        String creatine = cre1.getClinicalChemistryValue();
+        String uric = uric1.getClinicalChemistryValue();
+        String cholesterol = cho1.getClinicalChemistryValue();
+        String triglyceride = tri1.getClinicalChemistryValue();
+        String hdl = hdl1.getClinicalChemistryValue();
+        String ldl = ldl1.getClinicalChemistryValue();
+        String ast = ast1.getClinicalChemistryValue();
+        String alt = alt1.getClinicalChemistryValue();
+        String alp = alp1.getClinicalChemistryValue();
 
         glucoseResult.setText(glucose);
         bunResult.setText(bun);

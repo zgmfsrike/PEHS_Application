@@ -22,13 +22,11 @@ public class UrineFragment extends Fragment {
     private TextView colorResult,appearanceResult,specificGravityResult,phResult,albuminResult,sugarResult,urineRBCResult,
             urineWBCResult,epithelialResult;
     private List<UrineInformation> urine;
-    private UrineInformation urin;
+    private UrineInformation col1,app1,spec1,ph1,alb1,sug1,uriRed1,uriWh1,epi1;
 
     public UrineFragment() {
         // Required empty public constructor
     }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -47,16 +45,25 @@ public class UrineFragment extends Fragment {
         Record activity = (Record)getActivity();
         Bundle bundle = activity.getData();
         urine = (List<UrineInformation>) bundle.getSerializable("urine");
-        urin = urine.get(0);
-        String color = urin.getUrineExValue();
-        String appear = urin.getUrineExValue();
-        String spec = urin.getUrineExValue();
-        String ph = urin.getUrineExValue();
-        String albu = urin.getUrineExValue();
-        String sugar = urin.getUrineExValue();
-        String urineRed = urin.getUrineExValue();
-        String urineWhite = urin.getUrineExValue();
-        String epi = urin.getUrineExValue();
+        col1 = urine.get(0);
+        app1 = urine.get(1);
+        spec1 = urine.get(2);
+        ph1 = urine.get(3);
+        alb1 = urine.get(4);
+        sug1 = urine.get(5);
+        uriRed1 = urine.get(6);
+        uriWh1 = urine.get(7);
+        epi1 = urine.get(8);
+
+        String color = col1.getUrineExValue();
+        String appear = app1.getUrineExValue();
+        String spec = spec1.getUrineExValue();
+        String ph = ph1.getUrineExValue();
+        String albu = alb1.getUrineExValue();
+        String sugar = sug1.getUrineExValue();
+        String urineRed = uriRed1.getUrineExValue();
+        String urineWhite = uriWh1.getUrineExValue();
+        String epi = epi1.getUrineExValue();
 
         colorResult.setText(color);
         appearanceResult.setText(appear);

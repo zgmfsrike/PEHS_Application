@@ -176,10 +176,6 @@ public class Home extends AppCompatActivity
 
         } else if (id == R.id.nav_record_history) {
 
-
-            for (int i = 0; i < healthInformations.size() ; i++) {
-
-            }
                 HealthInformation health = healthInformations.get(0);
                 health.getHealthRecords();
 
