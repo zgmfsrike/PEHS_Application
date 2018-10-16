@@ -48,6 +48,7 @@ public class Home extends AppCompatActivity
     List<ChemistryInformation> chemistryInformations;
     List<BloodInformation> bloodInformations;
     List<UrineInformation> urineInformations;
+    HealthRecord healthRecord;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -178,6 +179,9 @@ public class Home extends AppCompatActivity
 
                 HealthInformation health = healthInformations.get(0);
                 healthRecords = health.getHealthRecords();
+            for (int i = 0; i < healthRecords.size(); i++) {
+                healthRecord = healthRecords.get(i);
+            }
 
 //                healthRecords = health.getHealthRecords();
 //                HealthRecord record = healthRecords.get(0);
@@ -186,7 +190,7 @@ public class Home extends AppCompatActivity
 //                bloodInformations = record.getBloodInformation();
 //                urineInformations = record.getUrineInformation();
                 Intent intent = new Intent(Home.this, RecordHistory.class);
-                intent.putExtra("record", (Serializable) healthRecords);
+                intent.putExtra("record", (Serializable) healthRecord);
 //                healthRecords = new ArrayList<HealthRecord>();
 //                intent.putExtra("record", (Serializable) healthRecords);
                 startActivity(intent);

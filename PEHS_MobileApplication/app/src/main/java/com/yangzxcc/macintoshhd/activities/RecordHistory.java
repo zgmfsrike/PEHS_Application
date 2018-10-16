@@ -30,6 +30,7 @@ public class RecordHistory extends AppCompatActivity{
     private List<HealthRecord> healthRecords;
     private List<HealthInformation> healthInformations;
     ArrayList<String> arrayList;
+    private HealthRecord healthRecord;
 
 
     @Override
@@ -51,7 +52,6 @@ public class RecordHistory extends AppCompatActivity{
 
         Intent intent = getIntent();
         healthRecords = (List<HealthRecord>) intent.getSerializableExtra("record");
-
         adapter = new HealthAdapter(healthRecords);
         recyclerView.setAdapter(adapter);
 

@@ -52,16 +52,16 @@ public class ClinicalFragment extends Fragment {
         Bundle bundle = activity.getData();
         chemistry = (List<ChemistryInformation>) bundle.getSerializable("chem");
         glu1 = chemistry.get(0);
-        bun1 = chemistry.get(0);
-        cre1 = chemistry.get(0);
-        uric1 = chemistry.get(0);
-        cho1 = chemistry.get(0);
-        tri1 = chemistry.get(0);
-        hdl1 = chemistry.get(0);
-        ldl1 = chemistry.get(0);
-        ast1 = chemistry.get(0);
-        alt1 = chemistry.get(0);
-        alp1 = chemistry.get(0);
+        bun1 = chemistry.get(1);
+        cre1 = chemistry.get(2);
+        uric1 = chemistry.get(3);
+        cho1 = chemistry.get(4);
+        tri1 = chemistry.get(5);
+        hdl1 = chemistry.get(6);
+        ldl1 = chemistry.get(7);
+        ast1 = chemistry.get(8);
+        alt1 = chemistry.get(9);
+        alp1 = chemistry.get(10);
 
         String glucose = glu1.getClinicalChemistryValue();
         String bun = bun1.getClinicalChemistryValue();
