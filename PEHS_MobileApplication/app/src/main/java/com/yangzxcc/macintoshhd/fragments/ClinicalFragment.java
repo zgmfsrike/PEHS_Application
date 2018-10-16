@@ -1,6 +1,7 @@
 package com.yangzxcc.macintoshhd.fragments;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -74,6 +75,7 @@ public class ClinicalFragment extends Fragment {
         String alt = alt1.getClinicalChemistryValue();
         String alp = alp1.getClinicalChemistryValue();
 
+        setColor();
         glucoseResult.setText(glucose);
         bunResult.setText(bun);
         creatineResult.setText(creatine);
@@ -87,6 +89,99 @@ public class ClinicalFragment extends Fragment {
         alpResult.setText(alp);
 
         return view;
+    }
+
+    private void setColor() {
+        int glucose = Integer.parseInt(glu1.getClinicalChemistryValue());
+        double bun = Double.parseDouble(bun1.getClinicalChemistryValue());
+        double creatine = Double.parseDouble(cre1.getClinicalChemistryValue());
+        double uric = Double.parseDouble(uric1.getClinicalChemistryValue());
+        double cholesterol = Double.parseDouble(cho1.getClinicalChemistryValue());
+        int triglyceride = Integer.parseInt(tri1.getClinicalChemistryValue());
+        int hdl = Integer.parseInt(hdl1.getClinicalChemistryValue());
+        int ldl = Integer.parseInt(ldl1.getClinicalChemistryValue());
+        int ast = Integer.parseInt(ast1.getClinicalChemistryValue());
+        int alt = Integer.parseInt(alt1.getClinicalChemistryValue());
+        int alp = Integer.parseInt(alp1.getClinicalChemistryValue());
+        int colorCondition,colorConditiondi;
+
+        if (glucose < 99 && glucose < 70){
+            colorCondition = Color.parseColor("#689f38"); //green
+            glucoseResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red;
+            glucoseResult.setTextColor(colorConditiondi);
+        }
+        if(bun < 20.06 && bun > 8.09) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            bunResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red;
+            bunResult.setTextColor(colorConditiondi);
+        }
+        if (creatine < 1.25 && creatine > 0.72) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            creatineResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red;
+            creatineResult.setTextColor(colorConditiondi);
+        }
+        if (uric < 7.2 && uric > 3.5) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            uricResult.setTextColor(colorCondition);
+        }else{
+            colorConditiondi = Color.parseColor("#ff5722"); //red;
+            uricResult.setTextColor(colorConditiondi);
+        }
+        if (cholesterol < 200) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            cholesterolResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red
+            cholesterolResult.setTextColor(colorConditiondi);
+        }
+        if (triglyceride < 150) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            triglycerideResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red
+            triglycerideResult.setTextColor(colorConditiondi);
+        }
+        if (hdl < 40) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            hdlResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red
+            hdlResult.setTextColor(colorConditiondi);
+        }
+        if (ldl < 150) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            ldlResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red
+            ldlResult.setTextColor(colorConditiondi);
+        }
+        if (ast < 34 && ast > 5) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            astResut.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red
+            astResut.setTextColor(colorConditiondi);
+        }
+        if (alt < 55 && alt > 0)  {
+            colorCondition = Color.parseColor("#689f38"); //green
+            altResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red
+            altResult.setTextColor(colorConditiondi);
+        }
+        if (alp < 150 && alp > 40) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            alpResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red
+            alpResult.setTextColor(colorConditiondi);
+        }
     }
 
 }

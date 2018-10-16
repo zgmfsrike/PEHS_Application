@@ -1,6 +1,7 @@
 package com.yangzxcc.macintoshhd.fragments;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -55,6 +56,8 @@ public class UrineFragment extends Fragment {
         uriWh1 = urine.get(7);
         epi1 = urine.get(8);
 
+        setColor();
+
         String color = col1.getUrineExValue();
         String appear = app1.getUrineExValue();
         String spec = spec1.getUrineExValue();
@@ -76,5 +79,50 @@ public class UrineFragment extends Fragment {
         epithelialResult.setText(epi);
 
         return view;
+    }
+
+    private void setColor() {
+        double specific = Double.parseDouble(spec1.getUrineExValue());
+        int ph = Integer.parseInt(ph1.getUrineExValue());
+        int urineRBC = Integer.parseInt(uriRed1.getUrineExValue());
+        int urineWBC = Integer.parseInt(uriWh1.getUrineExValue());
+        int epi = Integer.parseInt(epi1.getUrineExValue());
+        int colorCondition,colorConditiondi;
+
+        if (specific < 1.030 && specific > 1.005){
+            colorCondition = Color.parseColor("#689f38"); //green
+            specificGravityResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red;
+            specificGravityResult.setTextColor(colorConditiondi);
+        }
+        if(ph < 8 && ph > 4) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            phResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red;
+            phResult.setTextColor(colorConditiondi);
+        }
+        if(urineRBC < 5 && urineRBC > 0) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            urineRBCResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red;
+            urineRBCResult.setTextColor(colorConditiondi);
+        }
+        if(urineWBC < 5 && urineWBC > 0) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            urineWBCResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red;
+            urineWBCResult.setTextColor(colorConditiondi);
+        }
+        if(epi < 5 && epi > 0) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            epithelialResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red;
+            epithelialResult.setTextColor(colorConditiondi);
+        }
     }
 }

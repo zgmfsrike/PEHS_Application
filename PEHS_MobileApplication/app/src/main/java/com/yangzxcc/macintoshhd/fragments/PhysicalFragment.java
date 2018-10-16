@@ -86,38 +86,48 @@ public class PhysicalFragment extends Fragment {
     }
 
     private void setColor( ) {
-         double bmi = new Double(bmi1.getPhysicalExValue());
+        int waist = Integer.parseInt(waist1.getPhysicalExValue());
+        double bmi = new Double(bmi1.getPhysicalExValue());
+        int systolic = Integer.parseInt(systo1.getPhysicalExValue());
+        int diastolic = Integer.parseInt(dias1.getPhysicalExValue());
+        int pulse = Integer.parseInt(pul1.getPhysicalExValue());
+        int colorCondition,colorConditiondi;
 
-        int colorCondition, colorConditiondi;
-
-        if (parseInt(waist1.getPhysicalExValue()) < 90){
+        if (waist < 90){
             colorCondition = Color.parseColor("#689f38"); //green
-        }else if(bmi < 23.0 && bmi > 18.5) {
-            colorCondition = Color.parseColor("#689f38"); //green
-        }else if (parseInt(systo1.getPhysicalExValue())  < 139 && parseInt(bmi1.getPhysicalExValue()) > 90) {
-            colorCondition = Color.parseColor("#689f38"); //green
-        }
-//        else if (parseInt(dias1.getPhysicalExValue()) < 90 && parseInt(systo1.getPhysicalExValue()) > 90) {
-//            colorCondition = Color.parseColor("#689f38"); //green
-//        }
-        else if (parseInt(pul1.getPhysicalExValue()) < 100 && parseInt(dias1.getPhysicalExValue()) > 60) {
-            colorCondition = Color.parseColor("#689f38"); //green
+            waistResult.setTextColor(colorCondition);
         }else {
-            colorCondition = Color.parseColor("#ff5722"); //red
+            colorConditiondi = Color.parseColor("#ff5722"); //red;
+            waistResult.setTextColor(colorConditiondi);
         }
-
-        if (parseInt(dias1.getPhysicalExValue()) < 90 && parseInt(systo1.getPhysicalExValue()) > 90) {
-            colorConditiondi = Color.parseColor("#689f38"); //green
+        if(bmi < 23.0 && bmi > 18.5) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            bmiResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red;
+            bmiResult.setTextColor(colorConditiondi);
+        }
+        if (systolic < 139 && systolic > 90) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            systolicResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red;
+            systolicResult.setTextColor(colorConditiondi);
+        }
+        if (diastolic < 90 && diastolic > 60) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            diastolicResult.setTextColor(colorCondition);
         }else{
             colorConditiondi = Color.parseColor("#ff5722"); //red;
+            diastolicResult.setTextColor(colorConditiondi);
         }
-        weightResult.setTextColor(colorCondition);
-        heightResult.setTextColor(colorCondition);
-        waistResult.setTextColor(colorCondition);
-        bmiResult.setTextColor(colorCondition);
-        systolicResult.setTextColor(colorCondition);
-        diastolicResult.setTextColor(colorConditiondi);
-        pulseResult.setTextColor(colorCondition);
+        if (pulse < 100 && pulse > 60) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            pulseResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red
+            pulseResult.setTextColor(colorConditiondi);
+        }
     }
 
 }

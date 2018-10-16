@@ -177,7 +177,7 @@ public class Home extends AppCompatActivity
         } else if (id == R.id.nav_record_history) {
 
                 HealthInformation health = healthInformations.get(0);
-                health.getHealthRecords();
+                healthRecords = health.getHealthRecords();
 
 //                healthRecords = health.getHealthRecords();
 //                HealthRecord record = healthRecords.get(0);
@@ -186,7 +186,7 @@ public class Home extends AppCompatActivity
 //                bloodInformations = record.getBloodInformation();
 //                urineInformations = record.getUrineInformation();
                 Intent intent = new Intent(Home.this, RecordHistory.class);
-                intent.putExtra("record", (Serializable) health.getHealthRecords());
+                intent.putExtra("record", (Serializable) healthRecords);
 //                healthRecords = new ArrayList<HealthRecord>();
 //                intent.putExtra("record", (Serializable) healthRecords);
                 startActivity(intent);
