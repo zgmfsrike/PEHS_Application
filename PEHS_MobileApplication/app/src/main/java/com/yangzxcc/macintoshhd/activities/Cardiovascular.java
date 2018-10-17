@@ -65,24 +65,24 @@ public class Cardiovascular extends AppCompatActivity implements View.OnClickLis
 
         ApiInterface apiInterface = ApiClient.getRetrofit().create(ApiInterface.class);
 
-        Intent intent = getIntent();
-        String token = intent.getStringExtra("token");
-        Call<HealthRecord> call = apiInterface.getHealthRecord("Bearer "+token);
-        call.enqueue(new Callback<HealthRecord>() {
-            @Override
-            public void onResponse(Call<HealthRecord> call, Response<HealthRecord> response) {
-                List<PhysicalInformation> physicalInformations = response.body().getPhysicalInformation();
-                 systolicData = physicalInformations.get(4);
-
-                List<ChemistryInformation> chemistryInformations = response.body().getChemistryInformation();
-                totalCholesterol = chemistryInformations.get(4);
-            }
-
-            @Override
-            public void onFailure(Call<HealthRecord> call, Throwable t) {
-
-            }
-        });
+//        Intent intent = getIntent();
+//        String token = intent.getStringExtra("token");
+//        Call<HealthRecord> call = apiInterface.getHealthRecord("Bearer "+token);
+//        call.enqueue(new Callback<HealthRecord>() {
+//            @Override
+//            public void onResponse(Call<HealthRecord> call, Response<HealthRecord> response) {
+//                List<PhysicalInformation> physicalInformations = response.body().getPhysicalInformation();
+//                 systolicData = physicalInformations.get(4);
+//
+//                List<ChemistryInformation> chemistryInformations = response.body().getChemistryInformation();
+//                totalCholesterol = chemistryInformations.get(4);
+//            }
+//
+//            @Override
+//            public void onFailure(Call<HealthRecord> call, Throwable t) {
+//
+//            }
+//        });
     }
     private void checkButton(){
         int radioId = gender.getCheckedRadioButtonId();
@@ -105,7 +105,7 @@ public class Cardiovascular extends AppCompatActivity implements View.OnClickLis
         int sys = Integer.parseInt(systolicData.getPhysicalExValue());
         int cho = Integer.parseInt(totalCholesterol.getClinicalChemistryValue());
 
-        double value = 0.0818347640193792;
+//        double value = 0.0818347640193792;
 //        String data = (value*age)+(0.394986128542107*"sex") + (0.0208425438624519*sys)
 //                +(0.699741921871007*"diabetes")+ (0.00212384055469836*cho) + (0.419162811751856*"smoke");
     }

@@ -40,28 +40,20 @@ public class HealthDataList extends AppCompatActivity implements View.OnClickLis
         getSupportActionBar().setTitle("Record Date");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Intent intent = getIntent();
-        List<HealthRecord> healthRecords = (List<HealthRecord>) intent.getSerializableExtra("record");
-
-        HealthRecord healthRecord = healthRecords.get(0); //Health record อันแรก
-        PhysicalInformation physicalInformation = (PhysicalInformation) healthRecord.getPhysicalInformation();
-
-
-
-        physical = (List<PhysicalInformation>)intent.getSerializableExtra("physical");
-        phy = physical.get(0);
-//        phy.getPhysicalExName(); //Weight at 0 position
-//        phy.getPhysicalExValue();
-
-        chemistry = (List<ChemistryInformation>) intent.getSerializableExtra("chemical");
-        chem = chemistry.get(0);
-//        chem.getClinicalChemistryName();
-//        chem.getClinicalChemistryValue();
-
-        blood = (List<BloodInformation>) intent.getSerializableExtra("blood");
-        bloo = blood.get(0);
-//        bloo.getBloodExName();
-//        bloo.getBloodExValue();
+//        physical = (List<PhysicalInformation>)intent.getSerializableExtra("physical");
+//        phy = physical.get(0);
+////        phy.getPhysicalExName(); //Weight at 0 position
+////        phy.getPhysicalExValue();
+//
+//        chemistry = (List<ChemistryInformation>) intent.getSerializableExtra("chemical");
+//        chem = chemistry.get(0);
+////        chem.getClinicalChemistryName();
+////        chem.getClinicalChemistryValue();
+//
+//        blood = (List<BloodInformation>) intent.getSerializableExtra("blood");
+//        bloo = blood.get(0);
+////        bloo.getBloodExName();
+////        bloo.getBloodExValue();
 
         phyCard = (CardView)findViewById(R.id.phyCard);
         chemCard = (CardView)findViewById(R.id.chemCard);
@@ -70,7 +62,16 @@ public class HealthDataList extends AppCompatActivity implements View.OnClickLis
         phyCard.setOnClickListener(this);
         chemCard.setOnClickListener(this);
         bloodCard.setOnClickListener(this);
+//
+//        Intent intent = getIntent();
+//        List<HealthRecord> healthRecords = (List<HealthRecord>) intent.getSerializableExtra("record");
+//        healthRecords.get(0); //Health record อันแรก
+//        healthRecords.get(0);
 
+//        PhysicalInformation physicalInformation = (PhysicalInformation) healthRecord.getPhysicalInformation();.
+//        Intent intent = getIntent();
+//        List<PhysicalInformation> physicalInformations = (List<PhysicalInformation>) intent.getSerializableExtra("physical");
+//        physicalInformations.get(0);
     }
 
     @Override
@@ -78,7 +79,7 @@ public class HealthDataList extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()){
             case R.id.phyCard:
                 Intent intent = new Intent(HealthDataList.this,HealthDataVisualization.class);
-                intent.putExtra("physicalName",);
+//                intent.putExtra("",healthRecords.get(0));
 //                intent.putExtra("physicalValue",phy.getPhysicalExValue());
                 startActivity(intent);
                 break;

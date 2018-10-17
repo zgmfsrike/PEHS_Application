@@ -48,19 +48,21 @@ public interface ApiInterface {
     Call<HealthRecord> getHealthRecord(@Header("Authorization") String authHeader);
     //  Request HealthRecord ----------------------------------------
 
+    @GET("info")
+    Call<PhysicalInformation> getPhysical(@Header("Authorization") String authHeader);
 
-
+    //  Request HealthRecord ----------------------------------------
 
 //    @GET("info")
 //    Call<ResponseBody> getInfo(@Header("Authorization") String authHeader);
 
 
+//
+//    @GET("posts")
+//    Call<List<HealthRecordTest>> getPosts();
 
-    @GET("posts")
-    Call<List<HealthRecordTest>> getPosts();
-
-    @FormUrlEncoded
-    @POST("user.php")
-    Call<Patient> performPatientLogin(@Query("username") String username,@Query("password") String password); //The query must match with php
+//    @FormUrlEncoded
+//    @POST("user.php")
+//    Call<Patient> performPatientLogin(@Query("username") String username,@Query("password") String password); //The query must match with php
 
 }

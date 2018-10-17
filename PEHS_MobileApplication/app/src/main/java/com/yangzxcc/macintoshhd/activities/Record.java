@@ -76,7 +76,6 @@ public class Record extends AppCompatActivity {
         phy.getPhysicalExValue();
 
 
-
         chemistry = (List<ChemistryInformation>) intent.getSerializableExtra("chem");
 
         blood = (List<BloodInformation>) intent.getSerializableExtra("blood");

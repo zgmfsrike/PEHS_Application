@@ -32,23 +32,22 @@ public class BmiFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_bmi, container, false);
-
-        HealthDataVisualization activity = (HealthDataVisualization)getActivity();
-        Bundle bundle = activity.getListOfData();
-        List<PhysicalInformation> bmi = (List<PhysicalInformation>) bundle.getSerializable("physical");
-        PhysicalInformation bmI = bmi.get(3); //Bmi value
-        bmI.getPhysicalExValue();
-
-
-        GraphView graph = (GraphView)view.findViewById(R.id.graph);
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
-                new DataPoint(0, Double.parseDouble(bmI.getPhysicalExValue())),
-//                new DataPoint(1, parseInt(weightValue)),
-//                new DataPoint(2, parseInt(weightValue)),
-//                new DataPoint(3, parseInt(weightValue)),
-//                new DataPoint(4, parseInt(weightValue))
-        });
-        graph.addSeries(series);
+//
+//        HealthDataVisualization activity = (HealthDataVisualization)getActivity();
+//        Bundle bundle = activity.getListOfData();
+//        List<PhysicalInformation> bmi = (List<PhysicalInformation>) bundle.getSerializable("physical");
+//        PhysicalInformation bmI = bmi.get(3); //Bmi value
+//        bmI.getPhysicalExValue();
+//
+//        GraphView graph = (GraphView)view.findViewById(R.id.graph);
+//        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
+//                new DataPoint(0, Double.parseDouble(bmI.getPhysicalExValue())),
+////                new DataPoint(1, parseInt(weightValue)),
+////                new DataPoint(2, parseInt(weightValue)),
+////                new DataPoint(3, parseInt(weightValue)),
+////                new DataPoint(4, parseInt(weightValue))
+//        });
+//        graph.addSeries(series);
 
         return view;
     }

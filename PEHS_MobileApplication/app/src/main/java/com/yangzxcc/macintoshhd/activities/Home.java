@@ -211,13 +211,6 @@ public class Home extends AppCompatActivity
             }
             startActivity(intent);
 //       Working Code  Get only 1---------------------------------------------------------------
-
-
-
-
-
-
-
 //                for (int i = 0; i < healthRecords.size(); i++) {
 //                    Log.e("Size",""+healthRecords.size());
 //                healthRecords.get(i);
@@ -246,22 +239,19 @@ public class Home extends AppCompatActivity
 
         } else if (id == R.id.nav_health) {
             Intent intent = new Intent(Home.this, HealthDataList.class);
+            startActivity(intent);
 
+//-----------------------------------------------------------------------------------------------------
 //            List<HealthRecord> datalist = (List<HealthRecord>) healthInformations.get(0);
 //            HealthRecord data = datalist.get(0);
 //            data.getChemistryInformation();
 //            data.getBloodInformation();
 //            data.getPhysicalInformation();
-            HealthInformation record = healthInformations.get(1);
-            List<HealthRecord> healthRecords = record.getHealthRecords();
-
-            intent.putExtra("record", (Serializable) healthRecords);
 //            intent.putExtra("physical", (Serializable) data.getPhysicalInformation());
 //            intent.putExtra("chemical", (Serializable) data.getChemistryInformation());
 //            intent.putExtra("blood", (Serializable) data.getBloodInformation());
-//
-
-
+//            startActivity(intent);
+//-----------------------------------------------------------------------------
 //            physicalInformations.get(0);
 //            chemistryInformations.get(0);
 //            bloodInformations.get(0);
@@ -270,9 +260,9 @@ public class Home extends AppCompatActivity
 //            intent.putExtra("chemical", (Serializable) chemistryInformations);
 //            intent.putExtra("blood", (Serializable) bloodInformations);
 //            intent.putExtra("urine", (Serializable) urineInformations);
-            startActivity(intent);
 
 
+//---------------------------------------------------------------------------------------
 //            Intent intent = new Intent(Home.this, HealthDataList.class);
 //            physicalInformations = new ArrayList<PhysicalInformation>();
 //            chemistryInformations = new ArrayList<ChemistryInformation>();
@@ -283,6 +273,12 @@ public class Home extends AppCompatActivity
 //            intent.putExtra("blood", (Serializable) bloodInformations);
 //            intent.putExtra("urine", (Serializable) urineInformations);
 //            startActivity(intent);
+
+//---------------------------------------------------------------------------------------
+//            HealthInformation record = healthInformations.get(0);
+//            List<HealthRecord> healthRecords = record.getHealthRecords();
+//            intent.putExtra("record", (Serializable) healthRecords);
+            //---------------------------------------------------------------------------------------
 
         } else if (id == R.id.nav_logout) {
 

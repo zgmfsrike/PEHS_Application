@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class WeightFragment extends Fragment {
 
-
+    List<PhysicalInformation> physicalInformations;
 
     public WeightFragment() {
         // Required empty public constructor
@@ -35,10 +35,19 @@ public class WeightFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_weight, container, false);
 
         HealthDataVisualization activity = (HealthDataVisualization)getActivity();
-        Bundle bundle = activity.getListOfData();
-        List<PhysicalInformation> physicalInformation = (List<PhysicalInformation>) bundle.getSerializable("physical");
-        PhysicalInformation data = physicalInformation.get(0); // Weight
-        String weight = data.getPhysicalExValue();
+        Bundle bundle = activity.getPhysical();
+        String date = bundle.getString("date");
+        physicalInformations = (List<PhysicalInformation>) bundle.getSerializable("physical");
+//        PhysicalInformation value = (physicalInformations.get(0));
+//        String value = (String) bundle.getSerializable("physical");
+
+
+
+//        HealthDataVisualization activity = (HealthDataVisualization)getActivity();
+//        Bundle bundle = activity.getListOfData();
+//        List<PhysicalInformation> physicalInformation = (List<PhysicalInformation>) bundle.getSerializable("physical");
+//        PhysicalInformation data = physicalInformation.get(0); // Weight
+//        String weight = data.getPhysicalExValue();
 //
 // physicalInformation.getPhysicalExValue();
 //        String weight = bundle.getString("physicalName");
@@ -50,8 +59,8 @@ public class WeightFragment extends Fragment {
 
         GraphView graph = (GraphView)view.findViewById(R.id.graph);
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
-                new DataPoint(0, Double.parseDouble(weight)),
-//                new DataPoint(1, parseInt(weightValue)),
+                new DataPoint(Double.parseDouble(date),2 ),
+//                new DataPoint(1, 5),
 //                new DataPoint(2, parseInt(weightValue)),
 //                new DataPoint(3, parseInt(weightValue)),
 //                new DataPoint(4, parseInt(weightValue))
