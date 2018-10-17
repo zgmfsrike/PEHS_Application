@@ -71,6 +71,7 @@ public class HealthDataList extends AppCompatActivity implements View.OnClickLis
                 Intent intent = new Intent(HealthDataList.this,HealthDataVisualization.class);
 //                intent.putExtra("physicalName",phy.getPhysicalExName());
 //                intent.putExtra("physicalValue",phy.getPhysicalExValue());
+                startActivity(intent);
                 break;
             case R.id.chemCard:
                 Intent intent2 = new Intent(HealthDataList.this,HealthDataVisualization.class);
