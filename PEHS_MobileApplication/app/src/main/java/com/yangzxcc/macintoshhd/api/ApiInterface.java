@@ -21,6 +21,7 @@ import retrofit2.http.Query;
 
 public interface ApiInterface {
 
+    //  Request Login ----------------------------------------
     @Headers({
             "Content-Type: application/json",
             "X-Requested-With:XMLHttpRequest",
@@ -28,26 +29,10 @@ public interface ApiInterface {
     })
     @POST("login")
     Call<AccessToken> signIn(@Body SignIn signIn);
-
-    @Headers({
-            "Content-Type: application/json",
-            "X-Requested-With:XMLHttpRequest",
-            "Accept: application/json"
-    })
-    @GET("info")
-    Call<InformationManager> getToken(@Query("username") String username,
-                                @Query("password") String password);
-
-    //Second Method
-    @Headers({
-            "Content-Type: application/json",
-            "X-Requested-With:XMLHttpRequest",
-            "Accept: application/json"
-    })
-    @GET("info")
-    Call<Patient> getUser(@Header("Authorization") String authHeader);
+    //  Request Login ----------------------------------------
 
 
+    //  Request Information ----------------------------------------
     @Headers({
             "Content-Type: application/json",
             "X-Requested-With:XMLHttpRequest",
@@ -55,12 +40,13 @@ public interface ApiInterface {
     })
     @GET("info")
     Call<InformationManager> getInfo(@Header("Authorization") String authHeader);
+    //  Request Information ----------------------------------------
 
+
+    //  Request HealthRecord ----------------------------------------
     @GET("info")
     Call<HealthRecord> getHealthRecord(@Header("Authorization") String authHeader);
-
-    @GET("info")
-    Call<PhysicalInformation> getPhysical(@Header("Authorization") String authHeader);
+    //  Request HealthRecord ----------------------------------------
 
 
 
