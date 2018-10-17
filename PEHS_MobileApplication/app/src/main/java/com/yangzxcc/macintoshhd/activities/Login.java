@@ -63,16 +63,12 @@ public class Login extends AppCompatActivity {
 
     }
 
-
     private void patientLogin() {
-
-
         String username = textInputEditUsername.getText().toString().trim();
         String password = textInputEditPassword.getText().toString().trim();
         String name = "nimmit";
         String pass = "123456";
         String name2 = "nipon";
-
 
         if (username.isEmpty()) {
 //            textInputEditUsername.setError("Please fill out this fields");

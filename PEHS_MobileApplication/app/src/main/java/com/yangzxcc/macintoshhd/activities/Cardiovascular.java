@@ -63,26 +63,7 @@ public class Cardiovascular extends AppCompatActivity implements View.OnClickLis
 
         cal.setOnClickListener(this);
 
-        ApiInterface apiInterface = ApiClient.getRetrofit().create(ApiInterface.class);
 
-//        Intent intent = getIntent();
-//        String token = intent.getStringExtra("token");
-//        Call<HealthRecord> call = apiInterface.getHealthRecord("Bearer "+token);
-//        call.enqueue(new Callback<HealthRecord>() {
-//            @Override
-//            public void onResponse(Call<HealthRecord> call, Response<HealthRecord> response) {
-//                List<PhysicalInformation> physicalInformations = response.body().getPhysicalInformation();
-//                 systolicData = physicalInformations.get(4);
-//
-//                List<ChemistryInformation> chemistryInformations = response.body().getChemistryInformation();
-//                totalCholesterol = chemistryInformations.get(4);
-//            }
-//
-//            @Override
-//            public void onFailure(Call<HealthRecord> call, Throwable t) {
-//
-//            }
-//        });
     }
     private void checkButton(){
         int radioId = gender.getCheckedRadioButtonId();

@@ -41,7 +41,7 @@
             android:layout_toRightOf="@+id/pic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hi !"
+            android:text="Hi ! USER"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/white"/>
@@ -54,7 +54,8 @@
             android:layout_height="wrap_content"
             android:text="THANAWAT LUKUAN"
             android:textSize="20sp"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:visibility="gone"/>
 
     </RelativeLayout>
 

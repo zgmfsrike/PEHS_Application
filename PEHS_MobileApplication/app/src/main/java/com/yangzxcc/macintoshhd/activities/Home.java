@@ -69,10 +69,10 @@ public class Home extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        PersonalInformation value = personalInformations.get(0);
-        String data = value.getName();
-        name = (TextView)findViewById(R.id.homeName);
-        name.setText(data);
+//        PersonalInformation value = personalInformations.get(0);
+//        String data = value.getName();
+//        name = (TextView)findViewById(R.id.homeName);
+//        name.setText(data);
 
         Retrofit retrofit = ApiClient.getRetrofit();
 
@@ -235,14 +235,22 @@ public class Home extends AppCompatActivity
 
         } else if (id == R.id.nav_car) {
 
-            PersonalInformation value = personalInformations.get(0);
-            Intent intent = new Intent(Home.this, Cardiovascular.class);
-            Bundle data = new Bundle();
-            data.putSerializable("date",value.getDateOfBirth());
+//            Intent intent = new Intent();
+//            PersonalInformation value = personalInformations.get(0);
+//            value.
+//            intent.putExtra("")
+//
+
+
+
+//            Intent intent = new Intent(Home.this, Cardiovascular.class);
+//            PersonalInformation value = personalInformations.get(0);
+//            Bundle data = new Bundle();
+//            data.putSerializable("date",value.getDateOfBirth());
 //            intent.putExtra("date", value.getDateOfBirth());
 //            intent.putExtra("physical", (Serializable) physicalInformations);
 //            intent.putExtra("chem", (Serializable) chemistryInformations);
-            startActivity(intent);
+//            startActivity(intent);
 
         } else if (id == R.id.nav_health) {
             Intent intent = new Intent(Home.this, HealthDataList.class);
