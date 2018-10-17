@@ -5,9 +5,9 @@
     tools:context="com.yangzxcc.macintoshhd.activities.blood.WhiteBloodFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.jjoe64.graphview.GraphView
+        android:layout_gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
+        android:layout_height="200dip"
+        android:id="@+id/graph" />
 </FrameLayout>
