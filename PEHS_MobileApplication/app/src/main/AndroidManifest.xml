@@ -38,8 +38,11 @@
             android:launchMode="singleTop"/>
         <activity android:name="com.yangzxcc.macintoshhd.activities.Record" />
         <activity android:name="com.yangzxcc.macintoshhd.activities.TestLogin" />
-        <activity android:name="com.yangzxcc.macintoshhd.activities.HealthDataList" />
-        <activity android:name="com.yangzxcc.macintoshhd.activities.HealthDataVisualization" />
+        <activity android:name="com.yangzxcc.macintoshhd.activities.HealthDataList"
+            android:parentActivityName="com.yangzxcc.macintoshhd.activities.Home"/>
+        <activity android:name="com.yangzxcc.macintoshhd.activities.HealthDataVisualization"
+            android:parentActivityName="com.yangzxcc.macintoshhd.activities.HealthDataList" />
+
         <activity android:name="com.yangzxcc.macintoshhd.activities.Cardiovascular"></activity>
     </application>
 
