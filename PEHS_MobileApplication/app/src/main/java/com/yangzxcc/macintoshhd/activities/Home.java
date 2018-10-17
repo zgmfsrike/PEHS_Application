@@ -200,16 +200,16 @@ public class Home extends AppCompatActivity
 
 
 //      Working Code  Get only 1---------------------------------------------------------------
-//            Intent intent = new Intent(Home.this, RecordHistory.class);
-//                for (int j = 0; j < healthInformations.size() ; j++) {
-//
-//                Log.e("Size : ",""+healthInformations.size());
-//                HealthInformation health = healthInformations.get(j);
-//                healthRecords = health.getHealthRecords();
-//
-//                intent.putExtra("record", (Serializable) healthRecords);
-//            }
-//            startActivity(intent);
+            Intent intent = new Intent(Home.this, RecordHistory.class);
+                for (int j = 0; j < healthInformations.size() ; j++) {
+
+                Log.e("Size : ",""+healthInformations.size());
+                HealthInformation health = healthInformations.get(j);
+                healthRecords = health.getHealthRecords();
+
+                intent.putExtra("record", (Serializable) healthRecords);
+            }
+            startActivity(intent);
 //       Working Code  Get only 1---------------------------------------------------------------
 
 
@@ -247,16 +247,19 @@ public class Home extends AppCompatActivity
         } else if (id == R.id.nav_health) {
             Intent intent = new Intent(Home.this, HealthDataList.class);
 
-            List<HealthRecord> datalist = (List<HealthRecord>) healthInformations.get(0);
-            HealthRecord data = datalist.get(0);
-            data.getChemistryInformation();
-            data.getBloodInformation();
-            data.getPhysicalInformation();
+//            List<HealthRecord> datalist = (List<HealthRecord>) healthInformations.get(0);
+//            HealthRecord data = datalist.get(0);
+//            data.getChemistryInformation();
+//            data.getBloodInformation();
+//            data.getPhysicalInformation();
+            HealthInformation record = healthInformations.get(1);
+            List<HealthRecord> healthRecords = record.getHealthRecords();
 
-            intent.putExtra("physical", (Serializable) data.getPhysicalInformation());
-            intent.putExtra("chemical", (Serializable) data.getChemistryInformation());
-            intent.putExtra("blood", (Serializable) data.getBloodInformation());
-
+            intent.putExtra("record", (Serializable) healthRecords);
+//            intent.putExtra("physical", (Serializable) data.getPhysicalInformation());
+//            intent.putExtra("chemical", (Serializable) data.getChemistryInformation());
+//            intent.putExtra("blood", (Serializable) data.getBloodInformation());
+//
 
 
 //            physicalInformations.get(0);

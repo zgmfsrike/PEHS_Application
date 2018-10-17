@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.yangzxcc.macintoshhd.infos.BloodInformation;
 import com.yangzxcc.macintoshhd.infos.ChemistryInformation;
+import com.yangzxcc.macintoshhd.infos.HealthRecord;
 import com.yangzxcc.macintoshhd.infos.PhysicalInformation;
 import com.yangzxcc.macintoshhd.infos.UrineInformation;
 import com.yangzxcc.macintoshhd.pehs.R;
@@ -40,6 +41,13 @@ public class HealthDataList extends AppCompatActivity implements View.OnClickLis
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
+        List<HealthRecord> healthRecords = (List<HealthRecord>) intent.getSerializableExtra("record");
+
+        HealthRecord healthRecord = healthRecords.get(0); //Health record อันแรก
+        PhysicalInformation physicalInformation = (PhysicalInformation) healthRecord.getPhysicalInformation();
+
+
+
         physical = (List<PhysicalInformation>)intent.getSerializableExtra("physical");
         phy = physical.get(0);
 //        phy.getPhysicalExName(); //Weight at 0 position
@@ -70,7 +78,7 @@ public class HealthDataList extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()){
             case R.id.phyCard:
                 Intent intent = new Intent(HealthDataList.this,HealthDataVisualization.class);
-                intent.putExtra("physicalName", (Serializable) physical);
+                intent.putExtra("physicalName",);
 //                intent.putExtra("physicalValue",phy.getPhysicalExValue());
                 startActivity(intent);
                 break;
