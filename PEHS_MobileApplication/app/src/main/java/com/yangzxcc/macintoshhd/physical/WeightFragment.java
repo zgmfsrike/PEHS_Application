@@ -7,8 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 import com.yangzxcc.macintoshhd.activities.HealthDataVisualization;
+import com.yangzxcc.macintoshhd.infos.PhysicalInformation;
 import com.yangzxcc.macintoshhd.pehs.R;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +22,7 @@ import com.yangzxcc.macintoshhd.pehs.R;
 public class WeightFragment extends Fragment {
 
 
+    PhysicalInformation physicalInformation;
     public WeightFragment() {
         // Required empty public constructor
     }
@@ -29,10 +36,26 @@ public class WeightFragment extends Fragment {
 
         HealthDataVisualization activity = (HealthDataVisualization)getActivity();
         Bundle bundle = activity.getData();
-        String weight = bundle.getString("physicalName");
-        String weightValue = bundle.getString("physicalValue");
+        physicalInformation = (PhysicalInformation) bundle.getSerializable("physical");
+        physicalInformation.getPhysicalExValue();
+//        String weight = bundle.getString("physicalName");
 
 
+//        String weightValue = bundle.getString("physicalValue");
+
+        List<PhysicalInformation> systolic = (List<PhysicalInformation>) bundle.getSerializable("physical");
+        PhysicalInformation sys = systolic.get(4); //Systolic value
+        String systolic1 = sys.getPhysicalExValue();
+
+        GraphView graph = (GraphView)view.findViewById(R.id.graph);
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
+                new DataPoint(0, Double.parseDouble(physicalInformation.getPhysicalExValue())),
+//                new DataPoint(1, parseInt(weightValue)),
+//                new DataPoint(2, parseInt(weightValue)),
+//                new DataPoint(3, parseInt(weightValue)),
+//                new DataPoint(4, parseInt(weightValue))
+        });
+        graph.addSeries(series);
         return view;
     }
 

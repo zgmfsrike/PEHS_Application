@@ -13,6 +13,7 @@ import com.yangzxcc.macintoshhd.infos.PhysicalInformation;
 import com.yangzxcc.macintoshhd.infos.UrineInformation;
 import com.yangzxcc.macintoshhd.pehs.R;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class HealthDataList extends AppCompatActivity implements View.OnClickListener {
@@ -38,19 +39,19 @@ public class HealthDataList extends AppCompatActivity implements View.OnClickLis
         getSupportActionBar().setTitle("Record Date");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-//        Intent intent = getIntent();
-//        physical = (List<PhysicalInformation>)intent.getSerializableExtra("physical");
-//        phy = physical.get(0);
+        Intent intent = getIntent();
+        physical = (List<PhysicalInformation>)intent.getSerializableExtra("physical");
+        phy = physical.get(0);
 //        phy.getPhysicalExName(); //Weight at 0 position
 //        phy.getPhysicalExValue();
-//
-//        chemistry = (List<ChemistryInformation>) intent.getSerializableExtra("chemical");
-//        chem = chemistry.get(0);
+
+        chemistry = (List<ChemistryInformation>) intent.getSerializableExtra("chemical");
+        chem = chemistry.get(0);
 //        chem.getClinicalChemistryName();
 //        chem.getClinicalChemistryValue();
-//
-//        blood = (List<BloodInformation>) intent.getSerializableExtra("blood");
-//        bloo = blood.get(0);
+
+        blood = (List<BloodInformation>) intent.getSerializableExtra("blood");
+        bloo = blood.get(0);
 //        bloo.getBloodExName();
 //        bloo.getBloodExValue();
 
@@ -69,20 +70,20 @@ public class HealthDataList extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()){
             case R.id.phyCard:
                 Intent intent = new Intent(HealthDataList.this,HealthDataVisualization.class);
-//                intent.putExtra("physicalName",phy.getPhysicalExName());
+                intent.putExtra("physicalName", (Serializable) physical);
 //                intent.putExtra("physicalValue",phy.getPhysicalExValue());
                 startActivity(intent);
                 break;
-            case R.id.chemCard:
-                Intent intent2 = new Intent(HealthDataList.this,HealthDataVisualization.class);
-                intent2.putExtra("chemName",chem.getClinicalChemistryName());
-                intent2.putExtra("chemValue",chem.getClinicalChemistryValue());
-                break;
-            case R.id.bloodCard:
-                Intent intent3 = new Intent(HealthDataList.this,HealthDataVisualization.class);
-                intent3.putExtra("bloodName",bloo.getBloodExName());
-                intent3.putExtra("bloodValue",bloo.getBloodExValue());
-                break;
+//            case R.id.chemCard:
+//                Intent intent2 = new Intent(HealthDataList.this,HealthDataVisualization.class);
+//                intent2.putExtra("chemName",chem.getClinicalChemistryName());
+//                intent2.putExtra("chemValue",chem.getClinicalChemistryValue());
+//                break;
+//            case R.id.bloodCard:
+//                Intent intent3 = new Intent(HealthDataList.this,HealthDataVisualization.class);
+//                intent3.putExtra("bloodName",bloo.getBloodExName());
+//                intent3.putExtra("bloodValue",bloo.getBloodExValue());
+//                break;
         }
     }
 }
