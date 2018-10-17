@@ -246,14 +246,14 @@ public class Home extends AppCompatActivity
 
         } else if (id == R.id.nav_health) {
             Intent intent = new Intent(Home.this, HealthDataList.class);
-            physicalInformations.get(0);
-            chemistryInformations.get(0);
-            bloodInformations.get(0);
-            urineInformations.get(0);
-            intent.putExtra("physical", (Serializable) physicalInformations);
-            intent.putExtra("chemical", (Serializable) chemistryInformations);
-            intent.putExtra("blood", (Serializable) bloodInformations);
-            intent.putExtra("urine", (Serializable) urineInformations);
+//            physicalInformations.get(0);
+//            chemistryInformations.get(0);
+//            bloodInformations.get(0);
+//            urineInformations.get(0);
+//            intent.putExtra("physical", (Serializable) physicalInformations);
+//            intent.putExtra("chemical", (Serializable) chemistryInformations);
+//            intent.putExtra("blood", (Serializable) bloodInformations);
+//            intent.putExtra("urine", (Serializable) urineInformations);
             startActivity(intent);
 
 

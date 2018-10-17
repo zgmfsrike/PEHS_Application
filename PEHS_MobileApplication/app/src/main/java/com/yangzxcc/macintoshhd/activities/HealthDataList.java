@@ -38,21 +38,21 @@ public class HealthDataList extends AppCompatActivity implements View.OnClickLis
         getSupportActionBar().setTitle("Record Date");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Intent intent = getIntent();
-        physical = (List<PhysicalInformation>)intent.getSerializableExtra("physical");
-        phy = physical.get(0);
-        phy.getPhysicalExName(); //Weight at 0 position
-        phy.getPhysicalExValue();
-
-        chemistry = (List<ChemistryInformation>) intent.getSerializableExtra("chemical");
-        chem = chemistry.get(0);
-        chem.getClinicalChemistryName();
-        chem.getClinicalChemistryValue();
-
-        blood = (List<BloodInformation>) intent.getSerializableExtra("blood");
-        bloo = blood.get(0);
-        bloo.getBloodExName();
-        bloo.getBloodExValue();
+//        Intent intent = getIntent();
+//        physical = (List<PhysicalInformation>)intent.getSerializableExtra("physical");
+//        phy = physical.get(0);
+//        phy.getPhysicalExName(); //Weight at 0 position
+//        phy.getPhysicalExValue();
+//
+//        chemistry = (List<ChemistryInformation>) intent.getSerializableExtra("chemical");
+//        chem = chemistry.get(0);
+//        chem.getClinicalChemistryName();
+//        chem.getClinicalChemistryValue();
+//
+//        blood = (List<BloodInformation>) intent.getSerializableExtra("blood");
+//        bloo = blood.get(0);
+//        bloo.getBloodExName();
+//        bloo.getBloodExValue();
 
         phyCard = (CardView)findViewById(R.id.phyCard);
         chemCard = (CardView)findViewById(R.id.chemCard);
@@ -69,8 +69,8 @@ public class HealthDataList extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()){
             case R.id.phyCard:
                 Intent intent = new Intent(HealthDataList.this,HealthDataVisualization.class);
-                intent.putExtra("physicalName",phy.getPhysicalExName());
-                intent.putExtra("physicalValue",phy.getPhysicalExValue());
+//                intent.putExtra("physicalName",phy.getPhysicalExName());
+//                intent.putExtra("physicalValue",phy.getPhysicalExValue());
                 break;
             case R.id.chemCard:
                 Intent intent2 = new Intent(HealthDataList.this,HealthDataVisualization.class);
