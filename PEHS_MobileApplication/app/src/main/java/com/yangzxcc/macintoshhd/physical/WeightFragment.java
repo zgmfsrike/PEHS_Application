@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
-import com.yangzxcc.macintoshhd.activities.HealthDataVisualization;
+import com.yangzxcc.macintoshhd.activities.HealthPhysicalVisualization;
 import com.yangzxcc.macintoshhd.infos.PhysicalInformation;
 import com.yangzxcc.macintoshhd.pehs.R;
 
@@ -34,7 +34,7 @@ public class WeightFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_weight, container, false);
 
-        HealthDataVisualization activity = (HealthDataVisualization)getActivity();
+        HealthPhysicalVisualization activity = (HealthPhysicalVisualization)getActivity();
         Bundle bundle = activity.getPhysical();
         String date = bundle.getString("date");
         physicalInformations = (List<PhysicalInformation>) bundle.getSerializable("physical");
@@ -43,7 +43,7 @@ public class WeightFragment extends Fragment {
 
 
 
-//        HealthDataVisualization activity = (HealthDataVisualization)getActivity();
+//        HealthPhysicalVisualization activity = (HealthPhysicalVisualization)getActivity();
 //        Bundle bundle = activity.getListOfData();
 //        List<PhysicalInformation> physicalInformation = (List<PhysicalInformation>) bundle.getSerializable("physical");
 //        PhysicalInformation data = physicalInformation.get(0); // Weight
@@ -59,7 +59,7 @@ public class WeightFragment extends Fragment {
 
         GraphView graph = (GraphView)view.findViewById(R.id.graph);
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
-                new DataPoint(Double.parseDouble(date),2 ),
+                new DataPoint(1,88 ),
 //                new DataPoint(1, 5),
 //                new DataPoint(2, parseInt(weightValue)),
 //                new DataPoint(3, parseInt(weightValue)),

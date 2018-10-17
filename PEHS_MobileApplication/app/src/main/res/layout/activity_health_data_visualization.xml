@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.yangzxcc.macintoshhd.activities.HealthDataVisualization">
+    tools:context="com.yangzxcc.macintoshhd.activities.HealthPhysicalVisualization">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
             android:id="@+id/tabs1"
             android:layout_width="match_parent"
             android:layout_height="@dimen/record"
-            app:tabMode="fixed"
+            app:tabMode="scrollable"
             app:tabGravity="fill"/>
     </android.support.design.widget.AppBarLayout>
 

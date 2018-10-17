@@ -9,12 +9,10 @@ import android.view.View;
 
 import com.yangzxcc.macintoshhd.infos.BloodInformation;
 import com.yangzxcc.macintoshhd.infos.ChemistryInformation;
-import com.yangzxcc.macintoshhd.infos.HealthRecord;
 import com.yangzxcc.macintoshhd.infos.PhysicalInformation;
 import com.yangzxcc.macintoshhd.infos.UrineInformation;
 import com.yangzxcc.macintoshhd.pehs.R;
 
-import java.io.Serializable;
 import java.util.List;
 
 public class HealthDataList extends AppCompatActivity implements View.OnClickListener {
@@ -78,21 +76,21 @@ public class HealthDataList extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.phyCard:
-                Intent intent = new Intent(HealthDataList.this,HealthDataVisualization.class);
+                Intent intent = new Intent(HealthDataList.this,HealthPhysicalVisualization.class);
 //                intent.putExtra("",healthRecords.get(0));
 //                intent.putExtra("physicalValue",phy.getPhysicalExValue());
                 startActivity(intent);
                 break;
-//            case R.id.chemCard:
-//                Intent intent2 = new Intent(HealthDataList.this,HealthDataVisualization.class);
+            case R.id.chemCard:
+                Intent intent2 = new Intent(HealthDataList.this,HealthChemistryVisualization.class);
 //                intent2.putExtra("chemName",chem.getClinicalChemistryName());
 //                intent2.putExtra("chemValue",chem.getClinicalChemistryValue());
-//                break;
-//            case R.id.bloodCard:
-//                Intent intent3 = new Intent(HealthDataList.this,HealthDataVisualization.class);
+                break;
+            case R.id.bloodCard:
+                Intent intent3 = new Intent(HealthDataList.this,HealthBloodVisualization.class);
 //                intent3.putExtra("bloodName",bloo.getBloodExName());
 //                intent3.putExtra("bloodValue",bloo.getBloodExValue());
-//                break;
+                break;
         }
     }
 }

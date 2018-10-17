@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,13 +8,54 @@
     tools:context="com.yangzxcc.macintoshhd.activities.Home"
     tools:showIn="@layout/app_bar_home">
 
+
+
+
     <TextView
+        android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/Welcome"
         android:textSize="30sp"
         android:textAlignment="center"
         android:paddingTop="100dp"
-        android:background="#ffffff"/>
+        android:background="#ffffff" />
 
-</LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:background="@color/back">
+
+        <ImageView
+            android:id="@+id/pic"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/accountcircle"/>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/pic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hi !"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+        <TextView
+            android:id="@+id/homeName"
+            android:layout_marginTop="45dp"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/pic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="THANAWAT LUKUAN"
+            android:textSize="20sp"
+            android:textColor="@color/white"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

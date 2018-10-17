@@ -75,10 +75,11 @@
                        android:textStyle="bold" />
 
                    <RadioGroup
+                       android:checkedButton="@+id/sexMale"
                        android:id="@+id/genderRadio"
                        android:orientation="horizontal">
 
-                       <android.support.v7.widget.AppCompatRadioButton
+                       <RadioButton
                            android:id="@+id/sexMale"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
@@ -86,7 +87,7 @@
                            android:textColor="@color/text"
                            android:textSize="25sp" />
 
-                       <android.support.v7.widget.AppCompatRadioButton
+                       <RadioButton
                            android:id="@+id/sexFemale"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"

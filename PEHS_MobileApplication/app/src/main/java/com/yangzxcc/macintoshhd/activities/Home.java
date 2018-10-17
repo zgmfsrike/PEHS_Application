@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.yangzxcc.macintoshhd.api.ApiClient;
 import com.yangzxcc.macintoshhd.api.ApiInterface;
@@ -38,6 +39,7 @@ import retrofit2.Retrofit;
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    TextView name;
     private Toolbar toolbar;
     private HealthAdapter adapter;
     private List<HealthRecordTest> healthRecordTestList;
@@ -66,6 +68,11 @@ public class Home extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        PersonalInformation value = personalInformations.get(0);
+        String data = value.getName();
+        name = (TextView)findViewById(R.id.homeName);
+        name.setText(data);
 
         Retrofit retrofit = ApiClient.getRetrofit();
 

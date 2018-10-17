@@ -3,10 +3,14 @@
     <!--<color name="colorPrimary">#3F51B5</color>-->
     <color name="colorPrimary">#53c5cf</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#000000</color>
+    <color name="colorAccent">#D81B60</color>
 
     <!--<color name="colorAccent">#FF4081</color>-->
     <color name="colorTextHint">#000000</color>
     <color name="navigationBarColor">#ffffff</color>
     <color name="text">#337aff</color>
+    <color name="back">#FF17BBF7</color>
+    <color name="white">#FFFFFF</color>
+    <color name="backgreen">#9b3c46ff</color>
+    <color name="login">#79BDF1</color>
 </resources>

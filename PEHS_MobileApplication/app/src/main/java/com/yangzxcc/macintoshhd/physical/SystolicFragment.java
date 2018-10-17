@@ -10,11 +10,7 @@ import android.view.ViewGroup;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
-import com.yangzxcc.macintoshhd.activities.HealthDataVisualization;
-import com.yangzxcc.macintoshhd.infos.PhysicalInformation;
 import com.yangzxcc.macintoshhd.pehs.R;
-
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,22 +29,22 @@ public class SystolicFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_systolic, container, false);
 
-//        HealthDataVisualization activity = (HealthDataVisualization)getActivity();
+//        HealthPhysicalVisualization activity = (HealthPhysicalVisualization)getActivity();
 //        Bundle bundle = activity.getListOfData();
 //        List<PhysicalInformation> systolic = (List<PhysicalInformation>) bundle.getSerializable("physical");
 //        PhysicalInformation sys = systolic.get(4); //Systolic value
 //        String systolic1 = sys.getPhysicalExValue();
 //
 //
-//        GraphView graph = (GraphView)view.findViewById(R.id.graph);
-//        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
-//                new DataPoint(0, Double.parseDouble(systolic1)),
-////                new DataPoint(1, parseInt(weightValue)),
-////                new DataPoint(2, parseInt(weightValue)),
-////                new DataPoint(3, parseInt(weightValue)),
-////                new DataPoint(4, parseInt(weightValue))
-//        });
-//        graph.addSeries(series);
+        GraphView graph = (GraphView)view.findViewById(R.id.graph);
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
+                new DataPoint(0, 119),
+//                new DataPoint(1, parseInt(weightValue)),
+//                new DataPoint(2, parseInt(weightValue)),
+//                new DataPoint(3, parseInt(weightValue)),
+//                new DataPoint(4, parseInt(weightValue))
+        });
+        graph.addSeries(series);
 
         return view;
     }

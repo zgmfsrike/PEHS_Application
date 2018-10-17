@@ -1,258 +1,219 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-
-        <TableLayout
+        android:layout_height="250dp"
+        android:background="@color/back">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <TableRow
-                android:layout_marginTop="20dp"
+            <ImageView
+                android:layout_marginTop="10dp"
+                android:layout_width="102dp"
+                android:layout_height="100dp"
+                android:src="@drawable/accountcircle"
+                android:layout_gravity="center_horizontal"/>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="30dp"
+                android:orientation="horizontal">
 
-                <TextView
-
-                    android:layout_marginLeft="20dp"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textStyle="bold"
-                    android:textSize="25sp"
-                    android:textColor="@color/text"
-                    android:text="Name" />
                 <TextView
                     android:id="@+id/name"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textStyle="bold"
+                    android:layout_marginLeft="100dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Nimmit"
                     android:textSize="25sp"
-                    android:textColor="@color/text"
-                    android:text="Drug Allergy" />
-
-            </TableRow>
-            <TableRow
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_marginLeft="20dp"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-
                     android:textStyle="bold"
-                    android:textSize="25sp"
-                    android:textColor="@color/text"
-                    android:text="Surname" />
+                    android:textColor="@color/white" />
+
                 <TextView
                     android:id="@+id/surname"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textStyle="bold"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Siam"
                     android:textSize="25sp"
-                    android:textColor="@color/text"
-                    android:text="Drug Allergy" />
+                    android:textStyle="bold"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
 
-            </TableRow>
-            <TableRow
+            <LinearLayout
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_marginLeft="20dp"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-
-                    android:textStyle="bold"
-                    android:textSize="25sp"
-                    android:textColor="@color/text"
-                    android:text="Email" />
-                <TextView
-                    android:id="@+id/email"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textStyle="bold"
-                    android:textSize="25sp"
-                    android:textColor="@color/text"
-                    android:text="Drug Allergy" />
-
-            </TableRow>
-            <TableRow
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_marginLeft="20dp"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-
-                    android:textStyle="bold"
-                    android:textSize="25sp"
-                    android:textColor="@color/text"
-                    android:text="Address" />
-                <TextView
-                    android:id="@+id/address"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textStyle="bold"
-                    android:textSize="25sp"
-                    android:textColor="@color/text"
-                    android:text="Drug Allergy" />
-
-            </TableRow>
-            <TableRow
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_marginLeft="20dp"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-
-                    android:textStyle="bold"
-                    android:textSize="25sp"
-                    android:textColor="@color/text"
-                    android:text="Gender" />
-                <TextView
-                    android:id="@+id/gender"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textStyle="bold"
-                    android:textSize="25sp"
-                    android:textColor="@color/text"
-                    android:text="Drug Allergy" />
-
-            </TableRow>
-            <TableRow
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_marginLeft="20dp"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-
-                    android:textStyle="bold"
-                    android:textSize="25sp"
-                    android:textColor="@color/text"
-                    android:text="Date of Birth" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
                 <TextView
                     android:id="@+id/date"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textStyle="bold"
-                    android:textSize="25sp"
-                    android:textColor="@color/text"
-                    android:text="Drug Allergy" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Date"
+                    android:layout_gravity="center"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
 
-            </TableRow>
-            <TableRow
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+        </LinearLayout>
 
-                <TextView
-                    android:layout_marginLeft="20dp"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-
-                    android:textStyle="bold"
-                    android:textSize="25sp"
-                    android:textColor="@color/text"
-                    android:text="Telephone" />
-                <TextView
-                    android:id="@+id/tele"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textStyle="bold"
-                    android:textSize="25sp"
-                    android:textColor="@color/text"
-                    android:text="Drug Allergy" />
-
-            </TableRow>
-            <TableRow
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_marginLeft="20dp"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textStyle="bold"
-                    android:textSize="25sp"
-                    android:textColor="@color/text"
-                    android:text="Drug Allergy" />
-                <TextView
-                    android:id="@+id/drug"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textStyle="bold"
-                    android:textSize="25sp"
-                    android:textColor="@color/text"
-                    android:text="Drug Allergy" />
-
-            </TableRow>
-            <TableRow
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_marginLeft="20dp"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textStyle="bold"
-                    android:textSize="25sp"
-                    android:textColor="@color/text"
-                    android:text="Underlying Disease" />
-
-            </TableRow>
-            <TableRow
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_marginLeft="20dp"
-                    android:id="@+id/under"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textStyle="bold"
-                    android:textSize="25sp"
-                    android:textColor="@color/text"
-                    android:text="Underlying Disease" />
-
-            </TableRow>
-        </TableLayout>
     </RelativeLayout>
-</android.support.v4.widget.NestedScrollView>
+    <android.support.v7.widget.CardView
+        android:layout_width="250dp"
+        android:layout_height="80dp"
+        app:cardCornerRadius="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/phone"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"/>
+            <TextView
+                android:id="@+id/tele"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Phone Number"
+                android:textSize="15sp"/>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+    <LinearLayout
+        android:layout_marginTop="270dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgreen"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/gender"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gender"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="130dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/map_marker"
+                />
+            <TextView
+                android:id="@+id/address"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Address"
+                android:textSize="20sp"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/em"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email:"
+                android:textSize="20sp"
+                android:textColor="@color/white"/>
+            <TextView
+                android:id="@+id/email"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/em"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nimmit@gmail.com"
+                android:textSize="20sp"
+                android:textColor="@color/white"/>
+        </RelativeLayout>
+
+
+        <TextView
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Drug Allergy"
+            android:textSize="20sp"
+            android:textColor="@color/white"/>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="20dp">
+            <TextView
+                android:id="@+id/drug"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Paracetamol"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorTextHint"
+                android:textAlignment="center"
+                android:gravity="center"/>
+
+        </android.support.v7.widget.CardView>
+
+        <TextView
+            android:layout_marginLeft="50dp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Underlying disease"
+            android:textSize="20sp"
+            android:textColor="@color/white"/>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="20dp">
+            <TextView
+                android:id="@+id/under"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Heart stroke"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorTextHint"
+                android:textAlignment="center"
+                android:gravity="center"/>
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</RelativeLayout>

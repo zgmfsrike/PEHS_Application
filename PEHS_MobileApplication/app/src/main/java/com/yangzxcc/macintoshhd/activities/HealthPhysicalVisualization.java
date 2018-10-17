@@ -32,7 +32,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HealthDataVisualization extends AppCompatActivity {
+public class HealthPhysicalVisualization extends AppCompatActivity {
     
     private Toolbar toolbar;
     private TabLayout tabLayout;
@@ -50,7 +50,7 @@ public class HealthDataVisualization extends AppCompatActivity {
         
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Record Date");
+        getSupportActionBar().setTitle("Physical");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         viewPager1 = (ViewPager) findViewById(R.id.viewpager1);
