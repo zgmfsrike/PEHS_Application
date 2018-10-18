@@ -44,17 +44,26 @@
                        android:textSize="25sp"
                        android:textStyle="bold" />
 
-                   <TextView
-                       android:id="@+id/age"
-                       android:layout_width="wrap_content"
-                       android:layout_height="match_parent"
-                       android:layout_marginLeft="40dp"
-                       android:layout_marginTop="20dp"
-                       android:layout_marginRight="100dp"
-                       android:text="Input Age"
-                       android:textColor="@color/text"
-                       android:textSize="25sp"
-                       android:textStyle="bold" />
+
+                   <android.support.design.widget.TextInputLayout
+                       android:id="@+id/ageLayout"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content">
+
+                       <EditText
+                           android:id="@+id/age"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginLeft="40dp"
+                           android:layout_marginTop="10dp"
+                           android:layout_marginRight="100dp"
+                           android:text="Input Age"
+                           android:textColor="@color/text"
+                           android:textSize="25sp"
+                           android:textStyle="bold" />
+
+                   </android.support.design.widget.TextInputLayout>
+
 
 
                </TableRow>
@@ -115,8 +124,12 @@
                        android:textSize="25sp"
                        android:textStyle="bold" />
 
-                   <TextView
-                       android:id="@+id/systo"
+                   <android.support.design.widget.TextInputLayout
+                       android:id="@+id/sysLayout"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content">
+                   <EditText
+                       android:id="@+id/systo5"
                        android:layout_width="match_parent"
                        android:layout_height="match_parent"
                        android:layout_marginLeft="40dp"
@@ -126,13 +139,14 @@
                        android:textSize="25sp"
                        android:textStyle="bold" />
 
-
+                   </android.support.design.widget.TextInputLayout>
                </TableRow>
                <TableRow
                    android:layout_width="match_parent"
                    android:layout_height="match_parent">
 
                    <TextView
+
                        android:layout_width="match_parent"
                        android:layout_height="match_parent"
                        android:layout_marginLeft="40dp"
@@ -143,7 +157,8 @@
 
                    <RadioGroup
                        android:id="@+id/diabRadio"
-                       android:orientation="horizontal">
+                       android:orientation="horizontal"
+                       android:checkedButton="@id/diabetesNo">
 
                        <android.support.v7.widget.AppCompatRadioButton
                            android:id="@+id/diabetesYes"
@@ -165,6 +180,7 @@
                </TableRow>
                <TableRow>
                    <TextView
+                       android:layout_marginTop="10dp"
                        android:layout_width="match_parent"
                        android:layout_height="match_parent"
                        android:layout_marginLeft="20dp"
@@ -174,7 +190,11 @@
                        android:textSize="25sp"
                        android:textStyle="bold" />
 
-                   <TextView
+                   <android.support.design.widget.TextInputLayout
+                       android:id="@+id/choLayout"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content">
+                   <EditText
                        android:id="@+id/choles"
                        android:layout_width="match_parent"
                        android:layout_height="match_parent"
@@ -184,6 +204,7 @@
                        android:textColor="@color/text"
                        android:textSize="25sp"
                        android:textStyle="bold" />
+                   </android.support.design.widget.TextInputLayout>
                </TableRow>
                <TableRow
                    android:layout_width="match_parent"
@@ -200,7 +221,8 @@
 
                    <RadioGroup
                        android:id="@+id/smokeRadio"
-                       android:orientation="horizontal">
+                       android:orientation="horizontal"
+                       android:checkedButton="@id/smokeNo">
 
                        <android.support.v7.widget.AppCompatRadioButton
                            android:id="@+id/smokeYes"
@@ -221,8 +243,13 @@
                    </RadioGroup>
                </TableRow>
                <Button
+                   android:layout_marginLeft="10dp"
+                   android:layout_marginRight="10dp"
                    android:id="@+id/btnCal"
+                   style="@style/Widget.AppCompat.Button.Borderless.Colored"
                    android:layout_marginTop="40dp"
+                   android:textColor="@color/white"
+                   android:background="@color/back"
                    android:text="Calculate"
                    android:textStyle="bold"
                    android:textSize="25sp"/>

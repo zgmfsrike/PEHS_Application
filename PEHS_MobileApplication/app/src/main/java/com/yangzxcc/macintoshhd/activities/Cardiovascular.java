@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.AppCompatRadioButton;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -38,6 +39,7 @@ public class Cardiovascular extends AppCompatActivity implements View.OnClickLis
     private List<PersonalInformation> info;
     private List<PhysicalInformation> physical;
     private List<ChemistryInformation> chemical;
+    private EditText age1,systolic1,cholesterol1;
 
     private String systo,choles;
 
@@ -47,8 +49,9 @@ public class Cardiovascular extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cardiovascular);
 
-        age = (TextView)findViewById(R.id.age);
-        systolic = (TextView)findViewById(R.id.systo);
+//        age = (TextView)findViewById(R.id.age);
+
+//        systolic = (TextView)findViewById(R.id.systo);
         cholesterol = (TextView)findViewById(R.id.choles);
         male = (AppCompatRadioButton)findViewById(R.id.sexMale);
         female = (AppCompatRadioButton)findViewById(R.id.sexFemale);
@@ -61,9 +64,56 @@ public class Cardiovascular extends AppCompatActivity implements View.OnClickLis
         smokes = (RadioGroup)findViewById(R.id.smokeRadio);
         cal = (Button)findViewById(R.id.btnCal);
 
+        age1 = (EditText)findViewById(R.id.age);
+        systolic1 = (EditText)findViewById(R.id.systo5);
+        cholesterol1 = (EditText)findViewById(R.id.choles);
         cal.setOnClickListener(this);
 
 
+    }
+    private void calculate(){
+        String age = age1.getText().toString().trim();
+        String systolic = systolic1.getText().toString().trim();
+        String cholesterol = cholesterol1.getText().toString().trim();
+        Double temp = Double.valueOf(age);
+        double ageNumber = temp.doubleValue();
+        Double temp1 = Double.valueOf(age);
+        double systolicNumber = temp1.doubleValue();
+        Double temp2 = Double.valueOf(age);
+        double choles = temp2.doubleValue();
+        //check operator
+        if (male.isChecked() && smokeYes.isChecked() && diabestesYes.isChecked()){
+           double value = (0.0818347640193792*ageNumber)+(0.394986128542107*1) + (0.0208425438624519*systolicNumber)
+                    +(0.699741921871007*1)+ (0.00212384055469836*choles) + (0.419162811751856*1);
+        }
+        if (male.isChecked() && smokeNo.isChecked() && diabestesYes.isChecked()){
+            double value = (0.0818347640193792*ageNumber)+(0.394986128542107*1) + (0.0208425438624519*systolicNumber)
+                    +(0.699741921871007*0)+ (0.00212384055469836*choles) + (0.419162811751856*1);
+        }
+        if (male.isChecked() && smokeYes.isChecked() && diabetesNo.isChecked()){
+            double value = (0.0818347640193792*ageNumber)+(0.394986128542107*1) + (0.0208425438624519*systolicNumber)
+                    +(0.699741921871007*1)+ (0.00212384055469836*choles) + (0.419162811751856*0);
+        }
+        if (male.isChecked() && smokeNo.isChecked() && diabetesNo.isChecked()){
+            double value = (0.0818347640193792*ageNumber)+(0.394986128542107*1) + (0.0208425438624519*systolicNumber)
+                    +(0.699741921871007*0)+ (0.00212384055469836*choles) + (0.419162811751856*0);
+        }
+        if (female.isChecked() && smokeYes.isChecked() && diabestesYes.isChecked()){
+            double value = (0.0818347640193792*ageNumber)+(0.394986128542107*0) + (0.0208425438624519*systolicNumber)
+                    +(0.699741921871007*1)+ (0.00212384055469836*choles) + (0.419162811751856*1);
+        }
+        if (female.isChecked() && smokeNo.isChecked() && diabestesYes.isChecked()){
+            double value = (0.0818347640193792*ageNumber)+(0.394986128542107*0) + (0.0208425438624519*systolicNumber)
+                    +(0.699741921871007*0)+ (0.00212384055469836*choles) + (0.419162811751856*1);
+        }
+        if (female.isChecked() && smokeYes.isChecked() && diabetesNo.isChecked()){
+            double value = (0.0818347640193792*ageNumber)+(0.394986128542107*0) + (0.0208425438624519*systolicNumber)
+                    +(0.699741921871007*1)+ (0.00212384055469836*choles) + (0.419162811751856*0);
+        }
+        if (female.isChecked() && smokeNo.isChecked() && diabetesNo.isChecked()){
+            double value = (0.0818347640193792*ageNumber)+(0.394986128542107*0) + (0.0208425438624519*systolicNumber)
+                    +(0.699741921871007*0)+ (0.00212384055469836*choles) + (0.419162811751856*0);
+        }
     }
     private void checkButton(){
         int radioId = gender.getCheckedRadioButtonId();
@@ -80,7 +130,7 @@ public class Cardiovascular extends AppCompatActivity implements View.OnClickLis
     private void onCalculate() {
         Intent intent1 = getIntent();
 //        String age = String.valueOf(intent1.getSerializableExtra("value"));
-        int age = (int) intent1.getSerializableExtra("value");
+//        int age = (int) intent1.getSerializableExtra("value");
         systo = systolicData.getPhysicalExValue();
         choles = totalCholesterol.getClinicalChemistryValue();
         int sys = Integer.parseInt(systolicData.getPhysicalExValue());
@@ -90,6 +140,7 @@ public class Cardiovascular extends AppCompatActivity implements View.OnClickLis
 //        String data = (value*age)+(0.394986128542107*"sex") + (0.0208425438624519*sys)
 //                +(0.699741921871007*"diabetes")+ (0.00212384055469836*cho) + (0.419162811751856*"smoke");
     }
+
 
     @Override
     public void onClick(View view) {
@@ -112,8 +163,8 @@ public class Cardiovascular extends AppCompatActivity implements View.OnClickLis
 //
 //            }
 //        });
-
-
+//
+//
 //        Intent intent = getIntent();
 //        info = (List<PersonalInformation>) intent.getSerializableExtra("date");
 //        person = info.get(0);

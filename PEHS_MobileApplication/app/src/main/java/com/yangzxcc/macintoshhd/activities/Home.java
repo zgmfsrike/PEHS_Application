@@ -234,23 +234,21 @@ public class Home extends AppCompatActivity
 
 
         } else if (id == R.id.nav_car) {
-
 //            Intent intent = new Intent();
-//            PersonalInformation value = personalInformations.get(0);
-//            value.
-//            intent.putExtra("")
 //
+//            intent.putExtra("",);
 
 
 
-//            Intent intent = new Intent(Home.this, Cardiovascular.class);
-//            PersonalInformation value = personalInformations.get(0);
-//            Bundle data = new Bundle();
-//            data.putSerializable("date",value.getDateOfBirth());
-//            intent.putExtra("date", value.getDateOfBirth());
-//            intent.putExtra("physical", (Serializable) physicalInformations);
-//            intent.putExtra("chem", (Serializable) chemistryInformations);
-//            startActivity(intent);
+
+            Intent intent = new Intent(Home.this, Cardiovascular.class);
+            PersonalInformation value = personalInformations.get(0);
+            Bundle data = new Bundle();
+            data.putSerializable("date",value.getDateOfBirth());
+            intent.putExtra("date", value.getDateOfBirth());
+            intent.putExtra("physical", (Serializable) physicalInformations);
+            intent.putExtra("chem", (Serializable) chemistryInformations);
+            startActivity(intent);
 
         } else if (id == R.id.nav_health) {
             Intent intent = new Intent(Home.this, HealthDataList.class);
@@ -296,7 +294,9 @@ public class Home extends AppCompatActivity
             //---------------------------------------------------------------------------------------
 
         } else if (id == R.id.nav_logout) {
-
+            Intent intent = new Intent(Home.this,Login.class);
+            startActivity(intent);
+            finish();
 
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
