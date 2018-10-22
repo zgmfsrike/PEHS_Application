@@ -92,6 +92,11 @@ public class Login extends AppCompatActivity {
                 if (response.isSuccessful()){
                     try {
                         Log.e("Output",response.body().string());
+                        String token = response.body().string();
+                        Intent intent = new Intent(Login.this, Home.class);
+                        intent.putExtra("token",token);
+                        startActivity(intent);
+                        finish();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
