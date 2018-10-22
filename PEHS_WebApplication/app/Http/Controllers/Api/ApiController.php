@@ -80,6 +80,7 @@ class ApiController extends Controller
     */
     public function getInformation(Request $request)
     {
+      $user_information = array();
       $user_id = $request->user()->id;
       $personal_information = DB::table('user_informations as ui')->
       join('genders as g','ui.gender','g.gender_id')->
@@ -91,15 +92,22 @@ class ApiController extends Controller
 
       $health_information = array();
 
+
+
       $health_record_id = DB::table('health_records as hr')->
       join('user_informations as ui','hr.user_id','ui.user_id')->
       select('hr.health_record_id','hr.health_record_date')->
       where('hr.user_id',$user_id)->get();
 
+      // array_push($user_information,$personal_information);
+      // $user_information['personal_information'] = $personal_information;
+      // $user_information = ["personal_information"=>$personal_information];
+
       foreach ($health_record_id as $value) {
         $hr_id = $value->health_record_id;
         $hr_date = $value->health_record_date;
         $hr_info = array();
+
         //physical information
         $physical_detail = DB::table('health_records as hr')->
         join('physical_examination as p','hr.health_record_id','p.health_record_id')->
@@ -164,26 +172,33 @@ class ApiController extends Controller
 
         }
 
+        array_push($health_information, $hr_info);
+          // array_push($user_information, array($hr_info));
 
 
 
 
 
-        $health_information[] =['health_record' => $hr_info];
+
+        // $health_information[] =['health_record' => $hr_info];
       }
-
-      $user_information = json_encode(array(
+      $user_information = array(
         "personal_information" => $personal_information,
-        "health_information"=>$health_information
+        "health_information" => $health_information
 
-      ));
-
-
-
+      );
+      // $user_information['personal_information'] = array($personal_information);
 
 
 
 
-      return $user_information;
+
+
+
+
+
+
+
+      return json_encode($user_information);
     }
   }
