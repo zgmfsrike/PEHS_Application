@@ -4,20 +4,15 @@ import com.yangzxcc.macintoshhd.infos.HealthRecord;
 import com.yangzxcc.macintoshhd.infos.InformationManager;
 import com.yangzxcc.macintoshhd.infos.PhysicalInformation;
 import com.yangzxcc.macintoshhd.models.AccessToken;
-import com.yangzxcc.macintoshhd.models.HealthRecordTest;
-import com.yangzxcc.macintoshhd.models.Patient;
 import com.yangzxcc.macintoshhd.models.SignIn;
 
-import java.util.List;
-
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
-import retrofit2.http.Query;
 
 public interface ApiInterface {
 
@@ -29,6 +24,14 @@ public interface ApiInterface {
     })
     @POST("login")
     Call<AccessToken> signIn(@Body SignIn signIn);
+
+    @Headers({
+            "Content-Type: application/json",
+            "X-Requested-With:XMLHttpRequest",
+            "Accept: application/json"
+    })
+    @POST("login")
+    Call<ResponseBody> postLogin(@Body SignIn requestBody);
     //  Request Login ----------------------------------------
 
 
