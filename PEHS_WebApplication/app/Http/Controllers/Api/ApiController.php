@@ -130,8 +130,44 @@ class ApiController extends Controller
 
 
 
-        $hr_info[] = ['id'=>$hr_id,'date'=>$hr_date,'physical_information'=>$physical_detail,'blood_information'=>$blood_detail,
-        'urine_information'=>$urine_detail,'chemistry_information'=>$chemistry_detail];
+        // $hr_info[] = ['id'=>$hr_id,'date'=>$hr_date];
+        $hr_info['id'] = $hr_id;
+        $hr_info['date'] = $hr_date;
+
+
+
+        foreach ($physical_detail as $key =>$value) {
+          $health_name = $value->physical_ex_name;
+          $healh_value = $value->physical_ex_value;
+          $hr_info[$health_name] = $healh_value;
+
+        }
+
+        foreach ($blood_detail as $key =>$value) {
+          $health_name = $value->blood_ex_name;
+          $healh_value = $value->blood_ex_value;
+          $hr_info[$health_name] = $healh_value;
+
+        }
+
+        foreach ($urine_detail as $key =>$value) {
+          $health_name = $value->urine_ex_name;
+          $healh_value = $value->urine_ex_value;
+          $hr_info[$health_name] = $healh_value;
+
+        }
+
+        foreach ($chemistry_detail as $key =>$value) {
+          $health_name = $value->clinical_chemistry_name;
+          $healh_value = $value->clinical_chemistry_value;
+          $hr_info[$health_name] = $healh_value;
+
+        }
+
+
+
+
+
 
         $health_information[] =['health_record' => $hr_info];
       }
