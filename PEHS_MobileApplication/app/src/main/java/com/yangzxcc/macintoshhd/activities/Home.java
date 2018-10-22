@@ -87,7 +87,7 @@ public class Home extends AppCompatActivity
             public void onResponse(Call<InformationManager> call, Response<InformationManager> response) {
                 if (response.isSuccessful()) {
                     personalInformations = response.body().getPersonalInformation();
-                    healthInformations = response.body().getHealthInformation();
+//                    healthInformations = response.body().getHealthInformation();
 
 
 //                    HealthInformation health = healthInformations.get(0);
@@ -207,16 +207,16 @@ public class Home extends AppCompatActivity
 
 
 //      Working Code  Get only 1---------------------------------------------------------------
-            Intent intent = new Intent(Home.this, RecordHistory.class);
-                for (int j = 0; j < healthInformations.size() ; j++) {
-
-                Log.e("Size : ",""+healthInformations.size());
-                HealthInformation health = healthInformations.get(j);
-                healthRecords = health.getHealthRecords();
-
-                intent.putExtra("record", (Serializable) healthRecords);
-            }
-            startActivity(intent);
+//            Intent intent = new Intent(Home.this, RecordHistory.class);
+//                for (int j = 0; j < healthInformations.size() ; j++) {
+//
+//                Log.e("Size : ",""+healthInformations.size());
+//                HealthInformation health = healthInformations.get(j);
+//                healthRecords = health.getHealthRecords();
+//
+//                intent.putExtra("record", (Serializable) healthRecords);
+//            }
+//            startActivity(intent);
 //       Working Code  Get only 1---------------------------------------------------------------
 //                for (int i = 0; i < healthRecords.size(); i++) {
 //                    Log.e("Size",""+healthRecords.size());
@@ -239,20 +239,20 @@ public class Home extends AppCompatActivity
 //            intent.putExtra("",);
 
 
-
-
-            Intent intent = new Intent(Home.this, Cardiovascular.class);
-            PersonalInformation value = personalInformations.get(0);
-            Bundle data = new Bundle();
-            data.putSerializable("date",value.getDateOfBirth());
-            intent.putExtra("date", value.getDateOfBirth());
-            intent.putExtra("physical", (Serializable) physicalInformations);
-            intent.putExtra("chem", (Serializable) chemistryInformations);
-            startActivity(intent);
+//
+//
+//            Intent intent = new Intent(Home.this, Cardiovascular.class);
+//            PersonalInformation value = personalInformations.get(0);
+//            Bundle data = new Bundle();
+//            data.putSerializable("date",value.getDateOfBirth());
+//            intent.putExtra("date", value.getDateOfBirth());
+//            intent.putExtra("physical", (Serializable) physicalInformations);
+//            intent.putExtra("chem", (Serializable) chemistryInformations);
+//            startActivity(intent);
 
         } else if (id == R.id.nav_health) {
-            Intent intent = new Intent(Home.this, HealthDataList.class);
-            startActivity(intent);
+//            Intent intent = new Intent(Home.this, HealthDataList.class);
+//            startActivity(intent);
 
 //-----------------------------------------------------------------------------------------------------
 //            List<HealthRecord> datalist = (List<HealthRecord>) healthInformations.get(0);
