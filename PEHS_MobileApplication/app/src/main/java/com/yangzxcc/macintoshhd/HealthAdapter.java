@@ -22,12 +22,15 @@ import java.util.List;
 public class HealthAdapter extends RecyclerView.Adapter<HealthAdapter.HealthViewHolder> {
 
 //    private List<HealthRecordTest> healthRecordList;
-    private List<HealthRecord> healthRecords;
-//    private List<HealthInformation> healthInformations;
+//    private List<HealthRecord> healthRecords;
+    private List<HealthInformation> healthInformations;
 
-    public HealthAdapter(List<HealthRecord> healthRecords) {
-        this.healthRecords = healthRecords;
+    public HealthAdapter(List<HealthInformation> healthInformations) {
+        this.healthInformations = healthInformations;
     }
+    //    public HealthAdapter(List<HealthRecord> healthRecords) {
+//        this.healthRecords = healthRecords;
+//    }
     //    public HealthAdapter(List<HealthRecordTest> healthRecordList) {
 //        this.healthRecordList = healthRecordList;
 //    }
@@ -42,15 +45,47 @@ public class HealthAdapter extends RecyclerView.Adapter<HealthAdapter.HealthView
     @Override
     public void onBindViewHolder(@NonNull HealthViewHolder holder, final int position) {
 
-//        HealthInformation health = healthInformations.get(0);
+        final HealthInformation current = healthInformations.get(position);
+        holder.title.setText(current.getDate());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(),Record.class);
+                intent.putExtra("weight",current.getWeight());
+                intent.putExtra("height",current.getHeight());
+                intent.putExtra("wrist",current.getWrist());
+                intent.putExtra("bmi",current.getbMI());
+                intent.putExtra("systolic",current.getSystolic());
+                intent.putExtra("diastolic",current.getDiastolic());
+                intent.putExtra("pulse",current.getPulse());
+                v.getContext().startActivity(intent);
+            }
+        });
+
+//        --------------------------------------------------------------------------------
+//        final HealthRecord current = healthRecords.get(position);
+//        holder.title.setText(current.getDate());
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(v.getContext(),Record.class);
+//                intent.putExtra("physical", (Serializable) current.getPhysicalInformation());
+//                intent.putExtra("chem", (Serializable) current.getChemistryInformation());
+//                intent.putExtra("blood", (Serializable) current.getBloodInformation());
+//                intent.putExtra("urine", (Serializable) current.getUrineInformation());
+//                v.getContext().startActivity(intent);
+//            }
+//        });
+//        --------------------------------------------------------------------------------
+//
+// HealthInformation health = healthInformations.get(0);
 //        healthRecords = health.getHealthRecords();
 //                HealthRecord record = healthRecords.get(0);
 //                physicalInformations = record.getPhysicalInformation();
 //                chemistryInformations = record.getChemistryInformation();
 //                bloodInformations = record.getBloodInformation();
 //                urineInformations = record.getUrineInformation();
-        final HealthRecord current = healthRecords.get(position);
-        holder.title.setText(current.getDate());
+
 // holder.title.setText(new Gson().toJson(current.getHealthRecords()));
 //        current.getPhysicalInformation();
 
@@ -63,18 +98,10 @@ public class HealthAdapter extends RecyclerView.Adapter<HealthAdapter.HealthView
 //                view.getContext().startActivity(intent);
 //            }
 //        });
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),Record.class);
-                intent.putExtra("physical", (Serializable) current.getPhysicalInformation());
-                intent.putExtra("chem", (Serializable) current.getChemistryInformation());
-                intent.putExtra("blood", (Serializable) current.getBloodInformation());
-                intent.putExtra("urine", (Serializable) current.getUrineInformation());
-                v.getContext().startActivity(intent);
-            }
-        });
 
+//
+
+//                ------------------------------------------------------------------------------------------------
 //        final HealthRecordTest current = healthRecordList.get(position);
 //        holder.title.setText(current.getTitle());
 //        holder.text.setText(current.getText());
@@ -87,10 +114,11 @@ public class HealthAdapter extends RecyclerView.Adapter<HealthAdapter.HealthView
 //                v.getContext().startActivity(intent);
 //            }
 //        });
+//                        ------------------------------------------------------------------------------------------------
     }
     @Override
     public int getItemCount() {
-        return healthRecords.size();
+        return healthInformations.size();
     }
 
     public static class HealthViewHolder extends RecyclerView.ViewHolder{

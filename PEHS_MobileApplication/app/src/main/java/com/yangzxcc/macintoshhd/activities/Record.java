@@ -36,7 +36,7 @@ public class Record extends AppCompatActivity {
     private ViewPager viewPager;
     public HealthAdapter healthAdapter;
     private HealthRecordTest model;
-    private String title,text;
+    private String title,text,weight,height,wrist,bmi,systolic,diastolic,pulse;
     List<PhysicalInformation> physical;
     List<ChemistryInformation> chemistry;
     List<BloodInformation> blood;
@@ -64,35 +64,56 @@ public class Record extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
 
+        Intent intent = getIntent();
+        weight = intent.getStringExtra("weight");
+        height = intent.getStringExtra("height");
+        wrist = intent.getStringExtra("wrist");
+        bmi = intent.getStringExtra("bmi");
+        systolic = intent.getStringExtra("systolic");
+        diastolic = intent.getStringExtra("diastolic");
+        pulse = intent.getStringExtra("pulse");
+
 //        Intent intent = getIntent();
 //        title = intent.getStringExtra("title");
 //        text = intent.getStringExtra("text");
 
-        Intent intent = getIntent();
-
-
-        physical = (List<PhysicalInformation>)intent.getSerializableExtra("physical");
-        PhysicalInformation phy = physical.get(4);
-        phy.getPhysicalExValue();
-
-
-        chemistry = (List<ChemistryInformation>) intent.getSerializableExtra("chem");
-
-        blood = (List<BloodInformation>) intent.getSerializableExtra("blood");
-
-        urine = (List<UrineInformation>) intent.getSerializableExtra("urine");
+//        Intent intent = getIntent();
+//
+//
+//        physical = (List<PhysicalInformation>)intent.getSerializableExtra("physical");
+//        PhysicalInformation phy = physical.get(4);
+//        phy.getPhysicalExValue();
+//
+//
+//        chemistry = (List<ChemistryInformation>) intent.getSerializableExtra("chem");
+//
+//        blood = (List<BloodInformation>) intent.getSerializableExtra("blood");
+//
+//        urine = (List<UrineInformation>) intent.getSerializableExtra("urine");
 
     }
-    public Bundle getData(){
-
+    public Bundle getPhysicalData(){
         Bundle bundle = new Bundle();
-        bundle.putSerializable("physical", (Serializable) physical);
-        bundle.putSerializable("chem", (Serializable) chemistry);
-        bundle.putSerializable("blood", (Serializable) blood);
-        bundle.putSerializable("urine", (Serializable) urine);
+        bundle.putString("weight",weight);
+        bundle.putString("height",height);
+        bundle.putString("wrist",wrist);
+        bundle.putString("bmi",bmi);
+        bundle.putString("systolic",systolic);
+        bundle.putString("diastolic",diastolic);
+        bundle.putString("pulse",pulse);
 
         return bundle;
     }
+//    public Bundle getData(){
+//
+//        Bundle bundle = new Bundle();
+//        bundle.putSerializable("physical", (Serializable) physical);
+//        bundle.putSerializable("chem", (Serializable) chemistry);
+//        bundle.putSerializable("blood", (Serializable) blood);
+//        bundle.putSerializable("urine", (Serializable) urine);
+//
+//        return bundle;
+//    }
 //    public Bundle getData(){
 //
 //        Bundle bundle = new Bundle();

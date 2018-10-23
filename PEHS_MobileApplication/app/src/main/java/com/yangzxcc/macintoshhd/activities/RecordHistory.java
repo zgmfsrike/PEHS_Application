@@ -25,6 +25,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class RecordHistory extends AppCompatActivity{
 
@@ -59,9 +60,32 @@ public class RecordHistory extends AppCompatActivity{
         recyclerView.setHasFixedSize(true);
 
         Intent intent = getIntent();
-        healthRecords= (List<HealthRecord>) intent.getSerializableExtra("record");
-        adapter = new HealthAdapter(healthRecords);
-        recyclerView.setAdapter(adapter);
+        String token = intent.getStringExtra("token");
+
+        Retrofit retrofit = ApiClient.getRetrofit();
+
+        ApiInterface apiInterface = retrofit.create(ApiInterface.class);
+
+        Call<List<HealthInformation>> call = apiInterface.getHealthInfo("Bearer "+token);
+
+        call.enqueue(new Callback<List<HealthInformation>>() {
+            @Override
+            public void onResponse(Call<List<HealthInformation>> call, Response<List<HealthInformation>> response) {
+                healthInformations = response.body();
+                adapter = new HealthAdapter(healthInformations);
+                recyclerView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<HealthInformation>> call, Throwable t) {
+
+            }
+        });
+
+//        Intent intent = getIntent();
+//        healthRecords= (List<HealthRecord>) intent.getSerializableExtra("record");
+//        adapter = new HealthAdapter(healthRecords);
+//        recyclerView.setAdapter(adapter);
 
 
 

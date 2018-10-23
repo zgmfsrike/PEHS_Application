@@ -184,7 +184,9 @@ public class Home extends AppCompatActivity
             }
 
         } else if (id == R.id.nav_record_history) {
-
+            Intent intent = new Intent(Home.this,RecordHistory.class);
+            intent.putExtra("token",token);
+            startActivity(intent);
 
 
 //       Oat Did -------------------------------------------------------------

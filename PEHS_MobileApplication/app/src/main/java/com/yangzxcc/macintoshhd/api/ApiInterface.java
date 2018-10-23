@@ -1,10 +1,13 @@
 package com.yangzxcc.macintoshhd.api;
 
+import com.yangzxcc.macintoshhd.infos.HealthInformation;
 import com.yangzxcc.macintoshhd.infos.HealthRecord;
 import com.yangzxcc.macintoshhd.infos.InformationManager;
 import com.yangzxcc.macintoshhd.infos.PhysicalInformation;
 import com.yangzxcc.macintoshhd.models.AccessToken;
 import com.yangzxcc.macintoshhd.models.SignIn;
+
+import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -44,6 +47,15 @@ public interface ApiInterface {
     @GET("info")
     Call<InformationManager> getInfo(@Header("Authorization") String authHeader);
     //  Request Information ----------------------------------------
+
+
+    @Headers({
+            "Content-Type: application/json",
+            "X-Requested-With:XMLHttpRequest",
+            "Accept: application/json"
+    })
+    @GET("info")
+    Call<List<HealthInformation>> getHealthInfo(@Header("Authorization") String authHeader);
 
 
     //  Request HealthRecord ----------------------------------------

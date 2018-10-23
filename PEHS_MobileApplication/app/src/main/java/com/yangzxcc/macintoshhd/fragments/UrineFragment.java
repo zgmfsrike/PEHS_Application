@@ -43,86 +43,86 @@ public class UrineFragment extends Fragment {
         urineWBCResult = (TextView)view.findViewById(R.id.urineWhiteRe);
         epithelialResult = (TextView)view.findViewById(R.id.epithelialRe);
 
-        Record activity = (Record)getActivity();
-        Bundle bundle = activity.getData();
-        urine = (List<UrineInformation>) bundle.getSerializable("urine");
-        col1 = urine.get(0);
-        app1 = urine.get(1);
-        spec1 = urine.get(2);
-        ph1 = urine.get(3);
-        alb1 = urine.get(4);
-        sug1 = urine.get(5);
-        uriRed1 = urine.get(6);
-        uriWh1 = urine.get(7);
-        epi1 = urine.get(8);
-
-        setColor();
-
-        String color = col1.getUrineExValue();
-        String appear = app1.getUrineExValue();
-        String spec = spec1.getUrineExValue();
-        String ph = ph1.getUrineExValue();
-        String albu = alb1.getUrineExValue();
-        String sugar = sug1.getUrineExValue();
-        String urineRed = uriRed1.getUrineExValue();
-        String urineWhite = uriWh1.getUrineExValue();
-        String epi = epi1.getUrineExValue();
-
-        colorResult.setText(color);
-        appearanceResult.setText(appear);
-        specificGravityResult.setText(spec);
-        phResult.setText(ph);
-        albuminResult.setText(albu);
-        sugarResult.setText(sugar);
-        urineRBCResult.setText(urineRed);
-        urineWBCResult.setText(urineWhite);
-        epithelialResult.setText(epi);
-
+//        Record activity = (Record)getActivity();
+//        Bundle bundle = activity.getData();
+//        urine = (List<UrineInformation>) bundle.getSerializable("urine");
+//        col1 = urine.get(0);
+//        app1 = urine.get(1);
+//        spec1 = urine.get(2);
+//        ph1 = urine.get(3);
+//        alb1 = urine.get(4);
+//        sug1 = urine.get(5);
+//        uriRed1 = urine.get(6);
+//        uriWh1 = urine.get(7);
+//        epi1 = urine.get(8);
+//
+//        setColor();
+//
+//        String color = col1.getUrineExValue();
+//        String appear = app1.getUrineExValue();
+//        String spec = spec1.getUrineExValue();
+//        String ph = ph1.getUrineExValue();
+//        String albu = alb1.getUrineExValue();
+//        String sugar = sug1.getUrineExValue();
+//        String urineRed = uriRed1.getUrineExValue();
+//        String urineWhite = uriWh1.getUrineExValue();
+//        String epi = epi1.getUrineExValue();
+//
+//        colorResult.setText(color);
+//        appearanceResult.setText(appear);
+//        specificGravityResult.setText(spec);
+//        phResult.setText(ph);
+//        albuminResult.setText(albu);
+//        sugarResult.setText(sugar);
+//        urineRBCResult.setText(urineRed);
+//        urineWBCResult.setText(urineWhite);
+//        epithelialResult.setText(epi);
+//
         return view;
     }
-
-    private void setColor() {
-        double specific = Double.parseDouble(spec1.getUrineExValue());
-        int ph = Integer.parseInt(ph1.getUrineExValue());
-        int urineRBC = Integer.parseInt(uriRed1.getUrineExValue());
-        int urineWBC = Integer.parseInt(uriWh1.getUrineExValue());
-        int epi = Integer.parseInt(epi1.getUrineExValue());
-        int colorCondition,colorConditiondi;
-
-        if (specific < 1.030 && specific > 1.005){
-            colorCondition = Color.parseColor("#689f38"); //green
-            specificGravityResult.setTextColor(colorCondition);
-        }else {
-            colorConditiondi = Color.parseColor("#ff5722"); //red;
-            specificGravityResult.setTextColor(colorConditiondi);
-        }
-        if(ph < 8 && ph > 4) {
-            colorCondition = Color.parseColor("#689f38"); //green
-            phResult.setTextColor(colorCondition);
-        }else {
-            colorConditiondi = Color.parseColor("#ff5722"); //red;
-            phResult.setTextColor(colorConditiondi);
-        }
-        if(urineRBC < 5 && urineRBC > 0) {
-            colorCondition = Color.parseColor("#689f38"); //green
-            urineRBCResult.setTextColor(colorCondition);
-        }else {
-            colorConditiondi = Color.parseColor("#ff5722"); //red;
-            urineRBCResult.setTextColor(colorConditiondi);
-        }
-        if(urineWBC < 5 && urineWBC > 0) {
-            colorCondition = Color.parseColor("#689f38"); //green
-            urineWBCResult.setTextColor(colorCondition);
-        }else {
-            colorConditiondi = Color.parseColor("#ff5722"); //red;
-            urineWBCResult.setTextColor(colorConditiondi);
-        }
-        if(epi < 5 && epi > 0) {
-            colorCondition = Color.parseColor("#689f38"); //green
-            epithelialResult.setTextColor(colorCondition);
-        }else {
-            colorConditiondi = Color.parseColor("#ff5722"); //red;
-            epithelialResult.setTextColor(colorConditiondi);
-        }
-    }
+//
+//    private void setColor() {
+//        double specific = Double.parseDouble(spec1.getUrineExValue());
+//        int ph = Integer.parseInt(ph1.getUrineExValue());
+//        int urineRBC = Integer.parseInt(uriRed1.getUrineExValue());
+//        int urineWBC = Integer.parseInt(uriWh1.getUrineExValue());
+//        int epi = Integer.parseInt(epi1.getUrineExValue());
+//        int colorCondition,colorConditiondi;
+//
+//        if (specific < 1.030 && specific > 1.005){
+//            colorCondition = Color.parseColor("#689f38"); //green
+//            specificGravityResult.setTextColor(colorCondition);
+//        }else {
+//            colorConditiondi = Color.parseColor("#ff5722"); //red;
+//            specificGravityResult.setTextColor(colorConditiondi);
+//        }
+//        if(ph < 8 && ph > 4) {
+//            colorCondition = Color.parseColor("#689f38"); //green
+//            phResult.setTextColor(colorCondition);
+//        }else {
+//            colorConditiondi = Color.parseColor("#ff5722"); //red;
+//            phResult.setTextColor(colorConditiondi);
+//        }
+//        if(urineRBC < 5 && urineRBC > 0) {
+//            colorCondition = Color.parseColor("#689f38"); //green
+//            urineRBCResult.setTextColor(colorCondition);
+//        }else {
+//            colorConditiondi = Color.parseColor("#ff5722"); //red;
+//            urineRBCResult.setTextColor(colorConditiondi);
+//        }
+//        if(urineWBC < 5 && urineWBC > 0) {
+//            colorCondition = Color.parseColor("#689f38"); //green
+//            urineWBCResult.setTextColor(colorCondition);
+//        }else {
+//            colorConditiondi = Color.parseColor("#ff5722"); //red;
+//            urineWBCResult.setTextColor(colorConditiondi);
+//        }
+//        if(epi < 5 && epi > 0) {
+//            colorCondition = Color.parseColor("#689f38"); //green
+//            epithelialResult.setTextColor(colorCondition);
+//        }else {
+//            colorConditiondi = Color.parseColor("#ff5722"); //red;
+//            epithelialResult.setTextColor(colorConditiondi);
+//        }
+//    }
 }
