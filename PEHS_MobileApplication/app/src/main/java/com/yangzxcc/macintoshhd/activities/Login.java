@@ -1,6 +1,7 @@
 package com.yangzxcc.macintoshhd.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
@@ -84,10 +85,12 @@ public class Login extends AppCompatActivity {
                     try {
                         Log.e("Output",response.body().string());
                         String token = response.body().string();
+                        SharedPreferences sp = getSharedPreferences("myPrefs",MODE_PRIVATE);
+                        sp.edit().putString("token",token).commit();
                         Intent intent = new Intent(Login.this, Home.class);
-                        intent.putExtra("token",token);
+//                        intent.putExtra("token",token);
                         startActivity(intent);
-                        finish();
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

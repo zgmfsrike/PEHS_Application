@@ -17,10 +17,10 @@ import java.util.List;
 public class HealthAdapter extends RecyclerView.Adapter<HealthAdapter.HealthViewHolder> {
 
 
-    private List<HealthInformation> healthInformations;
+    private List<HealthInformation> healthInformation;
 
-    public HealthAdapter(List<HealthInformation> healthInformations) {
-        this.healthInformations = healthInformations;
+    public HealthAdapter(List<HealthInformation> healthInformation) {
+        this.healthInformation = healthInformation;
     }
 
 
@@ -34,7 +34,7 @@ public class HealthAdapter extends RecyclerView.Adapter<HealthAdapter.HealthView
     @Override
     public void onBindViewHolder(@NonNull HealthViewHolder holder, final int position) {
 
-        final HealthInformation current = healthInformations.get(position);
+        final HealthInformation current = healthInformation.get(position);
         holder.title.setText(current.getDate());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,7 +107,7 @@ public class HealthAdapter extends RecyclerView.Adapter<HealthAdapter.HealthView
     }
     @Override
     public int getItemCount() {
-        return healthInformations.size();
+        return healthInformation.size();
     }
 
     public static class HealthViewHolder extends RecyclerView.ViewHolder{

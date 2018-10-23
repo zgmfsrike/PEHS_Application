@@ -1,6 +1,7 @@
 package com.yangzxcc.macintoshhd.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -9,10 +10,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.yangzxcc.macintoshhd.TokenManager;
 import com.yangzxcc.macintoshhd.api.ApiClient;
 import com.yangzxcc.macintoshhd.api.ApiInterface;
 import com.yangzxcc.macintoshhd.HealthAdapter;
@@ -50,6 +53,8 @@ public class Home extends AppCompatActivity
     List<BloodInformation> bloodInformations;
     List<UrineInformation> urineInformations;
     HealthRecord healthRecord;
+    TokenManager tokenManager;
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,9 +78,9 @@ public class Home extends AppCompatActivity
 //        name.setText(data);
 
 
-        final Intent intent = getIntent();
-        token = intent.getStringExtra("token");
-
+//        final Intent intent = getIntent();
+//        token = intent.getStringExtra("token");
+        String token = preferences.getString("token","");
         getUserInformation(token);
     }
 
@@ -89,12 +94,17 @@ public class Home extends AppCompatActivity
              retrofit = ApiClient.getMockUpRetrofit();
              apiInterface = retrofit.create(ApiInterface.class);
              call1 = apiInterface.getMockUpInfo();
+            Log.e("Output","1"+token);
         }else {
              retrofit = ApiClient.getRetrofit();
              apiInterface = retrofit.create(ApiInterface.class);
              call1 = apiInterface.getInfo("Bearer " + this.token);
+            Log.e("Output ddd","2"+token);
         }
 
+//        retrofit = ApiClient.getRetrofit();
+//        apiInterface = retrofit.create(ApiInterface.class);
+//        call1 = apiInterface.getInfo("Bearer "+token);
         call1.enqueue(new Callback<Information>() {
             @Override
             public void onResponse(@NonNull Call<Information> call, @NonNull Response<Information> response) {
