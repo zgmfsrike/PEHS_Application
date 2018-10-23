@@ -22,6 +22,12 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name="com.yangzxcc.macintoshhd.activities.Login">
 
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name="com.yangzxcc.macintoshhd.activities.Profile"
@@ -35,15 +41,9 @@
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar" >
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
         </activity>
         <activity android:name="com.yangzxcc.macintoshhd.activities.Record"
-            android:parentActivityName="com.yangzxcc.macintoshhd.activities.Home"
+            android:parentActivityName="com.yangzxcc.macintoshhd.activities.RecordHistory"
             />
         <activity android:name="com.yangzxcc.macintoshhd.activities.TestLogin" />
         <activity
