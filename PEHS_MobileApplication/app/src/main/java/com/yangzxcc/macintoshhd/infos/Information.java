@@ -6,7 +6,7 @@ import com.yangzxcc.macintoshhd.infos.PersonalInformation;
 
 import java.util.List;
 
-public class InformationManager {
+public class Information {
     @SerializedName("personal_information")
     private List<PersonalInformation> personalInformation;
     @SerializedName("health_information")

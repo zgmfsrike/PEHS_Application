@@ -8,25 +8,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.yangzxcc.macintoshhd.TokenManager;
 import com.yangzxcc.macintoshhd.api.ApiClient;
 import com.yangzxcc.macintoshhd.api.ApiInterface;
-import com.yangzxcc.macintoshhd.infos.InformationManager;
 import com.yangzxcc.macintoshhd.models.AccessToken;
-import com.yangzxcc.macintoshhd.models.Patient;
 import com.yangzxcc.macintoshhd.models.SignIn;
 import com.yangzxcc.macintoshhd.pehs.R;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.IOException;
 
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;

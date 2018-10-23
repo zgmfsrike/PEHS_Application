@@ -8,32 +8,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.yangzxcc.macintoshhd.activities.Record;
 import com.yangzxcc.macintoshhd.infos.HealthInformation;
-import com.yangzxcc.macintoshhd.infos.HealthRecord;
-import com.yangzxcc.macintoshhd.infos.InformationManager;
 import com.yangzxcc.macintoshhd.pehs.R;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 public class HealthAdapter extends RecyclerView.Adapter<HealthAdapter.HealthViewHolder> {
 
-//    private List<HealthRecordTest> healthRecordList;
-//    private List<HealthRecord> healthRecords;
+
     private List<HealthInformation> healthInformations;
 
     public HealthAdapter(List<HealthInformation> healthInformations) {
         this.healthInformations = healthInformations;
     }
-    //    public HealthAdapter(List<HealthRecord> healthRecords) {
-//        this.healthRecords = healthRecords;
-//    }
-    //    public HealthAdapter(List<HealthRecordTest> healthRecordList) {
-//        this.healthRecordList = healthRecordList;
-//    }
+
 
     @NonNull
     @Override

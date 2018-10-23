@@ -2,13 +2,13 @@ package com.yangzxcc.macintoshhd.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -20,15 +20,14 @@ import com.yangzxcc.macintoshhd.infos.BloodInformation;
 import com.yangzxcc.macintoshhd.infos.ChemistryInformation;
 import com.yangzxcc.macintoshhd.infos.HealthInformation;
 import com.yangzxcc.macintoshhd.infos.HealthRecord;
-import com.yangzxcc.macintoshhd.infos.InformationManager;
+import com.yangzxcc.macintoshhd.infos.Information;
 import com.yangzxcc.macintoshhd.infos.PersonalInformation;
 import com.yangzxcc.macintoshhd.infos.PhysicalInformation;
 import com.yangzxcc.macintoshhd.infos.UrineInformation;
+import com.yangzxcc.macintoshhd.manager.InformationSingleton;
 import com.yangzxcc.macintoshhd.models.HealthRecordTest;
 import com.yangzxcc.macintoshhd.pehs.R;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -41,7 +40,6 @@ public class Home extends AppCompatActivity
 
     TextView name;
     private Toolbar toolbar;
-    private HealthAdapter adapter;
     private List<HealthRecordTest> healthRecordTestList;
     String token;
     List<PersonalInformation> personalInformations;
@@ -74,19 +72,39 @@ public class Home extends AppCompatActivity
 //        name = (TextView)findViewById(R.id.homeName);
 //        name.setText(data);
 
-        Retrofit retrofit = ApiClient.getRetrofit();
-
-        ApiInterface apiInterface = retrofit.create(ApiInterface.class);
 
         final Intent intent = getIntent();
         token = intent.getStringExtra("token");
 
-        Call<InformationManager> call1 = apiInterface.getInfo("Bearer " + token);
-        call1.enqueue(new Callback<InformationManager>() {
+        getUserInformation(token);
+    }
+
+    private void getUserInformation(String token) {
+
+        Retrofit retrofit;
+        ApiInterface apiInterface;
+        Call<Information> call1;
+
+        if (token == null){
+             retrofit = ApiClient.getMockUpRetrofit();
+             apiInterface = retrofit.create(ApiInterface.class);
+             call1 = apiInterface.getMockUpInfo();
+        }else {
+             retrofit = ApiClient.getRetrofit();
+             apiInterface = retrofit.create(ApiInterface.class);
+             call1 = apiInterface.getInfo("Bearer " + this.token);
+        }
+
+        call1.enqueue(new Callback<Information>() {
             @Override
-            public void onResponse(Call<InformationManager> call, Response<InformationManager> response) {
+            public void onResponse(@NonNull Call<Information> call, @NonNull Response<Information> response) {
                 if (response.isSuccessful()) {
-                    personalInformations = response.body().getPersonalInformation();
+
+                    if (response.body() == null) return;
+
+                      InformationSingleton.getInstance().setInformation(response.body());
+
+                      personalInformations = response.body().getPersonalInformation();
 //                    healthInformations = response.body().getHealthInformation();
 
 
@@ -109,7 +127,7 @@ public class Home extends AppCompatActivity
             }
 
             @Override
-            public void onFailure(Call<InformationManager> call, Throwable t) {
+            public void onFailure(Call<Information> call, Throwable t) {
 
             }
         });
@@ -253,8 +271,8 @@ public class Home extends AppCompatActivity
 //            startActivity(intent);
 
         } else if (id == R.id.nav_health) {
-//            Intent intent = new Intent(Home.this, HealthDataList.class);
-//            startActivity(intent);
+            Intent intent = new Intent(Home.this, HealthDataList.class);
+            startActivity(intent);
 
 //-----------------------------------------------------------------------------------------------------
 //            List<HealthRecord> datalist = (List<HealthRecord>) healthInformations.get(0);

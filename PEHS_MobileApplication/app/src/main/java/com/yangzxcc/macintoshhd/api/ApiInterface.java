@@ -2,7 +2,7 @@ package com.yangzxcc.macintoshhd.api;
 
 import com.yangzxcc.macintoshhd.infos.HealthInformation;
 import com.yangzxcc.macintoshhd.infos.HealthRecord;
-import com.yangzxcc.macintoshhd.infos.InformationManager;
+import com.yangzxcc.macintoshhd.infos.Information;
 import com.yangzxcc.macintoshhd.infos.PhysicalInformation;
 import com.yangzxcc.macintoshhd.models.AccessToken;
 import com.yangzxcc.macintoshhd.models.SignIn;
@@ -45,7 +45,7 @@ public interface ApiInterface {
             "Accept: application/json"
     })
     @GET("info")
-    Call<InformationManager> getInfo(@Header("Authorization") String authHeader);
+    Call<Information> getInfo(@Header("Authorization") String authHeader);
     //  Request Information ----------------------------------------
 
 
@@ -79,5 +79,8 @@ public interface ApiInterface {
 //    @FormUrlEncoded
 //    @POST("user.php")
 //    Call<Patient> performPatientLogin(@Query("username") String username,@Query("password") String password); //The query must match with php
+
+    @GET("/bins/bubxw?fbclid=IwAR1k78p0NTabbomB9KdqNJz0vLWS-l-c11fb0RwfSYHvEc13ighhbbRLwZs")
+    Call<Information> getMockUpInfo();
 
 }
