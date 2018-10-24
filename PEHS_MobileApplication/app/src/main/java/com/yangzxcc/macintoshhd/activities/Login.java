@@ -38,6 +38,7 @@ public class Login extends AppCompatActivity {
     String tokenNipon;
     String token;
     SharedPreferences sp;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,9 +89,12 @@ public class Login extends AppCompatActivity {
                     try {
                         Intent intent = new Intent(Login.this, Home.class);
                         Log.e("Output",response.body().string());
-//                        token = response.body().string();
+                        token = response.body().string();
                         sp = getSharedPreferences("myPrefs",MODE_PRIVATE);
-                        sp.edit().putString("token",response.body().string()).commit();
+                        editor = sp.edit();
+                        editor.putString("token",token);
+                        editor.apply();
+//                        sp.edit().putString("token",response.body().string()).commit();
 //                        intent.putExtra("token",token);
                         startActivity(intent);
 
