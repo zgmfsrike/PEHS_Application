@@ -31,6 +31,7 @@ import com.yangzxcc.macintoshhd.manager.InformationSingleton;
 import com.yangzxcc.macintoshhd.models.HealthRecordTest;
 import com.yangzxcc.macintoshhd.pehs.R;
 
+import java.io.IOException;
 import java.util.List;
 
 import retrofit2.Call;
@@ -99,23 +100,27 @@ public class Home extends AppCompatActivity
         }else {
              retrofit = ApiClient.getRetrofit();
              apiInterface = retrofit.create(ApiInterface.class);
-             call1 = apiInterface.getInfo("Bearer " + this.token);
+             call1 = apiInterface.getInfo("Bearer " +token);
             Log.e("Output ddd","2"+token);
         }
 
-//        retrofit = ApiClient.getRetrofit();
-//        apiInterface = retrofit.create(ApiInterface.class);
-        call1 = apiInterface.getInfo("Bearer "+token);
         call1.enqueue(new Callback<Information>() {
             @Override
             public void onResponse(@NonNull Call<Information> call, @NonNull Response<Information> response) {
                 if (response.isSuccessful()) {
 
-                    if (response.body() == null) return;
+                    if (response.body() == null) {
+                        try {
+                            Log.e("Output","NO data :"+response.errorBody().string());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }else {
+                        InformationSingleton.getInstance().setInformation(response.body());
+                        Log.e("Test Result","Data :"+response.body());
+                        personalInformations = response.body().getPersonalInformation();
+                    }
 
-                      InformationSingleton.getInstance().setInformation(response.body());
-                      Log.e("Test Result","Data :"+response.body());
-                      personalInformations = response.body().getPersonalInformation();
 //                    healthInformations = response.body().getHealthInformation();
 
 
@@ -134,12 +139,18 @@ public class Home extends AppCompatActivity
 //                    PhysicalInformation phy = physicalInformations.get(0);
 //                    phy.getPhysicalExName();
 //                    phy.getPhysicalExValue();
+                }else {
+                    try {
+                        Log.e("Output","response not successful"+response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<Information> call, Throwable t) {
-
+                Log.e("Output","fail to connect"+t.getMessage());
             }
         });
     }
