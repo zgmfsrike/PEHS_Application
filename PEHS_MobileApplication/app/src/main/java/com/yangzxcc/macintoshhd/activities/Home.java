@@ -54,7 +54,7 @@ public class Home extends AppCompatActivity
     List<UrineInformation> urineInformations;
     HealthRecord healthRecord;
     TokenManager tokenManager;
-    SharedPreferences preferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +80,7 @@ public class Home extends AppCompatActivity
 
 //        final Intent intent = getIntent();
 //        token = intent.getStringExtra("token");
+        SharedPreferences preferences = getSharedPreferences("myPrefs",MODE_PRIVATE);
         token = preferences.getString("token","");
         getUserInformation(token);
     }

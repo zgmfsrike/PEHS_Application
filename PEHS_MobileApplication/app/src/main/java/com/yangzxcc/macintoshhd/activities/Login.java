@@ -1,5 +1,6 @@
 package com.yangzxcc.macintoshhd.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -45,7 +46,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        tokenManager = TokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
+//        tokenManager = TokenManager.getInstance(getSharedPreferences("prefs", MODE_PRIVATE));
         textInputLayoutUsername = (TextInputLayout) findViewById(R.id.textInputLayoutUsername);
 //        textInputLayoutUsername.setError("Please fill out this fields");
         textInputLayoutPassword = (TextInputLayout) findViewById(R.id.textInputLayoutPassword);
@@ -89,11 +90,15 @@ public class Login extends AppCompatActivity {
                     try {
                         Intent intent = new Intent(Login.this, Home.class);
                         Log.e("Output",response.body().string());
-                        token = response.body().string();
-                        sp = getSharedPreferences("myPrefs",MODE_PRIVATE);
+//                        token = response.body().string();
+
+                        sp = getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
                         editor = sp.edit();
-                        editor.putString("token",token);
-                        editor.apply();
+                        token = response.body().string();
+                        editor.putString("token",token).apply();
+                        editor.commit();
+//                        editor.putString("token",token);
+//                        editor.apply();
 //                        sp.edit().putString("token",response.body().string()).commit();
 //                        intent.putExtra("token",token);
                         startActivity(intent);
