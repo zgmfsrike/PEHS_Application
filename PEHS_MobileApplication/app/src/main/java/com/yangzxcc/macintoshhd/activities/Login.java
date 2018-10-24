@@ -89,8 +89,8 @@ public class Login extends AppCompatActivity {
                 if (response.isSuccessful()){
                     try {
                         Intent intent = new Intent(Login.this, Home.class);
-                        Log.e("Output",response.body().string());
-                        Log.e("Outputttt",response.headers().get("value"));
+                        Log.e("Output","out"+response.body().string());
+                        Log.e("Outputttt","outt"+response.headers().get("value"));
 //                        token = response.body().string();
 
                         sp = getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
