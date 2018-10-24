@@ -62,13 +62,14 @@ public class PhysicalFragment extends Fragment {
         pulses = bundle.getString("pulse");
 
 
-        setColorType();
+
         waist = Integer.parseInt(wrists);
         bmi = Double.parseDouble(bmis);
         systolic = Integer.parseInt(systolics);
         diastolic = Integer.parseInt(diastolics);
         pulse = Integer.parseInt(pulses);
 
+        setColorType();
         weightResult.setText(weights);
         heightResult.setText(heights);
         waistResult.setText(wrists);

@@ -47,6 +47,42 @@ public class HealthAdapter extends RecyclerView.Adapter<HealthAdapter.HealthView
                 intent.putExtra("systolic",current.getSystolic());
                 intent.putExtra("diastolic",current.getDiastolic());
                 intent.putExtra("pulse",current.getPulse());
+//                -----
+                intent.putExtra("bloodWbc",current.getBloodWBC());
+                intent.putExtra("bloodRbc",current.getBloodRBC());
+                intent.putExtra("hgb",current.gethGB());
+                intent.putExtra("hct",current.gethCT());
+                intent.putExtra("mcv",current.getmCV());
+                intent.putExtra("mch",current.getmCH());
+                intent.putExtra("mchc",current.getmCHC());
+                intent.putExtra("plt",current.getpLTCount());
+                intent.putExtra("neu",current.getNeutrophil());
+                intent.putExtra("lym",current.getLymphocyte());
+                intent.putExtra("mono",current.getMonocyte());
+                intent.putExtra("eos",current.getEosinophil());
+                intent.putExtra("bas",current.getBasophil());
+//                -----
+                intent.putExtra("color",current.getColor());
+                intent.putExtra("app",current.getAppearance());
+                intent.putExtra("sg",current.getSpecificGravity());
+                intent.putExtra("ph",current.getpH());
+                intent.putExtra("albumin",current.getAlbumin());
+                intent.putExtra("sugar",current.getSugar());
+                intent.putExtra("urineRbc",current.getUrineRBC());
+                intent.putExtra("urineWbc",current.getUrineWBC());
+                intent.putExtra("epi",current.getEpithelialCell());
+//                -----
+                intent.putExtra("glucose",current.getGlucose());
+                intent.putExtra("bun",current.getbUN());
+                intent.putExtra("creatine",current.getCreatine());
+                intent.putExtra("uric",current.getUricAcid());
+                intent.putExtra("chol",current.getCholesterol());
+                intent.putExtra("tri",current.getTriglyceride());
+                intent.putExtra("hdl",current.gethDLC());
+                intent.putExtra("ldl",current.getCalculatedLDL());
+                intent.putExtra("ast",current.getaSTSGOT());
+                intent.putExtra("alt",current.getaLTSGPT());
+                intent.putExtra("alp",current.getaLP());
                 v.getContext().startActivity(intent);
             }
         });

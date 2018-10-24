@@ -3,6 +3,7 @@ package com.yangzxcc.macintoshhd.activities;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -35,6 +36,8 @@ public class Login extends AppCompatActivity {
     AccessToken accessToken;
     String tokenNimmit;
     String tokenNipon;
+    String token;
+    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,11 +86,11 @@ public class Login extends AppCompatActivity {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()){
                     try {
-                        Log.e("Output",response.body().string());
-                        String token = response.body().string();
-                        SharedPreferences sp = getSharedPreferences("myPrefs",MODE_PRIVATE);
-                        sp.edit().putString("token",token).commit();
                         Intent intent = new Intent(Login.this, Home.class);
+                        Log.e("Output",response.body().string());
+//                        token = response.body().string();
+                        sp = getSharedPreferences("myPrefs",MODE_PRIVATE);
+                        sp.edit().putString("token",response.body().string()).commit();
 //                        intent.putExtra("token",token);
                         startActivity(intent);
 

@@ -24,6 +24,10 @@ public class BloodFragment extends Fragment {
             neutrophilResult,lymphocyteResult,monocyteResult,eosinophilResult,basophilResult;
     private List<BloodInformation> blood;
     private BloodInformation wbc,rbc,hgb1,hct1,mcv1,mch1,mchc1,plt1,neu1,lym1,mono1,eos1,bas1;
+    private String bloodWbcs,bloodRbcs,hgbs,hcts,mcvs,mchs,mchcs,plts,neus,lyms,monos,eoss,bass;
+    private double bloodWBC,bloodRBC,hgb,hct;
+    private int mcv,mch,mchc,plt,neu,lym,mono,eos,bas;
+    private int colorCondition,colorConditiondi;
     public BloodFragment() {
         // Required empty public constructor
     }
@@ -48,6 +52,150 @@ public class BloodFragment extends Fragment {
         eosinophilResult = (TextView)view.findViewById(R.id.eosinophilRe);
         basophilResult = (TextView)view.findViewById(R.id.basophilRe);
 
+        Record activity = (Record)getActivity();
+        Bundle bundle = activity.getBloodData();
+        bloodWbcs = bundle.getString("bloodWbc");
+        bloodRbcs = bundle.getString("bloodRbc");
+        hgbs = bundle.getString("hgb");
+        hcts = bundle.getString("hct");
+        mcvs = bundle.getString("mcv");
+        mchs = bundle.getString("mch");
+        mchcs = bundle.getString("mchc");
+        plts = bundle.getString("plt");
+        neus = bundle.getString("neu");
+        lyms = bundle.getString("lym");
+        monos = bundle.getString("mono");
+        eoss = bundle.getString("eos");
+        bass = bundle.getString("bas");
+
+        bloodWBC = Double.parseDouble(bloodWbcs);
+        bloodRBC = Double.parseDouble(bloodRbcs);
+        hgb = Double.parseDouble(hgbs);
+        hct = Double.parseDouble(hcts);
+        mcv = Integer.parseInt(mcvs);
+        mch = Integer.parseInt(mchs);
+        mchc = Integer.parseInt(mchcs);
+        plt = Integer.parseInt(plts);
+        neu = Integer.parseInt(neus);
+        lym = Integer.parseInt(lyms);
+        mono = Integer.parseInt(monos);
+        eos = Integer.parseInt(eoss);
+        bas = Integer.parseInt(bass);
+
+        setColorType();
+        bloodWBCResult.setText(bloodWbcs);
+        bloodRBCResult.setText(bloodRbcs);
+        hgbResult.setText(hgbs);
+        hctResult.setText(hcts);
+        mcvResult.setText(mcvs);
+        mchResult.setText(mchs);
+        mchcResult.setText(mchcs);
+        pltResult.setText(plts);
+        neutrophilResult.setText(neus);
+        lymphocyteResult.setText(lyms);
+        monocyteResult.setText(monos);
+        eosinophilResult.setText(eoss);
+        basophilResult.setText(bass);
+
+//
+        return view;
+    }
+
+    private void setColorType() {
+        if (bloodWBC < 10.0 && bloodWBC > 5.5){
+            colorCondition = Color.parseColor("#689f38"); //green
+            bloodWBCResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red;
+            bloodWBCResult.setTextColor(colorConditiondi);
+        }
+        if(bloodRBC < 6.01 && bloodRBC > 4.45) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            bloodRBCResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red;
+            bloodRBCResult.setTextColor(colorConditiondi);
+        }
+        if (hgb < 16.8 && hgb > 13.2) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            hgbResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red;
+            hgbResult.setTextColor(colorConditiondi);
+        }
+        if (hct < 52.9 && hct > 39.7) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            hctResult.setTextColor(colorCondition);
+        }else{
+            colorConditiondi = Color.parseColor("#ff5722"); //red;
+            hctResult.setTextColor(colorConditiondi);
+        }
+        if (mcv < 97 && mcv > 82) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            mcvResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red
+            mcvResult.setTextColor(colorConditiondi);
+        }
+        if (mch < 31 && mch > 27) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            mchResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red
+            mchResult.setTextColor(colorConditiondi);
+        }
+        if (mchc < 36 && mchc > 32) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            mchcResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red
+            mchcResult.setTextColor(colorConditiondi);
+        }
+        if (plt < 421 && plt > 167) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            pltResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red
+            pltResult.setTextColor(colorConditiondi);
+        }
+        if (neu < 62 && neu > 45) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            neutrophilResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red
+            neutrophilResult.setTextColor(colorConditiondi);
+        }
+        if (lym < 42 && lym > 34)  {
+            colorCondition = Color.parseColor("#689f38"); //green
+            lymphocyteResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red
+            lymphocyteResult.setTextColor(colorConditiondi);
+        }
+        if (mono < 8 && mono > 6) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            monocyteResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red
+            monocyteResult.setTextColor(colorConditiondi);
+        }
+        if (eos < 5 && eos > 0) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            eosinophilResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red
+            eosinophilResult.setTextColor(colorConditiondi);
+        }
+        if (bas <= 1 && bas > 0) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            basophilResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red
+            basophilResult.setTextColor(colorConditiondi);
+        }
+    }
+//
+//     --------------------------------------
 //        Record activity = (Record)getActivity();
 //        Bundle bundle = activity.getData();
 //        blood = (List<BloodInformation>) bundle.getSerializable("blood");
@@ -93,9 +241,6 @@ public class BloodFragment extends Fragment {
 //        monocyteResult.setText(monocyte);
 //        eosinophilResult.setText(eosinophil);
 //        basophilResult.setText(basophil);
-//
-        return view;
-    }
 //
 //    private void setColor() {
 //        double bloodWBC = Double.parseDouble(wbc.getBloodExValue());

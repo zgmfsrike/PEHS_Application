@@ -37,6 +37,9 @@ public class Record extends AppCompatActivity {
     public HealthAdapter healthAdapter;
     private HealthRecordTest model;
     private String title,text,weight,height,wrist,bmi,systolic,diastolic,pulse;
+    private String bloodWbc,bloodRbc,hgb,hct,mcv,mch,mchc,plt,neu,lym,mono,eos,bas;
+    private String color,app,sg,ph,alb,sugar,urineRbc,urineWbc,epi;
+    private String glucose,bun,creatine,uric,chol,tri,hdl,ldl,ast,alt,alp;
     List<PhysicalInformation> physical;
     List<ChemistryInformation> chemistry;
     List<BloodInformation> blood;
@@ -73,6 +76,102 @@ public class Record extends AppCompatActivity {
         diastolic = intent.getStringExtra("diastolic");
         pulse = intent.getStringExtra("pulse");
 
+        bloodWbc = intent.getStringExtra("bloodWbc");
+        bloodRbc = intent.getStringExtra("bloodRbc");
+        hgb = intent.getStringExtra("hgb");
+        hct = intent.getStringExtra("hct");
+        mcv = intent.getStringExtra("mcv");
+        mch = intent.getStringExtra("mch");
+        mchc = intent.getStringExtra("mchc");
+        plt = intent.getStringExtra("plt");
+        neu = intent.getStringExtra("neu");
+        lym = intent.getStringExtra("lym");
+        mono = intent.getStringExtra("mono");
+        eos = intent.getStringExtra("eos");
+        bas = intent.getStringExtra("bas");
+
+        color = intent.getStringExtra("color");
+        app = intent.getStringExtra("app");
+        sg = intent.getStringExtra("sg");
+        ph = intent.getStringExtra("ph");
+        alb = intent.getStringExtra("albumin");
+        sugar = intent.getStringExtra("sugar");
+        urineRbc = intent.getStringExtra("urineRbc");
+        urineWbc = intent.getStringExtra("urineWbc");
+        epi = intent.getStringExtra("epi");
+
+        glucose = intent.getStringExtra("glucose");
+        bun = intent.getStringExtra("bun");
+        creatine = intent.getStringExtra("creatine");
+        uric = intent.getStringExtra("uric");
+        chol = intent.getStringExtra("chol");
+        tri = intent.getStringExtra("tri");
+        hdl = intent.getStringExtra("hdl");
+        ldl = intent.getStringExtra("ldl");
+        ast = intent.getStringExtra("ast");
+        alt = intent.getStringExtra("alt");
+        alp = intent.getStringExtra("alp");
+    }
+    public Bundle getPhysicalData(){
+        Bundle bundle = new Bundle();
+        bundle.putString("weight",weight);
+        bundle.putString("height",height);
+        bundle.putString("wrist",wrist);
+        bundle.putString("bmi",bmi);
+        bundle.putString("systolic",systolic);
+        bundle.putString("diastolic",diastolic);
+        bundle.putString("pulse",pulse);
+
+        return bundle;
+    }
+    public Bundle getBloodData(){
+        Bundle bundle = new Bundle();
+        bundle.putString("bloodWbc",bloodWbc);
+        bundle.putString("bloodRbc",bloodRbc);
+        bundle.putString("hgb",hgb);
+        bundle.putString("hct",hct);
+        bundle.putString("mcv",mcv);
+        bundle.putString("mch",mch);
+        bundle.putString("mchc",mchc);
+        bundle.putString("plt",plt);
+        bundle.putString("neu",neu);
+        bundle.putString("lym",lym);
+        bundle.putString("mono",mono);
+        bundle.putString("eos",eos);
+        bundle.putString("bas",bas);
+
+        return bundle;
+    }
+    public Bundle getUrineData(){
+        Bundle bundle = new Bundle();
+        bundle.putString("color",color);
+        bundle.putString("app",app);
+        bundle.putString("sg",sg);
+        bundle.putString("ph",ph);
+        bundle.putString("alb",alb);
+        bundle.putString("sugar",sugar);
+        bundle.putString("urineRbc",urineRbc);
+        bundle.putString("urineWbc",urineWbc);
+        bundle.putString("epi",epi);
+
+        return bundle;
+    }
+    public Bundle getChemistryData(){
+        Bundle bundle = new Bundle();
+        bundle.putString("glucose",glucose);
+        bundle.putString("bun",bun);
+        bundle.putString("creatine",creatine);
+        bundle.putString("uric",uric);
+        bundle.putString("chol",chol);
+        bundle.putString("tri",tri);
+        bundle.putString("hdl",hdl);
+        bundle.putString("ldl",ldl);
+        bundle.putString("ast",ast);
+        bundle.putString("alt",alt);
+        bundle.putString("alp",alp);
+
+        return bundle;
+    }
 //        Intent intent = getIntent();
 //        title = intent.getStringExtra("title");
 //        text = intent.getStringExtra("text");
@@ -91,19 +190,8 @@ public class Record extends AppCompatActivity {
 //
 //        urine = (List<UrineInformation>) intent.getSerializableExtra("urine");
 
-    }
-    public Bundle getPhysicalData(){
-        Bundle bundle = new Bundle();
-        bundle.putString("weight",weight);
-        bundle.putString("height",height);
-        bundle.putString("wrist",wrist);
-        bundle.putString("bmi",bmi);
-        bundle.putString("systolic",systolic);
-        bundle.putString("diastolic",diastolic);
-        bundle.putString("pulse",pulse);
 
-        return bundle;
-    }
+
 //    public Bundle getData(){
 //
 //        Bundle bundle = new Bundle();

@@ -20,28 +20,102 @@ import java.util.List;
  */
 public class UrineFragment extends Fragment {
 
-    private TextView colorResult,appearanceResult,specificGravityResult,phResult,albuminResult,sugarResult,urineRBCResult,
-            urineWBCResult,epithelialResult;
+    private TextView colorResult, appearanceResult, specificGravityResult, phResult, albuminResult, sugarResult, urineRBCResult,
+            urineWBCResult, epithelialResult;
     private List<UrineInformation> urine;
-    private UrineInformation col1,app1,spec1,ph1,alb1,sug1,uriRed1,uriWh1,epi1;
-
+    private UrineInformation col1, app1, spec1, ph1, alb1, sug1, uriRed1, uriWh1, epi1;
+    private String colors,apps,sgs,phs,albs,sugars,urineRbcs,urineWbcs,epis;
+    private double specific;
+    private int ph,urineRBC,urineWBC,epi;
+    private int colorCondition,colorConditiondi;
     public UrineFragment() {
         // Required empty public constructor
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_urine, container, false);
-        colorResult = (TextView)view.findViewById(R.id.colorRe);
-        appearanceResult = (TextView)view.findViewById(R.id.appearanceRe);
-        specificGravityResult = (TextView)view.findViewById(R.id.specificGravityRe);
-        phResult = (TextView)view.findViewById(R.id.phRe);
-        albuminResult = (TextView)view.findViewById(R.id.albuminRe);
-        sugarResult = (TextView)view.findViewById(R.id.sugarRe);
-        urineRBCResult = (TextView)view.findViewById(R.id.urineRedRe);
-        urineWBCResult = (TextView)view.findViewById(R.id.urineWhiteRe);
-        epithelialResult = (TextView)view.findViewById(R.id.epithelialRe);
+        colorResult = (TextView) view.findViewById(R.id.colorRe);
+        appearanceResult = (TextView) view.findViewById(R.id.appearanceRe);
+        specificGravityResult = (TextView) view.findViewById(R.id.specificGravityRe);
+        phResult = (TextView) view.findViewById(R.id.phRe);
+        albuminResult = (TextView) view.findViewById(R.id.albuminRe);
+        sugarResult = (TextView) view.findViewById(R.id.sugarRe);
+        urineRBCResult = (TextView) view.findViewById(R.id.urineRedRe);
+        urineWBCResult = (TextView) view.findViewById(R.id.urineWhiteRe);
+        epithelialResult = (TextView) view.findViewById(R.id.epithelialRe);
+
+        Record activity = (Record)getActivity();
+        Bundle bundle = activity.getUrineData();
+        colors = bundle.getString("color");
+        apps = bundle.getString("app");
+        sgs = bundle.getString("sg");
+        phs = bundle.getString("ph");
+        albs = bundle.getString("alb");
+        sugars = bundle.getString("sugar");
+        urineRbcs = bundle.getString("urineRbc");
+        urineWbcs = bundle.getString("urineWbc");
+        epis = bundle.getString("epi");
+
+        specific = Double.parseDouble(sgs);
+        ph = Integer.parseInt(phs);
+        urineRBC = Integer.parseInt(urineRbcs);
+        urineWBC = Integer.parseInt(urineWbcs);
+        epi = Integer.parseInt(epis);
+
+        setColorType();
+        colorResult.setText(colors);
+        appearanceResult.setText(apps);
+        specificGravityResult.setText(sgs);
+        phResult.setText(phs);
+        albuminResult.setText(albs);
+        sugarResult.setText(sugars);
+        urineRBCResult.setText(urineRbcs);
+        urineWBCResult.setText(urineWbcs);
+        epithelialResult.setText(epis);
+        return view;
+    }
+
+    private void setColorType() {
+        if (specific < 1.030 && specific > 1.005){
+            colorCondition = Color.parseColor("#689f38"); //green
+            specificGravityResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red;
+            specificGravityResult.setTextColor(colorConditiondi);
+        }
+        if(ph < 8 && ph > 4) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            phResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red;
+            phResult.setTextColor(colorConditiondi);
+        }
+        if(urineRBC < 5 && urineRBC > 0) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            urineRBCResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red;
+            urineRBCResult.setTextColor(colorConditiondi);
+        }
+        if(urineWBC < 5 && urineWBC > 0) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            urineWBCResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red;
+            urineWBCResult.setTextColor(colorConditiondi);
+        }
+        if(epi < 5 && epi > 0) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            epithelialResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red;
+            epithelialResult.setTextColor(colorConditiondi);
+        }
+    }
+}
 
 //        Record activity = (Record)getActivity();
 //        Bundle bundle = activity.getData();
@@ -78,8 +152,7 @@ public class UrineFragment extends Fragment {
 //        urineWBCResult.setText(urineWhite);
 //        epithelialResult.setText(epi);
 //
-        return view;
-    }
+
 //
 //    private void setColor() {
 //        double specific = Double.parseDouble(spec1.getUrineExValue());
@@ -125,4 +198,4 @@ public class UrineFragment extends Fragment {
 //            epithelialResult.setTextColor(colorConditiondi);
 //        }
 //    }
-}
+

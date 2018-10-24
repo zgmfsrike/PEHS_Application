@@ -25,6 +25,10 @@ public class ClinicalFragment extends Fragment {
                 ldlResult,astResut,altResult,alpResult;
     private List<ChemistryInformation> chemistry;
     private ChemistryInformation glu1,bun1,cre1,uric1,cho1,tri1,hdl1,ldl1,ast1,alt1,alp1;
+    private String glucoses,buns,cres,urics,chols,tris,hdls,ldls,asts,alts,alps;
+    private int glucose,cholesterol,triglyceride,hdl,ldl,ast,alt,alp;
+    private double bun,creatine,uric;
+    private int colorCondition,colorConditiondi;
     public ClinicalFragment() {
         // Required empty public constructor
     }
@@ -48,6 +52,128 @@ public class ClinicalFragment extends Fragment {
         altResult = (TextView)view.findViewById(R.id.altRe);
         alpResult = (TextView)view.findViewById(R.id.alpRe);
 
+        Record activity = (Record)getActivity();
+        Bundle bundle = activity.getChemistryData();
+        glucoses = bundle.getString("glucose");
+        buns = bundle.getString("bun");
+        cres = bundle.getString("creatine");
+        urics = bundle.getString("uric");
+        chols = bundle.getString("chol");
+        tris = bundle.getString("tri");
+        hdls = bundle.getString("hdl");
+        ldls = bundle.getString("ldl");
+        asts = bundle.getString("ast");
+        alts = bundle.getString("alt");
+        alps = bundle.getString("alp");
+
+        glucose = Integer.parseInt(glucoses);
+        bun = Double.parseDouble(buns);
+        creatine = Double.parseDouble(cres);
+        uric = Double.parseDouble(urics);
+        cholesterol = Integer.parseInt(chols);
+        triglyceride = Integer.parseInt(tris);
+        hdl = Integer.parseInt(hdls);
+        ldl = Integer.parseInt(ldls);
+        ast = Integer.parseInt(asts);
+        alt = Integer.parseInt(alts);
+        alp = Integer.parseInt(alps);
+
+        setColorType();
+        glucoseResult.setText(glucoses);
+        bunResult.setText(buns);
+        creatineResult.setText(cres);
+        uricResult.setText(urics);
+        cholesterolResult.setText(chols);
+        triglycerideResult.setText(tris);
+        hdlResult.setText(hdls);
+        ldlResult.setText(ldls);
+        astResut.setText(asts);
+        altResult.setText(alts);
+        alpResult.setText(alps);
+
+        return view;
+    }
+
+    private void setColorType() {
+        if (glucose < 99 && glucose > 70){
+            colorCondition = Color.parseColor("#689f38"); //green
+            glucoseResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red;
+            glucoseResult.setTextColor(colorConditiondi);
+        }
+        if(bun < 20.06 && bun > 8.09) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            bunResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red;
+            bunResult.setTextColor(colorConditiondi);
+        }
+        if (creatine < 1.25 && creatine > 0.72) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            creatineResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red;
+            creatineResult.setTextColor(colorConditiondi);
+        }
+        if (uric < 7.2 && uric > 3.5) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            uricResult.setTextColor(colorCondition);
+        }else{
+            colorConditiondi = Color.parseColor("#ff5722"); //red;
+            uricResult.setTextColor(colorConditiondi);
+        }
+        if (cholesterol < 200) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            cholesterolResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red
+            cholesterolResult.setTextColor(colorConditiondi);
+        }
+        if (triglyceride < 150) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            triglycerideResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red
+            triglycerideResult.setTextColor(colorConditiondi);
+        }
+        if (hdl < 40) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            hdlResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red
+            hdlResult.setTextColor(colorConditiondi);
+        }
+        if (ldl < 150) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            ldlResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red
+            ldlResult.setTextColor(colorConditiondi);
+        }
+        if (ast < 34 && ast > 5) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            astResut.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red
+            astResut.setTextColor(colorConditiondi);
+        }
+        if (alt < 55 && alt > 0)  {
+            colorCondition = Color.parseColor("#689f38"); //green
+            altResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red
+            altResult.setTextColor(colorConditiondi);
+        }
+        if (alp < 150 && alp > 40) {
+            colorCondition = Color.parseColor("#689f38"); //green
+            alpResult.setTextColor(colorCondition);
+        }else {
+            colorConditiondi = Color.parseColor("#ff5722"); //red
+            alpResult.setTextColor(colorConditiondi);
+        }
+    }
+}
 //        Record activity = (Record)getActivity();
 //        Bundle bundle = activity.getData();
 //        chemistry = (List<ChemistryInformation>) bundle.getSerializable("chem");
@@ -88,8 +214,7 @@ public class ClinicalFragment extends Fragment {
 //        altResult.setText(alt);
 //        alpResult.setText(alp);
 //
-        return view;
-    }
+
 //
 //    private void setColor() {
 //        int glucose = Integer.parseInt(glu1.getClinicalChemistryValue());
@@ -184,4 +309,3 @@ public class ClinicalFragment extends Fragment {
 //        }
 //    }
 
-}

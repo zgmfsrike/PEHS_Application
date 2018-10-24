@@ -80,7 +80,7 @@ public class Home extends AppCompatActivity
 
 //        final Intent intent = getIntent();
 //        token = intent.getStringExtra("token");
-        String token = preferences.getString("token","");
+        token = preferences.getString("token","");
         getUserInformation(token);
     }
 

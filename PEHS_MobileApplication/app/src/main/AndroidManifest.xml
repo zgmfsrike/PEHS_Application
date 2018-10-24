@@ -42,6 +42,7 @@
             android:theme="@style/AppTheme.NoActionBar" >
 
 
+
         </activity>
         <activity android:name="com.yangzxcc.macintoshhd.activities.Record"
             android:parentActivityName="com.yangzxcc.macintoshhd.activities.RecordHistory"
