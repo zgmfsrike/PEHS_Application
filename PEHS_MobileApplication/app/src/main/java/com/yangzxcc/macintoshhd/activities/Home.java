@@ -82,10 +82,10 @@ public class Home extends AppCompatActivity
 //        token = intent.getStringExtra("token");
         SharedPreferences preferences = getSharedPreferences("myPrefs",MODE_PRIVATE);
         token = preferences.getString("token","");
-        getUserInformation(token);
+        getUserInformation();
     }
 
-    private void getUserInformation(String token) {
+    private void getUserInformation() {
 
         Retrofit retrofit;
         ApiInterface apiInterface;
