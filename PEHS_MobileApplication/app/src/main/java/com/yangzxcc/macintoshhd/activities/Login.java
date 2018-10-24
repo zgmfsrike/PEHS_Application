@@ -94,7 +94,8 @@ public class Login extends AppCompatActivity {
 
                         sp = getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
                         editor = sp.edit();
-                        token = response.body().string();
+//                        token = response.body().string();
+                        token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImZhMWFlZWU2MDY5OWU5MjNkNDEwYzYzYzUxZGQzMjc5NGRkNTRhMTVhMzE3Zjk3NzE3NmY3Nzg1MTQ3NmM5NWRlMGMxMjVkOThiNjRkYmVjIn0.eyJhdWQiOiIxIiwianRpIjoiZmExYWVlZTYwNjk5ZTkyM2Q0MTBjNjNjNTFkZDMyNzk0ZGQ1NGExNWEzMTdmOTc3MTc2Zjc3ODUxNDc2Yzk1ZGUwYzEyNWQ5OGI2NGRiZWMiLCJpYXQiOjE1Mzk3MDg0MzMsIm5iZiI6MTUzOTcwODQzMywiZXhwIjoxNTcxMjQ0NDMzLCJzdWIiOiI1Iiwic2NvcGVzIjpbXX0.3LE71zRrWKeRIqhswMjOt5SyY6-BNadN6-mVF5OIN8xayR0vVGixL2BbbFeOho037Dg-z8cizbDFYoZ2YMWB824gwt9bBAA1COhyYfrKsusEwc91xuFC3gnxxGDKYtN7aus_iw99r-2HSUgyjOtWhNnxAaByh54NAXRvbRxI75UystCOkr1nbwslpSVOU4S7FDIqCgPtv_EtmBFr1-YURrj7vD_huwG62JEZgtGluwfwJFazJ3bNV85ySCAqbttBVmeRsY2IjOriDokAkgbKa7fLQxvZAFdnP6FWmv-nXN9KZPuu8VGx2XQsh0FHry9TJE7L6rHLgqdHCMF5-_4nC_OBsqXxswvWWfpoNWr7vK0PWAIoUc8vXDucLXw8i4IpodwylfpIHv3fubUGBeSAYs_1uIKtXD16X1UXyYLjYn2k0delXlvG_uJ1vuQfQ1VgZ2qe6_6PmLqPFXcByLaKNHtYF9dIvrmOX0-TuajCQnk5-PPl4P6KyFGjvZlW8S_2__ow4R4WC0Vy5AOrkCJhNvEZ-gHh1UPMWujNBcfqz0kSCJGXRLuwLQVBVErKQgcBgRBuqlNGave8EEWX_tDKEdBA7V2yC3j1WMoywuSGWKH4zmPYbgzxPlT80elOaNPQsZOYtbVwIvRh88qHJDs8rsI7tYtZ00N-ArArjuU_cbI";
                         editor.putString("token",token).apply();
                         editor.commit();
 //                        editor.putString("token",token);

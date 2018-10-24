@@ -106,7 +106,7 @@ public class Home extends AppCompatActivity
 
         call1.enqueue(new Callback<Information>() {
             @Override
-            public void onResponse(@NonNull Call<Information> call, @NonNull Response<Information> response) {
+            public void onResponse(Call<Information> call, Response<Information> response) {
                 if (response.isSuccessful()) {
 
                     if (response.body() == null) {
@@ -117,7 +117,7 @@ public class Home extends AppCompatActivity
                         }
                     }else {
                         InformationSingleton.getInstance().setInformation(response.body());
-                        Log.e("Test Result","Data :"+response.body());
+                        Log.e("SUCCESS !","SUCCESS :"+response.body());
                         personalInformations = response.body().getPersonalInformation();
                     }
 
@@ -154,6 +154,56 @@ public class Home extends AppCompatActivity
             }
         });
     }
+//        call1.enqueue(new Callback<Information>() {
+//            @Override
+//            public void onResponse(@NonNull Call<Information> call, @NonNull Response<Information> response) {
+//                if (response.isSuccessful()) {
+//
+//                    if (response.body() == null) {
+//                        try {
+//                            Log.e("Output","NO data :"+response.errorBody().string());
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }else {
+//                        InformationSingleton.getInstance().setInformation(response.body());
+//                        Log.e("SUCCESS !","SUCCESS :"+response.body());
+//                        personalInformations = response.body().getPersonalInformation();
+//                    }
+//
+////                    healthInformations = response.body().getHealthInformation();
+//
+//
+////                    HealthInformation health = healthInformations.get(0);
+////                    healthRecords = health.getHealthRecords();
+//
+////                    for (int i = 0; i < healthRecords.size(); i++) {
+////
+////                    }
+////                    HealthRecord record = healthRecords.get(0);
+////                    physicalInformations = record.getPhysicalInformation();
+////                    chemistryInformations = record.getChemistryInformation();
+////                    bloodInformations = record.getBloodInformation();
+////                    urineInformations = record.getUrineInformation();
+//
+////                    PhysicalInformation phy = physicalInformations.get(0);
+////                    phy.getPhysicalExName();
+////                    phy.getPhysicalExValue();
+//                }else {
+//                    try {
+//                        Log.e("Output","response not successful"+response.errorBody().string());
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Information> call, Throwable t) {
+//                Log.e("Output","fail to connect"+t.getMessage());
+//            }
+//        });
+//    }
 
 
     @Override
