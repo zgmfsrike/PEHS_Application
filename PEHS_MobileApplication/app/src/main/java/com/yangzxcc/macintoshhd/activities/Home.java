@@ -105,7 +105,7 @@ public class Home extends AppCompatActivity
 
 //        retrofit = ApiClient.getRetrofit();
 //        apiInterface = retrofit.create(ApiInterface.class);
-//        call1 = apiInterface.getInfo("Bearer "+token);
+        call1 = apiInterface.getInfo("Bearer "+token);
         call1.enqueue(new Callback<Information>() {
             @Override
             public void onResponse(@NonNull Call<Information> call, @NonNull Response<Information> response) {
@@ -114,7 +114,7 @@ public class Home extends AppCompatActivity
                     if (response.body() == null) return;
 
                       InformationSingleton.getInstance().setInformation(response.body());
-
+                      Log.e("Test Result","Data :"+response.body());
                       personalInformations = response.body().getPersonalInformation();
 //                    healthInformations = response.body().getHealthInformation();
 
