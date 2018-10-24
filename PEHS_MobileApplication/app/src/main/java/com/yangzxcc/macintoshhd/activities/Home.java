@@ -83,10 +83,10 @@ public class Home extends AppCompatActivity
 //        token = intent.getStringExtra("token");
         SharedPreferences preferences = getSharedPreferences("myPrefs",MODE_PRIVATE);
         token = preferences.getString("token","");
-        getUserInformation();
+        getUserInformation(token);
     }
 
-    private void getUserInformation() {
+    private void getUserInformation(String token) {
 
         Retrofit retrofit;
         ApiInterface apiInterface;
@@ -100,7 +100,7 @@ public class Home extends AppCompatActivity
         }else {
              retrofit = ApiClient.getRetrofit();
              apiInterface = retrofit.create(ApiInterface.class);
-             call1 = apiInterface.getInfo("Bearer " +token);
+             call1 = apiInterface.getInfo("Bearer "+this.token);
             Log.e("Output ddd","2"+token);
         }
 
