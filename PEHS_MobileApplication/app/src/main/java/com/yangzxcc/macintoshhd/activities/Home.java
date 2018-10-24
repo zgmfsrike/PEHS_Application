@@ -96,12 +96,12 @@ public class Home extends AppCompatActivity
              retrofit = ApiClient.getMockUpRetrofit();
              apiInterface = retrofit.create(ApiInterface.class);
              call1 = apiInterface.getMockUpInfo();
-            Log.e("Output","1"+token);
+            Log.e("Output","1   "+token);
         }else {
              retrofit = ApiClient.getRetrofit();
              apiInterface = retrofit.create(ApiInterface.class);
              call1 = apiInterface.getInfo("Bearer "+this.token);
-            Log.e("Output ddd","2"+token);
+            Log.e("Output ddd","2   "+token);
         }
 
         call1.enqueue(new Callback<Information>() {
