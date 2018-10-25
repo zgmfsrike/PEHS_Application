@@ -101,7 +101,7 @@ public class Home extends AppCompatActivity
              retrofit = ApiClient.getRetrofit();
              apiInterface = retrofit.create(ApiInterface.class);
              call1 = apiInterface.getInfo("Bearer "+this.token);
-            Log.e("Output ddd","2   "+token);
+            Log.e("Output ddd","Token is here   "+token);
         }
 
         call1.enqueue(new Callback<Information>() {
@@ -119,6 +119,11 @@ public class Home extends AppCompatActivity
                         InformationSingleton.getInstance().setInformation(response.body());
                         Log.e("SUCCESS !","SUCCESS :"+response.body());
                         personalInformations = response.body().getPersonalInformation();
+                        healthInformations = response.body().getHealthInformation();
+
+                        System.out.println(InformationSingleton.getInstance().getInformation().getHealthInformation().get(0).getWeight());
+                        System.out.println(InformationSingleton.getInstance().getInformation().getHealthInformation().get(1).getWeight());
+
                     }
 
 //                    healthInformations = response.body().getHealthInformation();

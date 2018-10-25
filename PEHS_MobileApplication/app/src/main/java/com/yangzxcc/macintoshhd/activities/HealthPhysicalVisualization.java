@@ -15,8 +15,10 @@ import com.yangzxcc.macintoshhd.api.ApiClient;
 import com.yangzxcc.macintoshhd.api.ApiInterface;
 import com.yangzxcc.macintoshhd.infos.BloodInformation;
 import com.yangzxcc.macintoshhd.infos.ChemistryInformation;
+import com.yangzxcc.macintoshhd.infos.HealthInformation;
 import com.yangzxcc.macintoshhd.infos.HealthRecord;
 import com.yangzxcc.macintoshhd.infos.PhysicalInformation;
+import com.yangzxcc.macintoshhd.manager.InformationSingleton;
 import com.yangzxcc.macintoshhd.physical.BmiFragment;
 import com.yangzxcc.macintoshhd.physical.DiastolicFragment;
 import com.yangzxcc.macintoshhd.physical.PulseFragment;
@@ -58,6 +60,9 @@ public class HealthPhysicalVisualization extends AppCompatActivity {
 
         tabLayout = (TabLayout) findViewById(R.id.tabs1);
         tabLayout.setupWithViewPager(viewPager1);
+
+
+
 
 //        Intent intent = getIntent();
 //        physical = (List<PhysicalInformation>) intent.getSerializableExtra("physicalName");
