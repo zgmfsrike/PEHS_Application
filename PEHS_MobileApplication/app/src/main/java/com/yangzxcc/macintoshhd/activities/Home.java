@@ -81,8 +81,8 @@ public class Home extends AppCompatActivity
 
 //        final Intent intent = getIntent();
 //        token = intent.getStringExtra("token");
-        SharedPreferences preferences = getSharedPreferences("myPrefs",MODE_PRIVATE);
-        token = preferences.getString("token","");
+//        SharedPreferences preferences = getSharedPreferences("myPrefs",MODE_PRIVATE);
+//        token = preferences.getString("token","");
         getUserInformation(token);
     }
 
@@ -95,7 +95,8 @@ public class Home extends AppCompatActivity
         if (token == null){
              retrofit = ApiClient.getMockUpRetrofit();
              apiInterface = retrofit.create(ApiInterface.class);
-             call1 = apiInterface.getMockUpInfo();
+//             call1 = apiInterface.getMockUpInfo();
+            call1 = apiInterface.getMock();
             Log.e("Output","1   "+token);
         }else {
              retrofit = ApiClient.getRetrofit();
@@ -120,10 +121,11 @@ public class Home extends AppCompatActivity
                         Log.e("SUCCESS !","SUCCESS :"+response.body());
                         personalInformations = response.body().getPersonalInformation();
                         healthInformations = response.body().getHealthInformation();
-
-                        System.out.println(InformationSingleton.getInstance().getInformation().getHealthInformation().get(0).getWeight());
-                        System.out.println(InformationSingleton.getInstance().getInformation().getHealthInformation().get(1).getWeight());
-
+                        if (InformationSingleton.getInstance().getInformation().getHealthInformation().get(0).getWeight() != null)
+                        {
+                            System.out.println(InformationSingleton.getInstance().getInformation().getHealthInformation().get(0).getWeight());
+                            System.out.println(InformationSingleton.getInstance().getInformation().getHealthInformation().get(1).getWeight());
+                        }
                     }
 
 //                    healthInformations = response.body().getHealthInformation();
@@ -331,7 +333,11 @@ public class Home extends AppCompatActivity
 
 
         } else if (id == R.id.nav_car) {
-//            Intent intent = new Intent();
+            Intent intent = new Intent(Home.this,Cardiovascular.class);
+            PersonalInformation value = personalInformations.get(0);
+            value.getDateOfBirth();
+            intent.putExtra("date",value.getDateOfBirth());
+            startActivity(intent);
 //
 //            intent.putExtra("",);
 
@@ -345,7 +351,7 @@ public class Home extends AppCompatActivity
 //            intent.putExtra("date", value.getDateOfBirth());
 //            intent.putExtra("physical", (Serializable) physicalInformations);
 //            intent.putExtra("chem", (Serializable) chemistryInformations);
-//            startActivity(intent);
+
 
         } else if (id == R.id.nav_health) {
             Intent intent = new Intent(Home.this, HealthDataList.class);

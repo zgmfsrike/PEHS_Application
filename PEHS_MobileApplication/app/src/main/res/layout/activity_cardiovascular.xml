@@ -57,7 +57,9 @@
                            android:layout_marginLeft="40dp"
                            android:layout_marginTop="10dp"
                            android:layout_marginRight="100dp"
-                           android:text="Input Age"
+                           android:text="35"
+                           android:inputType="numberDecimal"
+                           android:maxLength="3"
                            android:textColor="@color/text"
                            android:textSize="25sp"
                            android:textStyle="bold" />
@@ -134,7 +136,9 @@
                        android:layout_height="match_parent"
                        android:layout_marginLeft="40dp"
                        android:layout_marginRight="100dp"
-                       android:text="systolic"
+                       android:text="120"
+                       android:maxLength="3"
+                       android:inputType="numberDecimal"
                        android:textColor="@color/text"
                        android:textSize="25sp"
                        android:textStyle="bold" />
@@ -200,7 +204,9 @@
                        android:layout_height="match_parent"
                        android:layout_marginLeft="40dp"
                        android:layout_marginRight="100dp"
-                       android:text="Input Age"
+                       android:text="120"
+                       android:maxLength="3"
+                       android:inputType="numberDecimal"
                        android:textColor="@color/text"
                        android:textSize="25sp"
                        android:textStyle="bold" />

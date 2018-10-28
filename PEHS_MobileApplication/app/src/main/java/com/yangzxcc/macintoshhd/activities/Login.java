@@ -89,19 +89,25 @@ public class Login extends AppCompatActivity {
                 if (response.isSuccessful()){
                         Intent intent = new Intent(Login.this, Home.class);
                         Log.e("Tokenn !!! "," Token !!!!  "+response.body().getAccessToken());
-                        token = response.body().getAccessToken();
+//                        token = response.body().getAccessToken();
+//                    sp = getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
+//                    editor.putString("token",token);
+//                    editor = sp.edit();
+//                    editor.putString("token",token).apply();
+//                    editor.commit();
+//
+
+
+
 //                        Log.e("Output","out1"+response.body().string());
 
 //                        token = response.body().string();
 
-                        sp = getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
-                        editor = sp.edit();
+
 ////                        token = response.body().string();
 //                        token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImZlNTYyNGQxYWQ3OGVhYmM1MGVmNDY5YzM5ZThhOGFlZWY4MWNiNzljN2I2YzExNTkxMTA3YzkwMTNkMmMzZTEwOWE4ODdiNGQyOWQwYWYzIn0.eyJhdWQiOiIxIiwianRpIjoiZmU1NjI0ZDFhZDc4ZWFiYzUwZWY0NjljMzllOGE4YWVlZjgxY2I3OWM3YjZjMTE1OTExMDdjOTAxM2QyYzNlMTA5YTg4N2I0ZDI5ZDBhZjMiLCJpYXQiOjE1NDAzODU2MzAsIm5iZiI6MTU0MDM4NTYzMCwiZXhwIjoxNTcxOTIxNjMwLCJzdWIiOiI1Iiwic2NvcGVzIjpbXX0.QNfTum_nwhtPRfBImeFGvS4hdceNKeExNz7cLXeJaxDXNHahVseMEpebGkKe6Pd-7kWmK7h9VsNHo5M-qYChOcePnfHZZynq24RgDJWnlVcRaAh52a8hc0KsKeNXxxB82axwEQQwVJph_fQL5uIuXiNgbkZHL4PTAf2D1032-Kt3BBY7J4Yi8iXL2mMy9mh3ul_W18kMepCCBgtFAuA40y4AwVUZhkmFjLN7Ml4IDd2P2Dcf6LF4UFhirGLryXfC0LpJ4U_XbSb1-66S9NhKuWLQvYwDLqIIw_wfCYZBwQufwbno1u1tax8wMKNXUGddNzXTbfrH1wiZi9HMt3cE1uOwM3vbep0kSY54Ov2HbG7duKue9fvyrIVfEuh-W_j2mMvhabJumvXagOE31vbi9wbteUqqhhGXSKevv2PQgGtpZKiI1WFIrUvVywCLcfRK8ONYLZLrHdfmLpbyx5aWAu_-BRhls1tXszqBcA8O-F69vTlZqysf-IXUefLm3JQaK2q3mKBxxoXBZHtJnzssKzwq2nQldPGlDw-2Pi6RJyP7Rds_7YzkN_oT27DjG3uhEXztCSuyDGnS7DsKxTBkfeRXxQYzLrcRTXds7bEv6pO33ZQ8OQPXm74o7Ru3SuQ0qr4bM7JRXZuPbyCvAUMIryuq6b7TU_1QYDarSCi95Ak";
 //
-                        editor.putString("token",token).apply();
-                        editor.commit();
-//                        editor.putString("token",token);
+
 //                        editor.apply();
 //                        sp.edit().putString("token",response.body().string()).commit();
 //                        intent.putExtra("token",token);

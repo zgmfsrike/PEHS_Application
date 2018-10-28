@@ -83,4 +83,9 @@ public interface ApiInterface {
     @GET("/bins/bubxw?fbclid=IwAR1k78p0NTabbomB9KdqNJz0vLWS-l-c11fb0RwfSYHvEc13ighhbbRLwZs")
     Call<Information> getMockUpInfo();
 
+    @GET("/bins/myxbm")
+    Call<Information> getMock();
+
+
+
 }

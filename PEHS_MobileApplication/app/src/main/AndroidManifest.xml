@@ -20,16 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.yangzxcc.macintoshhd.activities.Login">
-
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
+        <activity android:name="com.yangzxcc.macintoshhd.activities.Login"></activity>
         <activity
             android:name="com.yangzxcc.macintoshhd.activities.Profile"
             android:parentActivityName="com.yangzxcc.macintoshhd.activities.Home" />
@@ -40,15 +31,16 @@
             android:name="com.yangzxcc.macintoshhd.activities.Home"
             android:label="@string/title_activity_home"
             android:launchMode="singleTop"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-
-
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name="com.yangzxcc.macintoshhd.activities.Record"
-            android:parentActivityName="com.yangzxcc.macintoshhd.activities.RecordHistory"
-            />
+        <activity
+            android:name="com.yangzxcc.macintoshhd.activities.Record"
+            android:parentActivityName="com.yangzxcc.macintoshhd.activities.RecordHistory" />
         <activity android:name="com.yangzxcc.macintoshhd.activities.TestLogin" />
         <activity
             android:name="com.yangzxcc.macintoshhd.activities.HealthDataList"
@@ -57,11 +49,13 @@
             android:name="com.yangzxcc.macintoshhd.activities.HealthPhysicalVisualization"
             android:parentActivityName="com.yangzxcc.macintoshhd.activities.HealthDataList" />
         <activity android:name="com.yangzxcc.macintoshhd.activities.Cardiovascular" />
-        <activity android:name="com.yangzxcc.macintoshhd.activities.HealthChemistryVisualization"
-            android:parentActivityName="com.yangzxcc.macintoshhd.activities.HealthDataList"/>
-        <activity android:name="com.yangzxcc.macintoshhd.activities.HealthBloodVisualization"
-            android:parentActivityName="com.yangzxcc.macintoshhd.activities.HealthDataList"/>
-
+        <activity
+            android:name="com.yangzxcc.macintoshhd.activities.HealthChemistryVisualization"
+            android:parentActivityName="com.yangzxcc.macintoshhd.activities.HealthDataList" />
+        <activity
+            android:name="com.yangzxcc.macintoshhd.activities.HealthBloodVisualization"
+            android:parentActivityName="com.yangzxcc.macintoshhd.activities.HealthDataList" />
+        <activity android:name="com.yangzxcc.macintoshhd.activities.CardiovascularDetail"></activity>
     </application>
 
 </manifest>

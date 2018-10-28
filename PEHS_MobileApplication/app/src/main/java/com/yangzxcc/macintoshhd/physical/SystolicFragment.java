@@ -39,6 +39,19 @@ public class SystolicFragment extends Fragment {
         GraphView graph = (GraphView)view.findViewById(R.id.graph);
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
                 new DataPoint(0, 119),
+                new DataPoint(1, 60),
+                new DataPoint(2, 56),
+                new DataPoint(3, 90),
+                new DataPoint(4, 90),
+                new DataPoint(5, 90),
+                new DataPoint(6, 90),
+                new DataPoint(7, 90),
+                new DataPoint(8, 90),
+                new DataPoint(9, 90),
+                new DataPoint(10, 90),
+                new DataPoint(11, 90),
+                new DataPoint(12, 120),
+
 //                new DataPoint(1, parseInt(weightValue)),
 //                new DataPoint(2, parseInt(weightValue)),
 //                new DataPoint(3, parseInt(weightValue)),
