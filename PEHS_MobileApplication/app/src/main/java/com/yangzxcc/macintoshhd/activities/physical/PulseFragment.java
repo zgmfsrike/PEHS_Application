@@ -1,4 +1,4 @@
-package com.yangzxcc.macintoshhd.activities.blood;
+package com.yangzxcc.macintoshhd.activities.physical;
 
 
 import android.os.Bundle;
@@ -21,10 +21,10 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NeutrophilFragment extends Fragment {
+public class PulseFragment extends Fragment {
 
 
-    public NeutrophilFragment() {
+    public PulseFragment() {
         // Required empty public constructor
     }
 
@@ -33,27 +33,34 @@ public class NeutrophilFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_neutrophi, container, false);
+        View view = inflater.inflate(R.layout.fragment_pulse, container, false);
+//        HealthPhysicalVisualization activity = (HealthPhysicalVisualization)getActivity();
+//        Bundle bundle = activity.getListOfData();
+//        List<PhysicalInformation> pulse = (List<PhysicalInformation>) bundle.getSerializable("physical");
+//        PhysicalInformation pul = pulse.get(6); //Pulse value
+//        String pulse1 = pul.getPhysicalExValue();
+//
+//
         if (InformationSingleton.getInstance().getInformation().getHealthInformation().size() > 0) {
             List<HealthInformation> data = InformationSingleton.getInstance().getInformation().getHealthInformation();
 
-            ArrayList<Integer> myNeuList = new ArrayList<Integer>();
+            ArrayList<Integer> myPulseList = new ArrayList<Integer>();
             ArrayList<String> myDatelist = new ArrayList<String>();
 
             for (int i = 0; i < data.size(); i++) {
-                int neuValue = Integer.parseInt(data.get(i).getNeutrophil());
+                int pulseValue = Integer.parseInt(data.get(i).getPulse());
                 String dateValue = data.get(i).getDate();
 
-                myNeuList.add(neuValue);
+                myPulseList.add(pulseValue);
                 myDatelist.add(dateValue);
-                System.out.println(myNeuList.get(i));
+                System.out.println(myPulseList.get(i));
                 System.out.println(myDatelist.get(i));
             }
             GraphView graph = (GraphView) view.findViewById(R.id.graph);
 
             DataPoint[] dp = new DataPoint[5];
             for (int i = 5; i > 0; i--) {
-                dp[5 - i] = new DataPoint(data.size() - i, myNeuList.get(data.size() - i));
+                dp[5 - i] = new DataPoint(data.size() - i, myPulseList.get(data.size() - i));
             }
             LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dp);
             graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
@@ -64,7 +71,7 @@ public class NeutrophilFragment extends Fragment {
                         return "Day " + super.formatLabel(value, isValueX);
                     } else {
                         // show currency for y values
-                        return super.formatLabel(value, isValueX) + " %";
+                        return super.formatLabel(value, isValueX) + " /mins";
                     }
                 }
             });
@@ -80,7 +87,6 @@ public class NeutrophilFragment extends Fragment {
             });
             graph.addSeries(series);
         }
-
         return view;
     }
 

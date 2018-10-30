@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.yangzxcc.macintoshhd.activities.Login"></activity>
+        <activity android:name="com.yangzxcc.macintoshhd.activities.Login" />
         <activity
             android:name="com.yangzxcc.macintoshhd.activities.Profile"
             android:parentActivityName="com.yangzxcc.macintoshhd.activities.Home" />
@@ -48,14 +48,18 @@
         <activity
             android:name="com.yangzxcc.macintoshhd.activities.HealthPhysicalVisualization"
             android:parentActivityName="com.yangzxcc.macintoshhd.activities.HealthDataList" />
-        <activity android:name="com.yangzxcc.macintoshhd.activities.Cardiovascular" />
+        <activity android:name="com.yangzxcc.macintoshhd.activities.Cardiovascular"
+            android:parentActivityName="com.yangzxcc.macintoshhd.activities.Home" />
         <activity
             android:name="com.yangzxcc.macintoshhd.activities.HealthChemistryVisualization"
             android:parentActivityName="com.yangzxcc.macintoshhd.activities.HealthDataList" />
         <activity
             android:name="com.yangzxcc.macintoshhd.activities.HealthBloodVisualization"
             android:parentActivityName="com.yangzxcc.macintoshhd.activities.HealthDataList" />
-        <activity android:name="com.yangzxcc.macintoshhd.activities.CardiovascularDetail"></activity>
+        <activity
+            android:name="com.yangzxcc.macintoshhd.activities.CardiovascularDetail"
+            android:parentActivityName="com.yangzxcc.macintoshhd.activities.Cardiovascular" />
+        <activity android:name="com.yangzxcc.macintoshhd.activities.HealthDataCheck"></activity>
     </application>
 
 </manifest>

@@ -57,6 +57,7 @@ public class HealthBloodVisualization extends AppCompatActivity {
         adapter.addFrag(new PLTCountFragment(), "PLT Count");
         adapter.addFrag(new NeutrophilFragment(), "Neutrophil");
         adapter.addFrag(new LymphocyteFragment(), "Lymphocyte");
+        viewPager1.setAdapter(adapter);
     }
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();

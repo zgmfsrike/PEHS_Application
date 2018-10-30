@@ -77,19 +77,16 @@ public class HealthDataList extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()){
             case R.id.phyCard:
                 Intent intent = new Intent(HealthDataList.this,HealthPhysicalVisualization.class);
-//                intent.putExtra("",healthRecords.get(0));
-//                intent.putExtra("physicalValue",phy.getPhysicalExValue());
                 startActivity(intent);
                 break;
             case R.id.chemCard:
                 Intent intent2 = new Intent(HealthDataList.this,HealthChemistryVisualization.class);
-//                intent2.putExtra("chemName",chem.getClinicalChemistryName());
-//                intent2.putExtra("chemValue",chem.getClinicalChemistryValue());
+                startActivity(intent2);
+
                 break;
             case R.id.bloodCard:
                 Intent intent3 = new Intent(HealthDataList.this,HealthBloodVisualization.class);
-//                intent3.putExtra("bloodName",bloo.getBloodExName());
-//                intent3.putExtra("bloodValue",bloo.getBloodExValue());
+                startActivity(intent3);
                 break;
         }
     }

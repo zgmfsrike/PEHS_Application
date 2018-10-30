@@ -15,11 +15,6 @@ import com.yangzxcc.macintoshhd.activities.chemistry.HDLFragment;
 import com.yangzxcc.macintoshhd.activities.chemistry.LDLFragment;
 import com.yangzxcc.macintoshhd.activities.chemistry.TriglycerideFragment;
 import com.yangzxcc.macintoshhd.pehs.R;
-import com.yangzxcc.macintoshhd.physical.BmiFragment;
-import com.yangzxcc.macintoshhd.physical.DiastolicFragment;
-import com.yangzxcc.macintoshhd.physical.PulseFragment;
-import com.yangzxcc.macintoshhd.physical.SystolicFragment;
-import com.yangzxcc.macintoshhd.physical.WeightFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +49,7 @@ public class HealthChemistryVisualization extends AppCompatActivity {
         adapter.addFrag(new TriglycerideFragment(), "Triglyceride");
         adapter.addFrag(new HDLFragment(), "HDL");
         adapter.addFrag(new LDLFragment(), "LDL");
+        viewPager1.setAdapter(adapter);
     }
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();

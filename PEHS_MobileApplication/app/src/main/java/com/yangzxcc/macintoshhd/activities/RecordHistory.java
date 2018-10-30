@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.yangzxcc.macintoshhd.HealthAdapter;
@@ -53,13 +54,20 @@ public class RecordHistory extends AppCompatActivity{
 
 
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycleview);
-        LinearLayoutManager manager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(manager);
-        recyclerView.setHasFixedSize(true);
 
-        adapter = new HealthAdapter(InformationSingleton.getInstance().getInformation().getHealthInformation());
-        recyclerView.setAdapter(adapter);
+
+        if (InformationSingleton.getInstance().getInformation().getHealthInformation().size() > 0) {
+            recyclerView = (RecyclerView) findViewById(R.id.recycleview);
+            LinearLayoutManager manager = new LinearLayoutManager(this);
+            recyclerView.setLayoutManager(manager);
+            recyclerView.setHasFixedSize(true);
+            adapter = new HealthAdapter(InformationSingleton.getInstance().getInformation().getHealthInformation());
+            recyclerView.setAdapter(adapter);
+        }else {
+            Toast.makeText(this, "There is no Record ",
+                    Toast.LENGTH_LONG).show();
+        }
+
 
 
     }

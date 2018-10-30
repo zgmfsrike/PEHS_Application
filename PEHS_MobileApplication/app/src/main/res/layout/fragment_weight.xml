@@ -2,12 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.yangzxcc.macintoshhd.physical.WeightFragment">
+    tools:context="com.yangzxcc.macintoshhd.activities.physical.WeightFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <com.jjoe64.graphview.GraphView
         android:layout_gravity="center"
         android:layout_width="370dp"
         android:layout_height="200dip"
-        android:id="@+id/graph" />
+        android:id="@+id/graph"
+        />
 </FrameLayout>

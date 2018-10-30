@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatRadioButton;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -38,6 +39,7 @@ public class Cardiovascular extends AppCompatActivity implements View.OnClickLis
     private  double value;
     private double Pfullscore;
     private String value1;
+    private Toolbar toolbar;
 
 
     private String systo, choles;
@@ -51,6 +53,12 @@ public class Cardiovascular extends AppCompatActivity implements View.OnClickLis
 //        age = (TextView)findViewById(R.id.age);
 
 //        systolic = (TextView)findViewById(R.id.systo);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Blood");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         cholesterol = (TextView) findViewById(R.id.choles);
         male = (AppCompatRadioButton) findViewById(R.id.sexMale);
         female = (AppCompatRadioButton) findViewById(R.id.sexFemale);
@@ -73,19 +81,27 @@ public class Cardiovascular extends AppCompatActivity implements View.OnClickLis
 
         List<HealthInformation> data = InformationSingleton.getInstance().getInformation().getHealthInformation();
 
-        String dateOfBirth = intent.getStringExtra("date");
-        String dateValue = dateOfBirth.substring(0,4);
-        int dateValue1 = Integer.parseInt(dateValue);
-        int calAge = Calendar.getInstance().get(Calendar.YEAR) - dateValue1;
-        String calAge1 = String.valueOf(calAge);
-        Log.e("Test Date","Dateeeee " +calAge);
 
-        String sys = data.get(data.size()-1).getSystolic();
-        String chol = data.get(data.size()-1).getCholesterol();
 
-        age1.setText(calAge1);
-        systolic1.setText(sys);
-        cholesterol1.setText(chol);
+
+
+        if (InformationSingleton.getInstance().getInformation().getHealthInformation().size() > 0){
+            String dateOfBirth = intent.getStringExtra("date");
+            String dateValue = dateOfBirth.substring(0,4);
+            int dateValue1 = Integer.parseInt(dateValue);
+            int calAge = Calendar.getInstance().get(Calendar.YEAR) - dateValue1;
+            String calAge1 = String.valueOf(calAge);
+            Log.e("Test Date","Dateeeee " +calAge);
+
+            String sys = data.get(data.size()-1).getSystolic();
+            String chol = data.get(data.size()-1).getCholesterol();
+            age1.setText(calAge1);
+            systolic1.setText(sys);
+            cholesterol1.setText(chol);
+        }else {
+            return;
+        }
+
 
     }
 

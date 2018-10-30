@@ -1,238 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:background="@color/back">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_marginTop="10dp"
-                android:layout_width="102dp"
-                android:layout_height="100dp"
-                android:src="@drawable/accountcircle"
-                android:layout_gravity="center_horizontal"/>
-
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/name"
-                    android:layout_marginLeft="80dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="Nimmit"
-                    android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white" />
-
-                <TextView
-                    android:id="@+id/surname"
-                    android:layout_marginLeft="20dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="Siam"
-                    android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_marginLeft="70dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="Date of Birth:"
-                    android:layout_gravity="center"
-                    android:textSize="20sp"
-                    android:textColor="@color/white"/>
-                <TextView
-                    android:layout_marginLeft="10dp"
-                    android:id="@+id/date"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Date"
-                    android:layout_gravity="center"
-                    android:textSize="20sp"
-                    android:textColor="@color/white"/>
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </RelativeLayout>
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:background="@color/back">
 
 
-    <LinearLayout
-        android:layout_marginTop="250dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/backgreen"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+       <ImageView
+           android:id="@+id/imageView2"
+           android:layout_width="100dp"
+           android:layout_height="100dp"
+           android:layout_alignParentStart="true"
+           android:layout_alignParentTop="true"
+           android:layout_marginStart="140dp"
+           android:layout_marginTop="0dp"
+           app:srcCompat="@mipmap/account" />
 
-            <ImageView
-                android:layout_marginLeft="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/phone" />
-            <TextView
-                android:id="@+id/tele"
-                android:layout_marginLeft="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="Phone Number"
-                android:textColor="@color/white"
-                android:textSize="20sp"/>
-        </LinearLayout>
+       <TextView
+           android:id="@+id/name"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/imageView2"
+           android:layout_alignParentStart="true"
+           android:layout_alignParentTop="true"
+           android:layout_marginStart="73dp"
+           android:layout_marginTop="121dp"
+           android:text="TextView"
+           android:textSize="20sp" />
+       <TextView
+           android:id="@+id/surname"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignStart="@+id/date"
+           android:layout_alignTop="@+id/name"
+           android:textSize="20sp"
+           android:text="TextView" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+       <TextView
 
-            <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentStart="true"
+           android:layout_alignParentTop="true"
+           android:layout_marginStart="63dp"
+           android:layout_marginTop="149dp"
+           android:text="Date of Birth"
+           android:textSize="20sp" />
 
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Gender:"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:layout_marginLeft="50dp" />
+       <TextView
+           android:id="@+id/date"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentStart="true"
+           android:layout_alignParentTop="true"
+           android:layout_marginStart="200dp"
+           android:layout_marginTop="150dp"
+           android:text="TextView"
+           android:textSize="20sp" />
 
-            <TextView
-                android:layout_marginLeft="10dp"
-                android:id="@+id/gender"
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Gender"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-        </LinearLayout>
+       <ImageView
+
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentStart="true"
+               android:layout_alignParentTop="true"
+               android:layout_marginStart="42dp"
+               android:layout_marginTop="188dp"
+               app:srcCompat="@drawable/phone" />
+
+       <TextView
+               android:id="@+id/tele"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="100dp"
+               android:layout_marginTop="195dp"
+               android:textSize="20sp"
+               android:text="TextView" />
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginLeft="30dp"
+           android:layout_marginTop="238dp"
+           android:textSize="20sp"
+           android:text="Gender:" />
+
+       <TextView
+           android:id="@+id/gender"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="240dp"
+           android:layout_marginLeft="110dp"
+           android:textSize="20sp"
+           android:text="TextView" />
+
+       <ImageView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_centerVertical="true"
+           android:layout_marginLeft="40dp"
+           app:srcCompat="@drawable/map_marker" />
+
+       <TextView
+           android:id="@+id/address"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_centerVertical="true"
+           android:layout_marginLeft="100dp"
+           android:text="Address"
+           android:textSize="20sp" />
+
+       <TextView
+           android:id="@+id/ee"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentBottom="true"
+           android:layout_marginLeft="30dp"
+           android:layout_marginBottom="230dp"
+           android:textSize="20sp"
+           android:text="Email:" />
+
+       <TextView
+           android:id="@+id/email"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_toEndOf="@+id/ee"
+           android:layout_alignTop="@+id/ee"
+           android:text="TextView"
+           android:textSize="20sp" />
+
+       <TextView
+
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentStart="true"
+           android:layout_alignParentBottom="true"
+           android:layout_marginStart="31dp"
+           android:layout_marginBottom="189dp"
+           android:textSize="20sp"
+           android:text="Drug Allergy" />
+
+       <android.support.v7.widget.CardView
+           android:layout_width="match_parent"
+           android:layout_height="50dp"
+           android:layout_alignParentEnd="true"
+           android:layout_alignParentBottom="true"
+           app:cardCornerRadius="20dp"
+           android:layout_marginBottom="130dp" >
+
+           <TextView
+               android:id="@+id/drug"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:gravity="center"
+               android:text="Paracetamol"
+               android:textColor="@color/colorTextHint"
+               android:textSize="18sp"
+               android:textStyle="bold" />
+       </android.support.v7.widget.CardView>
+
+       <TextView
+
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentStart="true"
+           android:layout_alignParentBottom="true"
+           android:layout_marginStart="28dp"
+           android:layout_marginBottom="98dp"
+           android:textSize="20sp"
+           android:text="Underlying disease" />
+
+       <android.support.v7.widget.CardView
+           android:layout_width="match_parent"
+           android:layout_height="50dp"
+           app:cardCornerRadius="20dp"
+           android:layout_alignParentBottom="true"
+           android:layout_marginBottom="40dp" >
+
+           <TextView
+               android:id="@+id/under"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:text="Heart stroke"
+               android:textSize="18sp"
+               android:textStyle="bold"
+               android:textColor="@color/colorTextHint"
+               android:gravity="center"/>
+       </android.support.v7.widget.CardView>
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
 
-            <ImageView
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/map_marker"
-                />
-            <TextView
-                android:id="@+id/address"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Address"
-                android:textSize="20sp"
-                android:textColor="@color/white"/>
-        </LinearLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/em"
-                android:layout_marginLeft="50dp"
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Email:"
-                android:textSize="20sp"
-                android:textColor="@color/white"/>
-            <TextView
-                android:id="@+id/email"
-                android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/em"
-                android:layout_marginLeft="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Nimmit@gmail.com"
-                android:textSize="20sp"
-                android:textColor="@color/white"/>
-        </RelativeLayout>
+   </RelativeLayout>
 
 
-        <TextView
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Drug Allergy"
-            android:textSize="20sp"
-            android:textColor="@color/white"/>
-
-        <android.support.v7.widget.CardView
-            android:layout_width="250dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            app:cardCornerRadius="20dp">
-            <TextView
-                android:id="@+id/drug"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Paracetamol"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/colorTextHint"
-                android:textAlignment="center"
-                android:gravity="center"/>
-
-        </android.support.v7.widget.CardView>
-
-        <TextView
-            android:layout_marginLeft="50dp"
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Underlying disease"
-            android:textSize="20sp"
-            android:textColor="@color/white"/>
-
-        <android.support.v7.widget.CardView
-            android:layout_width="250dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            app:cardCornerRadius="20dp">
-            <TextView
-                android:id="@+id/under"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Heart stroke"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/colorTextHint"
-                android:textAlignment="center"
-                android:gravity="center"/>
-
-        </android.support.v7.widget.CardView>
-
-    </LinearLayout>
-
-</RelativeLayout>
+</android.support.v4.widget.NestedScrollView>

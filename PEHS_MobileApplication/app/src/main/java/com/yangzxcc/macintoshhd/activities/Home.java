@@ -1,5 +1,6 @@
 package com.yangzxcc.macintoshhd.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.yangzxcc.macintoshhd.TokenManager;
 import com.yangzxcc.macintoshhd.api.ApiClient;
 import com.yangzxcc.macintoshhd.api.ApiInterface;
@@ -30,6 +32,10 @@ import com.yangzxcc.macintoshhd.infos.UrineInformation;
 import com.yangzxcc.macintoshhd.manager.InformationSingleton;
 import com.yangzxcc.macintoshhd.models.HealthRecordTest;
 import com.yangzxcc.macintoshhd.pehs.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.List;
@@ -55,6 +61,9 @@ public class Home extends AppCompatActivity
     List<UrineInformation> urineInformations;
     HealthRecord healthRecord;
     TokenManager tokenManager;
+    JSONObject c;
+    SharedPreferences sp;
+    SharedPreferences.Editor editor;
 
 
     @Override
@@ -121,10 +130,23 @@ public class Home extends AppCompatActivity
                         Log.e("SUCCESS !","SUCCESS :"+response.body());
                         personalInformations = response.body().getPersonalInformation();
                         healthInformations = response.body().getHealthInformation();
-                        if (InformationSingleton.getInstance().getInformation().getHealthInformation().get(0).getWeight() != null)
+                        Log.e("test","Health"+healthInformations.size());
+                        Log.e("Dataaaa","daaa"+new Gson().toJson(InformationSingleton.getInstance().getInformation().getHealthInformation()));
+//                        JSONObject jsonResult = new JSONObject();
+//                        try {
+//                            JSONArray arr = jsonResult.getJSONArray("health_information");
+//                            c = arr.getJSONObject(0);
+//
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+
+                        if (InformationSingleton.getInstance().getInformation().getHealthInformation().size() > 0)
                         {
                             System.out.println(InformationSingleton.getInstance().getInformation().getHealthInformation().get(0).getWeight());
                             System.out.println(InformationSingleton.getInstance().getInformation().getHealthInformation().get(1).getWeight());
+                        }else {
+                            System.out.println("ssssss");
                         }
                     }
 
@@ -355,7 +377,15 @@ public class Home extends AppCompatActivity
 
         } else if (id == R.id.nav_health) {
             Intent intent = new Intent(Home.this, HealthDataList.class);
-            startActivity(intent);
+                startActivity(intent);
+//            if (InformationSingleton.getInstance().getInformation().getHealthInformation().size() > 0){
+//                Intent intent = new Intent(Home.this, HealthDataList.class);
+//                startActivity(intent);
+//            }else {
+//                Intent intent = new Intent(Home.this, HealthDataCheck.class);
+//                startActivity(intent);
+//            }
+
 
 //-----------------------------------------------------------------------------------------------------
 //            List<HealthRecord> datalist = (List<HealthRecord>) healthInformations.get(0);
@@ -399,6 +429,11 @@ public class Home extends AppCompatActivity
         } else if (id == R.id.nav_logout) {
             Intent intent = new Intent(Home.this,Login.class);
             startActivity(intent);
+//            sp = getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
+//            editor.putString("token",token);
+//            editor = sp.edit();
+//            editor.remove("token").apply();
+//            editor.commit();
             finish();
 
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

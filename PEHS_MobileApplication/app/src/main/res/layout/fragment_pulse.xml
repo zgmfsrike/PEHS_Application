@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.yangzxcc.macintoshhd.physical.PulseFragment">
+    tools:context="com.yangzxcc.macintoshhd.activities.physical.PulseFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <com.jjoe64.graphview.GraphView
