@@ -32,7 +32,7 @@ public class HealthChemistryVisualization extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Chemistry");
+        getSupportActionBar().setTitle("Chemistry's graph");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         viewPager1 = (ViewPager) findViewById(R.id.viewpager1);

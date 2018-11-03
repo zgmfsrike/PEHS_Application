@@ -61,7 +61,7 @@ public class Cardiovascular extends AppCompatActivity implements View.OnClickLis
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Blood");
+        getSupportActionBar().setTitle("Cardiovascular");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         cholesterol = (TextView) findViewById(R.id.choles);

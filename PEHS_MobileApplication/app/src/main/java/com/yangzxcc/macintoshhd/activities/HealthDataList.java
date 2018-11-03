@@ -35,7 +35,7 @@ public class HealthDataList extends AppCompatActivity implements View.OnClickLis
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Record Date");
+        getSupportActionBar().setTitle("Data Visualization");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 //        physical = (List<PhysicalInformation>)intent.getSerializableExtra("physical");

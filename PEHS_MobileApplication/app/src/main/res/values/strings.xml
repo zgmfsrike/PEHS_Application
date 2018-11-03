@@ -13,7 +13,7 @@
     <string name="mg_dl">mg\/dl</string>
     <string name="u_l">U\/L</string>
     <string name="title_activity_login">Sign in</string>
-    <string name="cardio">ความเสี่ยงต่อการเกิดโรคเส้นเลือดหัวใจและหลอดเลือดในระยะเวลา 10 ปีของท่านเท่ากับ</string>
+    <string name="cardio">Your 10-Year Thai Cardiovascular Risk is</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Username</string>
     <string name="prompt_password">Password</string>

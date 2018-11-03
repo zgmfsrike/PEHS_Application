@@ -28,6 +28,8 @@ import java.util.List;
  */
 public class SystolicFragment extends Fragment {
 
+    private GridLabelRenderer gridLabel;
+    private LineGraphSeries<DataPoint> series;
 
     public SystolicFragment() {
         // Required empty public constructor
@@ -150,26 +152,33 @@ public class SystolicFragment extends Fragment {
 
                 graph.addSeries(series);
             }else {
+                Toast.makeText(getActivity(),"There is only one record",Toast.LENGTH_LONG).show();
                 DataPoint[] dp = new DataPoint[data.size()];
-                String[] myDate = new String[data.size()];
-                for(int i=0;i<data.size();i++){
+                final String[] myDate = new String[data.size()];
+                for (int i = 0; i < data.size(); i++) {
                     dp[i] = new DataPoint(myIdList.get(i), mySystolicList.get(i));
-                    myDate[i] = myDatelist.get(i).substring(8,10)+"/"+myDatelist.get(i).substring(5,7)+"/"+myDatelist.get(i).substring(2,4);
+                    myDate[i] = myDatelist.get(i).substring(8, 10) + "/" + myDatelist.get(i).substring(5, 7) + "/" + myDatelist.get(i).substring(2, 4);
                 }
-                LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dp);
+                series = new LineGraphSeries<>(dp);
 
-//                StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
-//                staticLabelsFormatter.setHorizontalLabels(new String[] {myDate[0]});
-//                graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
-
-                GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
+                gridLabel = graph.getGridLabelRenderer();
+                gridLabel.setLabelFormatter(new DefaultLabelFormatter() {
+                    @Override
+                    public String formatLabel(double value, boolean isValueX) {
+                        if (isValueX) {
+                            // show normal x values
+                            return myDate[0];
+                        } else {
+                            return super.formatLabel(value, isValueX);
+                        }
+                    }
+                });
                 gridLabel.setVerticalAxisTitle("mmHg");
+                gridLabel.setNumHorizontalLabels(1);
                 gridLabel.setVerticalAxisTitleTextSize(19);
                 gridLabel.setLabelHorizontalHeight(50);
-
                 graph.addSeries(series);
             }
-
 
         }else {
             Toast.makeText(getActivity(),"There is no record",Toast.LENGTH_LONG).show();

@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GridLabelRenderer;
+import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.yangzxcc.macintoshhd.infos.HealthInformation;
@@ -24,6 +26,8 @@ import java.util.List;
  */
 public class TriglycerideFragment extends Fragment {
 
+    private GridLabelRenderer gridLabel;
+    private LineGraphSeries<DataPoint> series;
 
     public TriglycerideFragment() {
         // Required empty public constructor
@@ -41,36 +45,133 @@ public class TriglycerideFragment extends Fragment {
 
             ArrayList<Integer> myTriList = new ArrayList<Integer>();
             ArrayList<String> myDatelist = new ArrayList<String>();
+            ArrayList<Integer> myIdList = new ArrayList<Integer>();
 
             for (int i = 0; i < data.size(); i++) {
                 int triValue = Integer.parseInt(data.get(i).getTriglyceride());
                 String dateValue = data.get(i).getDate();
+                int idValue = data.get(i).getId();
 
                 myTriList.add(triValue);
                 myDatelist.add(dateValue);
+                myIdList.add(idValue);
                 System.out.println(myTriList.get(i));
                 System.out.println(myDatelist.get(i));
             }
             GraphView graph = (GraphView) view.findViewById(R.id.graph);
 
-            DataPoint[] dp = new DataPoint[5];
-            for (int i = 5; i > 0; i--) {
-                dp[5 - i] = new DataPoint(data.size() - i, myTriList.get(data.size() - i));
-            }
-            LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dp);
-            graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
-                @Override
-                public String formatLabel(double value, boolean isValueX) {
-                    if (isValueX) {
-                        // show normal x values
-                        return "Day " + super.formatLabel(value, isValueX);
-                    } else {
-                        // show currency for y values
-                        return super.formatLabel(value, isValueX) + " mg/dl";
-                    }
+
+//            Handle error
+            if (data.size() > 4) {
+                DataPoint[] dp = new DataPoint[4];
+                String[] myDate = new String[4];
+                for (int i = 4; i > 0; i--) {
+                    dp[4 - i] = new DataPoint(myIdList.get(data.size() - i), myTriList.get(data.size() - i));
+                    myDate[4 - i] = myDatelist.get(data.size() - i).substring(8, 10) + "/" + myDatelist.get(data.size() - i).substring(5, 7) + "/" + myDatelist.get(data.size() - i).substring(2, 4);
                 }
-            });
-            graph.addSeries(series);
+                LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dp);
+
+                StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
+                staticLabelsFormatter.setHorizontalLabels(new String[]{myDate[0], myDate[1], myDate[2], myDate[3]});
+                graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
+
+                GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
+                gridLabel.setVerticalAxisTitle("mg/dl");
+                gridLabel.setVerticalAxisTitleTextSize(19);
+                gridLabel.setLabelHorizontalHeight(50);
+
+                graph.addSeries(series);
+            } else if (data.size() > 3) {
+
+                DataPoint[] dp = new DataPoint[data.size()];
+                String[] myDate = new String[data.size()];
+                for(int i=0;i<data.size();i++){
+                    dp[i] = new DataPoint(myIdList.get(i), myTriList.get(i));
+                    myDate[i] = myDatelist.get(i).substring(8,10)+"/"+myDatelist.get(i).substring(5,7)+"/"+myDatelist.get(i).substring(2,4);
+                }
+                LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dp);
+
+                StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
+                staticLabelsFormatter.setHorizontalLabels(new String[] {myDate[0],myDate[1], myDate[2], myDate[3]});
+                graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
+
+                GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
+                gridLabel.setVerticalAxisTitle("mg/dl");
+                gridLabel.setVerticalAxisTitleTextSize(19);
+                gridLabel.setLabelHorizontalHeight(50);
+
+                graph.addSeries(series);
+
+            } else if (data.size() > 2) {
+
+                DataPoint[] dp = new DataPoint[data.size()];
+                String[] myDate = new String[data.size()];
+                for(int i=0;i<data.size();i++){
+                    dp[i] = new DataPoint(myIdList.get(i), myTriList.get(i));
+                    myDate[i] = myDatelist.get(i).substring(8,10)+"/"+myDatelist.get(i).substring(5,7)+"/"+myDatelist.get(i).substring(2,4);
+                }
+                LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dp);
+
+                StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
+                staticLabelsFormatter.setHorizontalLabels(new String[] {myDate[0],myDate[1], myDate[2]});
+                graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
+
+                GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
+                gridLabel.setVerticalAxisTitle("mg/dl");
+                gridLabel.setVerticalAxisTitleTextSize(19);
+                gridLabel.setLabelHorizontalHeight(50);
+
+                graph.addSeries(series);
+
+            } else if (data.size() > 1) {
+
+                DataPoint[] dp = new DataPoint[data.size()];
+                String[] myDate = new String[data.size()];
+                for(int i=0;i<data.size();i++){
+                    dp[i] = new DataPoint(myIdList.get(i), myTriList.get(i));
+                    myDate[i] = myDatelist.get(i).substring(8,10)+"/"+myDatelist.get(i).substring(5,7)+"/"+myDatelist.get(i).substring(2,4);
+                }
+                LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dp);
+
+                StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
+                staticLabelsFormatter.setHorizontalLabels(new String[] {myDate[0],myDate[1]});
+                graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
+
+                GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
+                gridLabel.setVerticalAxisTitle("mg/dl");
+                gridLabel.setVerticalAxisTitleTextSize(19);
+                gridLabel.setLabelHorizontalHeight(50);
+
+                graph.addSeries(series);
+            }else {
+
+                Toast.makeText(getActivity(),"There is only one record",Toast.LENGTH_LONG).show();
+                DataPoint[] dp = new DataPoint[data.size()];
+                final String[] myDate = new String[data.size()];
+                for (int i = 0; i < data.size(); i++) {
+                    dp[i] = new DataPoint(myIdList.get(i), myTriList.get(i));
+                    myDate[i] = myDatelist.get(i).substring(8, 10) + "/" + myDatelist.get(i).substring(5, 7) + "/" + myDatelist.get(i).substring(2, 4);
+                }
+                series = new LineGraphSeries<>(dp);
+
+                gridLabel = graph.getGridLabelRenderer();
+                gridLabel.setLabelFormatter(new DefaultLabelFormatter() {
+                    @Override
+                    public String formatLabel(double value, boolean isValueX) {
+                        if (isValueX) {
+                            // show normal x values
+                            return myDate[0];
+                        } else {
+                            return super.formatLabel(value, isValueX);
+                        }
+                    }
+                });
+                gridLabel.setVerticalAxisTitle("mg/dl");
+                gridLabel.setNumHorizontalLabels(1);
+                gridLabel.setVerticalAxisTitleTextSize(19);
+                gridLabel.setLabelHorizontalHeight(50);
+                graph.addSeries(series);
+            }
         }else {
             Toast.makeText(getActivity(),"There is no record",Toast.LENGTH_LONG).show();
             GraphView graph = (GraphView)view.findViewById(R.id.graph);

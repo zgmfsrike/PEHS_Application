@@ -159,9 +159,6 @@ public class DiastolicFragment extends Fragment {
                 }
                 series = new LineGraphSeries<>(dp);
 
-//                StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
-//                staticLabelsFormatter.setHorizontalLabels(new String[]{myDate[0]});
-//                graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
                 gridLabel = graph.getGridLabelRenderer();
                 gridLabel.setLabelFormatter(new DefaultLabelFormatter() {
                     @Override
@@ -172,9 +169,6 @@ public class DiastolicFragment extends Fragment {
                         } else {
                             return super.formatLabel(value, isValueX);
                         }
-
-
-
                     }
                 });
                 gridLabel.setVerticalAxisTitle("mmHg");
@@ -183,7 +177,6 @@ public class DiastolicFragment extends Fragment {
                 gridLabel.setLabelHorizontalHeight(50);
                 graph.addSeries(series);
             }
-
 
         }else {
             Toast.makeText(getActivity(),"There is no record",Toast.LENGTH_LONG).show();

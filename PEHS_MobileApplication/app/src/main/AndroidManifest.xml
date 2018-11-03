@@ -20,7 +20,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.yangzxcc.macintoshhd.activities.Login" />
+        <activity android:name="com.yangzxcc.macintoshhd.activities.Login" >
+         <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+            
+        </activity>
+
         <activity
             android:name="com.yangzxcc.macintoshhd.activities.Profile"
             android:parentActivityName="com.yangzxcc.macintoshhd.activities.Home" />
@@ -32,11 +40,7 @@
             android:label="@string/title_activity_home"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.yangzxcc.macintoshhd.activities.Record"

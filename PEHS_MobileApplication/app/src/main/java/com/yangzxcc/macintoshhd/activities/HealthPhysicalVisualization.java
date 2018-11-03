@@ -40,7 +40,7 @@ public class HealthPhysicalVisualization extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Physical");
+        getSupportActionBar().setTitle("Physical's graph");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         viewPager1 = (ViewPager) findViewById(R.id.viewpager1);

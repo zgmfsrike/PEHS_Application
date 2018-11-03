@@ -26,6 +26,8 @@ import java.util.List;
  */
 public class PulseFragment extends Fragment {
 
+    private GridLabelRenderer gridLabel;
+    private LineGraphSeries<DataPoint> series;
 
     public PulseFragment() {
         // Required empty public constructor
@@ -80,7 +82,7 @@ public class PulseFragment extends Fragment {
                 graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
                 GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
-                gridLabel.setVerticalAxisTitle("mmHg");
+                gridLabel.setVerticalAxisTitle("Per minutes");
                 gridLabel.setVerticalAxisTitleTextSize(19);
                 gridLabel.setLabelHorizontalHeight(50);
 
@@ -101,7 +103,7 @@ public class PulseFragment extends Fragment {
                 graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
                 GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
-                gridLabel.setVerticalAxisTitle("Kg/m^2");
+                gridLabel.setVerticalAxisTitle("Per minutes");
                 gridLabel.setVerticalAxisTitleTextSize(19);
                 gridLabel.setLabelHorizontalHeight(50);
 
@@ -121,7 +123,7 @@ public class PulseFragment extends Fragment {
                 graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
                 GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
-                gridLabel.setVerticalAxisTitle("Kg/m^2");
+                gridLabel.setVerticalAxisTitle("Per minutes");
                 gridLabel.setVerticalAxisTitleTextSize(19);
                 gridLabel.setLabelHorizontalHeight(50);
                 graph.addSeries(series);
@@ -139,26 +141,35 @@ public class PulseFragment extends Fragment {
                 graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
                 GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
-                gridLabel.setVerticalAxisTitle("Kg/m^2");
+                gridLabel.setVerticalAxisTitle("Per minutes");
                 gridLabel.setVerticalAxisTitleTextSize(19);
                 gridLabel.setLabelHorizontalHeight(50);
 
                 graph.addSeries(series);
             }else {
+                Toast.makeText(getActivity(),"There is only one record",Toast.LENGTH_LONG).show();
                 DataPoint[] dp = new DataPoint[data.size()];
-                String[] myDate = new String[data.size()];
+                final String[] myDate = new String[data.size()];
                 for (int i = 0; i < data.size(); i++) {
                     dp[i] = new DataPoint(myIdList.get(i), myPulseList.get(i));
                     myDate[i] = myDatelist.get(i).substring(8, 10) + "/" + myDatelist.get(i).substring(5, 7) + "/" + myDatelist.get(i).substring(2, 4);
                 }
-                LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dp);
+                series = new LineGraphSeries<>(dp);
 
-//                StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
-//                staticLabelsFormatter.setHorizontalLabels(new String[]{myDate[0]});
-//                graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
-
-                GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
-                gridLabel.setVerticalAxisTitle("Kg/m^2");
+                gridLabel = graph.getGridLabelRenderer();
+                gridLabel.setLabelFormatter(new DefaultLabelFormatter() {
+                    @Override
+                    public String formatLabel(double value, boolean isValueX) {
+                        if (isValueX) {
+                            // show normal x values
+                            return myDate[0];
+                        } else {
+                            return super.formatLabel(value, isValueX);
+                        }
+                    }
+                });
+                gridLabel.setVerticalAxisTitle("Per minutes");
+                gridLabel.setNumHorizontalLabels(1);
                 gridLabel.setVerticalAxisTitleTextSize(19);
                 gridLabel.setLabelHorizontalHeight(50);
                 graph.addSeries(series);

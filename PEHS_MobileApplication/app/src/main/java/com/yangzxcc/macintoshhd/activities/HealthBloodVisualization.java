@@ -38,7 +38,7 @@ public class HealthBloodVisualization extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Blood");
+        getSupportActionBar().setTitle("Blood's graph");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
