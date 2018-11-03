@@ -144,7 +144,7 @@ public class Home extends AppCompatActivity
                         if (InformationSingleton.getInstance().getInformation().getHealthInformation().size() > 0)
                         {
                             System.out.println(InformationSingleton.getInstance().getInformation().getHealthInformation().get(0).getWeight());
-                            System.out.println(InformationSingleton.getInstance().getInformation().getHealthInformation().get(1).getWeight());
+//                            System.out.println(InformationSingleton.getInstance().getInformation().getHealthInformation().get(1).getWeight());
                         }else {
                             System.out.println("ssssss");
                         }

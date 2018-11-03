@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
@@ -72,6 +73,7 @@ public class CholesterolFragment extends Fragment {
             });
             graph.addSeries(series);
         }else {
+            Toast.makeText(getActivity(),"There is no record",Toast.LENGTH_LONG).show();
             GraphView graph = (GraphView)view.findViewById(R.id.graph);
             LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
 //                    new DataPoint(0, 1),

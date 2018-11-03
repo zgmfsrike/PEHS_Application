@@ -8,6 +8,6 @@
     <com.jjoe64.graphview.GraphView
         android:layout_gravity="center"
         android:layout_width="370dp"
-        android:layout_height="200dip"
+        android:layout_height="200dp"
         android:id="@+id/graph" />
 </FrameLayout>

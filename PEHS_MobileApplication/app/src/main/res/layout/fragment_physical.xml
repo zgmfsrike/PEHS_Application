@@ -52,6 +52,7 @@
                     android:layout_weight="1"
                     android:textAlignment="center"
                     android:textSize="25sp"
+                    android:textColor="@color/colorTextHint"
                     android:text="Weight" />
 
                 <TextView
@@ -76,6 +77,7 @@
                     android:layout_weight="1"
                     android:textAlignment="center"
                     android:textSize="25sp"
+                    android:textColor="@color/colorTextHint"
                     android:text="Height" />
 
                 <TextView
@@ -100,6 +102,7 @@
                     android:layout_weight="1"
                     android:textAlignment="center"
                     android:textSize="25sp"
+                    android:textColor="@color/colorTextHint"
                     android:text="Waist" />
 
                 <TextView
@@ -124,6 +127,7 @@
                     android:layout_weight="1"
                     android:textAlignment="center"
                     android:textSize="25sp"
+                    android:textColor="@color/colorTextHint"
                     android:text="BMI" />
 
                 <TextView
@@ -149,6 +153,7 @@
                     android:layout_weight="1"
                     android:textAlignment="center"
                     android:textSize="25sp"
+                    android:textColor="@color/colorTextHint"
                     android:text="Systolic" />
 
                 <TextView
@@ -173,6 +178,7 @@
                     android:layout_weight="1"
                     android:textAlignment="center"
                     android:textSize="25sp"
+                    android:textColor="@color/colorTextHint"
                     android:text="Diastolic" />
 
                 <TextView
@@ -197,6 +203,7 @@
                     android:layout_weight="1"
                     android:textAlignment="center"
                     android:textSize="25sp"
+                    android:textColor="@color/colorTextHint"
                     android:text="Pulse" />
 
                 <TextView

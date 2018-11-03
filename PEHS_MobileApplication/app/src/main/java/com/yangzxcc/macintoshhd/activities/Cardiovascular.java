@@ -15,11 +15,13 @@ import android.widget.TextView;
 
 import com.yangzxcc.macintoshhd.infos.ChemistryInformation;
 import com.yangzxcc.macintoshhd.infos.HealthInformation;
+import com.yangzxcc.macintoshhd.infos.Information;
 import com.yangzxcc.macintoshhd.infos.PersonalInformation;
 import com.yangzxcc.macintoshhd.infos.PhysicalInformation;
 import com.yangzxcc.macintoshhd.manager.InformationSingleton;
 import com.yangzxcc.macintoshhd.pehs.R;
 
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.List;
 
@@ -40,6 +42,9 @@ public class Cardiovascular extends AppCompatActivity implements View.OnClickLis
     private double Pfullscore;
     private String value1;
     private Toolbar toolbar;
+    private String carValue;
+    private String dateOfBirth;
+    private String dateValue;
 
 
     private String systo, choles;
@@ -77,17 +82,14 @@ public class Cardiovascular extends AppCompatActivity implements View.OnClickLis
         cal.setOnClickListener(this);
 //        input.setRawInputType(Configuration.KEYBOARD_12KEY);
 
-        Intent intent = getIntent();
+
+        dateOfBirth = InformationSingleton.getInstance().getInformation().getPersonalInformation().get(0).getDateOfBirth();
+        dateValue = dateOfBirth.substring(0,4);
 
         List<HealthInformation> data = InformationSingleton.getInstance().getInformation().getHealthInformation();
 
-
-
-
-
         if (InformationSingleton.getInstance().getInformation().getHealthInformation().size() > 0){
-            String dateOfBirth = intent.getStringExtra("date");
-            String dateValue = dateOfBirth.substring(0,4);
+
             int dateValue1 = Integer.parseInt(dateValue);
             int calAge = Calendar.getInstance().get(Calendar.YEAR) - dateValue1;
             String calAge1 = String.valueOf(calAge);
@@ -98,14 +100,8 @@ public class Cardiovascular extends AppCompatActivity implements View.OnClickLis
             age1.setText(calAge1);
             systolic1.setText(sys);
             cholesterol1.setText(chol);
-        }else {
-            return;
         }
-
-
     }
-
-
     private void calculate() {
         String age = age1.getText().toString().trim();
         String systolic = systolic1.getText().toString().trim();
@@ -115,13 +111,6 @@ public class Cardiovascular extends AppCompatActivity implements View.OnClickLis
         double systolicValue = Double.parseDouble(systolic);
         double cholesterolValue = Double.parseDouble(cholesterol);
 
-//        Double temp = Double.valueOf(age);
-//        double ageNumber = temp.doubleValue();
-//        Double temp1 = Double.valueOf(systolic);
-//        double systolicNumber = temp1.doubleValue();
-//        Double temp2 = Double.valueOf(cholesterol);
-//        double choles = temp2.doubleValue();
-
         double SexType = 1;
         double Smoked = 1;
         double isdiabetes = 1;
@@ -129,35 +118,39 @@ public class Cardiovascular extends AppCompatActivity implements View.OnClickLis
         double valueBuffer;
         double pFullScoreBuffer;
 
-    if (male.isChecked())
+    if (male.isChecked()){
         SexType =  1;
-    else
+    } else{
         SexType = 0;
-    if (smokeYes.isChecked())
+    }
+    if (smokeYes.isChecked()){
         Smoked = 1;
-    else
+    } else{
         Smoked = 0;
-    if (diabestesYes.isChecked())
+    }
+    if (diabestesYes.isChecked()){
         isdiabetes = 1;
-    else
+    } else{
         isdiabetes = 0;
-
-
-
+    }
 
     value = (0.08183 * ageValue) + (0.39499 * SexType) + (0.02084 * systolicValue)
                     + (0.699741921871007 * isdiabetes) + (0.00212 * cholesterolValue) + (0.41916 * Smoked);
     pFullScoreBuffer = 0.978296;
     valueBuffer = value - 7.044233;
 
-    Pfullscore = 1- (Math.pow(pFullScoreBuffer,Math.exp(value-7.044233)));
-    value1 = String.valueOf(Pfullscore*100);
+    Pfullscore = 1- (Math.pow(pFullScoreBuffer,Math.exp(valueBuffer)));
+
+    DecimalFormat df = new DecimalFormat("#.##");
+    double pScore = Double.parseDouble(df.format(Pfullscore*100));
+    value1 = String.valueOf(pScore);
+
     }
 
     @Override
     public void onClick(View v) {
         calculate();
-        Log.e("Calculate","Calucalte  "+Pfullscore);
+        Log.e("Calculate","Calucalte  "+value1);
         Intent intent = new Intent(Cardiovascular.this,CardiovascularDetail.class);
 
         intent.putExtra("score",value1);

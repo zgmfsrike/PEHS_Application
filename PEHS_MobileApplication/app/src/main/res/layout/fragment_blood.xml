@@ -50,7 +50,8 @@
                     android:layout_weight="1"
                     android:textAlignment="center"
                     android:textSize="25sp"
-                    android:text="Blood WBC" />
+                    android:text="Blood WBC"
+                    android:textColor="@color/colorTextHint"/>
 
                 <TextView
                     android:id="@+id/bloodWhiteRe"
@@ -74,7 +75,8 @@
                     android:layout_weight="1"
                     android:textAlignment="center"
                     android:textSize="25sp"
-                    android:text="Blood RBC" />
+                    android:text="Blood RBC"
+                    android:textColor="@color/colorTextHint"/>
 
                 <TextView
                     android:id="@+id/bloodRedRe"
@@ -98,6 +100,7 @@
                     android:layout_weight="1"
                     android:textAlignment="center"
                     android:textSize="25sp"
+                    android:textColor="@color/colorTextHint"
                     android:text="HGB" />
 
                 <TextView
@@ -122,6 +125,7 @@
                     android:layout_weight="1"
                     android:textAlignment="center"
                     android:textSize="25sp"
+                    android:textColor="@color/colorTextHint"
                     android:text="HCT" />
 
                 <TextView
@@ -147,6 +151,7 @@
                     android:layout_weight="1"
                     android:textAlignment="center"
                     android:textSize="25sp"
+                    android:textColor="@color/colorTextHint"
                     android:text="MCV" />
 
                 <TextView
@@ -171,6 +176,7 @@
                     android:layout_weight="1"
                     android:textAlignment="center"
                     android:textSize="25sp"
+                    android:textColor="@color/colorTextHint"
                     android:text="MCH" />
 
                 <TextView
@@ -195,6 +201,7 @@
                     android:layout_weight="1"
                     android:textAlignment="center"
                     android:textSize="25sp"
+                    android:textColor="@color/colorTextHint"
                     android:text="MCHC" />
 
                 <TextView
@@ -218,6 +225,7 @@
                     android:layout_weight="1"
                     android:textAlignment="center"
                     android:textSize="25sp"
+                    android:textColor="@color/colorTextHint"
                     android:text="PLT count" />
 
                 <TextView
@@ -241,6 +249,7 @@
                     android:layout_weight="1"
                     android:textAlignment="center"
                     android:textSize="25sp"
+                    android:textColor="@color/colorTextHint"
                     android:text="Neutrophil" />
 
                 <TextView
@@ -264,6 +273,7 @@
                     android:layout_weight="1"
                     android:textAlignment="center"
                     android:textSize="25sp"
+                    android:textColor="@color/colorTextHint"
                     android:text="Lymphocyte" />
 
                 <TextView
@@ -287,6 +297,7 @@
                     android:layout_weight="1"
                     android:textAlignment="center"
                     android:textSize="25sp"
+                    android:textColor="@color/colorTextHint"
                     android:text="Monocyte" />
 
                 <TextView
@@ -310,6 +321,7 @@
                     android:layout_weight="1"
                     android:textAlignment="center"
                     android:textSize="25sp"
+                    android:textColor="@color/colorTextHint"
                     android:text="Eosinophil" />
 
                 <TextView
@@ -333,6 +345,7 @@
                     android:layout_weight="1"
                     android:textAlignment="center"
                     android:textSize="25sp"
+                    android:textColor="@color/colorTextHint"
                     android:text="Basophil" />
 
                 <TextView

@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.yangzxcc.macintoshhd.TokenManager;
 import com.yangzxcc.macintoshhd.api.ApiClient;
@@ -54,12 +55,12 @@ public class Login extends AppCompatActivity {
         textInputEditPassword = (TextInputEditText) findViewById(R.id.textInputEditPassword);
         btnLogin = (AppCompatButton) findViewById(R.id.btnLogin);
 
-        if (accessToken.getAccessToken() != null){
-            Intent intent = new Intent(Login.this,Home.class);
-            startActivity(intent);
-        }else {
-
-        }
+//        if (accessToken.getAccessToken() != null){
+//            Intent intent = new Intent(Login.this,Home.class);
+//            startActivity(intent);
+//        }else {
+//
+//        }
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,12 +123,14 @@ public class Login extends AppCompatActivity {
                         startActivity(intent);
                 }else {
                     Log.e("Output","Not successss !!"+response.errorBody());
+                    Toast.makeText(Login.this,"Username or Password is invalid",Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<AccessToken> call, Throwable t) {
                 Log.e("Error :","Cannot call !! "+t.getMessage());
+                Toast.makeText(Login.this,"No Internet Connection",Toast.LENGTH_LONG).show();
             }
         });
 //        -------------------------------------------------------------------------------------------
