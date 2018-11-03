@@ -39,7 +39,7 @@ public class BmiFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_bmi, container, false);
+
 //
 //        HealthPhysicalVisualization activity = (HealthPhysicalVisualization)getActivity();
 //        Bundle bundle = activity.getListOfData();
@@ -48,7 +48,7 @@ public class BmiFragment extends Fragment {
 //        bmI.getPhysicalExValue();
 //
         if (InformationSingleton.getInstance().getInformation().getHealthInformation().size() > 0) {
-
+            View view = inflater.inflate(R.layout.fragment_bmi, container, false);
             List<HealthInformation> data = InformationSingleton.getInstance().getInformation().getHealthInformation();
 
             ArrayList<Double> myBmilist = new ArrayList<Double>();
@@ -176,21 +176,11 @@ public class BmiFragment extends Fragment {
                 gridLabel.setLabelHorizontalHeight(50);
                 graph.addSeries(series);
             }
+            return view;
         }else {
             Toast.makeText(getActivity(),"There is no record",Toast.LENGTH_LONG).show();
-            GraphView graph = (GraphView)view.findViewById(R.id.graph);
-            LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
-//                    new DataPoint(0, 1),
-//                    new DataPoint(1, 5),
-//                    new DataPoint(2, 3),
-//                    new DataPoint(3, 2),
-//                    new DataPoint(4, 6)
-            });
-            graph.addSeries(series);
 
         }
-
-
-        return view;
+        return null;
     }
 }

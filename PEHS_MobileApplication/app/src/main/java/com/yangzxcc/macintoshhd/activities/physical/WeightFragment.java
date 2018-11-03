@@ -47,7 +47,7 @@ public class WeightFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_weight, container, false);
+
 
 //        HealthPhysicalVisualization activity = (HealthPhysicalVisualization)getActivity();
 //        Bundle bundle = activity.getPhysical();
@@ -74,6 +74,7 @@ public class WeightFragment extends Fragment {
 //        System.out.println(InformationSingleton.getInstance().getInformation().getHealthInformation().get(0).getWeight());
 
         if (InformationSingleton.getInstance().getInformation().getHealthInformation().size() > 0) {
+            View view = inflater.inflate(R.layout.fragment_weight, container, false);
             List<HealthInformation> data = InformationSingleton.getInstance().getInformation().getHealthInformation();
 
             ArrayList<Integer> myWeightlist = new ArrayList<Integer>();
@@ -94,17 +95,17 @@ public class WeightFragment extends Fragment {
 
             GraphView graph = (GraphView) view.findViewById(R.id.graph);
 
-            if (data.size() > 4){
+            if (data.size() > 4) {
                 DataPoint[] dp = new DataPoint[4];
                 String[] myDate = new String[4];
                 for (int i = 4; i > 0; i--) {
                     dp[4 - i] = new DataPoint(data.size() - i, myWeightlist.get(data.size() - i));
-                    myDate[4 - i] = myDatelist.get(data.size() - i).substring(8,10)+"/"+myDatelist.get(data.size() - i).substring(5,7)+"/"+myDatelist.get(data.size() - i).substring(2,4);
+                    myDate[4 - i] = myDatelist.get(data.size() - i).substring(8, 10) + "/" + myDatelist.get(data.size() - i).substring(5, 7) + "/" + myDatelist.get(data.size() - i).substring(2, 4);
                 }
                 LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dp);
 
                 StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
-                staticLabelsFormatter.setHorizontalLabels(new String[] {myDate[0],myDate[1],myDate[2],myDate[3]});
+                staticLabelsFormatter.setHorizontalLabels(new String[]{myDate[0], myDate[1], myDate[2], myDate[3]});
                 graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
                 GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
@@ -114,17 +115,17 @@ public class WeightFragment extends Fragment {
 
                 graph.addSeries(series);
 
-            }else if (data.size() > 3){
+            } else if (data.size() > 3) {
                 DataPoint[] dp = new DataPoint[data.size()];
                 String[] myDate = new String[data.size()];
-                for(int i=0;i<data.size();i++){
+                for (int i = 0; i < data.size(); i++) {
                     dp[i] = new DataPoint(i, myWeightlist.get(i));
-                    myDate[i] = myDatelist.get(i).substring(8,10)+"/"+myDatelist.get(i).substring(5,7)+"/"+myDatelist.get(i).substring(2,4);
-            }
+                    myDate[i] = myDatelist.get(i).substring(8, 10) + "/" + myDatelist.get(i).substring(5, 7) + "/" + myDatelist.get(i).substring(2, 4);
+                }
                 LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dp);
 
                 StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
-                staticLabelsFormatter.setHorizontalLabels(new String[] {myDate[0],myDate[1],myDate[2],myDate[3]});
+                staticLabelsFormatter.setHorizontalLabels(new String[]{myDate[0], myDate[1], myDate[2], myDate[3]});
                 graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
                 GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
@@ -136,14 +137,14 @@ public class WeightFragment extends Fragment {
             } else if (data.size() > 2) {
                 DataPoint[] dp = new DataPoint[data.size()];
                 String[] myDate = new String[data.size()];
-                for(int i=0;i<data.size();i++){
+                for (int i = 0; i < data.size(); i++) {
                     dp[i] = new DataPoint(i, myWeightlist.get(i));
-                    myDate[i] = myDatelist.get(i).substring(8,10)+"/"+myDatelist.get(i).substring(5,7)+"/"+myDatelist.get(i).substring(2,4);
+                    myDate[i] = myDatelist.get(i).substring(8, 10) + "/" + myDatelist.get(i).substring(5, 7) + "/" + myDatelist.get(i).substring(2, 4);
                 }
                 LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dp);
 
                 StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
-                staticLabelsFormatter.setHorizontalLabels(new String[] {myDate[0],myDate[1],myDate[2]});
+                staticLabelsFormatter.setHorizontalLabels(new String[]{myDate[0], myDate[1], myDate[2]});
                 graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
                 GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
@@ -156,14 +157,14 @@ public class WeightFragment extends Fragment {
 
                 DataPoint[] dp = new DataPoint[data.size()];
                 String[] myDate = new String[data.size()];
-                for(int i=0;i<data.size();i++){
+                for (int i = 0; i < data.size(); i++) {
                     dp[i] = new DataPoint(i, myWeightlist.get(i));
-                    myDate[i] = myDatelist.get(i).substring(8,10)+"/"+myDatelist.get(i).substring(5,7)+"/"+myDatelist.get(i).substring(2,4);
+                    myDate[i] = myDatelist.get(i).substring(8, 10) + "/" + myDatelist.get(i).substring(5, 7) + "/" + myDatelist.get(i).substring(2, 4);
                 }
                 LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dp);
 
                 StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
-                staticLabelsFormatter.setHorizontalLabels(new String[] {myDate[0],myDate[1]});
+                staticLabelsFormatter.setHorizontalLabels(new String[]{myDate[0], myDate[1]});
                 graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
                 GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
@@ -172,8 +173,8 @@ public class WeightFragment extends Fragment {
                 gridLabel.setLabelHorizontalHeight(50);
 
                 graph.addSeries(series);
-            }else {
-                Toast.makeText(getActivity(),"There is only one record",Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(getActivity(), "There is only one record", Toast.LENGTH_LONG).show();
                 DataPoint[] dp = new DataPoint[data.size()];
                 final String[] myDate = new String[data.size()];
                 for (int i = 0; i < data.size(); i++) {
@@ -199,16 +200,15 @@ public class WeightFragment extends Fragment {
                 gridLabel.setVerticalAxisTitleTextSize(19);
                 gridLabel.setLabelHorizontalHeight(50);
                 graph.addSeries(series);
-            }
-        }else {
-            Toast.makeText(getActivity(),"There is no record",Toast.LENGTH_LONG).show();
-            GraphView graph = (GraphView)view.findViewById(R.id.graph);
-            LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
 
-            });
-            graph.addSeries(series);
+            }
+            return view;
+        } else {
+//            Toast.makeText(getActivity(),"There is no record",Toast.LENGTH_LONG).show();
+
         }
-        return view;
+
+        return null;
     }
 
 }
