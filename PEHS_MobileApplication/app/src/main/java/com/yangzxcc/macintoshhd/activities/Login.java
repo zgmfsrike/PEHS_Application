@@ -100,7 +100,7 @@ public class Login extends AppCompatActivity {
                         Log.e("Tokenn !!! "," Token !!!!  "+response.body().getAccessToken());
                         token = response.body().getAccessToken();
                     sp = getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
-                    editor.putString("token",token);
+//                    editor.putString("token",token);
                     editor = sp.edit();
                     editor.putString("token",token).apply();
                     editor.commit();
