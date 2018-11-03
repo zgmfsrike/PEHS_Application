@@ -98,7 +98,7 @@ public class Login extends AppCompatActivity {
                 if (response.isSuccessful()){
                         Intent intent = new Intent(Login.this, Home.class);
                         Log.e("Tokenn !!! "," Token !!!!  "+response.body().getAccessToken());
-//                        token = response.body().getAccessToken();
+                        token = response.body().getAccessToken();
                     sp = getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
                     editor.putString("token",token);
                     editor = sp.edit();
