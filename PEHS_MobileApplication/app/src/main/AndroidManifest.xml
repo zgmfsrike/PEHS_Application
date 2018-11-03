@@ -21,12 +21,13 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name="com.yangzxcc.macintoshhd.activities.Login" >
-         <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-            
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
 
         <activity
@@ -40,6 +41,8 @@
             android:label="@string/title_activity_home"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
+
+
 
         </activity>
         <activity
@@ -63,7 +66,7 @@
         <activity
             android:name="com.yangzxcc.macintoshhd.activities.CardiovascularDetail"
             android:parentActivityName="com.yangzxcc.macintoshhd.activities.Cardiovascular" />
-        <activity android:name="com.yangzxcc.macintoshhd.activities.HealthDataCheck"></activity>
+
     </application>
 
 </manifest>
