@@ -88,7 +88,7 @@ public class PulseFragment extends Fragment {
                 gridLabel.setLabelHorizontalHeight(50);
 
                 graph.addSeries(series);
-
+                return view;
             }else if (data.size() > 3){
 
                 DataPoint[] dp = new DataPoint[data.size()];
@@ -109,7 +109,7 @@ public class PulseFragment extends Fragment {
                 gridLabel.setLabelHorizontalHeight(50);
 
                 graph.addSeries(series);
-
+                return view;
             }else if (data.size() > 2){
                 DataPoint[] dp = new DataPoint[data.size()];
                 String[] myDate = new String[data.size()];
@@ -128,6 +128,7 @@ public class PulseFragment extends Fragment {
                 gridLabel.setVerticalAxisTitleTextSize(19);
                 gridLabel.setLabelHorizontalHeight(50);
                 graph.addSeries(series);
+                return view;
             }else if (data.size() > 1){
                 DataPoint[] dp = new DataPoint[data.size()];
                 String[] myDate = new String[data.size()];
@@ -147,37 +148,38 @@ public class PulseFragment extends Fragment {
                 gridLabel.setLabelHorizontalHeight(50);
 
                 graph.addSeries(series);
+                return view;
             }else {
-                Toast.makeText(getActivity(),"There is only one record",Toast.LENGTH_LONG).show();
-                DataPoint[] dp = new DataPoint[data.size()];
-                final String[] myDate = new String[data.size()];
-                for (int i = 0; i < data.size(); i++) {
-                    dp[i] = new DataPoint(myIdList.get(i), myPulseList.get(i));
-                    myDate[i] = myDatelist.get(i).substring(8, 10) + "/" + myDatelist.get(i).substring(5, 7) + "/" + myDatelist.get(i).substring(2, 4);
-                }
-                series = new LineGraphSeries<>(dp);
-
-                gridLabel = graph.getGridLabelRenderer();
-                gridLabel.setLabelFormatter(new DefaultLabelFormatter() {
-                    @Override
-                    public String formatLabel(double value, boolean isValueX) {
-                        if (isValueX) {
-                            // show normal x values
-                            return myDate[0];
-                        } else {
-                            return super.formatLabel(value, isValueX);
-                        }
-                    }
-                });
-                gridLabel.setVerticalAxisTitle("Per minutes");
-                gridLabel.setNumHorizontalLabels(1);
-                gridLabel.setVerticalAxisTitleTextSize(19);
-                gridLabel.setLabelHorizontalHeight(50);
-                graph.addSeries(series);
+//                Toast.makeText(getActivity(),"There is only one record",Toast.LENGTH_LONG).show();
+//                DataPoint[] dp = new DataPoint[data.size()];
+//                final String[] myDate = new String[data.size()];
+//                for (int i = 0; i < data.size(); i++) {
+//                    dp[i] = new DataPoint(myIdList.get(i), myPulseList.get(i));
+//                    myDate[i] = myDatelist.get(i).substring(8, 10) + "/" + myDatelist.get(i).substring(5, 7) + "/" + myDatelist.get(i).substring(2, 4);
+//                }
+//                series = new LineGraphSeries<>(dp);
+//
+//                gridLabel = graph.getGridLabelRenderer();
+//                gridLabel.setLabelFormatter(new DefaultLabelFormatter() {
+//                    @Override
+//                    public String formatLabel(double value, boolean isValueX) {
+//                        if (isValueX) {
+//                            // show normal x values
+//                            return myDate[0];
+//                        } else {
+//                            return super.formatLabel(value, isValueX);
+//                        }
+//                    }
+//                });
+//                gridLabel.setVerticalAxisTitle("Per minutes");
+//                gridLabel.setNumHorizontalLabels(1);
+//                gridLabel.setVerticalAxisTitleTextSize(19);
+//                gridLabel.setLabelHorizontalHeight(50);
+//                graph.addSeries(series);
             }
-            return view;
+
         }else {
-            Toast.makeText(getActivity(),"There is no record",Toast.LENGTH_LONG).show();
+//            Toast.makeText(getActivity(),"The data cannot be visualized due to the insufficient amount of data",Toast.LENGTH_LONG).show();
 
         }
         return null;

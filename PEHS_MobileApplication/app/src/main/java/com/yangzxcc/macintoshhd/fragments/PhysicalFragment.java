@@ -116,6 +116,7 @@ public class PhysicalFragment extends Fragment {
             colorConditiondi = Color.parseColor("#ff5722"); //red
             pulseResult.setTextColor(colorConditiondi);
         }
+
     }
 }
 

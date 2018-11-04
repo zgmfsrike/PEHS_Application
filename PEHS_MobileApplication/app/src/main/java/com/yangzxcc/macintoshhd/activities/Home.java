@@ -90,8 +90,8 @@ public class Home extends AppCompatActivity
 
 //        final Intent intent = getIntent();
 //        token = intent.getStringExtra("token");
-        SharedPreferences preferences = getSharedPreferences("myPrefs",MODE_PRIVATE);
-        token = preferences.getString("token","");
+//        SharedPreferences preferences = getSharedPreferences("myPrefs",MODE_PRIVATE);
+//        token = preferences.getString("token","");
         getUserInformation(token);
     }
 
