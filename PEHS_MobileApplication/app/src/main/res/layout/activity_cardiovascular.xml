@@ -43,8 +43,7 @@
                        android:layout_marginLeft="20dp"
                        android:layout_marginTop="20dp"
                        android:text="Age"
-                       android:textAlignment="center"
-                       android:textColor="@color/text"
+                       android:textColor="@color/colorTextHint"
                        android:textSize="25sp"
                        android:textStyle="bold" />
 
@@ -64,7 +63,7 @@
                            android:text="35"
                            android:inputType="numberDecimal"
                            android:maxLength="3"
-                           android:textColor="@color/text"
+                           android:textColor="@color/colorTextHint"
                            android:textSize="25sp"
                            android:textStyle="bold" />
 
@@ -74,46 +73,7 @@
 
                </TableRow>
 
-               <TableRow
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent">
 
-                   <TextView
-
-                       android:layout_width="match_parent"
-                       android:layout_height="match_parent"
-                       android:layout_marginLeft="20dp"
-                       android:text="Sex"
-                       android:textAlignment="center"
-                       android:textColor="@color/text"
-                       android:textSize="25sp"
-                       android:textStyle="bold" />
-
-                   <RadioGroup
-                       android:checkedButton="@+id/sexMale"
-                       android:id="@+id/genderRadio"
-                       android:orientation="horizontal">
-
-                       <RadioButton
-                           android:id="@+id/sexMale"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:text="Male"
-                           android:textColor="@color/text"
-                           android:textSize="25sp" />
-
-                       <RadioButton
-                           android:id="@+id/sexFemale"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_marginLeft="5dp"
-                           android:text="Female"
-                           android:textColor="@color/text"
-                           android:textSize="25sp" />
-
-                   </RadioGroup>
-
-               </TableRow>
 
                <TableRow
                    android:layout_width="match_parent"
@@ -123,10 +83,9 @@
                        android:layout_width="match_parent"
                        android:layout_height="match_parent"
                        android:layout_marginLeft="20dp"
+                       android:layout_marginTop="10dp"
                        android:text="Systolic"
-                       android:textAlignment="center"
-                       android:gravity="center"
-                       android:textColor="@color/text"
+                       android:textColor="@color/colorTextHint"
                        android:textSize="25sp"
                        android:textStyle="bold" />
 
@@ -143,49 +102,13 @@
                        android:text="120"
                        android:maxLength="3"
                        android:inputType="numberDecimal"
-                       android:textColor="@color/text"
+                       android:textColor="@color/colorTextHint"
                        android:textSize="25sp"
                        android:textStyle="bold" />
 
                    </android.support.design.widget.TextInputLayout>
                </TableRow>
-               <TableRow
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent">
 
-                   <TextView
-
-                       android:layout_width="match_parent"
-                       android:layout_height="match_parent"
-                       android:layout_marginLeft="40dp"
-                       android:text="Diabetes"
-                       android:textColor="@color/text"
-                       android:textSize="25sp"
-                       android:textStyle="bold" />
-
-                   <RadioGroup
-                       android:id="@+id/diabRadio"
-                       android:orientation="horizontal"
-                       android:checkedButton="@id/diabetesNo">
-
-                       <android.support.v7.widget.AppCompatRadioButton
-                           android:id="@+id/diabetesYes"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:text="Yes"
-                           android:textColor="@color/text"
-                           android:textSize="25sp" />
-
-                       <android.support.v7.widget.AppCompatRadioButton
-                           android:id="@+id/diabetesNo"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_marginLeft="20dp"
-                           android:text="No"
-                           android:textColor="@color/text"
-                           android:textSize="25sp" />
-                   </RadioGroup>
-               </TableRow>
                <TableRow>
                    <TextView
                        android:layout_marginTop="10dp"
@@ -194,7 +117,7 @@
                        android:layout_marginLeft="20dp"
                        android:text="Cholesterol"
                        android:textAlignment="center"
-                       android:textColor="@color/text"
+                       android:textColor="@color/colorTextHint"
                        android:textSize="25sp"
                        android:textStyle="bold" />
 
@@ -211,7 +134,7 @@
                        android:text="120"
                        android:maxLength="3"
                        android:inputType="numberDecimal"
-                       android:textColor="@color/text"
+                       android:textColor="@color/colorTextHint"
                        android:textSize="25sp"
                        android:textStyle="bold" />
                    </android.support.design.widget.TextInputLayout>
@@ -221,11 +144,87 @@
                    android:layout_height="match_parent">
 
                    <TextView
+
                        android:layout_width="match_parent"
                        android:layout_height="match_parent"
-                       android:layout_marginLeft="40dp"
+                       android:layout_marginLeft="20dp"
+                       android:text="Diabetes"
+                       android:textColor="@color/colorTextHint"
+                       android:textSize="25sp"
+                       android:textStyle="bold" />
+
+                   <RadioGroup
+                       android:id="@+id/diabRadio"
+                       android:orientation="horizontal"
+                       android:checkedButton="@id/diabetesNo">
+
+                       <android.support.v7.widget.AppCompatRadioButton
+                           android:id="@+id/diabetesYes"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="Yes"
+                           android:textColor="@color/colorTextHint"
+                           android:textSize="25sp" />
+
+                       <android.support.v7.widget.AppCompatRadioButton
+                           android:id="@+id/diabetesNo"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginLeft="20dp"
+                           android:text="No"
+                           android:textColor="@color/colorTextHint"
+                           android:textSize="25sp" />
+                   </RadioGroup>
+               </TableRow>
+               <TableRow
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent">
+
+                   <TextView
+
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:layout_marginLeft="20dp"
+                       android:text="Sex"
+                       android:textColor="@color/colorTextHint"
+                       android:textSize="25sp"
+                       android:textStyle="bold" />
+
+                   <RadioGroup
+                       android:checkedButton="@+id/sexMale"
+                       android:id="@+id/genderRadio"
+                       android:orientation="horizontal">
+
+                       <RadioButton
+                           android:id="@+id/sexMale"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="Male"
+                           android:textColor="@color/colorTextHint"
+                           android:textSize="25sp" />
+
+                       <RadioButton
+                           android:id="@+id/sexFemale"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginLeft="5dp"
+                           android:text="Female"
+                           android:textColor="@color/colorTextHint"
+                           android:textSize="25sp" />
+
+                   </RadioGroup>
+
+               </TableRow>
+               <TableRow
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent">
+
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:layout_marginLeft="20dp"
                        android:text="Smoke"
-                       android:textColor="@color/text"
+                       android:textColor="@color/colorTextHint"
                        android:textSize="25sp"
                        android:textStyle="bold" />
 
@@ -239,7 +238,7 @@
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:text="Yes"
-                           android:textColor="@color/text"
+                           android:textColor="@color/colorTextHint"
                            android:textSize="25sp" />
 
                        <android.support.v7.widget.AppCompatRadioButton
@@ -248,7 +247,7 @@
                            android:layout_height="wrap_content"
                            android:layout_marginLeft="20dp"
                            android:text="No"
-                           android:textColor="@color/text"
+                           android:textColor="@color/colorTextHint"
                            android:textSize="25sp" />
                    </RadioGroup>
                </TableRow>
@@ -259,7 +258,7 @@
                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
                    android:layout_marginTop="40dp"
                    android:textColor="@color/white"
-                   android:background="@color/back"
+                   android:background="#5e81c7"
                    android:text="Calculate"
                    android:textStyle="bold"
                    android:textSize="25sp"/>
