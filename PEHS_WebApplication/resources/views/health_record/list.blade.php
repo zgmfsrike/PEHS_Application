@@ -81,13 +81,13 @@
               if($health_record->drug_allergy== ""){
                 $drug_allergy = "-";
               }else{
-                $drug_allergy = $user->drug_allergy ;
+                $drug_allergy = $health_record->drug_allergy ;
               }
 
               if($health_record->underlying_disease == ""){
                 $underlying_disease = "-";
               }else{
-                $underlying_disease = $user->underlying_disease ;
+                $underlying_disease = $health_record->underlying_disease ;
               }
               @endphp
               <tr>

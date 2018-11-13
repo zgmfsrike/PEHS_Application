@@ -135,7 +135,7 @@ class HealthRecordController extends Controller
       //----------------------------
       //--------------urine---------
       'urine_color' => 'required|string',
-      'appearance' => 'required|string|regex:/^[a-zA-Z]+$/',
+      'appearance' => 'required|string',
       'specific_gravity' => 'required|numeric|min:0',
       'ph' => 'required|numeric|min:0',
       'albumin' => 'required|string',
