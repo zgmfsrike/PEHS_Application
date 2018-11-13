@@ -89,8 +89,8 @@ public class WeightFragment extends Fragment {
                 myWeightlist.add(weightValue);
                 myDatelist.add(dateValue);
                 myIdList.add(idValue);
-                System.out.println(myWeightlist.get(i));
-                System.out.println(myDatelist.get(i));
+//                System.out.println(myWeightlist.get(i));
+//                System.out.println(myDatelist.get(i));
             }
 
             GraphView graph = (GraphView) view.findViewById(R.id.graph);
@@ -109,9 +109,11 @@ public class WeightFragment extends Fragment {
                 graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
                 GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
-                gridLabel.setVerticalAxisTitle("Kg");
-                gridLabel.setVerticalAxisTitleTextSize(19);
-                gridLabel.setLabelHorizontalHeight(50);
+                gridLabel.setPadding(32);
+//                gridLabel.setVerticalAxisTitle("Kg");
+//                gridLabel.setVerticalAxisTitleTextSize(50);
+//                gridLabel.setHorizontalAxisTitleTextSize(10);
+//                gridLabel.setLabelHorizontalHeight(50);
 
                 graph.addSeries(series);
                 return view;
@@ -129,9 +131,10 @@ public class WeightFragment extends Fragment {
                 graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
                 GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
-                gridLabel.setVerticalAxisTitle("Kg");
-                gridLabel.setVerticalAxisTitleTextSize(19);
-                gridLabel.setLabelHorizontalHeight(50);
+                gridLabel.setPadding(32);
+//                gridLabel.setVerticalAxisTitle("Kg");
+//
+//                gridLabel.setLabelHorizontalHeight(50);
 
                 graph.addSeries(series);
                 return view;
@@ -149,9 +152,10 @@ public class WeightFragment extends Fragment {
                 graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
                 GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
-                gridLabel.setVerticalAxisTitle("Kg");
-                gridLabel.setVerticalAxisTitleTextSize(19);
-                gridLabel.setLabelHorizontalHeight(50);
+                gridLabel.setPadding(32);
+//                gridLabel.setVerticalAxisTitle("Kg");
+//                gridLabel.setVerticalAxisTitleTextSize(19);
+//                gridLabel.setLabelHorizontalHeight(50);
 
                 graph.addSeries(series);
                 return view;
@@ -170,9 +174,10 @@ public class WeightFragment extends Fragment {
                 graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
                 GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
-                gridLabel.setVerticalAxisTitle("Kg");
-                gridLabel.setVerticalAxisTitleTextSize(19);
-                gridLabel.setLabelHorizontalHeight(50);
+                gridLabel.setPadding(32);
+//                gridLabel.setVerticalAxisTitle("Kg");
+//                gridLabel.setVerticalAxisTitleTextSize(19);
+//                gridLabel.setLabelHorizontalHeight(50);
 
                 graph.addSeries(series);
                 return view;

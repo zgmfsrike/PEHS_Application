@@ -62,8 +62,8 @@ public class PulseFragment extends Fragment {
                 myPulseList.add(pulseValue);
                 myDatelist.add(dateValue);
                 myIdList.add(idValue);
-                System.out.println(myPulseList.get(i));
-                System.out.println(myDatelist.get(i));
+//                System.out.println(myPulseList.get(i));
+//                System.out.println(myDatelist.get(i));
             }
             GraphView graph = (GraphView) view.findViewById(R.id.graph);
 
@@ -83,9 +83,10 @@ public class PulseFragment extends Fragment {
                 graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
                 GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
-                gridLabel.setVerticalAxisTitle("Per minutes");
-                gridLabel.setVerticalAxisTitleTextSize(19);
-                gridLabel.setLabelHorizontalHeight(50);
+                gridLabel.setPadding(32);
+//                gridLabel.setVerticalAxisTitle("Per minutes");
+//                gridLabel.setVerticalAxisTitleTextSize(19);
+//                gridLabel.setLabelHorizontalHeight(50);
 
                 graph.addSeries(series);
                 return view;
@@ -104,9 +105,10 @@ public class PulseFragment extends Fragment {
                 graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
                 GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
-                gridLabel.setVerticalAxisTitle("Per minutes");
-                gridLabel.setVerticalAxisTitleTextSize(19);
-                gridLabel.setLabelHorizontalHeight(50);
+                gridLabel.setPadding(32);
+//                gridLabel.setVerticalAxisTitle("Per minutes");
+//                gridLabel.setVerticalAxisTitleTextSize(19);
+//                gridLabel.setLabelHorizontalHeight(50);
 
                 graph.addSeries(series);
                 return view;
@@ -124,9 +126,10 @@ public class PulseFragment extends Fragment {
                 graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
                 GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
-                gridLabel.setVerticalAxisTitle("Per minutes");
-                gridLabel.setVerticalAxisTitleTextSize(19);
-                gridLabel.setLabelHorizontalHeight(50);
+                gridLabel.setPadding(32);
+//                gridLabel.setVerticalAxisTitle("Per minutes");
+//                gridLabel.setVerticalAxisTitleTextSize(19);
+//                gridLabel.setLabelHorizontalHeight(50);
                 graph.addSeries(series);
                 return view;
             }else if (data.size() > 1){
@@ -143,9 +146,10 @@ public class PulseFragment extends Fragment {
                 graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
                 GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
-                gridLabel.setVerticalAxisTitle("Per minutes");
-                gridLabel.setVerticalAxisTitleTextSize(19);
-                gridLabel.setLabelHorizontalHeight(50);
+                gridLabel.setPadding(32);
+//                gridLabel.setVerticalAxisTitle("Per minutes");
+//                gridLabel.setVerticalAxisTitleTextSize(19);
+//                gridLabel.setLabelHorizontalHeight(50);
 
                 graph.addSeries(series);
                 return view;

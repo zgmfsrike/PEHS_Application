@@ -57,8 +57,8 @@ public class HGBFragment extends Fragment {
                 myHgbList.add(hgbValue);
                 myDatelist.add(dateValue);
                 myIdList.add(idValue);
-                System.out.println(myHgbList.get(i));
-                System.out.println(myDatelist.get(i));
+//                System.out.println(myHgbList.get(i));
+//                System.out.println(myDatelist.get(i));
             }
             GraphView graph = (GraphView) view.findViewById(R.id.graph);
 
@@ -77,9 +77,10 @@ public class HGBFragment extends Fragment {
                 graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
                 GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
-                gridLabel.setVerticalAxisTitle("g/dl");
-                gridLabel.setVerticalAxisTitleTextSize(19);
-                gridLabel.setLabelHorizontalHeight(50);
+                gridLabel.setPadding(32);
+//                gridLabel.setVerticalAxisTitle("g/dl");
+//                gridLabel.setVerticalAxisTitleTextSize(19);
+//                gridLabel.setLabelHorizontalHeight(50);
 
                 graph.addSeries(series);
                 return view;
@@ -97,9 +98,10 @@ public class HGBFragment extends Fragment {
                 graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
                 GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
-                gridLabel.setVerticalAxisTitle("g/dl");
-                gridLabel.setVerticalAxisTitleTextSize(19);
-                gridLabel.setLabelHorizontalHeight(50);
+                gridLabel.setPadding(32);
+//                gridLabel.setVerticalAxisTitle("g/dl");
+//                gridLabel.setVerticalAxisTitleTextSize(19);
+//                gridLabel.setLabelHorizontalHeight(50);
 
                 graph.addSeries(series);
                 return view;
@@ -117,9 +119,10 @@ public class HGBFragment extends Fragment {
                 graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
                 GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
-                gridLabel.setVerticalAxisTitle("g/dl");
-                gridLabel.setVerticalAxisTitleTextSize(19);
-                gridLabel.setLabelHorizontalHeight(50);
+                gridLabel.setPadding(32);
+//                gridLabel.setVerticalAxisTitle("g/dl");
+//                gridLabel.setVerticalAxisTitleTextSize(19);
+//                gridLabel.setLabelHorizontalHeight(50);
 
                 graph.addSeries(series);
                 return view;
@@ -137,9 +140,10 @@ public class HGBFragment extends Fragment {
                 graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
                 GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
-                gridLabel.setVerticalAxisTitle("g/dl");
-                gridLabel.setVerticalAxisTitleTextSize(19);
-                gridLabel.setLabelHorizontalHeight(50);
+                gridLabel.setPadding(32);
+//                gridLabel.setVerticalAxisTitle("g/dl");
+//                gridLabel.setVerticalAxisTitleTextSize(19);
+//                gridLabel.setLabelHorizontalHeight(50);
 
                 graph.addSeries(series);
                 return view;

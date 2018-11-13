@@ -88,7 +88,7 @@ public class Login extends AppCompatActivity {
 
         ApiInterface apiInterface = retrofit.create(ApiInterface.class);
 
-//        SignIn signIn = new SignIn(username, password);
+        SignIn signIn = new SignIn(username, password);
 
         Call<AccessToken> call = apiInterface.signIn(new SignIn(username,password));
 
@@ -97,7 +97,7 @@ public class Login extends AppCompatActivity {
             public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
                 if (response.isSuccessful()){
                         Intent intent = new Intent(Login.this, Home.class);
-                        Log.e("Tokenn !!! "," Token !!!!  "+response.body().getAccessToken());
+//                        Log.e("Tokenn !!! "," Token !!!!  "+response.body().getAccessToken());
                         token = response.body().getAccessToken();
                     sp = getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
 //                    editor.putString("token",token);
@@ -122,14 +122,14 @@ public class Login extends AppCompatActivity {
 //                        intent.putExtra("token",token);
                         startActivity(intent);
                 }else {
-                    Log.e("Output","Not successss !!"+response.errorBody());
+//                    Log.e("Output","Not successss !!"+response.errorBody());
                     Toast.makeText(Login.this,"Username or Password is invalid",Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<AccessToken> call, Throwable t) {
-                Log.e("Error :","Cannot call !! "+t.getMessage());
+//                Log.e("Error :","Cannot call !! "+t.getMessage());
                 Toast.makeText(Login.this,"No Internet Connection",Toast.LENGTH_LONG).show();
             }
         });

@@ -57,8 +57,8 @@ public class LymphocyteFragment extends Fragment {
                 myLymList.add(lymValue);
                 myDatelist.add(dateValue);
                 myIdList.add(idValue);
-                System.out.println(myLymList.get(i));
-                System.out.println(myDatelist.get(i));
+//                System.out.println(myLymList.get(i));
+//                System.out.println(myDatelist.get(i));
             }
             GraphView graph = (GraphView) view.findViewById(R.id.graph);
 
@@ -77,9 +77,10 @@ public class LymphocyteFragment extends Fragment {
                 graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
                 GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
-                gridLabel.setVerticalAxisTitle("Percentage");
-                gridLabel.setVerticalAxisTitleTextSize(19);
-                gridLabel.setLabelHorizontalHeight(50);
+                gridLabel.setPadding(32);
+//                gridLabel.setVerticalAxisTitle("Percentage");
+//                gridLabel.setVerticalAxisTitleTextSize(19);
+//                gridLabel.setLabelHorizontalHeight(50);
 
                 graph.addSeries(series);
                 return view;
@@ -98,9 +99,10 @@ public class LymphocyteFragment extends Fragment {
                 graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
                 GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
-                gridLabel.setVerticalAxisTitle("Percentage");
-                gridLabel.setVerticalAxisTitleTextSize(19);
-                gridLabel.setLabelHorizontalHeight(50);
+                gridLabel.setPadding(32);
+//                gridLabel.setVerticalAxisTitle("Percentage");
+//                gridLabel.setVerticalAxisTitleTextSize(19);
+//                gridLabel.setLabelHorizontalHeight(50);
 
                 graph.addSeries(series);
                 return view;
@@ -119,9 +121,10 @@ public class LymphocyteFragment extends Fragment {
                 graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
                 GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
-                gridLabel.setVerticalAxisTitle("Percentage");
-                gridLabel.setVerticalAxisTitleTextSize(19);
-                gridLabel.setLabelHorizontalHeight(50);
+                gridLabel.setPadding(32);
+//                gridLabel.setVerticalAxisTitle("Percentage");
+//                gridLabel.setVerticalAxisTitleTextSize(19);
+//                gridLabel.setLabelHorizontalHeight(50);
 
                 graph.addSeries(series);
                 return view;
@@ -140,9 +143,10 @@ public class LymphocyteFragment extends Fragment {
                 graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
                 GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
-                gridLabel.setVerticalAxisTitle("Percentage");
-                gridLabel.setVerticalAxisTitleTextSize(19);
-                gridLabel.setLabelHorizontalHeight(50);
+                gridLabel.setPadding(32);
+//                gridLabel.setVerticalAxisTitle("Percentage");
+//                gridLabel.setVerticalAxisTitleTextSize(19);
+//                gridLabel.setLabelHorizontalHeight(50);
 
                 graph.addSeries(series);
                 return view;

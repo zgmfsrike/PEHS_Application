@@ -64,8 +64,8 @@ public class DiastolicFragment extends Fragment {
                 myDiatolicList.add(diastolicValue);
                 myDatelist.add(dateValue);
                 myIdList.add(idValue);
-                System.out.println(myDiatolicList.get(i));
-                System.out.println(myDatelist.get(i));
+//                System.out.println(myDiatolicList.get(i));
+//                System.out.println(myDatelist.get(i));
             }
             final GraphView graph = (GraphView) view.findViewById(R.id.graph);
 
@@ -85,9 +85,10 @@ public class DiastolicFragment extends Fragment {
                 graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
                 GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
-                gridLabel.setVerticalAxisTitle("mmHg");
-                gridLabel.setVerticalAxisTitleTextSize(19);
-                gridLabel.setLabelHorizontalHeight(50);
+                gridLabel.setPadding(32);
+//                gridLabel.setVerticalAxisTitle("mmHg");
+//                gridLabel.setVerticalAxisTitleTextSize(19);
+//                gridLabel.setLabelHorizontalHeight(50);
 
                 graph.addSeries(series);
                 return view;
@@ -106,9 +107,10 @@ public class DiastolicFragment extends Fragment {
                 graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
                 GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
-                gridLabel.setVerticalAxisTitle("mmHg");
-                gridLabel.setVerticalAxisTitleTextSize(19);
-                gridLabel.setLabelHorizontalHeight(50);
+                gridLabel.setPadding(32);
+//                gridLabel.setVerticalAxisTitle("mmHg");
+//                gridLabel.setVerticalAxisTitleTextSize(19);
+//                gridLabel.setLabelHorizontalHeight(50);
 
                 graph.addSeries(series);
                 return view;
@@ -127,9 +129,10 @@ public class DiastolicFragment extends Fragment {
                 graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
                 GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
-                gridLabel.setVerticalAxisTitle("mmHg");
-                gridLabel.setVerticalAxisTitleTextSize(19);
-                gridLabel.setLabelHorizontalHeight(50);
+                gridLabel.setPadding(32);
+//                gridLabel.setVerticalAxisTitle("mmHg");
+//                gridLabel.setVerticalAxisTitleTextSize(19);
+//                gridLabel.setLabelHorizontalHeight(50);
 
                 graph.addSeries(series);
                 return view;
@@ -147,9 +150,10 @@ public class DiastolicFragment extends Fragment {
                 graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
                 GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
-                gridLabel.setVerticalAxisTitle("mmHg");
-                gridLabel.setVerticalAxisTitleTextSize(19);
-                gridLabel.setLabelHorizontalHeight(50);
+                gridLabel.setPadding(32);
+//                gridLabel.setVerticalAxisTitle("mmHg");
+//                gridLabel.setVerticalAxisTitleTextSize(19);
+//                gridLabel.setLabelHorizontalHeight(50);
 
                 graph.addSeries(series);
                 return view;

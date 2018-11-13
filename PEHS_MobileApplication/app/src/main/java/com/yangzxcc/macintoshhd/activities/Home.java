@@ -106,12 +106,12 @@ public class Home extends AppCompatActivity
              apiInterface = retrofit.create(ApiInterface.class);
 //             call1 = apiInterface.getMockUpInfo();
             call1 = apiInterface.getMock();
-            Log.e("Output","1   "+token);
+//            Log.e("Output","1   "+token);
         }else {
              retrofit = ApiClient.getRetrofit();
              apiInterface = retrofit.create(ApiInterface.class);
              call1 = apiInterface.getInfo("Bearer "+this.token);
-            Log.e("Output ddd","Token is here   "+token);
+//            Log.e("Output ddd","Token is here   "+token);
         }
 
         call1.enqueue(new Callback<Information>() {
@@ -121,17 +121,17 @@ public class Home extends AppCompatActivity
 
                     if (response.body() == null) {
                         try {
-                            Log.e("Output","NO data :"+response.errorBody().string());
+                            Log.w("Output","NO data :"+response.errorBody().string());
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                     }else {
                         InformationSingleton.getInstance().setInformation(response.body());
-                        Log.e("SUCCESS !","SUCCESS :"+response.body());
+                        Log.w("SUCCESS !","SUCCESS :"+response.body());
                         personalInformations = response.body().getPersonalInformation();
                         healthInformations = response.body().getHealthInformation();
-                        Log.e("test","Health"+healthInformations.size());
-                        Log.e("Dataaaa","daaa"+new Gson().toJson(InformationSingleton.getInstance().getInformation().getHealthInformation()));
+                        Log.w("Record","Total record is "+healthInformations.size());
+                        Log.w("Data","Data receive"+new Gson().toJson(InformationSingleton.getInstance().getInformation().getHealthInformation()));
 //                        JSONObject jsonResult = new JSONObject();
 //                        try {
 //                            JSONArray arr = jsonResult.getJSONArray("health_information");
@@ -146,7 +146,7 @@ public class Home extends AppCompatActivity
                             System.out.println(InformationSingleton.getInstance().getInformation().getHealthInformation().get(0).getWeight());
 //                            System.out.println(InformationSingleton.getInstance().getInformation().getHealthInformation().get(1).getWeight());
                         }else {
-                            System.out.println("ssssss");
+                            System.out.println("..");
                         }
                     }
 
