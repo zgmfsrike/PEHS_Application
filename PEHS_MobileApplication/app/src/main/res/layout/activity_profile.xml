@@ -97,6 +97,7 @@
             android:text="TextView" />
 
         <ImageView
+            android:id="@+id/imgTele"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -118,9 +119,11 @@
 
 
         <ImageView
+            android:id="@+id/imgAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="230dp"
+            android:layout_below="@+id/imgTele"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="40dp"
             app:srcCompat="@drawable/adress1" />
 
@@ -128,7 +131,8 @@
             android:id="@+id/address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="230dp"
+            android:layout_below="@+id/tele"
+            android:layout_marginTop="15dp"
             android:layout_marginLeft="100dp"
             android:layout_marginRight="20dp"
             android:text="Address"
@@ -139,43 +143,40 @@
             android:id="@+id/ee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_above="@+id/tvdrug"
             android:layout_marginLeft="40dp"
-            android:layout_marginBottom="190dp"
+            android:layout_marginTop="10dp"
             android:textSize="20sp"
-            app:srcCompat="@drawable/email1"/>
-
-
+            app:srcCompat="@drawable/email1" />
 
         <TextView
             android:id="@+id/email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
-            android:layout_alignTop="@+id/ee"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/address"
             android:text="TextView"
             android:textColor="@color/colorTextHint"
             android:textSize="20sp" />
 
         <TextView
-
+            android:id="@+id/tvdrug"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="31dp"
-            android:layout_marginBottom="150dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/email"
             android:textSize="20sp"
             android:textColor="@color/colorTextHint"
             android:text="Drug Allergy" />
 
         <android.support.v7.widget.CardView
+            android:id="@+id/drugcard"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
             app:cardCornerRadius="20dp"
-            android:layout_marginBottom="100dp"
+            android:layout_below="@+id/tvdrug"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp">
 
@@ -191,13 +192,12 @@
         </android.support.v7.widget.CardView>
 
         <TextView
-
+            android:id="@+id/tvdisease"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="28dp"
-            android:layout_marginBottom="70dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/drugcard"
             android:textSize="20sp"
             android:textColor="@color/colorTextHint"
             android:text="Underlying disease" />
@@ -206,8 +206,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             app:cardCornerRadius="20dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="20dp"
+            android:layout_below="@+id/tvdisease"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp">
 

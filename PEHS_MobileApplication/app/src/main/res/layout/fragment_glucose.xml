@@ -1,14 +1,25 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.yangzxcc.macintoshhd.activities.chemistry.GlucoseFragment">
 
+
+    <TextView
+        android:layout_above="@+id/graph"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:text="mg/dl"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorTextHint"/>
     <!-- TODO: Update blank fragment layout -->
     <com.jjoe64.graphview.GraphView
-        android:layout_gravity="center"
-        android:layout_width="370dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
         android:layout_height="200dip"
         android:id="@+id/graph" />
 
-</FrameLayout>
+</RelativeLayout>

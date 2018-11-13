@@ -93,7 +93,7 @@ public class Cardiovascular extends AppCompatActivity implements View.OnClickLis
             int dateValue1 = Integer.parseInt(dateValue);
             int calAge = Calendar.getInstance().get(Calendar.YEAR) - dateValue1;
             String calAge1 = String.valueOf(calAge);
-            Log.e("Test Date","Dateeeee " +calAge);
+//            Log.e("Test Date","Dateeeee " +calAge);
 
             String sys = data.get(data.size()-1).getSystolic();
             String chol = data.get(data.size()-1).getCholesterol();
@@ -150,7 +150,7 @@ public class Cardiovascular extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         calculate();
-        Log.e("Calculate","Calucalte  "+value1);
+//        Log.e("Calculate","Calucalte  "+value1);
         Intent intent = new Intent(Cardiovascular.this,CardiovascularDetail.class);
 
         intent.putExtra("score",value1);
