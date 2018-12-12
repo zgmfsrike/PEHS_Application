@@ -17,8 +17,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
     //    public static final String BASE_URL = "http://192.168.1.3:8000/api/auth/";
     //jumbo ip
-    public static final String BASE_URL = "http://10.80.43.133:8000/api/auth/";
-    //    public static final String BASE_URL = "http://10.0.2.2:8000/api/auth/";
+//    public static final String BASE_URL = "http://10.80.43.247:8000/api/auth/";
+        public static final String BASE_URL = "http://10.0.2.2:8000/api/auth/";
     public static final String BASE__MOCK_URL = "https://api.myjson.com";
     //    public static final String BASE_URL = "https://jsonplaceholder.typicode.com/";
     public static Retrofit retrofit = null;
